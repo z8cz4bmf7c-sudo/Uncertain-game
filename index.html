@@ -1,6 +1,1094 @@
 <!doctype html>
-<html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+ content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#08111f">
+<title>UNCERTAIN</title>
+
+<style>
+*{
+ box-sizing:border-box;
+ -webkit-tap-highlight-color:transparent;
+ user-select:none
+}
+
+html,body{
+ margin:0;
+ height:100%;
+ overflow:hidden;
+ background:#050a12;
+ color:#f8fafc;
+ font-family:system-ui,-apple-system,sans-serif
+}
+
+button{font:inherit}
+
+#app{
+ height:100dvh;
+ max-width:520px;
+ margin:auto;
+ position:relative;
+ overflow:hidden;
+ background:#091321
+}
+
+.screen{
+ display:none;
+ position:absolute;
+ inset:0
+}
+
+.screen.active{display:block}
+
+.hud{
+ position:absolute;
+ z-index:30;
+ top:0;
+ left:0;
+ right:0;
+ padding:max(14px,env(safe-area-inset-top)) 14px 8px;
+ display:flex;
+ justify-content:space-between
+}
+
+.pill{
+ padding:9px 12px;
+ border:1px solid #ffffff2b;
+ border-radius:999px;
+ background:#081321e8;
+ font-weight:900
+}
+
+/* START */
+
+#start{
+ background:
+ radial-gradient(circle at 50% 30%,#29425f,#101927 55%,#060b13);
+ padding:100px 22px 30px
+}
+
+.logo{
+ font-size:14px;
+ letter-spacing:.22em;
+ font-weight:900;
+ color:#9fb1c7
+}
+
+.hero{
+ font-size:54px;
+ line-height:.92;
+ margin:25px 0 18px;
+ font-weight:1000;
+ letter-spacing:-.05em
+}
+
+.hero span{color:#72e6c6}
+
+.sub{
+ color:#cbd6e3;
+ font-size:18px;
+ line-height:1.45
+}
+
+.card{
+ background:#0d1829f4;
+ border:1px solid #ffffff24;
+ border-radius:24px;
+ padding:18px;
+ box-shadow:0 18px 45px #0009
+}
+
+.startcard{
+ position:absolute;
+ left:16px;
+ right:16px;
+ bottom:max(24px,env(safe-area-inset-bottom))
+}
+
+.btn{
+ width:100%;
+ min-height:62px;
+ border:0;
+ border-radius:18px;
+ background:#edf2f7;
+ color:#111827;
+ font-weight:950;
+ font-size:17px
+}
+
+.small{
+ font-size:12px;
+ color:#9eacbd;
+ line-height:1.4
+}
+
+/* MAP */
+
+.world{
+ position:absolute;
+ inset:0;
+ background:
+ radial-gradient(circle at 28% 28%,#39516f 0 9%,transparent 10%),
+ radial-gradient(circle at 76% 65%,#263b55 0 13%,transparent 14%),
+ linear-gradient(150deg,#29425f,#142439 60%,#08111d)
+}
+
+.road{
+ position:absolute;
+ width:155%;
+ height:96px;
+ left:-28%;
+ top:48%;
+ transform:rotate(-18deg);
+ background:#4d5c72;
+ box-shadow:0 0 0 10px #202b3a
+}
+
+.road:after{
+ content:"";
+ position:absolute;
+ left:0;
+ right:0;
+ top:46px;
+ border-top:4px dashed #e4e9ef66
+}
+
+.district{
+ position:absolute;
+ border:2px solid #ffffff31;
+ background:#0e192ce8;
+ color:#fff;
+ border-radius:24px;
+ padding:16px;
+ text-align:left;
+ box-shadow:0 16px 36px #0009
+}
+
+.district strong{
+ display:block;
+ font-size:19px
+}
+
+.district small{opacity:.72}
+
+#checking{
+ left:7%;
+ top:24%;
+ width:190px
+}
+
+#future{
+ right:5%;
+ bottom:25%;
+ width:165px;
+ opacity:.5
+}
+
+.avatar{
+ position:absolute;
+ width:52px;
+ height:52px;
+ border-radius:50%;
+ background:#edf2f7;
+ border:7px solid #405675;
+ left:46%;
+ top:64%;
+ box-shadow:0 8px 22px #000c
+}
+
+.bottom{
+ position:absolute;
+ z-index:35;
+ bottom:0;
+ left:0;
+ right:0;
+ padding:12px 14px max(16px,env(safe-area-inset-bottom));
+ background:linear-gradient(#07101d00,#07101df5 34%)
+}
+
+.bottom h2{
+ margin:0 0 6px;
+ font-size:20px
+}
+
+.bottom p{
+ margin:0;
+ color:#c8d2df;
+ line-height:1.35
+}
+
+/* MISSION */
+
+.scene{
+ position:absolute;
+ inset:0;
+ background:linear-gradient(#29394f 0 46%,#141e2b 46%)
+}
+
+.house{
+ position:absolute;
+ left:50%;
+ top:13%;
+ transform:translateX(-50%);
+ width:310px;
+ height:300px;
+ background:#3d495b;
+ clip-path:polygon(
+ 50% 0,
+ 100% 22%,
+ 95% 22%,
+ 95% 100%,
+ 5% 100%,
+ 5% 22%,
+ 0 22%
+ )
+}
+
+.door{
+ position:absolute;
+ left:50%;
+ top:34%;
+ transform:translateX(-50%);
+ width:126px;
+ height:196px;
+ background:#263446;
+ border:8px solid #111a26
+}
+
+.lock{
+ position:absolute;
+ right:8px;
+ top:84px;
+ width:44px;
+ height:44px;
+ border-radius:50%;
+ background:#e7edf4;
+ border:7px solid #68788e
+}
+
+.player{
+ position:absolute;
+ left:50%;
+ bottom:23%;
+ transform:translateX(-50%);
+ width:60px;
+ height:60px;
+ border-radius:50%;
+ background:#edf2f7;
+ border:8px solid #405675;
+ transition:.15s
+}
+
+.doubt{
+ position:absolute;
+ z-index:12;
+ top:12%;
+ left:7%;
+ right:7%;
+ padding:17px;
+ background:#05070df2;
+ border:1px solid #ffffff30;
+ border-radius:22px;
+ text-align:center;
+ font-size:20px;
+ font-weight:900;
+ opacity:0;
+ transform:scale(.9);
+ transition:.18s
+}
+
+.doubt.show{
+ opacity:1;
+ transform:scale(1)
+}
+
+.meter{
+ height:14px;
+ background:#29364a;
+ border-radius:999px;
+ overflow:hidden;
+ margin:7px 0 12px
+}
+
+.meter i{
+ display:block;
+ height:100%;
+ width:0;
+ background:#edf2f7;
+ border-radius:999px;
+ transition:.15s
+}
+
+.label{
+ font-size:11px;
+ letter-spacing:.08em;
+ color:#aeb9c7
+}
+
+.choices{
+ display:flex;
+ gap:10px;
+ margin-top:12px
+}
+
+.choice{
+ flex:1;
+ min-height:58px;
+ border-radius:17px;
+ border:1px solid #ffffff2a;
+ background:#152238;
+ color:#fff;
+ font-weight:900
+}
+
+.choice.forward{
+ background:#edf2f7;
+ color:#111827
+}
+
+/* REWARD */
+
+#reward{
+ background:
+ radial-gradient(circle at 50% 40%,#314967,#101927 60%,#080d16)
+}
+
+.rewardbox{
+ position:absolute;
+ left:20px;
+ right:20px;
+ top:50%;
+ transform:translateY(-50%);
+ text-align:center
+}
+
+.reward{
+ font-size:46px;
+ font-weight:1000;
+ margin:12px 0
+}
+
+.spark{
+ position:absolute;
+ width:8px;
+ height:8px;
+ border-radius:50%;
+ background:white;
+ animation:fly .8s forwards
+}
+
+@keyframes fly{
+ to{
+  transform:translate(var(--x),var(--y)) scale(.1);
+  opacity:0
+ }
+}
+
+@media(prefers-reduced-motion:reduce){
+ *{
+  animation:none!important;
+  transition:none!important
+ }
+}
+</style>
+</head>
+
 <body>
-UNCERTAIN
+
+<div id="app">
+
+<!-- START -->
+
+<section id="start" class="screen active">
+
+<div class="logo">UNCERTAIN</div>
+
+<div class="hero">
+BREAK<br>
+THE <span>LOOP.</span>
+</div>
+
+<div class="sub">
+A game about moving forward when your brain wants certainty first.
+</div>
+
+<div class="startcard card">
+
+<p style="margin-top:0">
+Enter <strong>The Loop</strong>, face Doubt, and practice choosing your next move.
+</p>
+
+<button id="startGame" class="btn">
+ENTER THE LOOP
+</button>
+
+<p class="small">
+Game prototype only. UNCERTAIN is not medical treatment or a replacement
+for professional mental-health care.
+</p>
+
+</div>
+</section>
+
+
+<!-- MAP -->
+
+<section id="map" class="screen">
+
+<div class="world">
+
+<div class="road"></div>
+
+<button id="checking" class="district">
+<strong>Checking District</strong>
+<small id="districtState">Lock & Leave • Mission ready</small>
+</button>
+
+<button id="future" class="district">
+<strong>Contamination Quarter</strong>
+<small>Coming later</small>
+</button>
+
+<div class="avatar"></div>
+
+</div>
+
+<div class="hud">
+<span class="pill">THE LOOP</span>
+<span class="pill">XP <b class="xp">0</b></span>
+</div>
+
+<div class="bottom">
+
+<div class="card">
+
+<h2>Choose your challenge.</h2>
+
+<p>
+Checking District is open. Tap it to begin Lock & Leave.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- MISSION -->
+
+<section id="mission" class="screen">
+
+<div class="scene">
+
+<div class="house"></div>
+
+<div class="door">
+<div class="lock"></div>
+</div>
+
+<div id="player" class="player"></div>
+
+<div id="doubt" class="doubt">
+Are you sure it locked?
+</div>
+
+</div>
+
+<div class="hud">
+
+<span class="pill">
+LOCK & LEAVE
+</span>
+
+<span class="pill">
+XP <b class="xp">0</b>
+</span>
+
+</div>
+
+<div class="bottom">
+
+<div class="card">
+
+<h2 id="missionTitle">
+Lock it once.
+</h2>
+
+<p id="missionCopy">
+One normal action. No extra certainty required.
+</p>
+
+<div id="meters" style="display:none;margin-top:12px">
+
+<span class="label">
+URGE WAVE
+</span>
+
+<div class="meter">
+<i id="urge"></i>
+</div>
+
+<span class="label">
+FORWARD MOMENTUM
+</span>
+
+<div class="meter">
+<i id="progress"></i>
+</div>
+
+</div>
+
+<div id="choices" class="choices" style="display:none">
+
+<button id="recheck" class="choice">
+RE-CHECK
+</button>
+
+<button id="keepGoing" class="choice forward">
+KEEP GOING
+</button>
+
+</div>
+
+<button
+id="action"
+class="btn"
+style="margin-top:14px">
+LOCK ONCE
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- REWARD -->
+
+<section id="reward" class="screen">
+
+<div class="hud">
+
+<span class="pill">
+LOOP BROKEN
+</span>
+
+<span class="pill">
+XP <b class="xp">0</b>
+</span>
+
+</div>
+
+<div class="rewardbox">
+
+<div class="card">
+
+<div class="label">
+MISSION COMPLETE
+</div>
+
+<div class="reward">
++25 XP
+</div>
+
+<p id="result">
+You moved forward while uncertainty was still present.
+</p>
+
+<button
+id="back"
+class="btn"
+style="margin-top:18px">
+BACK TO THE LOOP
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<script>
+
+const q = s => document.querySelector(s);
+const qa = s => document.querySelectorAll(s);
+
+let xp =
+Number(localStorage.getItem("uncertainXP")) || 0;
+
+let completed =
+localStorage.getItem("checkingComplete") === "yes";
+
+let phase = 0;
+let progress = 0;
+let urge = 48;
+let timer = null;
+let urgeTimer = null;
+let interruptions = 0;
+let rechecks = 0;
+
+
+function updateXP(){
+
+qa(".xp").forEach(
+el => el.textContent = xp
+);
+
+}
+
+
+function showScreen(id){
+
+qa(".screen").forEach(
+el => el.classList.remove("active")
+);
+
+q("#"+id).classList.add("active");
+
+}
+
+
+function vibrate(pattern){
+
+if(navigator.vibrate){
+navigator.vibrate(pattern);
+}
+
+}
+
+
+function updateDistrict(){
+
+if(completed){
+
+q("#districtState").textContent =
+"Completed • Replay available";
+
+}
+
+}
+
+
+updateXP();
+updateDistrict();
+
+
+q("#startGame").onclick = () => {
+
+showScreen("map");
+
+};
+
+
+q("#checking").onclick = startMission;
+
+
+function startMission(){
+
+phase = 0;
+progress = 0;
+urge = 48;
+interruptions = 0;
+rechecks = 0;
+
+clearInterval(timer);
+clearInterval(urgeTimer);
+
+q("#missionTitle").textContent =
+"Lock it once.";
+
+q("#missionCopy").textContent =
+"One normal action. No extra certainty required.";
+
+q("#action").textContent =
+"LOCK ONCE";
+
+q("#action").style.display =
+"block";
+
+q("#meters").style.display =
+"none";
+
+q("#choices").style.display =
+"none";
+
+q("#progress").style.width =
+"0%";
+
+q("#urge").style.width =
+"48%";
+
+q("#player").style.bottom =
+"23%";
+
+q("#doubt").classList.remove(
+"show"
+);
+
+showScreen("mission");
+
+}
+
+
+q("#action").onclick = () => {
+
+if(phase === 0){
+
+phase = 1;
+
+q("#missionTitle").textContent =
+"Leave without re-checking.";
+
+q("#missionCopy").textContent =
+"Hold FORWARD. Doubt may interrupt.";
+
+q("#action").textContent =
+"HOLD FORWARD";
+
+q("#meters").style.display =
+"block";
+
+urgeTimer =
+setInterval(()=>{
+
+urge += Math.random()*26 - 11;
+
+urge =
+Math.max(18,Math.min(96,urge));
+
+q("#urge").style.width =
+urge+"%";
+
+},450);
+
+}
+
+};
+
+
+function doubtEvent(){
+
+interruptions++;
+
+clearInterval(timer);
+timer = null;
+
+phase = 2;
+
+const thoughts = [
+
+"Are you sure it clicked?",
+
+"What if you missed something?",
+
+"Maybe check one more time.",
+
+"Going back would feel safer."
+
+];
+
+q("#doubt").textContent =
+thoughts[
+(interruptions-1) %
+thoughts.length
+];
+
+q("#doubt").classList.add(
+"show"
+);
+
+q("#missionCopy").textContent =
+"Doubt wants an answer. Choose what you do next.";
+
+q("#action").style.display =
+"none";
+
+q("#choices").style.display =
+"flex";
+
+vibrate([20,30,20]);
+
+}
+
+
+function resumeMission(){
+
+phase = 1;
+
+q("#doubt").classList.remove(
+"show"
+);
+
+q("#choices").style.display =
+"none";
+
+q("#action").style.display =
+"block";
+
+q("#action").textContent =
+"HOLD FORWARD";
+
+q("#missionCopy").textContent =
+"Keep moving. The urge does not need to disappear.";
+
+}
+
+
+q("#keepGoing").onclick = () => {
+
+progress += 5;
+
+if(progress > 100){
+progress = 100;
+}
+
+q("#progress").style.width =
+progress+"%";
+
+resumeMission();
+
+vibrate(15);
+
+};
+
+
+q("#recheck").onclick = () => {
+
+rechecks++;
+
+progress -= 15;
+
+if(progress < 0){
+progress = 0;
+}
+
+urge += 12;
+
+if(urge > 96){
+urge = 96;
+}
+
+q("#progress").style.width =
+progress+"%";
+
+q("#urge").style.width =
+urge+"%";
+
+q("#doubt").textContent =
+"It helped for a moment... now Doubt wants another check.";
+
+setTimeout(
+resumeMission,
+550
+);
+
+vibrate(20);
+
+};
+
+
+function beginForward(e){
+
+if(phase !== 1){
+return;
+}
+
+e.preventDefault();
+
+if(timer){
+return;
+}
+
+timer =
+setInterval(()=>{
+
+progress += 1.7;
+
+q("#progress").style.width =
+Math.min(progress,100)+"%";
+
+q("#player").style.bottom =
+(23 +
+Math.min(progress,100)*.15)
++"%";
+
+
+if(
+interruptions === 0 &&
+progress >= 27
+){
+
+doubtEvent();
+return;
+
+}
+
+
+if(
+interruptions === 1 &&
+progress >= 57
+){
+
+doubtEvent();
+return;
+
+}
+
+
+if(
+interruptions === 2 &&
+progress >= 82
+){
+
+doubtEvent();
+return;
+
+}
+
+
+if(progress >= 100){
+
+finishMission();
+
+}
+
+},75);
+
+}
+
+
+function stopForward(){
+
+clearInterval(timer);
+timer = null;
+
+}
+
+
+q("#action").addEventListener(
+"pointerdown",
+beginForward
+);
+
+q("#action").addEventListener(
+"pointerup",
+stopForward
+);
+
+q("#action").addEventListener(
+"pointercancel",
+stopForward
+);
+
+
+function finishMission(){
+
+clearInterval(timer);
+clearInterval(urgeTimer);
+
+timer = null;
+
+phase = 3;
+
+xp += 25;
+
+completed = true;
+
+localStorage.setItem(
+"uncertainXP",
+xp
+);
+
+localStorage.setItem(
+"checkingComplete",
+"yes"
+);
+
+updateXP();
+
+
+if(rechecks === 0){
+
+q("#result").textContent =
+"You kept moving while uncertainty was present. That is the win.";
+
+}else{
+
+q("#result").textContent =
+"You finished after choosing to re-check " +
+rechecks +
+(rechecks === 1
+? " time. "
+: " times. ") +
+"No failure screen—notice the loop and try again.";
+
+}
+
+showScreen("reward");
+
+celebrate();
+
+vibrate([30,50,30]);
+
+}
+
+
+function celebrate(){
+
+for(let i=0;i<28;i++){
+
+const spark =
+document.createElement("i");
+
+spark.className =
+"spark";
+
+spark.style.left =
+"50%";
+
+spark.style.top =
+"48%";
+
+spark.style.setProperty(
+"--x",
+(Math.random()*300-150)+"px"
+);
+
+spark.style.setProperty(
+"--y",
+(Math.random()*300-170)+"px"
+);
+
+q("#app").appendChild(
+spark
+);
+
+setTimeout(
+()=>spark.remove(),
+850
+);
+
+}
+
+}
+
+
+q("#back").onclick = () => {
+
+updateDistrict();
+
+showScreen("map");
+
+};
+
+</script>
+
 </body>
 </html>
