@@ -2,2456 +2,1091 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-
-<meta
- name="viewport"
- content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-
-<meta
- name="theme-color"
- content="#07101c">
-
-<title>
-UNCERTAIN — Checking District
-</title>
-
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#07101c">
+<title>UNCERTAIN — Checking District v6</title>
 <style>
-
 :root{
- --bg:#07101c;
- --panel:#0d192aee;
- --text:#f8fafc;
- --muted:#aebbd0;
- --accent:#74e7c5;
- --line:#ffffff24;
+  --bg:#07101c;--panel:#0b1523e8;--panel2:#101d30e8;--text:#f7fbff;--muted:#aebbd0;
+  --accent:#74e7c5;--line:#ffffff26;--hot:#ff8b79
 }
-
-*{
- box-sizing:border-box;
- -webkit-tap-highlight-color:transparent;
- -webkit-touch-callout:none;
- user-select:none;
-}
-
-html,
-body{
- margin:0;
- height:100%;
- overflow:hidden;
- background:#040912;
- color:var(--text);
- font-family:
- system-ui,
- -apple-system,
- BlinkMacSystemFont,
- "Segoe UI",
- sans-serif;
-}
-
-button{
- font:inherit;
- color:inherit;
- touch-action:manipulation;
-}
-
-#app{
- height:100dvh;
- max-width:520px;
- margin:auto;
- position:relative;
- overflow:hidden;
- background:var(--bg);
-}
-
-.screen{
- display:none;
- position:absolute;
- inset:0;
-}
-
-.screen.active{
- display:block;
-}
-
-.hud{
- position:absolute;
- z-index:50;
- top:0;
- left:0;
- right:0;
- padding:
- max(13px,env(safe-area-inset-top))
- 14px
- 8px;
- display:flex;
- justify-content:space-between;
- pointer-events:none;
-}
-
-.pill{
- padding:8px 11px;
- border:1px solid var(--line);
- border-radius:999px;
- background:#07111de8;
- font-size:12px;
- font-weight:950;
- letter-spacing:.04em;
-}
-
-.card{
- background:var(--panel);
- border:1px solid var(--line);
- border-radius:22px;
- padding:16px;
- box-shadow:0 18px 44px #0009;
-}
-
-.btn{
- width:100%;
- min-height:60px;
- border:0;
- border-radius:17px;
- background:#eef3f8;
- color:#0c1420;
- font-weight:950;
- font-size:17px;
-}
-
-.small{
- font-size:12px;
- line-height:1.4;
- color:#9eacbd;
-}
-
-.bottom{
- position:absolute;
- z-index:45;
- left:0;
- right:0;
- bottom:0;
- padding:
- 12px
- 14px
- max(15px,env(safe-area-inset-bottom));
-
- background:
- linear-gradient(
- #07101c00,
- #07101cf5 30%
- );
-}
-
-.bottom h2{
- margin:0 0 5px;
- font-size:20px;
-}
-
-.bottom p{
- margin:0;
- color:#c9d4e2;
- line-height:1.35;
-}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;user-select:none}
+html,body{margin:0;height:100%;overflow:hidden;background:#040912;color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button{font:inherit;color:inherit;touch-action:manipulation}
+#app{height:100dvh;max-width:520px;margin:auto;position:relative;overflow:hidden;background:var(--bg)}
+.screen{display:none;position:absolute;inset:0}.screen.active{display:block}
+.hud{position:absolute;z-index:80;top:0;left:0;right:0;padding:max(12px,env(safe-area-inset-top)) 12px 8px;display:flex;justify-content:space-between;pointer-events:none}
+.pill{padding:8px 11px;border:1px solid var(--line);border-radius:999px;background:#07111dde;font-size:12px;font-weight:950;letter-spacing:.04em;backdrop-filter:blur(8px)}
+.btn{width:100%;min-height:58px;border:0;border-radius:17px;background:#eef3f8;color:#0c1420;font-weight:950;font-size:17px}
+.small{font-size:12px;line-height:1.4;color:#9eacbd}
+.card{background:linear-gradient(180deg,#101d30f2,#0b1625f2);border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:0 18px 44px #0009}
 
 /* START */
-
-#start{
- padding:92px 22px 26px;
-
- background:
- radial-gradient(
- circle at 50% 25%,
- #355271,
- #111b2a 55%,
- #060b13
- );
-}
-
-.logo{
- font-size:13px;
- letter-spacing:.25em;
- font-weight:950;
- color:#a9b7ca;
-}
-
-.hero{
- font-size:53px;
- line-height:.92;
- margin:24px 0 16px;
- font-weight:1000;
- letter-spacing:-.055em;
-}
-
-.hero span{
- color:var(--accent);
-}
-
-.startCard{
- position:absolute;
- left:16px;
- right:16px;
- bottom:
- max(
- 22px,
- env(safe-area-inset-bottom)
- );
-}
+#start{padding:92px 22px 26px;background:radial-gradient(circle at 50% 25%,#355271,#111b2a 55%,#060b13)}
+.logo{font-size:13px;letter-spacing:.25em;font-weight:950;color:#a9b7ca}
+.hero{font-size:53px;line-height:.92;margin:24px 0 16px;font-weight:1000;letter-spacing:-.055em}.hero span{color:var(--accent)}
+.startCard{position:absolute;left:16px;right:16px;bottom:max(22px,env(safe-area-inset-bottom))}
 
 /* MAP */
+#map{background:linear-gradient(145deg,#29425f,#112238 64%,#07101c)}
+.road{position:absolute;width:155%;height:100px;left:-30%;top:49%;transform:rotate(-18deg);background:#46566c;box-shadow:0 0 0 9px #1d2837}
+.road:after{content:"";position:absolute;left:0;right:0;top:48px;border-top:4px dashed #e8edf566}
+.node{position:absolute;border:2px solid #ffffff32;background:#0b1729ed;border-radius:23px;padding:15px;text-align:left;box-shadow:0 16px 36px #0009}
+.node strong{display:block;font-size:18px}.node small{opacity:.72}
+#checking{left:6%;top:21%;width:195px}.locked{right:5%;bottom:25%;width:170px;opacity:.48}
+.avatarMini{position:absolute;left:47%;top:63%;width:44px;height:44px;border-radius:50%;background:#eef3f8;border:7px solid #405675;box-shadow:0 8px 20px #000b}
+.mapInfo{position:absolute;left:14px;right:14px;bottom:max(14px,env(safe-area-inset-bottom));padding:13px 15px;border:1px solid var(--line);border-radius:18px;background:#081321d9;backdrop-filter:blur(10px)}
+.mapInfo b{display:block;font-size:15px}.mapInfo span{display:block;margin-top:4px;font-size:12px;color:#aebbd0}
 
-#map{
- background:
- linear-gradient(
- 145deg,
- #29425f,
- #112238 64%,
- #07101c
- );
-}
+/* SELECT */
+#missionSelect{background:radial-gradient(circle at 50% 30%,#274762,#0b1625 65%)}
+.selectWrap{position:absolute;inset:88px 14px 18px;overflow:auto;padding-bottom:20px}
+.missionCard{width:100%;border:1px solid var(--line);border-radius:22px;background:#0d192aef;padding:17px;text-align:left;margin-bottom:12px;min-height:118px}
+.missionCard b{display:block;font-size:20px}.missionCard span{display:block;color:#b7c5d6;margin-top:7px;line-height:1.35}
+.tag{font-size:11px!important;color:var(--accent)!important;font-weight:900;letter-spacing:.08em}
 
-.road{
- position:absolute;
- width:155%;
- height:100px;
- left:-30%;
- top:49%;
- transform:rotate(-18deg);
- background:#46566c;
- box-shadow:
- 0 0 0 9px #1d2837;
-}
-
-.road:after{
- content:"";
- position:absolute;
- left:0;
- right:0;
- top:48px;
- border-top:
- 4px dashed #e8edf566;
-}
-
-.node{
- position:absolute;
- border:
- 2px solid #ffffff32;
- background:#0b1729ed;
- border-radius:23px;
- padding:15px;
- text-align:left;
- box-shadow:
- 0 16px 36px #0009;
-}
-
-.node strong{
- display:block;
- font-size:18px;
-}
-
-.node small{
- opacity:.72;
-}
-
-#checking{
- left:6%;
- top:21%;
- width:195px;
-}
-
-.locked{
- right:5%;
- bottom:25%;
- width:170px;
- opacity:.48;
-}
-
-.avatarMini{
- position:absolute;
- left:47%;
- top:63%;
- width:44px;
- height:44px;
- border-radius:50%;
- background:#eef3f8;
- border:
- 7px solid #405675;
- box-shadow:
- 0 8px 20px #000b;
-}
-
-/* MISSION SELECT */
-
-#missionSelect{
- background:
- radial-gradient(
- circle at 50% 30%,
- #274762,
- #0b1625 65%
- );
-}
-
-.selectWrap{
- position:absolute;
- inset:
- 90px
- 14px
- 20px;
- overflow:auto;
- padding-bottom:20px;
-}
-
-.missionCard{
- width:100%;
- border:
- 1px solid var(--line);
- border-radius:22px;
- background:#0d192aef;
- padding:17px;
- text-align:left;
- margin-bottom:12px;
- min-height:120px;
-}
-
-.missionCard b{
- display:block;
- font-size:20px;
-}
-
-.missionCard span{
- display:block;
- color:#b7c5d6;
- margin-top:7px;
- line-height:1.35;
-}
-
-.tag{
- font-size:11px!important;
- color:var(--accent)!important;
- font-weight:900;
- letter-spacing:.08em;
-}
-
-/* GAME WORLD */
-
-.scene{
- position:absolute;
- inset:0;
- overflow:hidden;
-
- background:
- linear-gradient(
- #2b3f57 0 45%,
- #182434 45% 100%
- );
-}
-
-#environment{
- position:absolute;
- inset:0;
-
- transition:
- transform .2s ease,
- filter .2s ease;
-}
+/* WORLD */
+.scene{position:absolute;inset:0;overflow:hidden;background:linear-gradient(#24364b 0 47%,#101923 47% 100%)}
+#environment{position:absolute;inset:0;transition:transform .2s ease,filter .2s ease,opacity .2s ease}
+.skyGlow{position:absolute;left:0;right:0;top:0;height:38%;background:radial-gradient(circle at 70% 16%,#526d8a55,transparent 30%)}
+.ground{position:absolute;left:0;right:0;bottom:0;height:58%;background:linear-gradient(#1f2b37,#111923)}
+.path{position:absolute;left:50%;bottom:-4%;width:56%;height:60%;transform:translateX(-50%) perspective(300px) rotateX(58deg);transform-origin:center bottom;background:linear-gradient(90deg,#334251,#536578 50%,#334251);clip-path:polygon(38% 0,62% 0,100% 100%,0 100%);opacity:.95}
+.path:after{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:3px dashed #ffffff22}
 
 /* HOUSE */
+.houseShell{position:absolute;left:50%;top:11%;transform:translateX(-50%);width:310px;height:270px}
+.houseBody{position:absolute;left:16px;right:16px;top:48px;bottom:0;background:linear-gradient(#47576a,#303b49);border:6px solid #1b2735;box-shadow:0 20px 46px #0009}
+.roof{position:absolute;left:0;right:0;top:0;height:110px;background:#202c3a;clip-path:polygon(50% 0,100% 54%,92% 54%,92% 100%,8% 100%,8% 54%,0 54%)}
+.window{position:absolute;top:92px;width:55px;height:70px;background:#d2a55f;border:6px solid #1b2735;box-shadow:0 0 26px #ffc36c33}
+.window.left{left:38px}.window.right{right:38px}
+.porch{position:absolute;left:50%;bottom:-7px;transform:translateX(-50%);width:180px;height:28px;background:#1c2835;border-radius:8px 8px 0 0}
+.door{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);width:112px;height:172px;background:linear-gradient(#2f4155,#1b2a3a);border:7px solid #111a25;box-shadow:0 10px 28px #0007}
+.knob{position:absolute;right:8px;top:74px;width:36px;height:36px;border-radius:50%;background:#e8eef5;border:6px solid #6a7a8f}
 
-.house{
- position:absolute;
- left:50%;
- top:12%;
- transform:
- translateX(-50%);
- width:300px;
- height:270px;
- background:#3b4a5c;
+/* PARKING */
+.parkingGround{position:absolute;inset:34% 0 0;background:linear-gradient(170deg,#303b49,#141c26)}
+.store{position:absolute;left:50%;top:5%;transform:translateX(-50%);width:305px;height:178px;background:linear-gradient(#54667a,#3b4a5d);border:8px solid #223040;box-shadow:0 18px 40px #0009}
+.store:before{content:"DESTINATION";position:absolute;left:0;right:0;top:26px;text-align:center;font-weight:1000;letter-spacing:.12em;color:#dbe4ee}
+.storeDoor{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:82px;height:96px;background:#142638;border:5px solid #71849a}
+.parkingLine{position:absolute;height:5px;background:#edf3fa4a;transform-origin:left center}
+.line1{width:65%;left:-4%;top:61%;transform:rotate(-19deg)}.line2{width:65%;right:-13%;top:61%;transform:rotate(19deg)}
+.line3{width:56%;left:4%;top:78%;transform:rotate(-14deg)}.line4{width:56%;right:-3%;top:78%;transform:rotate(14deg)}
+.car{position:absolute;left:50%;top:43%;transform:translateX(-50%);width:192px;height:86px;border-radius:38px 42px 18px 18px;background:linear-gradient(#8fa0b5,#687a91);border:7px solid #101722;box-shadow:0 16px 30px #0009;transition:transform .2s,opacity .2s}
+.carWindow{position:absolute;left:44px;top:-8px;width:104px;height:44px;background:#21354a;clip-path:polygon(20% 100%,35% 0,78% 0,100% 100%)}
+.carLight{position:absolute;right:8px;top:37px;width:24px;height:14px;border-radius:8px;background:#e9c978}
+.car:before,.car:after{content:"";position:absolute;bottom:-18px;width:34px;height:34px;border-radius:50%;background:#0a0d12;border:6px solid #394554}
+.car:before{left:20px}.car:after{right:20px}
 
- clip-path:
- polygon(
- 50% 0,
- 100% 23%,
- 95% 23%,
- 95% 100%,
- 5% 100%,
- 5% 23%,
- 0 23%
- );
-}
-
-.door{
- position:absolute;
- left:50%;
- top:32%;
- transform:
- translateX(-50%);
- width:118px;
- height:186px;
- background:#243246;
- border:
- 7px solid #111a25;
-}
-
-.knob{
- position:absolute;
- right:8px;
- top:80px;
- width:38px;
- height:38px;
- border-radius:50%;
- background:#e8eef5;
- border:
- 6px solid #6a7a8f;
-}
-
-/* PARKING LOT */
-
-.parkingGround{
- position:absolute;
- inset:34% 0 0;
-
- background:
- linear-gradient(
- 165deg,
- #303b49,
- #1a232f
- );
-}
-
-.parkingLine{
- position:absolute;
- height:5px;
- background:#e6edf55e;
- transform-origin:left center;
-}
-
-.line1{
- width:65%;
- left:-4%;
- top:61%;
- transform:
- rotate(-19deg);
-}
-
-.line2{
- width:65%;
- right:-13%;
- top:61%;
- transform:
- rotate(19deg);
-}
-
-.line3{
- width:56%;
- left:4%;
- top:78%;
- transform:
- rotate(-14deg);
-}
-
-.line4{
- width:56%;
- right:-3%;
- top:78%;
- transform:
- rotate(14deg);
-}
-
-.store{
- position:absolute;
- left:50%;
- top:5%;
- transform:
- translateX(-50%);
- width:305px;
- height:185px;
- background:#48596d;
- border:
- 8px solid #243244;
- box-shadow:
- 0 18px 38px #0008;
-}
-
-.store:before{
- content:"DESTINATION";
- position:absolute;
- left:0;
- right:0;
- top:30px;
- text-align:center;
- font-weight:1000;
- letter-spacing:.12em;
- color:#dbe4ee;
-}
-
-.storeDoor{
- position:absolute;
- left:50%;
- bottom:0;
- transform:
- translateX(-50%);
- width:82px;
- height:100px;
- background:#16283a;
- border:
- 5px solid #71849a;
-}
-
-.car{
- position:absolute;
- left:50%;
- top:43%;
- transform:
- translateX(-50%);
- width:190px;
- height:82px;
- border-radius:
- 34px 42px 18px 18px;
- background:#7b8da4;
- border:
- 7px solid #111a25;
-
- transition:
- transform .2s,
- opacity .2s;
-}
-
-.carWindow{
- position:absolute;
- left:46px;
- top:-7px;
- width:100px;
- height:42px;
- background:#26384b;
-
- clip-path:
- polygon(
- 20% 100%,
- 35% 0,
- 78% 0,
- 100% 100%
- );
-}
-
-.car:before,
-.car:after{
- content:"";
- position:absolute;
- bottom:-18px;
- width:34px;
- height:34px;
- border-radius:50%;
- background:#0a0d12;
- border:
- 6px solid #394554;
-}
-
-.car:before{
- left:20px;
-}
-
-.car:after{
- right:20px;
-}
-
-/* CHARACTER */
-
-.person{
- position:absolute;
- z-index:16;
- left:50%;
- bottom:24%;
- width:56px;
- height:95px;
- transform:
- translateX(-50%);
-
- transition:
- bottom .18s,
- transform .18s;
-}
-
-.head{
- position:absolute;
- left:15px;
- top:0;
- width:27px;
- height:27px;
- border-radius:50%;
- background:#eef3f8;
-}
-
-.body{
- position:absolute;
- left:10px;
- top:27px;
- width:36px;
- height:42px;
- border-radius:
- 15px 15px 8px 8px;
- background:#dce5ef;
-}
-
-.leg{
- position:absolute;
- top:65px;
- width:13px;
- height:29px;
- border-radius:9px;
- background:#c9d4df;
-}
-
-.leg.a{
- left:12px;
-}
-
-.leg.b{
- right:12px;
-}
-
-.person.walking .leg.a{
- animation:
- step .26s infinite alternate;
-}
-
-.person.walking .leg.b{
- animation:
- step .26s infinite alternate-reverse;
-}
-
-@keyframes step{
-
- to{
-  transform:
-  translateY(4px)
-  rotate(7deg);
- }
-
-}
+/* PLAYER */
+.person{position:absolute;z-index:18;left:50%;bottom:24%;width:62px;height:106px;transform:translateX(-50%);transition:bottom .18s,transform .18s}
+.shadow{position:absolute;left:50%;bottom:-4px;transform:translateX(-50%);width:54px;height:13px;border-radius:50%;background:#0007;filter:blur(2px)}
+.head{position:absolute;left:17px;top:0;width:28px;height:28px;border-radius:50%;background:#eef3f8;box-shadow:inset 0 -5px 0 #cdd8e4}
+.body{position:absolute;left:12px;top:28px;width:38px;height:46px;border-radius:16px 16px 10px 10px;background:linear-gradient(#e8eef5,#c8d4df)}
+.arm{position:absolute;top:35px;width:11px;height:37px;border-radius:10px;background:#cfdbe6}.arm.a{left:5px;transform:rotate(7deg)}.arm.b{right:5px;transform:rotate(-7deg)}
+.leg{position:absolute;top:70px;width:13px;height:33px;border-radius:9px;background:#bcc9d5}.leg.a{left:14px}.leg.b{right:14px}
+.person.walking .leg.a{animation:step .28s infinite alternate}.person.walking .leg.b{animation:step .28s infinite alternate-reverse}
+.person.walking .arm.a{animation:swing .28s infinite alternate-reverse}.person.walking .arm.b{animation:swing .28s infinite alternate}
+@keyframes step{to{transform:translateY(4px) rotate(9deg)}}@keyframes swing{to{transform:rotate(18deg)}}
 
 /* DOUBT */
+#doubtVignette{position:absolute;z-index:21;inset:0;background:radial-gradient(circle at 50% 45%,transparent 32%,#210d2a99 100%);opacity:0;pointer-events:none;transition:.18s}
+#doubtVignette.show{opacity:1}
+.doubtText{position:absolute;z-index:24;top:15%;left:8%;right:8%;text-align:center;font-size:24px;font-weight:1000;line-height:1.05;text-shadow:0 4px 16px #000,0 0 20px #8c2f8844;opacity:0;transform:translateY(-8px) scale(.95);transition:.18s}
+.doubtText.show{opacity:1;transform:translateY(0) scale(1)}
+.doubtLabel{display:block;font-size:10px;letter-spacing:.16em;color:#d2a3cf;margin-bottom:7px}
 
-.doubtCloud{
- position:absolute;
- z-index:25;
- top:11%;
- left:6%;
- right:6%;
- padding:16px 18px;
-
- border:
- 1px solid #ffffff35;
-
- border-radius:22px;
- background:#04070df3;
-
- text-align:center;
- font-size:20px;
- font-weight:950;
-
- opacity:0;
-
- transform:
- scale(.9);
-
- transition:.18s;
-
- box-shadow:
- 0 16px 42px #000c;
-}
-
-.doubtCloud.show{
- opacity:1;
- transform:
- scale(1);
-}
-
-#doubtFace{
- display:block;
- font-size:11px;
- color:#9dabbd;
- letter-spacing:.13em;
- margin-bottom:5px;
-}
-
-/* METERS */
-
-.meterLabel{
- font-size:10px;
- letter-spacing:.11em;
- color:#aeb9c7;
-}
-
-.meter{
- height:12px;
- background:#29364a;
- border-radius:999px;
- overflow:hidden;
- margin:5px 0 10px;
-}
-
-.meter i{
- display:block;
- height:100%;
- width:0;
- border-radius:999px;
- background:#eef3f8;
- transition:.12s;
-}
-
-.controls{
- display:flex;
- gap:10px;
- margin-top:12px;
-}
-
-.control{
- flex:1;
- min-height:62px;
-
- border:
- 1px solid #ffffff2a;
-
- border-radius:17px;
- background:#17253a;
- font-weight:950;
-}
-
-.control.primary{
- background:#eef3f8;
- color:#101826;
-}
+/* GAME HUD */
+.gamePanel{position:absolute;z-index:60;left:10px;right:10px;bottom:max(10px,env(safe-area-inset-bottom));padding:11px 12px;border:1px solid #ffffff24;border-radius:20px;background:#081321df;backdrop-filter:blur(12px);box-shadow:0 10px 34px #0009}
+.gameTitle{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.gameTitle b{font-size:15px}.gameTitle span{font-size:11px;color:#aebbd0;text-align:right}
+.meters{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:9px}.meterLabel{font-size:9px;letter-spacing:.1em;color:#aeb9c7}
+.meter{height:9px;background:#29364a;border-radius:999px;overflow:hidden;margin-top:4px}.meter i{display:block;height:100%;width:0;border-radius:999px;background:#eef3f8;transition:.12s}
+.controls{display:flex;gap:9px;margin-top:10px}.control{flex:1;min-height:54px;border:1px solid #ffffff2a;border-radius:15px;background:#152238;font-weight:950;font-size:15px}
+.control.primary{background:#eef3f8;color:#101826}
 
 /* KEY FOB */
-
-#keyfob{
- position:absolute;
- z-index:60;
- right:14px;
- bottom:
- calc(
- 255px +
-  env(safe-area-inset-bottom)
- );
-
- width:86px;
- height:112px;
-
- border-radius:24px;
- background:#101821;
-
- border:
- 4px solid #75859b;
-
- box-shadow:
- 0 12px 28px #000b;
-
- padding:10px 9px;
- text-align:center;
-}
-
-#keyfob .ring{
- width:20px;
- height:20px;
-
- border:
- 4px solid #8fa0b5;
-
- border-radius:50%;
-
- margin:
- -25px auto 8px;
-}
-
-#keyfob button{
- width:100%;
- min-height:54px;
- border:0;
- border-radius:14px;
- background:#dce5ee;
- color:#111827;
- font-size:23px;
- font-weight:1000;
-}
-
-#beep{
- position:absolute;
- z-index:61;
- right:108px;
-
- bottom:
- calc(
- 305px +
-  env(safe-area-inset-bottom)
- );
-
- padding:8px 11px;
- border-radius:999px;
- background:#0a111be8;
- border:
- 1px solid #ffffff32;
-
- font-weight:1000;
-
- opacity:0;
-
- transform:
- translateY(8px);
-
- transition:.12s;
-}
-
-#beep.show{
- opacity:1;
-
- transform:
- translateY(0);
-}
-
-.reliefFlash{
- filter:
- brightness(1.16);
-}
+#keyfob{position:absolute;z-index:65;right:15px;bottom:188px;width:84px;height:108px;border-radius:24px;background:#101821;border:4px solid #75859b;box-shadow:0 12px 28px #000b;padding:9px;text-align:center}
+#keyfob .ring{width:19px;height:19px;border:4px solid #8fa0b5;border-radius:50%;margin:-24px auto 8px}
+#keyfob button{width:100%;min-height:53px;border:0;border-radius:14px;background:#dce5ee;color:#111827;font-size:22px;font-weight:1000}
+#beep{position:absolute;z-index:66;right:104px;bottom:236px;padding:8px 11px;border-radius:999px;background:#07111de8;border:1px solid #ffffff32;font-weight:1000;opacity:0;transform:translateY(8px);transition:.12s}
+#beep.show{opacity:1;transform:translateY(0)}
+.reliefFlash{filter:brightness(1.16) saturate(1.05)}
 
 /* REWARD */
-
-#reward{
- background:
- radial-gradient(
- circle at 50% 38%,
- #35516e,
- #101927 62%,
- #060b13
- );
-}
-
-.rewardBox{
- position:absolute;
- left:18px;
- right:18px;
- top:50%;
-
- transform:
- translateY(-50%);
-
- text-align:center;
-}
-
-.rewardBig{
- font-size:45px;
- font-weight:1000;
- margin:10px 0;
-}
-
-.accent{
- color:var(--accent);
-}
-
-@media(
- prefers-reduced-motion:reduce
-){
-
- *{
-  animation:none!important;
-  transition:none!important;
- }
-
-}
-
+#reward{background:radial-gradient(circle at 50% 38%,#35516e,#101927 62%,#060b13)}
+.rewardBox{position:absolute;left:18px;right:18px;top:50%;transform:translateY(-50%);text-align:center}
+.rewardBig{font-size:45px;font-weight:1000;margin:10px 0}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
-
 <body>
-
 <div id="app">
 
-
-<!-- START -->
-
-<section
- id="start"
- class="screen active">
-
-<div class="logo">
-UNCERTAIN
-</div>
-
-<div class="hero">
-
-BREAK<br>
-
-THE
-<span>
-LOOP.
-</span>
-
-</div>
-
-<p
- style="
- font-size:18px;
- color:#cbd6e3;
- line-height:1.45">
-
-Move forward without making certainty the price of admission.
-
-</p>
-
-
-<div class="startCard card">
-
-<button
- class="btn"
- id="enter">
-
-ENTER THE LOOP
-
-</button>
-
-
-<p class="small">
-
-Prototype only.
-ERP-informed gameplay is not a replacement for professional mental-health care.
-
-</p>
-
-</div>
-
+<section id="start" class="screen active">
+  <div class="logo">UNCERTAIN</div>
+  <div class="hero">BREAK<br>THE <span>LOOP.</span></div>
+  <p style="font-size:18px;color:#cbd6e3;line-height:1.45">Move forward without making certainty the price of admission.</p>
+  <div class="startCard card">
+    <button class="btn" id="enter">ENTER THE LOOP</button>
+    <p class="small">Prototype only. ERP-informed gameplay is not a replacement for professional mental-health care.</p>
+  </div>
 </section>
 
-
-<!-- MAP -->
-
-<section
- id="map"
- class="screen">
-
-<div class="road">
-</div>
-
-
-<button
- id="checking"
- class="node">
-
-<strong>
-Checking District
-</strong>
-
-<small>
-2 missions available
-</small>
-
-</button>
-
-
-<button
- class="node locked">
-
-<strong>
-Next District
-</strong>
-
-<small>
-Under construction
-</small>
-
-</button>
-
-
-<div class="avatarMini">
-</div>
-
-
-<div class="hud">
-
-<span class="pill">
-THE LOOP
-</span>
-
-<span class="pill">
-XP
-<b class="xp">
-0
-</b>
-</span>
-
-</div>
-
-
-<div class="bottom">
-
-<div class="card">
-
-<h2>
-Checking District
-</h2>
-
-<p>
-Certainty always seems one more check away.
-</p>
-
-</div>
-
-</div>
-
+<section id="map" class="screen">
+  <div class="road"></div>
+  <button id="checking" class="node">
+    <strong>Checking District</strong>
+    <small>2 missions available</small>
+  </button>
+  <button class="node locked">
+    <strong>Next District</strong>
+    <small>Under construction</small>
+  </button>
+  <div class="avatarMini"></div>
+  <div class="hud">
+    <span class="pill">THE LOOP</span>
+    <span class="pill">XP <b class="xp">0</b></span>
+  </div>
+  <div class="mapInfo">
+    <b>Checking District</b>
+    <span>Certainty always seems one more check away.</span>
+  </div>
 </section>
 
-
-<!-- MISSION SELECT -->
-
-<section
- id="missionSelect"
- class="screen">
-
-<div class="hud">
-
-<span class="pill">
-CHECKING DISTRICT
-</span>
-
-<span class="pill">
-XP
-<b class="xp">
-0
-</b>
-</span>
-
-</div>
-
-
-<div class="selectWrap">
-
-
-<button
- class="missionCard"
- data-mission="door">
-
-<span class="tag">
-PHYSICAL CHECKING
-</span>
-
-<b>
-Lock & Leave
-</b>
-
-<span>
-Lock the house once,
-then keep moving while
-Doubt tries to pull you back.
-</span>
-
-</button>
-
-
-<button
- class="missionCard"
- data-mission="car">
-
-<span class="tag">
-PHYSICAL + MENTAL CHECKING
-</span>
-
-<b>
-Park & Walk
-</b>
-
-<span>
-Lock the car once.
-The key fob stays available.
-Doubt does too.
-</span>
-
-</button>
-
-
-<button
- class="missionCard"
- id="backMap">
-
-<span class="tag">
-RETURN
-</span>
-
-<b>
-Back to The Loop
-</b>
-
-<span>
-Return to the district map.
-</span>
-
-</button>
-
-
-</div>
-
+<section id="missionSelect" class="screen">
+  <div class="hud">
+    <span class="pill">CHECKING DISTRICT</span>
+    <span class="pill">XP <b class="xp">0</b></span>
+  </div>
+  <div class="selectWrap">
+    <button class="missionCard" data-mission="door">
+      <span class="tag">PHYSICAL CHECKING</span>
+      <b>Lock & Leave</b>
+      <span>Lock the house once, then keep moving while Doubt tries to pull you back.</span>
+    </button>
+    <button class="missionCard" data-mission="car">
+      <span class="tag">PHYSICAL + MENTAL CHECKING</span>
+      <b>Park & Walk</b>
+      <span>Lock the car once. The key fob stays available. Doubt does too.</span>
+    </button>
+    <button class="missionCard" id="backMap">
+      <span class="tag">RETURN</span>
+      <b>Back to The Loop</b>
+      <span>Return to the district map.</span>
+    </button>
+  </div>
 </section>
 
-
-<!-- MISSION -->
-
-<section
- id="mission"
- class="screen">
-
-<div
- id="scene"
- class="scene">
-
-
-<div id="environment">
-</div>
-
-
-<div
- id="person"
- class="person">
-
-<i class="head">
-</i>
-
-<i class="body">
-</i>
-
-<i class="leg a">
-</i>
-
-<i class="leg b">
-</i>
-
-</div>
-
-
-<div
- id="doubt"
- class="doubtCloud">
-
-<span id="doubtFace">
-DOUBT
-</span>
-
-<span id="doubtText">
-Are you sure?
-</span>
-
-</div>
-
-
-<div id="beep">
-BEEP • RELIEF
-</div>
-
-
-<div
- id="keyfob"
- style="display:none">
-
-<div class="ring">
-</div>
-
-<button
- id="fobLock"
- aria-label="Lock car again">
-
-🔒
-
-</button>
-
-<div
- class="small"
- style="margin-top:7px">
-
-LOCK
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="hud">
-
-<span
- class="pill"
- id="missionName">
-
-MISSION
-
-</span>
-
-
-<span class="pill">
-
-XP
-
-<b class="xp">
-0
-</b>
-
-</span>
-
-</div>
-
-
-<div class="bottom">
-
-<div class="card">
-
-
-<h2 id="title">
-
-One normal action.
-
-</h2>
-
-
-<p id="copy">
-
-No extra certainty required.
-
-</p>
-
-
-<div
- id="meters"
- style="
- display:none;
- margin-top:12px">
-
-
-<span class="meterLabel">
-
-URGE WAVE
-
-</span>
-
-
-<div class="meter">
-
-<i id="urge">
-</i>
-
-</div>
-
-
-<span class="meterLabel">
-
-FORWARD MOMENTUM
-
-</span>
-
-
-<div class="meter">
-
-<i id="progress">
-</i>
-
-</div>
-
-</div>
-
-
-<div class="controls">
-
-
-<button
- class="control"
- id="checkBtn">
-
-CHECK AGAIN
-
-</button>
-
-
-<button
- class="control primary"
- id="forwardBtn">
-
-START
-
-</button>
-
-
-</div>
-
-</div>
-
-</div>
-
+<section id="mission" class="screen">
+  <div id="scene" class="scene">
+    <div class="skyGlow"></div>
+    <div class="ground"></div>
+    <div class="path"></div>
+    <div id="environment"></div>
+
+    <div id="person" class="person">
+      <i class="shadow"></i>
+      <i class="head"></i>
+      <i class="body"></i>
+      <i class="arm a"></i>
+      <i class="arm b"></i>
+      <i class="leg a"></i>
+      <i class="leg b"></i>
+    </div>
+
+    <div id="doubtVignette"></div>
+
+    <div id="doubt" class="doubtText">
+      <span class="doubtLabel">DOUBT</span>
+      <span id="doubtText">Are you sure?</span>
+    </div>
+
+    <div id="beep">BEEP • RELIEF</div>
+
+    <div id="keyfob" style="display:none">
+      <div class="ring"></div>
+      <button id="fobLock" aria-label="Lock car again">🔒</button>
+      <div class="small" style="margin-top:6px">LOCK</div>
+    </div>
+  </div>
+
+  <div class="hud">
+    <span class="pill" id="missionName">MISSION</span>
+    <span class="pill">XP <b class="xp">0</b></span>
+  </div>
+
+  <div class="gamePanel">
+    <div class="gameTitle">
+      <div>
+        <b id="title">One normal action.</b>
+        <div class="small" id="copy">No extra certainty required.</div>
+      </div>
+      <span id="phaseHint">READY</span>
+    </div>
+
+    <div id="meters" class="meters" style="display:none">
+      <div>
+        <span class="meterLabel">URGE WAVE</span>
+        <div class="meter"><i id="urge"></i></div>
+      </div>
+      <div>
+        <span class="meterLabel">FORWARD MOMENTUM</span>
+        <div class="meter"><i id="progress"></i></div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="control" id="checkBtn">CHECK AGAIN</button>
+      <button class="control primary" id="forwardBtn">START</button>
+    </div>
+  </div>
 </section>
 
+<section id="reward" class="screen">
+  <div class="hud">
+    <span class="pill">MOMENTUM</span>
+    <span class="pill">XP <b class="xp">0</b></span>
+  </div>
 
-<!-- REWARD -->
-
-<section
- id="reward"
- class="screen">
-
-<div class="hud">
-
-<span class="pill">
-
-MOMENTUM
-
-</span>
-
-<span class="pill">
-
-XP
-
-<b class="xp">
-0
-</b>
-
-</span>
-
-</div>
-
-
-<div class="rewardBox">
-
-<div class="card">
-
-
-<div class="meterLabel">
-
-MISSION COMPLETE
-
-</div>
-
-
-<div class="rewardBig">
-
-+
-
-<span id="xpEarned">
-25
-</span>
-
-XP
-
-</div>
-
-
-<p id="result">
-
-You moved forward while uncertainty was still present.
-
-</p>
-
-
-<button
- class="btn"
- id="continueBtn"
- style="margin-top:17px">
-
-BACK TO CHECKING DISTRICT
-
-</button>
-
-
-</div>
-
-</div>
-
+  <div class="rewardBox">
+    <div class="card">
+      <div class="small">MISSION COMPLETE</div>
+      <div class="rewardBig">+<span id="xpEarned">25</span> XP</div>
+      <p id="result">You moved forward while uncertainty was still present.</p>
+      <button class="btn" id="continueBtn" style="margin-top:17px">BACK TO CHECKING DISTRICT</button>
+    </div>
+  </div>
 </section>
 
 </div>
-
 
 <script>
+const $=s=>document.querySelector(s);
+const $$=s=>document.querySelectorAll(s);
 
-const $ =
-s =>
-document.querySelector(s);
+let xp=Number(localStorage.getItem("uncertainXP")||0);
 
+let current=null;
+let started=false;
+let momentum=0;
+let urge=46;
+let checks=0;
+let thoughtIndex=0;
 
-const $$ =
-s =>
-document.querySelectorAll(s);
+let walkTimer=null;
+let urgeTimer=null;
+let doubtTimer=null;
+let hold=false;
 
+const missions={
 
-let xp =
-Number(
- localStorage.getItem(
-  "uncertainXP"
- ) || 0
-);
+  door:{
+    name:"LOCK & LEAVE",
+    start:"LOCK ONCE",
+    title:"Lock it once.",
+    copy:"One normal action. Then leave.",
 
+    thoughts:[
+      "Are you sure it clicked?",
+      "Maybe the deadbolt didn't catch.",
+      "What if the door opens after you leave?",
+      "One more check would feel safer."
+    ],
 
-let current = null;
+    env:
+      '<div class="houseShell">'+
+      '<div class="roof"></div>'+
+      '<div class="houseBody"></div>'+
+      '<div class="window left"></div>'+
+      '<div class="window right"></div>'+
+      '<div class="porch"></div>'+
+      '<div class="door"><div class="knob"></div></div>'+
+      '</div>'
+  },
 
-let started = false;
+  car:{
+    name:"PARK & WALK",
+    start:"LOCK ONCE",
+    title:"Park. Lock. Walk.",
+    copy:"One normal lock. The fob remains available.",
 
-let momentum = 0;
+    thoughts:[
+      "Did you hear it lock?",
+      "Was that your car that beeped?",
+      "Maybe the passenger door is unlocked.",
+      "What if the signal didn't reach it?",
+      "You could press it one more time."
+    ],
 
-let urge = 46;
-
-let checks = 0;
-
-let interruptions = 0;
-
-let thoughtIndex = 0;
-
-let walkTimer = null;
-
-let urgeTimer = null;
-
-let doubtTimer = null;
-
-let hold = false;
-
-
-const missions = {
-
-
-door:{
-
- name:
- "LOCK & LEAVE",
-
- start:
- "LOCK ONCE",
-
- title:
- "Lock it once.",
-
- copy:
- "One normal action. Then leave.",
-
- thoughts:[
-
-  "Are you sure it clicked?",
-
-  "Maybe the deadbolt didn't catch.",
-
-  "What if the door opens after you leave?",
-
-  "One more check would feel safer."
-
- ],
-
- env:
-
- '<div class="house"></div>' +
-
- '<div class="door">' +
-
- '<div class="knob"></div>' +
-
- '</div>'
-
-},
-
-
-car:{
-
- name:
- "PARK & WALK",
-
- start:
- "LOCK ONCE",
-
- title:
- "Park. Lock. Walk.",
-
- copy:
- "One normal lock. The fob remains available.",
-
- thoughts:[
-
-  "Did you hear it lock?",
-
-  "Was that your car that beeped?",
-
-  "Maybe the passenger door is unlocked.",
-
-  "What if the lock signal didn't reach it?",
-
-  "You could press it one more time."
-
- ],
-
- env:
-
- '<div class="store">' +
-
- '<div class="storeDoor"></div>' +
-
- '</div>' +
-
- '<div class="parkingGround"></div>' +
-
- '<div class="parkingLine line1"></div>' +
-
- '<div class="parkingLine line2"></div>' +
-
- '<div class="parkingLine line3"></div>' +
-
- '<div class="parkingLine line4"></div>' +
-
- '<div class="car" id="car">' +
-
- '<div class="carWindow"></div>' +
-
- '</div>'
-
-}
+    env:
+      '<div class="store"><div class="storeDoor"></div></div>'+
+      '<div class="parkingGround"></div>'+
+      '<div class="parkingLine line1"></div>'+
+      '<div class="parkingLine line2"></div>'+
+      '<div class="parkingLine line3"></div>'+
+      '<div class="parkingLine line4"></div>'+
+      '<div class="car" id="car"><div class="carWindow"></div><div class="carLight"></div></div>'
+  }
 
 };
 
-
 function show(id){
 
- $$(".screen")
- .forEach(
+  $$(".screen")
+  .forEach(
+    el=>el.classList.remove("active")
+  );
 
-  screen =>
-
-  screen
+  $("#"+id)
   .classList
-  .remove("active")
-
- );
-
-
- $("#"+id)
- .classList
- .add("active");
-
+  .add("active");
 }
-
 
 function vibrate(pattern){
 
- if(
-  navigator.vibrate
- ){
-
-  navigator
-  .vibrate(pattern);
-
- }
+  if(navigator.vibrate){
+    navigator.vibrate(pattern);
+  }
 
 }
-
 
 function updateXP(){
 
- localStorage
- .setItem(
-  "uncertainXP",
-  xp
- );
+  localStorage.setItem(
+    "uncertainXP",
+    xp
+  );
 
-
- $$(".xp")
- .forEach(
-
-  element =>
-
-  element.textContent =
-  xp
-
- );
+  $$(".xp")
+  .forEach(
+    el=>el.textContent=xp
+  );
 
 }
-
 
 function updateMeters(){
 
- $("#progress")
- .style
- .width =
- momentum+"%";
+  $("#progress")
+  .style
+  .width=
+  momentum+"%";
 
-
- $("#urge")
- .style
- .width =
- urge+"%";
-
-}
-
-
-function stopMovement(){
-
- clearInterval(
-  walkTimer
- );
-
- walkTimer = null;
-
- hold = false;
-
-
- $("#person")
- .classList
- .remove("walking");
+  $("#urge")
+  .style
+  .width=
+  urge+"%";
 
 }
 
+function hideDoubt(){
 
-function stopEverything(){
+  $("#doubt")
+  .classList
+  .remove("show");
 
- stopMovement();
-
-
- clearInterval(
-  urgeTimer
- );
-
-
- clearTimeout(
-  doubtTimer
- );
-
-
- urgeTimer = null;
-
- doubtTimer = null;
+  $("#doubtVignette")
+  .classList
+  .remove("show");
 
 }
 
-
-function loadMission(key){
-
- stopEverything();
-
-
- current = key;
-
- started = false;
-
- momentum = 0;
-
- urge = 46;
-
- checks = 0;
-
- interruptions = 0;
-
- thoughtIndex = 0;
-
-
- $("#missionName")
- .textContent =
- missions[key].name;
-
-
- $("#environment")
- .innerHTML =
- missions[key].env;
-
-
- $("#environment")
- .style
- .transform =
- "scale(1)";
-
-
- $("#environment")
- .classList
- .remove(
-  "reliefFlash"
- );
-
-
- $("#person")
- .style
- .bottom =
- "24%";
-
-
- $("#person")
- .style
- .transform =
- "translateX(-50%)";
-
-
- $("#doubt")
- .classList
- .remove(
-  "show"
- );
-
-
- $("#title")
- .textContent =
- missions[key].title;
-
-
- $("#copy")
- .textContent =
- missions[key].copy;
-
-
- $("#meters")
- .style
- .display =
- "none";
-
-
- $("#checkBtn")
- .style
- .display =
- "none";
-
-
- $("#forwardBtn")
- .textContent =
- missions[key].start;
-
-
- $("#keyfob")
- .style
- .display =
-
- key === "car"
-
- ? "block"
-
- : "none";
-
-
- updateMeters();
-
- show("mission");
-
-}
-
-
-function beginMission(){
-
- if(started){
-  return;
- }
-
-
- started = true;
-
-
- $("#meters")
- .style
- .display =
- "block";
-
-
- $("#checkBtn")
- .style
- .display =
-
- current === "door"
-
- ? "block"
-
- : "none";
-
-
- $("#forwardBtn")
- .textContent =
- "HOLD TO MOVE";
-
-
- $("#title")
- .textContent =
- "Move while Doubt talks.";
-
-
- $("#copy")
- .textContent =
-
- current === "car"
-
- ? "Walk toward your destination. The key fob is still available."
-
- : "Leave the house behind. You can turn back, but you don't have to.";
-
-
- urgeTimer =
- setInterval(()=>{
-
-  urge +=
-  Math.random()*18 - 7;
-
-
-  urge =
-  Math.max(
-   18,
-   Math.min(
-    96,
-    urge
-   )
-  );
-
-
-  updateMeters();
-
- },430);
-
-
- scheduleDoubt(
-  950
- );
-
-}
-
-
-function nextThought(){
-
- const list =
- missions[current]
- .thoughts;
-
-
- const thought =
- list[
-  thoughtIndex %
-  list.length
- ];
-
-
- thoughtIndex++;
-
-
- return thought;
-
-}
-
-
-function scheduleDoubt(
- delay = 1200
-){
-
- clearTimeout(
-  doubtTimer
- );
-
-
- doubtTimer =
- setTimeout(()=>{
-
-  if(!started){
-   return;
-  }
-
-
-  interruptions++;
-
+function showDoubt(text){
 
   $("#doubtText")
-  .textContent =
-  nextThought();
-
+  .textContent=
+  text;
 
   $("#doubt")
   .classList
   .add("show");
 
-
-  urge =
-  Math.min(
-   98,
-   urge+12
-  );
-
-
-  updateMeters();
-
-
-  vibrate(28);
-
- },delay);
+  $("#doubtVignette")
+  .classList
+  .add("show");
 
 }
 
+function stopMovement(){
+
+  clearInterval(
+    walkTimer
+  );
+
+  walkTimer=null;
+  hold=false;
+
+  $("#person")
+  .classList
+  .remove("walking");
+
+}
+
+function stopEverything(){
+
+  stopMovement();
+
+  clearInterval(
+    urgeTimer
+  );
+
+  clearTimeout(
+    doubtTimer
+  );
+
+  urgeTimer=null;
+  doubtTimer=null;
+
+}
+
+function loadMission(key){
+
+  stopEverything();
+
+  current=key;
+
+  started=false;
+  momentum=0;
+  urge=46;
+  checks=0;
+  thoughtIndex=0;
+
+  $("#missionName")
+  .textContent=
+  missions[key].name;
+
+  $("#environment")
+  .innerHTML=
+  missions[key].env;
+
+  $("#environment")
+  .style
+  .transform=
+  "scale(1)";
+
+  $("#environment")
+  .style
+  .opacity=
+  "1";
+
+  $("#environment")
+  .classList
+  .remove("reliefFlash");
+
+  $("#person")
+  .style
+  .bottom=
+  "24%";
+
+  $("#person")
+  .style
+  .transform=
+  "translateX(-50%)";
+
+  hideDoubt();
+
+  $("#title")
+  .textContent=
+  missions[key].title;
+
+  $("#copy")
+  .textContent=
+  missions[key].copy;
+
+  $("#phaseHint")
+  .textContent=
+  "READY";
+
+  $("#meters")
+  .style
+  .display=
+  "none";
+
+  $("#checkBtn")
+  .style
+  .display=
+  "none";
+
+  $("#forwardBtn")
+  .textContent=
+  missions[key].start;
+
+  $("#keyfob")
+  .style
+  .display=
+  key==="car"
+  ? "block"
+  : "none";
+
+  updateMeters();
+
+  show("mission");
+
+}
+
+function beginMission(){
+
+  if(started){
+    return;
+  }
+
+  started=true;
+
+  $("#meters")
+  .style
+  .display=
+  "grid";
+
+  $("#checkBtn")
+  .style
+  .display=
+  current==="door"
+  ? "block"
+  : "none";
+
+  $("#forwardBtn")
+  .textContent=
+  "HOLD TO MOVE";
+
+  $("#phaseHint")
+  .textContent=
+  "MOVE";
+
+  $("#title")
+  .textContent=
+  "Move while Doubt talks.";
+
+  $("#copy")
+  .textContent=
+  current==="car"
+  ? "Walk toward your destination. The key fob is still available."
+  : "Leave the house behind. You can turn back, but you don't have to.";
+
+  urgeTimer=
+  setInterval(()=>{
+
+    urge+=
+    Math.random()*18-7;
+
+    urge=
+    Math.max(
+      18,
+      Math.min(
+        96,
+        urge
+      )
+    );
+
+    updateMeters();
+
+  },430);
+
+  scheduleDoubt(950);
+
+}
+
+function nextThought(){
+
+  const list=
+  missions[current]
+  .thoughts;
+
+  const thought=
+  list[
+    thoughtIndex %
+    list.length
+  ];
+
+  thoughtIndex++;
+
+  return thought;
+
+}
+
+function scheduleDoubt(
+  delay=1200
+){
+
+  clearTimeout(
+    doubtTimer
+  );
+
+  doubtTimer=
+  setTimeout(()=>{
+
+    if(!started){
+      return;
+    }
+
+    showDoubt(
+      nextThought()
+    );
+
+    urge=
+    Math.min(
+      98,
+      urge+12
+    );
+
+    updateMeters();
+
+    $("#phaseHint")
+    .textContent=
+    "DOUBT";
+
+    vibrate(28);
+
+  },delay);
+
+}
 
 function startWalking(){
 
- if(!started){
+  if(!started){
 
-  beginMission();
+    beginMission();
 
-  return;
+    return;
 
- }
+  }
 
+  if(
+    hold ||
+    momentum>=100
+  ){
+    return;
+  }
 
- if(
-  hold ||
-  momentum >= 100
- ){
-  return;
- }
-
-
- hold = true;
-
-
- $("#person")
- .classList
- .add(
-  "walking"
- );
-
-
- $("#doubt")
- .classList
- .remove(
-  "show"
- );
-
-
- walkTimer =
- setInterval(()=>{
-
-
-  momentum =
-  Math.min(
-   100,
-   momentum+2.2
-  );
-
-
-  /*
-   Urge does not need to reach zero.
-   It fluctuates independently of completion.
-  */
-
-  urge +=
-  Math.random()*3 - 1.5;
-
-
-  urge =
-  Math.max(
-   18,
-   Math.min(
-    94,
-    urge
-   )
-  );
-
+  hold=true;
 
   $("#person")
-  .style
-  .bottom =
-  (
-   24 +
-   momentum*.15
-  )+"%";
+  .classList
+  .add("walking");
 
+  hideDoubt();
 
-  $("#environment")
-  .style
-  .transform =
-  `scale(${
-   1 -
-   momentum*.002
-  })`;
+  $("#phaseHint")
+  .textContent=
+  "MOVING";
 
+  walkTimer=
+  setInterval(()=>{
 
-  if(
-   current === "car"
-  ){
-
-   const car =
-   $("#car");
-
-
-   if(car){
-
-    car
-    .style
-    .transform =
-
-    `translateX(-50%)
-     scale(${
-      1 -
-      momentum*.0045
-     })`;
-
-
-    car
-    .style
-    .opacity =
-
-    String(
-     Math.max(
-      .18,
-      1 -
-      momentum*.007
-     )
+    momentum=
+    Math.min(
+      100,
+      momentum+2.2
     );
 
-   }
+    urge+=
+    Math.random()*3-1.5;
 
-  }
+    urge=
+    Math.max(
+      18,
+      Math.min(
+        94,
+        urge
+      )
+    );
 
+    $("#person")
+    .style
+    .bottom=
+    (
+      24+
+      momentum*.15
+    )+"%";
 
-  updateMeters();
+    $("#environment")
+    .style
+    .transform=
+    `scale(${
+      1-
+      momentum*.0019
+    })
+    translateY(${
+      momentum*.035
+    }%)`;
 
+    if(
+      current==="car"
+    ){
 
-  if(
-   momentum >= 100
-  ){
+      const car=
+      $("#car");
 
-   completeMission();
+      if(car){
 
-  }
+        car.style.transform=
+        `translateX(-50%)
+        scale(${
+          1-
+          momentum*.0045
+        })`;
 
- },70);
+        car.style.opacity=
+        String(
+          Math.max(
+            .18,
+            1-
+            momentum*.007
+          )
+        );
+
+      }
+
+    }
+
+    updateMeters();
+
+    if(
+      momentum>=100
+    ){
+
+      completeMission();
+
+    }
+
+  },70);
 
 }
-
 
 function stopWalking(){
 
- if(!started){
-  return;
- }
+  if(!started){
+    return;
+  }
 
+  stopMovement();
 
- stopMovement();
+  $("#phaseHint")
+  .textContent=
+  "READY";
 
+  if(
+    momentum<100
+  ){
 
- if(
-  momentum < 100
- ){
+    scheduleDoubt(
+      650
+    );
 
-  scheduleDoubt(
-   650
-  );
-
- }
+  }
 
 }
-
 
 function recheck(source){
 
- if(!started){
+  if(!started){
 
-  beginMission();
+    beginMission();
 
-  return;
+    return;
 
- }
+  }
 
+  checks++;
 
- checks++;
+  stopMovement();
 
-
- stopMovement();
-
-
- clearTimeout(
-  doubtTimer
- );
-
-
- vibrate([
-  35,
-  30,
-  35
- ]);
-
-
- /*
- Character turns back toward
- the checked object.
- */
-
- $("#person")
- .style
- .transform =
- "translateX(-50%) rotateY(180deg)";
-
-
- /*
- Brief relief.
- No punishment or failure.
- */
-
- urge =
- Math.max(
-  14,
-  urge-28
- );
-
-
- momentum =
- Math.max(
-  0,
-  momentum-5
- );
-
-
- updateMeters();
-
-
- $("#doubt")
- .classList
- .remove(
-  "show"
- );
-
-
- if(
-  source === "fob"
- ){
-
-  const beep =
-  $("#beep");
-
-
-  beep
-  .classList
-  .add(
-   "show"
+  clearTimeout(
+    doubtTimer
   );
 
-
-  $("#environment")
-  .classList
-  .add(
-   "reliefFlash"
-  );
-
-
-  setTimeout(()=>{
-
-   beep
-   .classList
-   .remove(
-    "show"
-   );
-
-
-   $("#environment")
-   .classList
-   .remove(
-    "reliefFlash"
-   );
-
-  },600);
-
- }
-
-
- $("#title")
- .textContent =
- "Relief landed.";
-
-
- $("#copy")
- .textContent =
- "For a moment, the question feels answered.";
-
-
- setTimeout(()=>{
-
+  vibrate([
+    35,
+    30,
+    35
+  ]);
 
   $("#person")
   .style
-  .transform =
-  "translateX(-50%)";
+  .transform=
+  "translateX(-50%) rotateY(180deg)";
 
-
-  let newQuestion;
-
-
-  if(
-   current === "car"
-  ){
-
-   const carQuestions = [
-
-    "Okay... but did ALL the doors lock?",
-
-    "Was that definitely your car that beeped?",
-
-    "What if the signal didn't reach the passenger door?",
-
-    "Maybe another press would make it certain."
-
-   ];
-
-
-   newQuestion =
-   carQuestions[
-    Math.min(
-     checks-1,
-     carQuestions.length-1
-    )
-   ];
-
-  }
-
-  else{
-
-   const doorQuestions = [
-
-    "Okay... but did you pull it closed tightly enough?",
-
-    "What if the deadbolt didn't fully catch?",
-
-    "Maybe one more check would make it certain."
-
-   ];
-
-
-   newQuestion =
-   doorQuestions[
-    Math.min(
-     checks-1,
-     doorQuestions.length-1
-    )
-   ];
-
-  }
-
-
-  $("#doubtText")
-  .textContent =
-  newQuestion;
-
-
-  $("#doubt")
-  .classList
-  .add(
-   "show"
+  urge=
+  Math.max(
+    14,
+    urge-28
   );
 
-
-  urge =
-  Math.min(
-   96,
-   urge+21
+  momentum=
+  Math.max(
+    0,
+    momentum-5
   );
-
 
   updateMeters();
 
-
-  $("#title")
-  .textContent =
-  "Doubt moved the finish line.";
-
-
-  $("#copy")
-  .textContent =
-  "The question changed. Your destination didn't.";
-
- },800);
-
-}
-
-
-function completeMission(){
-
- stopEverything();
-
-
- const earned =
-
- checks === 0
-
- ? 30
-
- : 25;
-
-
- xp += earned;
-
-
- updateXP();
-
-
- localStorage
- .setItem(
-  "completed_"+current,
-  "yes"
- );
-
-
- $("#xpEarned")
- .textContent =
- earned;
-
-
- if(
-  checks === 0
- ){
-
-  $("#result")
-  .textContent =
-  "You reached the destination while uncertainty was still allowed to exist.";
-
- }
-
- else{
-
-  $("#result")
-  .textContent =
-
-  `You checked ${checks} ${
-   checks === 1
-   ? "time"
-   : "times"
-  }, noticed the loop, and returned to moving forward.`;
-
- }
-
-
- show("reward");
-
-}
-
-
-$("#enter")
-.onclick =
-()=>show("map");
-
-
-$("#checking")
-.onclick =
-()=>show(
- "missionSelect"
-);
-
-
-$("#backMap")
-.onclick =
-()=>show("map");
-
-
-$$(
- ".missionCard[data-mission]"
-)
-.forEach(
-
- button =>{
-
-  button.onclick =
-  ()=>loadMission(
-   button.dataset.mission
-  );
-
- }
-
-);
-
-
-$("#checkBtn")
-.onclick =
-()=>recheck(
- "door"
-);
-
-
-$("#fobLock")
-.onclick =
-()=>recheck(
- "fob"
-);
-
-
-/*
- Pointer events are enough
- for modern iPhone Safari.
- They also avoid duplicate
- touch + pointer activation.
- */
-
-$("#forwardBtn")
-.addEventListener(
- "pointerdown",
- event=>{
-
-  event.preventDefault();
-
-  startWalking();
-
- }
-);
-
-
-$("#forwardBtn")
-.addEventListener(
- "pointerup",
- event=>{
-
-  event.preventDefault();
-
-  stopWalking();
-
- }
-);
-
-
-$("#forwardBtn")
-.addEventListener(
- "pointercancel",
- event=>{
-
-  event.preventDefault();
-
-  stopWalking();
-
- }
-);
-
-
-$("#forwardBtn")
-.addEventListener(
- "pointerleave",
- event=>{
+  hideDoubt();
+
+  $("#phaseHint")
+  .textContent=
+  "RELIEF";
 
   if(
-   event.buttons
+    source==="fob"
   ){
 
-   stopWalking();
+    const beep=
+    $("#beep");
+
+    beep
+    .classList
+    .add("show");
+
+    $("#environment")
+    .classList
+    .add("reliefFlash");
+
+    setTimeout(()=>{
+
+      beep
+      .classList
+      .remove("show");
+
+      $("#environment")
+      .classList
+      .remove("reliefFlash");
+
+    },600);
 
   }
 
- }
+  $("#title")
+  .textContent=
+  "Relief landed.";
+
+  $("#copy")
+  .textContent=
+  "For a moment, the question feels answered.";
+
+  setTimeout(()=>{
+
+    $("#person")
+    .style
+    .transform=
+    "translateX(-50%)";
+
+    const carQuestions=[
+
+      "Okay... but did ALL the doors lock?",
+
+      "Was that definitely your car that beeped?",
+
+      "What if the signal didn't reach the passenger door?",
+
+      "Maybe another press would make it certain."
+
+    ];
+
+    const doorQuestions=[
+
+      "Okay... but did you pull it closed tightly enough?",
+
+      "What if the deadbolt didn't fully catch?",
+
+      "Maybe one more check would make it certain."
+
+    ];
+
+    const question=
+    current==="car"
+
+    ? carQuestions[
+        Math.min(
+          checks-1,
+          carQuestions.length-1
+        )
+      ]
+
+    : doorQuestions[
+        Math.min(
+          checks-1,
+          doorQuestions.length-1
+        )
+      ];
+
+    showDoubt(
+      question
+    );
+
+    urge=
+    Math.min(
+      96,
+      urge+21
+    );
+
+    updateMeters();
+
+    $("#phaseHint")
+    .textContent=
+    "DOUBT";
+
+    $("#title")
+    .textContent=
+    "Doubt moved the finish line.";
+
+    $("#copy")
+    .textContent=
+    "The question changed. Your destination didn't.";
+
+  },800);
+
+}
+
+function completeMission(){
+
+  stopEverything();
+
+  const earned=
+  checks===0
+  ? 30
+  : 25;
+
+  xp+=earned;
+
+  updateXP();
+
+  localStorage
+  .setItem(
+    "completed_"+current,
+    "yes"
+  );
+
+  $("#xpEarned")
+  .textContent=
+  earned;
+
+  $("#result")
+  .textContent=
+
+  checks===0
+
+  ? "You reached the destination while uncertainty was still allowed to exist."
+
+  : `You checked ${checks} ${
+      checks===1
+      ? "time"
+      : "times"
+    }, noticed the loop, and returned to moving forward.`;
+
+  show("reward");
+
+}
+
+$("#enter")
+.onclick=
+()=>show("map");
+
+$("#checking")
+.onclick=
+()=>show(
+  "missionSelect"
 );
 
+$("#backMap")
+.onclick=
+()=>show("map");
+
+$$(
+  ".missionCard[data-mission]"
+)
+.forEach(
+
+  button=>
+
+  button.onclick=
+  ()=>loadMission(
+    button.dataset.mission
+  )
+
+);
+
+$("#checkBtn")
+.onclick=
+()=>recheck(
+  "door"
+);
+
+$("#fobLock")
+.onclick=
+()=>recheck(
+  "fob"
+);
+
+$("#forwardBtn")
+.addEventListener(
+  "pointerdown",
+  event=>{
+
+    event.preventDefault();
+
+    startWalking();
+
+  }
+);
+
+$("#forwardBtn")
+.addEventListener(
+  "pointerup",
+  event=>{
+
+    event.preventDefault();
+
+    stopWalking();
+
+  }
+);
+
+$("#forwardBtn")
+.addEventListener(
+  "pointercancel",
+  event=>{
+
+    event.preventDefault();
+
+    stopWalking();
+
+  }
+);
+
+$("#forwardBtn")
+.addEventListener(
+  "pointerleave",
+  event=>{
+
+    if(event.buttons){
+
+      stopWalking();
+
+    }
+
+  }
+);
 
 $("#continueBtn")
-.onclick =
+.onclick=
 ()=>show(
- "missionSelect"
+  "missionSelect"
 );
-
-
-/*
- Prevent Safari from treating
- gameplay holds as webpage
- text-selection gestures.
- */
 
 document
 .addEventListener(
- "contextmenu",
- event=>
- event.preventDefault()
+  "contextmenu",
+  event=>
+  event.preventDefault()
 );
-
 
 document
 .addEventListener(
- "selectstart",
- event=>
- event.preventDefault()
+  "selectstart",
+  event=>
+  event.preventDefault()
 );
-
 
 updateXP();
 
 </script>
-
 </body>
 </html>
