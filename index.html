@@ -2,11 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+
 <meta name="theme-color" content="#07101c">
-<title>UNCERTAIN — Checking District v10.3</title>
+
+<title>UNCERTAIN — Checking District v10.4</title>
 
 <style>
+
 :root{
   --bg:#07101c;
   --panel:#0b1523ee;
@@ -33,7 +39,12 @@ body{
   overscroll-behavior:none;
   background:#040912;
   color:var(--text);
-  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
 }
 
 button{
@@ -62,7 +73,8 @@ button{
 .missionCard,
 .node,
 .missionExit,
-#fobLock{
+#fobLock,
+#stoveControl{
   touch-action:manipulation;
 }
 
@@ -126,11 +138,19 @@ button{
   color:#9eacbd;
 }
 
-/* START */
+/* =========================
+   START
+========================= */
 
 #start{
   padding:92px 22px 26px;
-  background:radial-gradient(circle at 50% 25%,#355271,#111b2a 55%,#060b13);
+  background:
+    radial-gradient(
+      circle at 50% 25%,
+      #355271,
+      #111b2a 55%,
+      #060b13
+    );
 }
 
 .logo{
@@ -159,10 +179,18 @@ button{
   bottom:max(22px,env(safe-area-inset-bottom));
 }
 
-/* MAP */
+/* =========================
+   MAP
+========================= */
 
 #map{
-  background:linear-gradient(145deg,#29425f,#112238 64%,#07101c);
+  background:
+    linear-gradient(
+      145deg,
+      #29425f,
+      #112238 64%,
+      #07101c
+    );
 }
 
 .road{
@@ -239,16 +267,24 @@ button{
   background:#081321d9;
 }
 
-/* MISSION SELECT */
+/* =========================
+   MISSION SELECT
+========================= */
 
 #missionSelect{
-  background:radial-gradient(circle at 50% 30%,#274762,#0b1625 65%);
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      #274762,
+      #0b1625 65%
+    );
 }
 
 .selectWrap{
   position:absolute;
   inset:88px 14px 18px;
   overflow:auto;
+  padding-bottom:30px;
 }
 
 .missionCard{
@@ -289,7 +325,9 @@ button{
   letter-spacing:.05em;
 }
 
-/* EXIT */
+/* =========================
+   EXIT
+========================= */
 
 .missionExit{
   position:absolute;
@@ -310,20 +348,29 @@ button{
   pointer-events:auto;
 }
 
-/* WORLD */
+/* =========================
+   WORLD
+========================= */
 
 .scene{
   position:absolute;
   z-index:1;
   inset:0;
   overflow:hidden;
-  background:linear-gradient(#24364b 0 47%,#101923 47%);
+  background:
+    linear-gradient(
+      #24364b 0 47%,
+      #101923 47%
+    );
 }
 
 #environment{
   position:absolute;
   inset:0;
-  transition:transform .12s linear,filter .12s linear,opacity .12s linear;
+  transition:
+    transform .12s linear,
+    filter .12s linear,
+    opacity .12s linear;
 }
 
 .skyGlow{
@@ -332,7 +379,12 @@ button{
   right:0;
   top:0;
   height:38%;
-  background:radial-gradient(circle at 70% 16%,#526d8a55,transparent 30%);
+  background:
+    radial-gradient(
+      circle at 70% 16%,
+      #526d8a55,
+      transparent 30%
+    );
 }
 
 .ground{
@@ -341,7 +393,11 @@ button{
   right:0;
   bottom:0;
   height:58%;
-  background:linear-gradient(#1f2b37,#111923);
+  background:
+    linear-gradient(
+      #1f2b37,
+      #111923
+    );
 }
 
 .path{
@@ -350,10 +406,25 @@ button{
   bottom:-4%;
   width:56%;
   height:60%;
-  transform:translateX(-50%) perspective(300px) rotateX(58deg);
+  transform:
+    translateX(-50%)
+    perspective(300px)
+    rotateX(58deg);
   transform-origin:center bottom;
-  background:linear-gradient(90deg,#334251,#536578 50%,#334251);
-  clip-path:polygon(38% 0,62% 0,100% 100%,0 100%);
+  background:
+    linear-gradient(
+      90deg,
+      #334251,
+      #536578 50%,
+      #334251
+    );
+  clip-path:
+    polygon(
+      38% 0,
+      62% 0,
+      100% 100%,
+      0 100%
+    );
 }
 
 .destinationGlow{
@@ -364,19 +435,28 @@ button{
   height:80px;
   transform:translateX(-50%);
   border-radius:50%;
-  background:radial-gradient(circle,#74e7c555,transparent 68%);
+  background:
+    radial-gradient(
+      circle,
+      #74e7c555,
+      transparent 68%
+    );
   animation:pulse 1.8s infinite alternate;
   pointer-events:none;
 }
 
 @keyframes pulse{
   to{
-    transform:translateX(-50%) scale(1.15);
+    transform:
+      translateX(-50%)
+      scale(1.15);
     opacity:.65;
   }
 }
 
-/* HOUSE */
+/* =========================
+   HOUSE
+========================= */
 
 .houseShell{
   position:absolute;
@@ -393,7 +473,11 @@ button{
   right:16px;
   top:48px;
   bottom:0;
-  background:linear-gradient(#47576a,#303b49);
+  background:
+    linear-gradient(
+      #47576a,
+      #303b49
+    );
   border:6px solid #1b2735;
 }
 
@@ -404,7 +488,16 @@ button{
   top:0;
   height:110px;
   background:#202c3a;
-  clip-path:polygon(50% 0,100% 54%,92% 54%,92% 100%,8% 100%,8% 54%,0 54%);
+  clip-path:
+    polygon(
+      50% 0,
+      100% 54%,
+      92% 54%,
+      92% 100%,
+      8% 100%,
+      8% 54%,
+      0 54%
+    );
 }
 
 .window{
@@ -441,7 +534,11 @@ button{
   transform:translateX(-50%);
   width:112px;
   height:172px;
-  background:linear-gradient(#2f4155,#1b2a3a);
+  background:
+    linear-gradient(
+      #2f4155,
+      #1b2a3a
+    );
   border:7px solid #111a25;
 }
 
@@ -456,12 +553,19 @@ button{
   border:6px solid #6a7a8f;
 }
 
-/* PARK & WALK */
+/* =========================
+   PARK & WALK
+========================= */
 
 .parkingGround{
   position:absolute;
   inset:34% 0 0;
-  background:linear-gradient(170deg,#303b49,#141c26);
+  background:
+    linear-gradient(
+      170deg,
+      #303b49,
+      #141c26
+    );
 }
 
 .store{
@@ -472,9 +576,15 @@ button{
   transform-origin:50% 100%;
   width:305px;
   height:178px;
-  background:linear-gradient(#54667a,#3b4a5d);
+  background:
+    linear-gradient(
+      #54667a,
+      #3b4a5d
+    );
   border:8px solid #223040;
-  transition:transform .12s linear,top .12s linear;
+  transition:
+    transform .12s linear,
+    top .12s linear;
   z-index:4;
 }
 
@@ -504,7 +614,9 @@ button{
   position:absolute;
   height:5px;
   background:#edf3fa4a;
-  transition:translate .12s linear,opacity .12s linear;
+  transition:
+    translate .12s linear,
+    opacity .12s linear;
 }
 
 .line1{
@@ -535,21 +647,32 @@ button{
   transform:rotate(14deg);
 }
 
-/* Car starts behind the player */
-
 .car{
   position:absolute;
   left:50%;
   top:57%;
-  transform:translateX(-50%) scale(1);
+  transform:
+    translateX(-50%)
+    scale(1);
   transform-origin:50% 50%;
   width:192px;
   height:86px;
-  border-radius:38px 42px 18px 18px;
-  background:linear-gradient(#8fa0b5,#687a91);
+  border-radius:
+    38px
+    42px
+    18px
+    18px;
+  background:
+    linear-gradient(
+      #8fa0b5,
+      #687a91
+    );
   border:7px solid #101722;
   z-index:8;
-  transition:transform .12s linear,top .12s linear,opacity .12s linear;
+  transition:
+    transform .12s linear,
+    top .12s linear,
+    opacity .12s linear;
 }
 
 .carWindow{
@@ -559,7 +682,13 @@ button{
   width:104px;
   height:44px;
   background:#21354a;
-  clip-path:polygon(20% 100%,35% 0,78% 0,100% 100%);
+  clip-path:
+    polygon(
+      20% 100%,
+      35% 0,
+      78% 0,
+      100% 100%
+    );
 }
 
 .carLight{
@@ -592,7 +721,244 @@ button{
   right:20px;
 }
 
-/* PLAYER */
+/* =========================
+   OFF & OUT / KITCHEN
+========================= */
+
+.kitchen{
+  position:absolute;
+  inset:0;
+}
+
+.kitchenWall{
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  height:49%;
+  background:
+    linear-gradient(
+      #435160,
+      #2d3947
+    );
+}
+
+.kitchenFloor{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:55%;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #222c36 0,
+      #222c36 52px,
+      #2d3944 53px,
+      #2d3944 56px
+    );
+}
+
+.exitDoor{
+  position:absolute;
+  left:50%;
+  top:6%;
+  transform:
+    translateX(-50%)
+    scale(1);
+  transform-origin:50% 100%;
+  width:125px;
+  height:220px;
+  background:
+    linear-gradient(
+      #30475a,
+      #172837
+    );
+  border:8px solid #172330;
+  z-index:5;
+  transition:
+    transform .12s linear,
+    top .12s linear;
+}
+
+.exitDoor:before{
+  content:"EXIT";
+  position:absolute;
+  top:18px;
+  left:0;
+  right:0;
+  text-align:center;
+  font-size:12px;
+  font-weight:1000;
+  letter-spacing:.15em;
+  color:#99edcf;
+}
+
+.exitHandle{
+  position:absolute;
+  right:13px;
+  top:104px;
+  width:27px;
+  height:27px;
+  border-radius:50%;
+  background:#d5dee7;
+  border:5px solid #6f8194;
+}
+
+.counter{
+  position:absolute;
+  left:0;
+  right:0;
+  top:48%;
+  height:72px;
+  background:#252f39;
+  border-top:10px solid #586574;
+}
+
+.stove{
+  position:absolute;
+  left:50%;
+  top:48%;
+  transform:
+    translateX(-50%)
+    scale(1);
+  width:220px;
+  height:145px;
+  background:
+    linear-gradient(
+      #6f7d8c,
+      #424e5b
+    );
+  border:7px solid #18222c;
+  border-radius:8px;
+  z-index:8;
+  transition:
+    transform .12s linear,
+    top .12s linear,
+    opacity .12s linear;
+}
+
+.stoveTop{
+  position:absolute;
+  top:-42px;
+  left:-7px;
+  width:220px;
+  height:52px;
+  background:#1a222b;
+  border:7px solid #111820;
+}
+
+.burner{
+  position:absolute;
+  top:-27px;
+  width:47px;
+  height:22px;
+  border-radius:50%;
+  border:5px solid #55616d;
+  background:#0c1117;
+}
+
+.burner.one{
+  left:20px;
+}
+
+.burner.two{
+  right:20px;
+}
+
+.stovePanel{
+  position:absolute;
+  top:16px;
+  left:15px;
+  right:15px;
+  height:49px;
+  background:#27313b;
+  border-radius:5px;
+}
+
+.stoveKnob{
+  position:absolute;
+  top:26px;
+  width:31px;
+  height:31px;
+  border-radius:50%;
+  background:#d9e1e8;
+  border:6px solid #697887;
+}
+
+.stoveKnob.one{
+  left:29px;
+}
+
+.stoveKnob.two{
+  left:76px;
+}
+
+.stoveKnob.three{
+  right:76px;
+}
+
+.stoveKnob.four{
+  right:29px;
+}
+
+.stoveOven{
+  position:absolute;
+  left:27px;
+  right:27px;
+  bottom:15px;
+  height:56px;
+  background:#101820;
+  border:6px solid #2c3742;
+}
+
+#stoveControlWrap{
+  position:absolute;
+  z-index:67;
+  right:15px;
+  bottom:188px;
+  width:92px;
+  min-height:110px;
+  padding:9px;
+  border-radius:22px;
+  background:#111923;
+  border:4px solid #748496;
+  text-align:center;
+}
+
+#stoveControl{
+  width:100%;
+  min-height:54px;
+  border:0;
+  border-radius:14px;
+  background:#e3eaf0;
+  color:#111827;
+  font-weight:1000;
+  font-size:12px;
+  line-height:1.1;
+}
+
+#stoveControlWrap.disabled{
+  opacity:.45;
+  pointer-events:none;
+}
+
+.stoveIndicator{
+  display:inline-block;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#d95d5d;
+  margin-right:4px;
+}
+
+.stoveIndicator.off{
+  background:#6fe0ba;
+}
+
+/* =========================
+   PLAYER
+========================= */
 
 .person{
   position:absolute;
@@ -602,11 +968,16 @@ button{
   width:62px;
   height:106px;
   transform:translateX(-50%);
-  transition:bottom .12s linear,transform .12s linear;
+  transition:
+    bottom .12s linear,
+    transform .12s linear;
 }
 
 .person.lookback{
-  transform:translateX(-50%) translateX(-5px) rotate(-4deg);
+  transform:
+    translateX(-50%)
+    translateX(-5px)
+    rotate(-4deg);
 }
 
 .shadow{
@@ -637,7 +1008,11 @@ button{
   width:38px;
   height:46px;
   border-radius:16px 16px 10px 10px;
-  background:linear-gradient(#e8eef5,#c8d4df);
+  background:
+    linear-gradient(
+      #e8eef5,
+      #c8d4df
+    );
 }
 
 .arm{
@@ -675,26 +1050,37 @@ button{
 }
 
 .person.walking .leg.a{
-  animation:step .28s infinite alternate;
+  animation:
+    step .28s infinite alternate;
 }
 
 .person.walking .leg.b{
-  animation:step .28s infinite alternate-reverse;
+  animation:
+    step .28s infinite alternate-reverse;
 }
 
 @keyframes step{
   to{
-    transform:translateY(4px) rotate(9deg);
+    transform:
+      translateY(4px)
+      rotate(9deg);
   }
 }
 
-/* DOUBT */
+/* =========================
+   DOUBT
+========================= */
 
 #doubtVignette{
   position:absolute;
   z-index:21;
   inset:0;
-  background:radial-gradient(circle at 50% 45%,transparent 32%,#210d2a99 100%);
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      transparent 32%,
+      #210d2a99 100%
+    );
   opacity:0;
   pointer-events:none;
   transition:.18s;
@@ -732,14 +1118,18 @@ button{
   margin-bottom:7px;
 }
 
-/* CUES */
+/* =========================
+   CUES
+========================= */
 
 .choiceCue{
   position:absolute;
   z-index:40;
   left:50%;
   top:48%;
-  transform:translate(-50%,10px) scale(.96);
+  transform:
+    translate(-50%,10px)
+    scale(.96);
   padding:10px 16px;
   border:1px solid #74e7c566;
   border-radius:999px;
@@ -757,7 +1147,9 @@ button{
 
 .choiceCue.show{
   opacity:1;
-  transform:translate(-50%,0) scale(1);
+  transform:
+    translate(-50%,0)
+    scale(1);
 }
 
 .lockFlash{
@@ -779,7 +1171,9 @@ button{
   opacity:1;
 }
 
-/* GAME HUD */
+/* =========================
+   GAME PANEL
+========================= */
 
 .gamePanel{
   position:absolute;
@@ -862,7 +1256,9 @@ button{
   opacity:.45;
 }
 
-/* FOB */
+/* =========================
+   FOB
+========================= */
 
 #keyfob{
   position:absolute;
@@ -924,10 +1320,18 @@ button{
   filter:brightness(1.16);
 }
 
-/* REWARD */
+/* =========================
+   REWARD
+========================= */
 
 #reward{
-  background:radial-gradient(circle at 50% 38%,#35516e,#101927 62%,#060b13);
+  background:
+    radial-gradient(
+      circle at 50% 38%,
+      #35516e,
+      #101927 62%,
+      #060b13
+    );
 }
 
 .rewardBox{
@@ -963,6 +1367,7 @@ button{
     transition:none!important;
   }
 }
+
 </style>
 </head>
 
@@ -970,9 +1375,15 @@ button{
 
 <div id="app">
 
-<section id="start" class="screen active">
+<!-- START -->
 
-  <div class="logo">UNCERTAIN</div>
+<section
+  id="start"
+  class="screen active">
+
+  <div class="logo">
+    UNCERTAIN
+  </div>
 
   <div class="hero">
     BREAK<br>
@@ -985,8 +1396,12 @@ button{
 
   <div class="startCard card">
 
-    <button class="btn" id="enter">
+    <button
+      class="btn"
+      id="enter">
+
       ENTER THE LOOP
+
     </button>
 
     <p class="small">
@@ -998,45 +1413,96 @@ button{
 </section>
 
 
-<section id="map" class="screen">
+<!-- MAP -->
+
+<section
+  id="map"
+  class="screen">
 
   <div class="road"></div>
 
-  <button id="checking" class="node">
-    <strong>Checking District</strong>
-    <small>2 missions available</small>
+  <button
+    id="checking"
+    class="node">
+
+    <strong>
+      Checking District
+    </strong>
+
+    <small>
+      3 missions available
+    </small>
+
   </button>
 
-  <button class="node locked" disabled>
-    <strong>Next District</strong>
-    <small>Under construction</small>
+  <button
+    class="node locked"
+    disabled>
+
+    <strong>
+      Next District
+    </strong>
+
+    <small>
+      Under construction
+    </small>
+
   </button>
 
   <div class="avatarMini"></div>
 
   <div class="hud">
-    <span class="pill">THE LOOP</span>
-    <span class="pill">XP <b class="xp">0</b></span>
+
+    <span class="pill">
+      THE LOOP
+    </span>
+
+    <span class="pill">
+      XP <b class="xp">0</b>
+    </span>
+
   </div>
 
   <div class="mapInfo">
-    <b>Checking District</b><br>
-    <span>Certainty always seems one more check away.</span>
+
+    <b>
+      Checking District
+    </b>
+
+    <br>
+
+    <span>
+      Certainty always seems one more check away.
+    </span>
+
   </div>
 
 </section>
 
 
-<section id="missionSelect" class="screen">
+<!-- MISSION SELECT -->
+
+<section
+  id="missionSelect"
+  class="screen">
 
   <div class="hud">
-    <span class="pill">CHECKING DISTRICT</span>
-    <span class="pill">XP <b class="xp">0</b></span>
+
+    <span class="pill">
+      CHECKING DISTRICT
+    </span>
+
+    <span class="pill">
+      XP <b class="xp">0</b>
+    </span>
+
   </div>
 
   <div class="selectWrap">
 
-    <button class="missionCard" data-mission="door">
+    <button
+      class="missionCard"
+      data-mission="door">
 
       <span class="tag">
         PHYSICAL CHECKING
@@ -1058,7 +1524,9 @@ button{
     </button>
 
 
-    <button class="missionCard" data-mission="car">
+    <button
+      class="missionCard"
+      data-mission="car">
 
       <span class="tag">
         PHYSICAL + MENTAL CHECKING
@@ -1080,7 +1548,33 @@ button{
     </button>
 
 
-    <button class="missionCard" id="backMap">
+    <button
+      class="missionCard"
+      data-mission="stove">
+
+      <span class="tag">
+        APPLIANCE CHECKING
+      </span>
+
+      <b>
+        Off & Out
+      </b>
+
+      <span
+        class="completion"
+        data-completion="stove">
+      </span>
+
+      <span>
+        Turn the stove off once, then head for the door while Doubt asks for another look.
+      </span>
+
+    </button>
+
+
+    <button
+      class="missionCard"
+      id="backMap">
 
       <span class="tag">
         RETURN
@@ -1097,7 +1591,11 @@ button{
 </section>
 
 
-<section id="mission" class="screen">
+<!-- MISSION -->
+
+<section
+  id="mission"
+  class="screen">
 
   <button
     type="button"
@@ -1110,7 +1608,9 @@ button{
   </button>
 
 
-  <div id="scene" class="scene">
+  <div
+    id="scene"
+    class="scene">
 
     <div class="skyGlow"></div>
 
@@ -1123,7 +1623,9 @@ button{
     <div id="environment"></div>
 
 
-    <div id="person" class="person">
+    <div
+      id="person"
+      class="person">
 
       <i class="shadow"></i>
 
@@ -1200,6 +1702,35 @@ button{
         style="margin-top:6px">
 
         LOCK
+
+      </div>
+
+    </div>
+
+
+    <div
+      id="stoveControlWrap"
+      style="display:none">
+
+      <button
+        type="button"
+        id="stoveControl"
+        aria-label="Turn stove off">
+
+        <span
+          id="stoveIndicator"
+          class="stoveIndicator">
+        </span>
+
+        OFF
+
+      </button>
+
+      <div
+        class="small"
+        style="margin-top:8px">
+
+        STOVE
 
       </div>
 
@@ -1311,7 +1842,11 @@ button{
 </section>
 
 
-<section id="reward" class="screen">
+<!-- REWARD -->
+
+<section
+  id="reward"
+  class="screen">
 
   <div class="hud">
 
@@ -1334,7 +1869,9 @@ button{
       </div>
 
       <div class="rewardBig">
+
         +<span id="xpEarned">30</span> XP
+
       </div>
 
       <p id="result">
@@ -1370,14 +1907,26 @@ button{
 
 <script>
 
+/* =========================
+   HELPERS
+========================= */
+
 const $ =
-s =>
-document.querySelector(s);
+selector =>
+document.querySelector(
+  selector
+);
 
 const $$ =
-s =>
-document.querySelectorAll(s);
+selector =>
+document.querySelectorAll(
+  selector
+);
 
+
+/* =========================
+   STATE
+========================= */
 
 let xp =
 Number(
@@ -1440,6 +1989,10 @@ false;
 let recoveryCount =
 0;
 
+
+/* =========================
+   MISSIONS
+========================= */
 
 const missions = {
 
@@ -1542,10 +2095,82 @@ car:{
 
   '</div>'
 
+},
+
+
+stove:{
+
+  name:
+  "OFF & OUT",
+
+  title:
+  "Turn the stove off.",
+
+  copy:
+  "One normal action.",
+
+  thoughts:[
+
+    "Was that definitely the right knob?",
+
+    "What if one burner is still on?",
+
+    "Did you actually see it reach OFF?",
+
+    "Maybe you turned it past OFF.",
+
+    "One more look would feel safer."
+
+  ],
+
+  env:
+
+  '<div class="kitchen">' +
+
+  '<div class="kitchenWall"></div>' +
+
+  '<div class="kitchenFloor"></div>' +
+
+  '<div class="exitDoor">' +
+
+  '<div class="exitHandle"></div>' +
+
+  '</div>' +
+
+  '<div class="counter"></div>' +
+
+  '<div class="stove" id="stove">' +
+
+  '<div class="stoveTop"></div>' +
+
+  '<div class="burner one"></div>' +
+
+  '<div class="burner two"></div>' +
+
+  '<div class="stovePanel"></div>' +
+
+  '<div class="stoveKnob one"></div>' +
+
+  '<div class="stoveKnob two"></div>' +
+
+  '<div class="stoveKnob three"></div>' +
+
+  '<div class="stoveKnob four"></div>' +
+
+  '<div class="stoveOven"></div>' +
+
+  '</div>' +
+
+  '</div>'
+
 }
 
 };
 
+
+/* =========================
+   BASIC UI
+========================= */
 
 function show(id){
 
@@ -1553,7 +2178,6 @@ function show(id){
   .forEach(
 
     screen =>
-
     screen
     .classList
     .remove(
@@ -1608,7 +2232,6 @@ function updateXP(){
   .forEach(
 
     element =>
-
     element.textContent =
     xp
 
@@ -1662,6 +2285,10 @@ function updateMeters(){
 }
 
 
+/* =========================
+   DOUBT
+========================= */
+
 function hideDoubt(){
 
   $("#doubtOverlay")
@@ -1704,6 +2331,10 @@ function showDoubt(text){
 }
 
 
+/* =========================
+   GAME CUES
+========================= */
+
 function hideCue(){
 
   $("#choiceCue")
@@ -1711,38 +2342,6 @@ function hideCue(){
   .remove(
     "show"
   );
-
-}
-
-
-function flashLock(text){
-
-  const flash =
-  $("#lockFlash");
-
-  flash.textContent =
-  text;
-
-  flash
-  .classList
-  .add(
-    "show"
-  );
-
-  clearTimeout(
-    feedbackTimer
-  );
-
-  feedbackTimer =
-  setTimeout(()=>{
-
-    flash
-    .classList
-    .remove(
-      "show"
-    );
-
-  },650);
 
 }
 
@@ -1805,6 +2404,42 @@ function showMidpointCue(){
 
 }
 
+
+function flashLock(text){
+
+  const flash =
+  $("#lockFlash");
+
+  flash.textContent =
+  text;
+
+  flash
+  .classList
+  .add(
+    "show"
+  );
+
+  clearTimeout(
+    feedbackTimer
+  );
+
+  feedbackTimer =
+  setTimeout(()=>{
+
+    flash
+    .classList
+    .remove(
+      "show"
+    );
+
+  },650);
+
+}
+
+
+/* =========================
+   CLEANUP
+========================= */
 
 function stopMovement(){
 
@@ -1911,6 +2546,10 @@ function resetPersonVisual(){
 }
 
 
+/* =========================
+   CONTROLS
+========================= */
+
 function setControlsForPhase(){
 
   const relief =
@@ -1937,8 +2576,25 @@ function setControlsForPhase(){
 
   }
 
+  if(
+    current === "stove"
+  ){
+
+    $("#stoveControlWrap")
+    .classList
+    .toggle(
+      "disabled",
+      relief
+    );
+
+  }
+
 }
 
+
+/* =========================
+   RESET DEPTH
+========================= */
 
 function resetDepth(){
 
@@ -1946,6 +2602,7 @@ function resetDepth(){
   .style
   .transform =
   "scale(1)";
+
 
   const store =
   $("#environment .store");
@@ -1963,6 +2620,7 @@ function resetDepth(){
     "5%";
 
   }
+
 
   const car =
   $("#environment #car");
@@ -1985,6 +2643,48 @@ function resetDepth(){
     "1";
 
   }
+
+
+  const stove =
+  $("#environment #stove");
+
+  if(stove){
+
+    stove
+    .style
+    .transform =
+    "translateX(-50%) scale(1)";
+
+    stove
+    .style
+    .top =
+    "48%";
+
+    stove
+    .style
+    .opacity =
+    "1";
+
+  }
+
+
+  const exit =
+  $("#environment .exitDoor");
+
+  if(exit){
+
+    exit
+    .style
+    .transform =
+    "translateX(-50%) scale(1)";
+
+    exit
+    .style
+    .top =
+    "6%";
+
+  }
+
 
   $("#environment")
   .querySelectorAll(
@@ -2010,6 +2710,10 @@ function resetDepth(){
 
 }
 
+
+/* =========================
+   LOAD MISSION
+========================= */
 
 function loadMission(key){
 
@@ -2084,7 +2788,7 @@ function loadMission(key){
 
   $("#phaseHint")
   .textContent =
-  "LOCK";
+  "ACTION";
 
   $("#meters")
   .style
@@ -2096,19 +2800,6 @@ function loadMission(key){
   .display =
   "none";
 
-  $("#forwardBtn")
-  .style
-  .display =
-
-  key === "door"
-
-  ? "block"
-
-  : "none";
-
-  $("#forwardBtn")
-  .textContent =
-  "LOCK ONCE";
 
   $("#keyfob")
   .style
@@ -2120,11 +2811,59 @@ function loadMission(key){
 
   : "none";
 
+
+  $("#stoveControlWrap")
+  .style
+  .display =
+
+  key === "stove"
+
+  ? "block"
+
+  : "none";
+
+
+  $("#forwardBtn")
+  .style
+  .display =
+
+  key === "door"
+
+  ? "block"
+
+  : "none";
+
+
+  $("#forwardBtn")
+  .textContent =
+
+  key === "door"
+
+  ? "LOCK ONCE"
+
+  : "HOLD TO MOVE";
+
+
   $("#keyfob")
   .classList
   .remove(
     "disabled"
   );
+
+
+  $("#stoveControlWrap")
+  .classList
+  .remove(
+    "disabled"
+  );
+
+
+  $("#stoveIndicator")
+  .classList
+  .remove(
+    "off"
+  );
+
 
   $("#beep")
   .classList
@@ -2132,9 +2871,6 @@ function loadMission(key){
     "show"
   );
 
-  $("#beep")
-  .textContent =
-  "BEEP • LOCKED";
 
   updateMeters();
 
@@ -2151,6 +2887,10 @@ function loadMission(key){
 
 }
 
+
+/* =========================
+   EXIT
+========================= */
 
 function exitMission(){
 
@@ -2214,7 +2954,11 @@ function exitMission(){
 }
 
 
-function initialLock(){
+/* =========================
+   INITIAL NORMAL ACTION
+========================= */
+
+function initialAction(){
 
   if(
     phase !== "lock"
@@ -2227,15 +2971,45 @@ function initialLock(){
   phase =
   "ready";
 
-  flashLock(
 
+  if(
     current === "door"
+  ){
 
-    ? "CLICK • LOCKED"
+    flashLock(
+      "CLICK • LOCKED"
+    );
 
-    : "BEEP • LOCKED"
+  }
 
-  );
+
+  if(
+    current === "car"
+  ){
+
+    flashLock(
+      "BEEP • LOCKED"
+    );
+
+  }
+
+
+  if(
+    current === "stove"
+  ){
+
+    flashLock(
+      "CLICK • OFF"
+    );
+
+    $("#stoveIndicator")
+    .classList
+    .add(
+      "off"
+    );
+
+  }
+
 
   vibrate([
     20,
@@ -2243,36 +3017,66 @@ function initialLock(){
     20
   ]);
 
+
   $("#meters")
   .style
   .display =
   "grid";
 
+
   $("#title")
   .textContent =
-  "Now leave.";
+  "Now move on.";
 
-  $("#copy")
-  .textContent =
 
-  current === "car"
+  if(
+    current === "door"
+  ){
 
-  ? "Walk toward your destination. The fob stays available."
+    $("#copy")
+    .textContent =
+    "Walk away from the house. Doubt may follow.";
 
-  : "Walk away from the house. Doubt may follow.";
+  }
+
+
+  if(
+    current === "car"
+  ){
+
+    $("#copy")
+    .textContent =
+    "Walk toward your destination. The fob stays available.";
+
+  }
+
+
+  if(
+    current === "stove"
+  ){
+
+    $("#copy")
+    .textContent =
+    "Head for the exit. The stove stays behind you.";
+
+  }
+
 
   $("#phaseHint")
   .textContent =
   "READY";
+
 
   $("#forwardBtn")
   .style
   .display =
   "block";
 
+
   $("#forwardBtn")
   .textContent =
   "HOLD TO MOVE";
+
 
   $("#checkBtn")
   .style
@@ -2284,11 +3088,14 @@ function initialLock(){
 
   : "none";
 
+
   setControlsForPhase();
 
+
   announce(
-    "Locked. Ready to move."
+    "Normal action complete. Ready to move."
   );
+
 
   urgeTimer =
   setInterval(()=>{
@@ -2309,12 +3116,17 @@ function initialLock(){
 
   },430);
 
+
   scheduleDoubt(
     950
   );
 
 }
 
+
+/* =========================
+   DOUBT
+========================= */
 
 function nextThought(){
 
@@ -2383,6 +3195,10 @@ function scheduleDoubt(
 }
 
 
+/* =========================
+   DEPTH — PARK
+========================= */
+
 function updateParkDepth(){
 
   const t =
@@ -2394,16 +3210,12 @@ function updateParkDepth(){
   const car =
   $("#car");
 
-  /*
-  Park & Walk:
-  Building approaches.
-  Vehicle recedes behind player.
-  */
 
   $("#environment")
   .style
   .transform =
   "scale(1)";
+
 
   if(store){
 
@@ -2419,6 +3231,7 @@ function updateParkDepth(){
     `${5 - t * 1.5}%`;
 
   }
+
 
   if(car){
 
@@ -2441,6 +3254,7 @@ function updateParkDepth(){
     );
 
   }
+
 
   $("#environment")
   .querySelectorAll(
@@ -2469,10 +3283,12 @@ function updateParkDepth(){
 
   );
 
+
   $("#person")
   .style
   .bottom =
   `${24 + t * 22}%`;
+
 
   $("#person")
   .style
@@ -2482,6 +3298,91 @@ function updateParkDepth(){
 
 }
 
+
+/* =========================
+   DEPTH — OFF & OUT
+========================= */
+
+function updateStoveDepth(){
+
+  const t =
+  momentum / 100;
+
+  const stove =
+  $("#stove");
+
+  const exit =
+  $("#environment .exitDoor");
+
+
+  $("#environment")
+  .style
+  .transform =
+  "scale(1)";
+
+
+  /*
+  Stove remains behind the character
+  and recedes as the exit approaches.
+  */
+
+  if(stove){
+
+    stove
+    .style
+    .transform =
+    `translateX(-50%)
+    scale(${1 - t * .48})`;
+
+    stove
+    .style
+    .top =
+    `${48 + t * 12}%`;
+
+    stove
+    .style
+    .opacity =
+    String(
+      1 - t * .48
+    );
+
+  }
+
+
+  if(exit){
+
+    exit
+    .style
+    .transform =
+    `translateX(-50%)
+    scale(${1 + t * .38})`;
+
+    exit
+    .style
+    .top =
+    `${6 - t * 2}%`;
+
+  }
+
+
+  $("#person")
+  .style
+  .bottom =
+  `${24 + t * 22}%`;
+
+
+  $("#person")
+  .style
+  .transform =
+  `translateX(-50%)
+  scale(${1 - t * .16})`;
+
+}
+
+
+/* =========================
+   WALK
+========================= */
 
 function startWalking(){
 
@@ -2495,10 +3396,6 @@ function startWalking(){
 
   }
 
-  /*
-  Reward returning to movement,
-  not a perfect zero-check run.
-  */
 
   if(
     recoveredAfterCheck
@@ -2518,6 +3415,7 @@ function startWalking(){
     );
 
   }
+
 
   phase =
   "moving";
@@ -2541,6 +3439,7 @@ function startWalking(){
 
   setControlsForPhase();
 
+
   walkTimer =
   setInterval(()=>{
 
@@ -2550,8 +3449,10 @@ function startWalking(){
       momentum + 2.2
     );
 
+
     urge +=
     Math.random() * 3 - 1.5;
+
 
     urge =
     Math.max(
@@ -2562,6 +3463,7 @@ function startWalking(){
       )
     );
 
+
     if(
       current === "car"
     ){
@@ -2569,6 +3471,16 @@ function startWalking(){
       updateParkDepth();
 
     }
+
+
+    else if(
+      current === "stove"
+    ){
+
+      updateStoveDepth();
+
+    }
+
 
     else{
 
@@ -2580,6 +3492,7 @@ function startWalking(){
         momentum * .15
       ) + "%";
 
+
       $("#environment")
       .style
       .transform =
@@ -2590,6 +3503,7 @@ function startWalking(){
 
     }
 
+
     if(
       momentum >= 50 &&
       !midpointShown
@@ -2599,7 +3513,9 @@ function startWalking(){
 
     }
 
+
     updateMeters();
+
 
     if(
       momentum >= 100
@@ -2610,6 +3526,7 @@ function startWalking(){
     }
 
   },70);
+
 
   return true;
 
@@ -2632,6 +3549,7 @@ function stopWalking(){
 
   }
 
+
   stopMovement();
 
   phase =
@@ -2642,6 +3560,7 @@ function stopWalking(){
   "READY";
 
   setControlsForPhase();
+
 
   if(
     momentum < 100
@@ -2656,6 +3575,10 @@ function stopWalking(){
 }
 
 
+/* =========================
+   RECHECK
+========================= */
+
 function recheck(source){
 
   if(
@@ -2666,6 +3589,7 @@ function recheck(source){
     return;
 
   }
+
 
   checks++;
 
@@ -2683,11 +3607,13 @@ function recheck(source){
 
   setControlsForPhase();
 
+
   vibrate([
     35,
     30,
     35
   ]);
+
 
   $("#person")
   .classList
@@ -2695,24 +3621,23 @@ function recheck(source){
     "lookback"
   );
 
+
   urge =
   Math.max(
     14,
     urge - 28
   );
 
-  /*
-  No momentum loss.
-  No backwards character movement.
-  */
 
   updateMeters();
 
   hideDoubt();
 
+
   $("#phaseHint")
   .textContent =
   "RELIEF";
+
 
   if(
     source === "fob"
@@ -2721,8 +3646,7 @@ function recheck(source){
     const beep =
     $("#beep");
 
-    beep
-    .textContent =
+    beep.textContent =
     "BEEP • RELIEF";
 
     beep
@@ -2736,6 +3660,7 @@ function recheck(source){
     .add(
       "reliefFlash"
     );
+
 
     feedbackTimer =
     setTimeout(()=>{
@@ -2756,17 +3681,50 @@ function recheck(source){
 
   }
 
+
+  if(
+    source === "stove"
+  ){
+
+    flashLock(
+      "LOOK • RELIEF"
+    );
+
+    $("#environment")
+    .classList
+    .add(
+      "reliefFlash"
+    );
+
+
+    feedbackTimer =
+    setTimeout(()=>{
+
+      $("#environment")
+      .classList
+      .remove(
+        "reliefFlash"
+      );
+
+    },600);
+
+  }
+
+
   $("#title")
   .textContent =
   "Relief landed.";
+
 
   $("#copy")
   .textContent =
   "For a moment, the question feels answered.";
 
+
   announce(
     "Temporary relief."
   );
+
 
   reliefTimer =
   setTimeout(()=>{
@@ -2776,6 +3734,7 @@ function recheck(source){
     .remove(
       "lookback"
     );
+
 
     const carQuestions = [
 
@@ -2789,6 +3748,7 @@ function recheck(source){
 
     ];
 
+
     const doorQuestions = [
 
       "Okay... but did you pull it closed tightly enough?",
@@ -2799,13 +3759,43 @@ function recheck(source){
 
     ];
 
-    const questions =
 
-    current === "car"
+    const stoveQuestions = [
 
-    ? carQuestions
+      "Okay... but was every burner really off?",
 
-    : doorQuestions;
+      "What if you looked at the wrong knob?",
+
+      "Maybe you should check the burners themselves.",
+
+      "One more look might feel more certain."
+
+    ];
+
+
+    let questions =
+    doorQuestions;
+
+
+    if(
+      current === "car"
+    ){
+
+      questions =
+      carQuestions;
+
+    }
+
+
+    if(
+      current === "stove"
+    ){
+
+      questions =
+      stoveQuestions;
+
+    }
+
 
     const question =
     questions[
@@ -2815,15 +3805,18 @@ function recheck(source){
       )
     ];
 
+
     showDoubt(
       question
     );
+
 
     urge =
     Math.min(
       96,
       urge + 21
     );
+
 
     updateMeters();
 
@@ -2832,17 +3825,21 @@ function recheck(source){
 
     setControlsForPhase();
 
+
     $("#phaseHint")
     .textContent =
     "DOUBT";
+
 
     $("#title")
     .textContent =
     "Doubt moved the finish line.";
 
+
     $("#copy")
     .textContent =
     "The question changed. Your destination didn't.";
+
 
     reliefTimer =
     null;
@@ -2852,6 +3849,10 @@ function recheck(source){
 }
 
 
+/* =========================
+   COMPLETE
+========================= */
+
 function completeMission(){
 
   stopEverything();
@@ -2859,18 +3860,22 @@ function completeMission(){
   phase =
   "complete";
 
+
   /*
   Flat XP.
-  Checking does not reduce reward.
+  Rechecking never lowers the reward.
   */
 
   const earned =
   30;
 
+
   xp +=
   earned;
 
+
   updateXP();
+
 
   localStorage
   .setItem(
@@ -2878,11 +3883,14 @@ function completeMission(){
     "yes"
   );
 
+
   updateMissionCompletionUI();
+
 
   $("#xpEarned")
   .textContent =
   earned;
+
 
   $("#result")
   .textContent =
@@ -2899,9 +3907,11 @@ function completeMission(){
       : "times"
     }. The goal was movement, not a perfect run.`;
 
+
   announce(
     "Mission complete."
   );
+
 
   show(
     "reward"
@@ -2910,7 +3920,9 @@ function completeMission(){
 }
 
 
-/* NORMAL NAVIGATION */
+/* =========================
+   NAVIGATION
+========================= */
 
 $("#enter")
 .addEventListener(
@@ -2919,6 +3931,7 @@ $("#enter")
     "map"
   )
 );
+
 
 $("#checking")
 .addEventListener(
@@ -2934,6 +3947,7 @@ $("#checking")
   }
 );
 
+
 $("#backMap")
 .addEventListener(
   "click",
@@ -2941,6 +3955,7 @@ $("#backMap")
     "map"
   )
 );
+
 
 $$(
   ".missionCard[data-mission]"
@@ -2959,6 +3974,7 @@ $$(
 
 );
 
+
 $("#continueBtn")
 .addEventListener(
   "click",
@@ -2974,7 +3990,9 @@ $("#continueBtn")
 );
 
 
-/* MOBILE-SAFE TAP */
+/* =========================
+   MOBILE-SAFE TAP
+========================= */
 
 function protectTap(
   element,
@@ -2984,12 +4002,14 @@ function protectTap(
   let touchTriggered =
   false;
 
+
   element
   .addEventListener(
     "touchstart",
     event=>{
 
       event.preventDefault();
+
       event.stopPropagation();
 
       touchTriggered =
@@ -3001,15 +4021,18 @@ function protectTap(
     }
   );
 
+
   element
   .addEventListener(
     "touchend",
     event=>{
 
       event.preventDefault();
+
       event.stopPropagation();
 
       action();
+
 
       setTimeout(()=>{
 
@@ -3023,6 +4046,7 @@ function protectTap(
       passive:false
     }
   );
+
 
   element
   .addEventListener(
@@ -3040,6 +4064,7 @@ function protectTap(
     }
   );
 
+
   element
   .addEventListener(
     "contextmenu",
@@ -3049,6 +4074,7 @@ function protectTap(
 
     }
   );
+
 
   element
   .addEventListener(
@@ -3073,6 +4099,10 @@ function protectTap(
 }
 
 
+/* =========================
+   PROTECTED CONTROLS
+========================= */
+
 protectTap(
   $("#missionExit"),
   exitMission
@@ -3095,7 +4125,7 @@ protectTap(
       phase === "lock"
     ){
 
-      initialLock();
+      initialAction();
 
     }
 
@@ -3111,7 +4141,33 @@ protectTap(
 );
 
 
-/* TOUCH HOLD-TO-MOVE */
+protectTap(
+  $("#stoveControl"),
+  ()=>{
+
+    if(
+      phase === "lock"
+    ){
+
+      initialAction();
+
+    }
+
+    else{
+
+      recheck(
+        "stove"
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================
+   HOLD TO MOVE — TOUCH
+========================= */
 
 const forward =
 $("#forwardBtn");
@@ -3123,13 +4179,15 @@ forward
   event=>{
 
     event.preventDefault();
+
     event.stopPropagation();
+
 
     if(
       phase === "lock"
     ){
 
-      initialLock();
+      initialAction();
 
       touchMoveActive =
       false;
@@ -3137,6 +4195,7 @@ forward
       return;
 
     }
+
 
     touchMoveActive =
     startWalking();
@@ -3154,7 +4213,9 @@ forward
   event=>{
 
     event.preventDefault();
+
     event.stopPropagation();
+
 
     if(
       touchMoveActive
@@ -3163,6 +4224,7 @@ forward
       stopWalking();
 
     }
+
 
     touchMoveActive =
     false;
@@ -3181,6 +4243,7 @@ forward
 
     event.preventDefault();
 
+
     if(
       touchMoveActive
     ){
@@ -3188,6 +4251,7 @@ forward
       stopWalking();
 
     }
+
 
     touchMoveActive =
     false;
@@ -3210,7 +4274,9 @@ forward
 );
 
 
-/* NON-TOUCH FALLBACK */
+/* =========================
+   NON-TOUCH FALLBACK
+========================= */
 
 forward
 .addEventListener(
@@ -3225,13 +4291,15 @@ forward
 
     }
 
+
     event.preventDefault();
+
 
     if(
       phase === "lock"
     ){
 
-      initialLock();
+      initialAction();
 
       movementPointerActive =
       false;
@@ -3239,6 +4307,7 @@ forward
       return;
 
     }
+
 
     movementPointerActive =
     startWalking();
@@ -3270,6 +4339,7 @@ forward
 
       }
 
+
       movementPointerActive =
       false;
 
@@ -3281,7 +4351,9 @@ forward
 );
 
 
-/* SAFARI BROWSER UI BLOCKING */
+/* =========================
+   SAFARI / IOS PROTECTION
+========================= */
 
 document
 .addEventListener(
@@ -3340,6 +4412,10 @@ document
 
 );
 
+
+/* =========================
+   START
+========================= */
 
 updateXP();
 
