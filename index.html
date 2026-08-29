@@ -5,13 +5,13 @@
 
 <meta
   name="viewport"
-  content="width=device-width,initial-scale=1,viewport-fit=cover">
+  content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 
 <meta
   name="theme-color"
   content="#07101c">
 
-<title>UNCERTAIN — Checking District v10.1</title>
+<title>UNCERTAIN — Checking District v10.2</title>
 
 <style>
 
@@ -24,21 +24,36 @@
   --line:#ffffff26;
 }
 
+/* =========================
+   GLOBAL MOBILE LOCKDOWN
+========================= */
+
 *{
   box-sizing:border-box;
+
   -webkit-tap-highlight-color:transparent;
+
   -webkit-touch-callout:none;
+
+  -webkit-user-select:none;
   user-select:none;
 }
 
 html,
 body{
   margin:0;
+
   width:100%;
   height:100%;
+
   overflow:hidden;
+
+  overscroll-behavior:none;
+
   background:#040912;
+
   color:var(--text);
+
   font-family:
     system-ui,
     -apple-system,
@@ -50,22 +65,56 @@ body{
 button{
   font:inherit;
   color:inherit;
-  touch-action:manipulation;
+
+  -webkit-appearance:none;
+  appearance:none;
+
+  -webkit-user-select:none;
+  user-select:none;
+
+  -webkit-touch-callout:none;
 }
 
 #app{
   height:100vh;
   height:100dvh;
+
   max-width:520px;
+
   margin:auto;
+
   position:relative;
+
   overflow:hidden;
+
   background:var(--bg);
+
+  touch-action:none;
+}
+
+.btn,
+.control,
+.missionCard,
+.node,
+.missionExit,
+#fobLock{
+  touch-action:manipulation;
+
+  -webkit-user-select:none;
+  user-select:none;
+
+  -webkit-touch-callout:none;
+}
+
+#forwardBtn{
+  touch-action:none;
 }
 
 .screen{
   display:none;
+
   position:absolute;
+
   inset:0;
 }
 
@@ -75,25 +124,37 @@ button{
 
 .hud{
   position:absolute;
+
   z-index:80;
+
   top:0;
   left:0;
   right:0;
+
   padding:
     max(12px,env(safe-area-inset-top))
     12px
     8px;
+
   display:flex;
+
   justify-content:space-between;
+
   pointer-events:none;
 }
 
 .pill{
   padding:8px 11px;
-  border:1px solid var(--line);
+
+  border:
+    1px solid var(--line);
+
   border-radius:999px;
+
   background:#07111de8;
+
   font-size:12px;
+
   font-weight:950;
 }
 
@@ -104,33 +165,51 @@ button{
       #101d30f2,
       #0b1625f2
     );
-  border:1px solid var(--line);
+
+  border:
+    1px solid var(--line);
+
   border-radius:22px;
+
   padding:16px;
-  box-shadow:0 18px 44px #0009;
+
+  box-shadow:
+    0 18px 44px #0009;
 }
 
 .btn{
   width:100%;
+
   min-height:58px;
+
   border:0;
+
   border-radius:17px;
+
   background:#eef3f8;
+
   color:#0c1420;
+
   font-weight:950;
+
   font-size:17px;
 }
 
 .small{
   font-size:12px;
+
   line-height:1.4;
+
   color:#9eacbd;
 }
 
-/* START */
+/* =========================
+   START
+========================= */
 
 #start{
   padding:92px 22px 26px;
+
   background:
     radial-gradient(
       circle at 50% 25%,
@@ -142,16 +221,23 @@ button{
 
 .logo{
   font-size:13px;
+
   letter-spacing:.25em;
+
   font-weight:950;
+
   color:#a9b7ca;
 }
 
 .hero{
   font-size:53px;
+
   line-height:.92;
+
   margin:24px 0 16px;
+
   font-weight:1000;
+
   letter-spacing:-.055em;
 }
 
@@ -161,12 +247,20 @@ button{
 
 .startCard{
   position:absolute;
+
   left:16px;
   right:16px;
-  bottom:max(22px,env(safe-area-inset-bottom));
+
+  bottom:
+    max(
+      22px,
+      env(safe-area-inset-bottom)
+    );
 }
 
-/* MAP */
+/* =========================
+   MAP
+========================= */
 
 #map{
   background:
@@ -180,36 +274,56 @@ button{
 
 .road{
   position:absolute;
+
   width:155%;
   height:100px;
+
   left:-30%;
   top:49%;
-  transform:rotate(-18deg);
+
+  transform:
+    rotate(-18deg);
+
   background:#46566c;
-  box-shadow:0 0 0 9px #1d2837;
+
+  box-shadow:
+    0 0 0 9px #1d2837;
 }
 
 .road:after{
   content:"";
+
   position:absolute;
+
   left:0;
   right:0;
   top:48px;
-  border-top:4px dashed #e8edf566;
+
+  border-top:
+    4px dashed #e8edf566;
 }
 
 .node{
   position:absolute;
-  border:2px solid #ffffff32;
+
+  border:
+    2px solid #ffffff32;
+
   background:#0b1729ed;
+
   border-radius:23px;
+
   padding:15px;
+
   text-align:left;
-  box-shadow:0 16px 36px #0009;
+
+  box-shadow:
+    0 16px 36px #0009;
 }
 
 .node strong{
   display:block;
+
   font-size:18px;
 }
 
@@ -220,39 +334,61 @@ button{
 #checking{
   left:6%;
   top:21%;
+
   width:195px;
 }
 
 .locked{
   right:5%;
   bottom:25%;
+
   width:170px;
+
   opacity:.48;
 }
 
 .avatarMini{
   position:absolute;
+
   left:47%;
   top:63%;
+
   width:44px;
   height:44px;
+
   border-radius:50%;
+
   background:#eef3f8;
-  border:7px solid #405675;
+
+  border:
+    7px solid #405675;
 }
 
 .mapInfo{
   position:absolute;
+
   left:14px;
   right:14px;
-  bottom:max(14px,env(safe-area-inset-bottom));
+
+  bottom:
+    max(
+      14px,
+      env(safe-area-inset-bottom)
+    );
+
   padding:13px 15px;
-  border:1px solid var(--line);
+
+  border:
+    1px solid var(--line);
+
   border-radius:18px;
+
   background:#081321d9;
 }
 
-/* MISSION SELECT */
+/* =========================
+   MISSION SELECT
+========================= */
 
 #missionSelect{
   background:
@@ -265,79 +401,132 @@ button{
 
 .selectWrap{
   position:absolute;
-  inset:88px 14px 18px;
+
+  inset:
+    88px
+    14px
+    18px;
+
   overflow:auto;
 }
 
 .missionCard{
   width:100%;
-  border:1px solid var(--line);
+
+  border:
+    1px solid var(--line);
+
   border-radius:22px;
+
   background:#0d192aef;
+
   padding:17px;
+
   text-align:left;
+
   margin-bottom:12px;
+
   min-height:118px;
 }
 
 .missionCard b{
   display:block;
+
   font-size:20px;
 }
 
 .missionCard span{
   display:block;
+
   color:#b7c5d6;
+
   margin-top:7px;
+
   line-height:1.35;
 }
 
 .tag{
   font-size:11px!important;
+
   color:var(--accent)!important;
+
   font-weight:900;
+
   letter-spacing:.08em;
 }
 
 .completion{
   min-height:15px;
+
   font-size:11px!important;
+
   color:var(--accent)!important;
+
   font-weight:950!important;
+
   letter-spacing:.05em;
 }
 
-/* EXIT */
+/* =========================
+   MISSION EXIT
+========================= */
 
 .missionExit{
   position:absolute;
+
   z-index:9999;
+
   left:12px;
-  top:max(
-    58px,
-    calc(env(safe-area-inset-top) + 48px)
-  );
+
+  top:
+    max(
+      58px,
+      calc(
+        env(safe-area-inset-top)
+        + 48px
+      )
+    );
+
   min-width:82px;
+
   min-height:46px;
+
   padding:8px 13px;
-  border:1px solid #ffffff42;
+
+  border:
+    1px solid #ffffff42;
+
   border-radius:999px;
+
   background:#08111bf2;
+
   color:#f5f8fc;
-  box-shadow:0 6px 18px #0008;
+
+  box-shadow:
+    0 6px 18px #0008;
+
   font-size:12px;
+
   font-weight:950;
+
   letter-spacing:.04em;
+
   pointer-events:auto;
 }
 
-/* WORLD */
+/* =========================
+   WORLD
+========================= */
 
 .scene{
   position:absolute;
+
   z-index:1;
+
   inset:0;
+
   overflow:hidden;
+
   background:
     linear-gradient(
       #24364b 0 47%,
@@ -347,7 +536,9 @@ button{
 
 #environment{
   position:absolute;
+
   inset:0;
+
   transition:
     transform .2s ease,
     filter .2s ease,
@@ -356,10 +547,13 @@ button{
 
 .skyGlow{
   position:absolute;
+
   left:0;
   right:0;
   top:0;
+
   height:38%;
+
   background:
     radial-gradient(
       circle at 70% 16%,
@@ -370,10 +564,13 @@ button{
 
 .ground{
   position:absolute;
+
   left:0;
   right:0;
   bottom:0;
+
   height:58%;
+
   background:
     linear-gradient(
       #1f2b37,
@@ -383,15 +580,20 @@ button{
 
 .path{
   position:absolute;
+
   left:50%;
   bottom:-4%;
+
   width:56%;
   height:60%;
+
   transform:
     translateX(-50%)
     perspective(300px)
     rotateX(58deg);
+
   transform-origin:center bottom;
+
   background:
     linear-gradient(
       90deg,
@@ -399,6 +601,7 @@ button{
       #536578 50%,
       #334251
     );
+
   clip-path:
     polygon(
       38% 0,
@@ -410,63 +613,89 @@ button{
 
 .destinationGlow{
   position:absolute;
+
   left:50%;
   top:19%;
+
   width:80px;
   height:80px;
-  transform:translateX(-50%);
+
+  transform:
+    translateX(-50%);
+
   border-radius:50%;
+
   background:
     radial-gradient(
       circle,
       #74e7c555,
       transparent 68%
     );
-  animation:pulse 1.8s infinite alternate;
+
+  animation:
+    pulse 1.8s infinite alternate;
+
   pointer-events:none;
 }
 
 @keyframes pulse{
+
   to{
     transform:
       translateX(-50%)
       scale(1.15);
+
     opacity:.65;
   }
+
 }
 
-/* HOUSE */
+/* =========================
+   HOUSE
+========================= */
 
 .houseShell{
   position:absolute;
+
   left:50%;
   top:11%;
-  transform:translateX(-50%);
+
+  transform:
+    translateX(-50%);
+
   width:310px;
   height:270px;
 }
 
 .houseBody{
   position:absolute;
+
   left:16px;
   right:16px;
   top:48px;
   bottom:0;
+
   background:
     linear-gradient(
       #47576a,
       #303b49
     );
-  border:6px solid #1b2735;
+
+  border:
+    6px solid #1b2735;
 }
 
 .roof{
   position:absolute;
+
   left:0;
   right:0;
   top:0;
+
   height:110px;
+
   background:#202c3a;
+
   clip-path:
     polygon(
       50% 0,
@@ -481,11 +710,16 @@ button{
 
 .window{
   position:absolute;
+
   top:92px;
+
   width:55px;
   height:70px;
+
   background:#d2a55f;
-  border:6px solid #1b2735;
+
+  border:
+    6px solid #1b2735;
 }
 
 .window.left{
@@ -498,52 +732,82 @@ button{
 
 .porch{
   position:absolute;
+
   left:50%;
   bottom:-7px;
-  transform:translateX(-50%);
+
+  transform:
+    translateX(-50%);
+
   width:180px;
   height:28px;
+
   background:#1c2835;
 }
 
 .door{
   position:absolute;
+
   left:50%;
   bottom:20px;
-  transform:translateX(-50%);
+
+  transform:
+    translateX(-50%);
+
   width:112px;
   height:172px;
+
   background:
     linear-gradient(
       #2f4155,
       #1b2a3a
     );
-  border:7px solid #111a25;
+
+  border:
+    7px solid #111a25;
 }
 
 .knob{
   position:absolute;
+
   right:8px;
   top:74px;
+
   width:36px;
   height:36px;
+
   border-radius:50%;
+
   background:#e8eef5;
-  border:6px solid #6a7a8f;
+
+  border:
+    6px solid #6a7a8f;
 }
 
 .lockFlash{
   position:absolute;
+
   left:50%;
   top:38%;
+
   z-index:30;
-  transform:translateX(-50%);
+
+  transform:
+    translateX(-50%);
+
   padding:9px 14px;
+
   border-radius:999px;
+
   background:#081321ed;
-  border:1px solid #ffffff35;
+
+  border:
+    1px solid #ffffff35;
+
   font-weight:1000;
+
   opacity:0;
+
   transition:.15s;
 }
 
@@ -551,11 +815,15 @@ button{
   opacity:1;
 }
 
-/* PARKING */
+/* =========================
+   PARKING
+========================= */
 
 .parkingGround{
   position:absolute;
+
   inset:34% 0 0;
+
   background:
     linear-gradient(
       170deg,
@@ -566,93 +834,135 @@ button{
 
 .store{
   position:absolute;
+
   left:50%;
   top:5%;
-  transform:translateX(-50%);
+
+  transform:
+    translateX(-50%);
+
   width:305px;
   height:178px;
+
   background:
     linear-gradient(
       #54667a,
       #3b4a5d
     );
-  border:8px solid #223040;
+
+  border:
+    8px solid #223040;
 }
 
 .store:before{
   content:"DESTINATION";
+
   position:absolute;
+
   left:0;
   right:0;
   top:26px;
+
   text-align:center;
+
   font-weight:1000;
+
   letter-spacing:.12em;
 }
 
 .storeDoor{
   position:absolute;
+
   left:50%;
   bottom:0;
-  transform:translateX(-50%);
+
+  transform:
+    translateX(-50%);
+
   width:82px;
   height:96px;
+
   background:#142638;
-  border:5px solid #71849a;
+
+  border:
+    5px solid #71849a;
 }
 
 .parkingLine{
   position:absolute;
+
   height:5px;
+
   background:#edf3fa4a;
 }
 
 .line1{
   width:65%;
+
   left:-4%;
   top:61%;
-  transform:rotate(-19deg);
+
+  transform:
+    rotate(-19deg);
 }
 
 .line2{
   width:65%;
+
   right:-13%;
   top:61%;
-  transform:rotate(19deg);
+
+  transform:
+    rotate(19deg);
 }
 
 .line3{
   width:56%;
+
   left:4%;
   top:78%;
-  transform:rotate(-14deg);
+
+  transform:
+    rotate(-14deg);
 }
 
 .line4{
   width:56%;
+
   right:-3%;
   top:78%;
-  transform:rotate(14deg);
+
+  transform:
+    rotate(14deg);
 }
 
 .car{
   position:absolute;
+
   left:50%;
   top:43%;
-  transform:translateX(-50%);
+
+  transform:
+    translateX(-50%);
+
   width:192px;
   height:86px;
+
   border-radius:
     38px
     42px
     18px
     18px;
+
   background:
     linear-gradient(
       #8fa0b5,
       #687a91
     );
-  border:7px solid #101722;
+
+  border:
+    7px solid #101722;
+
   transition:
     transform .2s,
     opacity .2s;
@@ -660,11 +970,15 @@ button{
 
 .carWindow{
   position:absolute;
+
   left:44px;
   top:-8px;
+
   width:104px;
   height:44px;
+
   background:#21354a;
+
   clip-path:
     polygon(
       20% 100%,
@@ -676,24 +990,35 @@ button{
 
 .carLight{
   position:absolute;
+
   right:8px;
   top:37px;
+
   width:24px;
   height:14px;
+
   border-radius:8px;
+
   background:#e9c978;
 }
 
 .car:before,
 .car:after{
   content:"";
+
   position:absolute;
+
   bottom:-18px;
+
   width:34px;
   height:34px;
+
   border-radius:50%;
+
   background:#0a0d12;
-  border:6px solid #394554;
+
+  border:
+    6px solid #394554;
 }
 
 .car:before{
@@ -704,16 +1029,24 @@ button{
   right:20px;
 }
 
-/* PLAYER */
+/* =========================
+   PLAYER
+========================= */
 
 .person{
   position:absolute;
+
   z-index:18;
+
   left:50%;
   bottom:24%;
+
   width:62px;
   height:106px;
-  transform:translateX(-50%);
+
+  transform:
+    translateX(-50%);
+
   transition:
     bottom .18s,
     transform .18s;
@@ -728,36 +1061,50 @@ button{
 
 .shadow{
   position:absolute;
+
   left:50%;
   bottom:-4px;
-  transform:translateX(-50%);
+
+  transform:
+    translateX(-50%);
+
   width:54px;
   height:13px;
+
   border-radius:50%;
+
   background:#0007;
 }
 
 .head{
   position:absolute;
+
   left:17px;
   top:0;
+
   width:28px;
   height:28px;
+
   border-radius:50%;
+
   background:#eef3f8;
 }
 
 .body{
   position:absolute;
+
   left:12px;
   top:28px;
+
   width:38px;
   height:46px;
+
   border-radius:
     16px
     16px
     10px
     10px;
+
   background:
     linear-gradient(
       #e8eef5,
@@ -767,10 +1114,14 @@ button{
 
 .arm{
   position:absolute;
+
   top:35px;
+
   width:11px;
   height:37px;
+
   border-radius:10px;
+
   background:#cfdbe6;
 }
 
@@ -784,10 +1135,14 @@ button{
 
 .leg{
   position:absolute;
+
   top:70px;
+
   width:13px;
   height:33px;
+
   border-radius:9px;
+
   background:#bcc9d5;
 }
 
@@ -800,35 +1155,47 @@ button{
 }
 
 .person.walking .leg.a{
-  animation:step .28s infinite alternate;
+  animation:
+    step .28s infinite alternate;
 }
 
 .person.walking .leg.b{
-  animation:step .28s infinite alternate-reverse;
+  animation:
+    step .28s infinite alternate-reverse;
 }
 
 @keyframes step{
+
   to{
     transform:
       translateY(4px)
       rotate(9deg);
   }
+
 }
 
-/* DOUBT */
+/* =========================
+   DOUBT
+========================= */
 
 #doubtVignette{
   position:absolute;
+
   z-index:21;
+
   inset:0;
+
   background:
     radial-gradient(
       circle at 50% 45%,
       transparent 32%,
       #210d2a99 100%
     );
+
   opacity:0;
+
   pointer-events:none;
+
   transition:.18s;
 }
 
@@ -838,17 +1205,28 @@ button{
 
 .doubtText{
   position:absolute;
+
   z-index:24;
+
   top:15%;
   left:8%;
   right:8%;
+
   text-align:center;
+
   font-size:24px;
+
   font-weight:1000;
+
   line-height:1.05;
-  text-shadow:0 4px 16px #000;
+
+  text-shadow:
+    0 4px 16px #000;
+
   opacity:0;
+
   transition:.18s;
+
   pointer-events:none;
 }
 
@@ -858,61 +1236,103 @@ button{
 
 .doubtLabel{
   display:block;
+
   font-size:10px;
+
   letter-spacing:.16em;
+
   color:#d2a3cf;
+
   margin-bottom:7px;
 }
 
-/* MIDPOINT CUE */
+/* =========================
+   MIDPOINT
+========================= */
 
 .choiceCue{
   position:absolute;
+
   z-index:40;
+
   left:50%;
   top:48%;
+
   transform:
     translate(-50%,10px)
     scale(.96);
+
   padding:10px 16px;
-  border:1px solid #74e7c566;
+
+  border:
+    1px solid #74e7c566;
+
   border-radius:999px;
+
   background:#07141ee8;
+
   color:var(--accent);
+
   font-size:13px;
+
   font-weight:1000;
+
   letter-spacing:.08em;
+
   opacity:0;
+
   pointer-events:none;
-  box-shadow:0 8px 24px #0008;
+
+  box-shadow:
+    0 8px 24px #0008;
+
   transition:.2s;
 }
 
 .choiceCue.show{
   opacity:1;
+
   transform:
     translate(-50%,0)
     scale(1);
 }
 
-/* GAME PANEL */
+/* =========================
+   GAME PANEL
+========================= */
 
 .gamePanel{
   position:absolute;
+
   z-index:60;
+
   left:10px;
   right:10px;
-  bottom:max(10px,env(safe-area-inset-bottom));
+
+  bottom:
+    max(
+      10px,
+      env(safe-area-inset-bottom)
+    );
+
   padding:11px 12px;
-  border:1px solid #ffffff24;
+
+  border:
+    1px solid #ffffff24;
+
   border-radius:20px;
+
   background:#081321df;
-  backdrop-filter:blur(12px);
+
+  backdrop-filter:
+    blur(12px);
 }
 
 .gameTitle{
   display:flex;
+
   justify-content:space-between;
+
   gap:12px;
 }
 
@@ -922,55 +1342,79 @@ button{
 
 .gameTitle span{
   font-size:11px;
+
   color:#aebbd0;
 }
 
 .meters{
   display:grid;
-  grid-template-columns:1fr 1fr;
+
+  grid-template-columns:
+    1fr 1fr;
+
   gap:10px;
+
   margin-top:9px;
 }
 
 .meterLabel{
   font-size:9px;
+
   letter-spacing:.1em;
+
   color:#aeb9c7;
 }
 
 .meter{
   height:9px;
+
   background:#29364a;
+
   border-radius:999px;
+
   overflow:hidden;
+
   margin-top:4px;
 }
 
 .meter i{
   display:block;
+
   height:100%;
+
   width:0;
+
   border-radius:999px;
+
   background:#eef3f8;
 }
 
 .controls{
   display:flex;
+
   gap:9px;
+
   margin-top:10px;
 }
 
 .control{
   flex:1;
+
   min-height:54px;
-  border:1px solid #ffffff2a;
+
+  border:
+    1px solid #ffffff2a;
+
   border-radius:15px;
+
   background:#152238;
+
   font-weight:950;
 }
 
 .control.primary{
   background:#eef3f8;
+
   color:#101826;
 }
 
@@ -978,57 +1422,93 @@ button{
   opacity:.45;
 }
 
-/* FOB */
+/* =========================
+   KEY FOB
+========================= */
 
 #keyfob{
   position:absolute;
+
   z-index:65;
+
   right:15px;
+
   bottom:188px;
+
   width:84px;
   height:108px;
+
   border-radius:24px;
+
   background:#101821;
-  border:4px solid #75859b;
+
+  border:
+    4px solid #75859b;
+
   padding:9px;
+
   text-align:center;
 }
 
 #keyfob .ring{
   width:19px;
   height:19px;
-  border:4px solid #8fa0b5;
+
+  border:
+    4px solid #8fa0b5;
+
   border-radius:50%;
-  margin:-24px auto 8px;
+
+  margin:
+    -24px auto 8px;
 }
 
 #keyfob button{
   width:100%;
+
   min-height:53px;
+
   border:0;
+
   border-radius:14px;
+
   background:#dce5ee;
+
   color:#111827;
+
   font-size:22px;
+
   font-weight:1000;
 }
 
 #keyfob.disabled{
   opacity:.45;
+
   pointer-events:none;
 }
 
 #beep{
   position:absolute;
+
   z-index:66;
+
   right:104px;
+
   bottom:236px;
+
   padding:8px 11px;
+
   border-radius:999px;
+
   background:#07111de8;
-  border:1px solid #ffffff32;
+
+  border:
+    1px solid #ffffff32;
+
   font-weight:1000;
+
   opacity:0;
+
   transition:.12s;
 }
 
@@ -1037,10 +1517,13 @@ button{
 }
 
 .reliefFlash{
-  filter:brightness(1.16);
+  filter:
+    brightness(1.16);
 }
 
-/* REWARD */
+/* =========================
+   REWARD
+========================= */
 
 #reward{
   background:
@@ -1054,38 +1537,58 @@ button{
 
 .rewardBox{
   position:absolute;
+
   left:18px;
   right:18px;
   top:50%;
-  transform:translateY(-50%);
+
+  transform:
+    translateY(-50%);
+
   text-align:center;
 }
 
 .rewardBig{
   font-size:45px;
+
   font-weight:1000;
+
   margin:10px 0;
 }
 
-/* ACCESSIBILITY */
+/* =========================
+   ACCESSIBILITY
+========================= */
 
 .srOnly{
   position:absolute;
+
   width:1px;
   height:1px;
+
   padding:0;
+
   margin:-1px;
+
   overflow:hidden;
+
   clip:rect(0,0,0,0);
+
   white-space:nowrap;
+
   border:0;
 }
 
-@media(prefers-reduced-motion:reduce){
+@media(
+  prefers-reduced-motion:reduce
+){
+
   *{
     animation:none!important;
+
     transition:none!important;
   }
+
 }
 
 </style>
@@ -1095,40 +1598,69 @@ button{
 
 <div id="app">
 
-<section id="start" class="screen active">
+<!-- START -->
+
+<section
+  id="start"
+  class="screen active">
 
   <div class="logo">
     UNCERTAIN
   </div>
 
   <div class="hero">
+
     BREAK<br>
-    THE <span>LOOP.</span>
+
+    THE
+    <span>
+      LOOP.
+    </span>
+
   </div>
 
-  <p style="font-size:18px;color:#cbd6e3;line-height:1.45">
+  <p
+    style="
+      font-size:18px;
+      color:#cbd6e3;
+      line-height:1.45">
+
     Move forward without making certainty the price of admission.
+
   </p>
 
   <div class="startCard card">
 
-    <button class="btn" id="enter">
+    <button
+      class="btn"
+      id="enter">
+
       ENTER THE LOOP
+
     </button>
 
     <p class="small">
-      Prototype only. ERP-informed gameplay is not a replacement for professional mental-health care.
+
+      Prototype only.
+      ERP-informed gameplay is not a replacement for professional mental-health care.
+
     </p>
 
   </div>
 
 </section>
 
-<section id="map" class="screen">
+<!-- MAP -->
+
+<section
+  id="map"
+  class="screen">
 
   <div class="road"></div>
 
-  <button id="checking" class="node">
+  <button
+    id="checking"
+    class="node">
 
     <strong>
       Checking District
@@ -1140,7 +1672,8 @@ button{
 
   </button>
 
-  <button class="node locked">
+  <button
+    class="node locked">
 
     <strong>
       Next District
@@ -1161,7 +1694,13 @@ button{
     </span>
 
     <span class="pill">
-      XP <b class="xp">0</b>
+
+      XP
+
+      <b class="xp">
+        0
+      </b>
+
     </span>
 
   </div>
@@ -1180,7 +1719,11 @@ button{
 
 </section>
 
-<section id="missionSelect" class="screen">
+<!-- MISSION SELECT -->
+
+<section
+  id="missionSelect"
+  class="screen">
 
   <div class="hud">
 
@@ -1189,7 +1732,13 @@ button{
     </span>
 
     <span class="pill">
-      XP <b class="xp">0</b>
+
+      XP
+
+      <b class="xp">
+        0
+      </b>
+
     </span>
 
   </div>
@@ -1214,7 +1763,11 @@ button{
       </span>
 
       <span>
-        Lock the house once, then keep moving while Doubt tries to pull you back.
+
+        Lock the house once,
+        then keep moving while
+        Doubt tries to pull you back.
+
       </span>
 
     </button>
@@ -1237,7 +1790,11 @@ button{
       </span>
 
       <span>
-        Lock the car once. The key fob stays available. Doubt does too.
+
+        Lock the car once.
+        The key fob stays available.
+        Doubt does too.
+
       </span>
 
     </button>
@@ -1260,33 +1817,52 @@ button{
 
 </section>
 
-<section id="mission" class="screen">
+<!-- MISSION -->
+
+<section
+  id="mission"
+  class="screen">
 
   <button
     type="button"
     id="missionExit"
     class="missionExit"
     aria-label="Exit mission">
+
     ‹ EXIT
+
   </button>
 
-  <div id="scene" class="scene">
+  <div
+    id="scene"
+    class="scene">
 
     <div class="skyGlow"></div>
+
     <div class="ground"></div>
+
     <div class="path"></div>
+
     <div class="destinationGlow"></div>
 
     <div id="environment"></div>
 
-    <div id="person" class="person">
+    <div
+      id="person"
+      class="person">
 
       <i class="shadow"></i>
+
       <i class="head"></i>
+
       <i class="body"></i>
+
       <i class="arm a"></i>
+
       <i class="arm b"></i>
+
       <i class="leg a"></i>
+
       <i class="leg b"></i>
 
     </div>
@@ -1315,7 +1891,9 @@ button{
     <div
       id="choiceCue"
       class="choiceCue">
+
       KEEP GOING ›
+
     </div>
 
     <div id="beep">
@@ -1332,13 +1910,17 @@ button{
         type="button"
         id="fobLock"
         aria-label="Lock car">
+
         🔒
+
       </button>
 
       <div
         class="small"
         style="margin-top:6px">
+
         LOCK
+
       </div>
 
     </div>
@@ -1350,11 +1932,19 @@ button{
     <span
       class="pill"
       id="missionName">
+
       MISSION
+
     </span>
 
     <span class="pill">
-      XP <b class="xp">0</b>
+
+      XP
+
+      <b class="xp">
+        0
+      </b>
+
     </span>
 
   </div>
@@ -1372,7 +1962,9 @@ button{
         <div
           class="small"
           id="copy">
+
           No extra certainty required.
+
         </div>
 
       </div>
@@ -1420,14 +2012,18 @@ button{
         type="button"
         class="control"
         id="checkBtn">
+
         CHECK AGAIN
+
       </button>
 
       <button
         type="button"
         class="control primary"
         id="forwardBtn">
+
         START
+
       </button>
 
     </div>
@@ -1436,7 +2032,11 @@ button{
 
 </section>
 
-<section id="reward" class="screen">
+<!-- REWARD -->
+
+<section
+  id="reward"
+  class="screen">
 
   <div class="hud">
 
@@ -1445,7 +2045,13 @@ button{
     </span>
 
     <span class="pill">
-      XP <b class="xp">0</b>
+
+      XP
+
+      <b class="xp">
+        0
+      </b>
+
     </span>
 
   </div>
@@ -1459,11 +2065,21 @@ button{
       </div>
 
       <div class="rewardBig">
-        +<span id="xpEarned">25</span> XP
+
+        +
+
+        <span id="xpEarned">
+          25
+        </span>
+
+        XP
+
       </div>
 
       <p id="result">
+
         You moved forward while uncertainty was still present.
+
       </p>
 
       <button
@@ -1471,7 +2087,9 @@ button{
         class="btn"
         id="continueBtn"
         style="margin-top:17px">
+
         BACK TO CHECKING DISTRICT
+
       </button>
 
     </div>
@@ -1491,13 +2109,25 @@ button{
 
 <script>
 
+/* =========================
+   HELPERS
+========================= */
+
 const $ =
 selector =>
-document.querySelector(selector);
+document.querySelector(
+  selector
+);
 
 const $$ =
 selector =>
-document.querySelectorAll(selector);
+document.querySelectorAll(
+  selector
+);
+
+/* =========================
+   STATE
+========================= */
 
 let xp =
 Number(
@@ -1506,102 +2136,192 @@ Number(
   ) || 0
 );
 
-let current = null;
-let phase = "idle";
+let current =
+null;
 
-let momentum = 0;
-let urge = 46;
-let checks = 0;
-let thoughtIndex = 0;
+let phase =
+"idle";
 
-let walkTimer = null;
-let urgeTimer = null;
-let doubtTimer = null;
-let reliefTimer = null;
-let feedbackTimer = null;
-let cueTimer = null;
+let momentum =
+0;
 
-let hold = false;
-let movementPointerActive = false;
-let midpointShown = false;
+let urge =
+46;
+
+let checks =
+0;
+
+let thoughtIndex =
+0;
+
+let walkTimer =
+null;
+
+let urgeTimer =
+null;
+
+let doubtTimer =
+null;
+
+let reliefTimer =
+null;
+
+let feedbackTimer =
+null;
+
+let cueTimer =
+null;
+
+let hold =
+false;
+
+let movementPointerActive =
+false;
+
+let touchMoveActive =
+false;
+
+let midpointShown =
+false;
+
+/* =========================
+   MISSIONS
+========================= */
 
 const missions = {
 
 door:{
 
-  name:"LOCK & LEAVE",
+  name:
+  "LOCK & LEAVE",
 
-  title:"Lock the door.",
+  title:
+  "Lock the door.",
 
-  copy:"Perform one normal lock.",
+  copy:
+  "Perform one normal lock.",
 
   thoughts:[
+
     "Are you sure it clicked?",
+
     "Maybe the deadbolt didn't catch.",
+
     "What if the door opens after you leave?",
+
     "One more check would feel safer."
+
   ],
 
   env:
-    '<div class="houseShell">' +
-    '<div class="roof"></div>' +
-    '<div class="houseBody"></div>' +
-    '<div class="window left"></div>' +
-    '<div class="window right"></div>' +
-    '<div class="porch"></div>' +
-    '<div class="door">' +
-    '<div class="knob"></div>' +
-    '</div>' +
-    '</div>'
+
+  '<div class="houseShell">' +
+
+  '<div class="roof"></div>' +
+
+  '<div class="houseBody"></div>' +
+
+  '<div class="window left"></div>' +
+
+  '<div class="window right"></div>' +
+
+  '<div class="porch"></div>' +
+
+  '<div class="door">' +
+
+  '<div class="knob"></div>' +
+
+  '</div>' +
+
+  '</div>'
 
 },
 
 car:{
 
-  name:"PARK & WALK",
+  name:
+  "PARK & WALK",
 
-  title:"Lock the car.",
+  title:
+  "Lock the car.",
 
-  copy:"Press the key fob once.",
+  copy:
+  "Press the key fob once.",
 
   thoughts:[
+
     "Did you hear it lock?",
+
     "Was that your car that beeped?",
+
     "Maybe the passenger door is unlocked.",
+
     "What if the signal didn't reach it?",
+
     "You could press it one more time."
+
   ],
 
   env:
-    '<div class="store">' +
-    '<div class="storeDoor"></div>' +
-    '</div>' +
-    '<div class="parkingGround"></div>' +
-    '<div class="parkingLine line1"></div>' +
-    '<div class="parkingLine line2"></div>' +
-    '<div class="parkingLine line3"></div>' +
-    '<div class="parkingLine line4"></div>' +
-    '<div class="car" id="car">' +
-    '<div class="carWindow"></div>' +
-    '<div class="carLight"></div>' +
-    '</div>'
+
+  '<div class="store">' +
+
+  '<div class="storeDoor"></div>' +
+
+  '</div>' +
+
+  '<div class="parkingGround"></div>' +
+
+  '<div class="parkingLine line1"></div>' +
+
+  '<div class="parkingLine line2"></div>' +
+
+  '<div class="parkingLine line3"></div>' +
+
+  '<div class="parkingLine line4"></div>' +
+
+  '<div class="car" id="car">' +
+
+  '<div class="carWindow"></div>' +
+
+  '<div class="carLight"></div>' +
+
+  '</div>'
 
 }
 
 };
 
+/* =========================
+   SCREEN
+========================= */
+
 function show(id){
 
   $$(".screen")
   .forEach(
+
     screen =>
-    screen.classList.remove("active")
+
+    screen
+    .classList
+    .remove(
+      "active"
+    )
+
   );
 
   $("#" + id)
-  .classList.add("active");
+  .classList
+  .add(
+    "active"
+  );
 
 }
+
+/* =========================
+   ACCESSIBILITY STATUS
+========================= */
 
 function announce(text){
 
@@ -1611,70 +2331,117 @@ function announce(text){
 
 }
 
+/* =========================
+   HAPTICS
+========================= */
+
 function vibrate(pattern){
 
-  if(navigator.vibrate){
-    navigator.vibrate(pattern);
+  if(
+    navigator.vibrate
+  ){
+
+    navigator
+    .vibrate(
+      pattern
+    );
+
   }
 
 }
 
+/* =========================
+   XP
+========================= */
+
 function updateXP(){
 
-  localStorage.setItem(
+  localStorage
+  .setItem(
     "uncertainXP",
     xp
   );
 
   $$(".xp")
   .forEach(
+
     element =>
-    element.textContent = xp
+
+    element.textContent =
+    xp
+
   );
 
 }
 
+/* =========================
+   COMPLETION UI
+========================= */
+
 function updateMissionCompletionUI(){
 
   $$(".completion")
-  .forEach(element=>{
+  .forEach(
 
-    const mission =
-    element.dataset.completion;
+    element =>{
 
-    const completed =
-    localStorage.getItem(
-      "completed_" + mission
-    ) === "yes";
+      const mission =
+      element.dataset.completion;
 
-    element.textContent =
-    completed
-    ? "✓ COMPLETED • REPLAY AVAILABLE"
-    : "";
+      const completed =
+      localStorage.getItem(
+        "completed_" + mission
+      ) === "yes";
 
-  });
+      element.textContent =
+
+      completed
+
+      ? "✓ COMPLETED • REPLAY AVAILABLE"
+
+      : "";
+
+    }
+
+  );
 
 }
+
+/* =========================
+   METERS
+========================= */
 
 function updateMeters(){
 
   $("#progress")
-  .style.width =
+  .style
+  .width =
   momentum + "%";
 
   $("#urge")
-  .style.width =
+  .style
+  .width =
   urge + "%";
 
 }
 
+/* =========================
+   DOUBT
+========================= */
+
 function hideDoubt(){
 
   $("#doubtOverlay")
-  .classList.remove("show");
+  .classList
+  .remove(
+    "show"
+  );
 
   $("#doubtVignette")
-  .classList.remove("show");
+  .classList
+  .remove(
+    "show"
+  );
 
 }
 
@@ -1685,10 +2452,16 @@ function showDoubt(text){
   text;
 
   $("#doubtOverlay")
-  .classList.add("show");
+  .classList
+  .add(
+    "show"
+  );
 
   $("#doubtVignette")
-  .classList.add("show");
+  .classList
+  .add(
+    "show"
+  );
 
   announce(
     "Doubt: " + text
@@ -1696,23 +2469,38 @@ function showDoubt(text){
 
 }
 
+/* =========================
+   MIDPOINT
+========================= */
+
 function hideCue(){
 
   $("#choiceCue")
-  .classList.remove("show");
+  .classList
+  .remove(
+    "show"
+  );
 
 }
 
 function showMidpointCue(){
 
-  if(midpointShown){
+  if(
+    midpointShown
+  ){
+
     return;
+
   }
 
-  midpointShown = true;
+  midpointShown =
+  true;
 
   $("#choiceCue")
-  .classList.add("show");
+  .classList
+  .add(
+    "show"
+  );
 
   announce(
     "Keep going."
@@ -1731,6 +2519,10 @@ function showMidpointCue(){
 
 }
 
+/* =========================
+   LOCK FEEDBACK
+========================= */
+
 function flashLock(text){
 
   const flash =
@@ -1739,7 +2531,11 @@ function flashLock(text){
   flash.textContent =
   text;
 
-  flash.classList.add("show");
+  flash
+  .classList
+  .add(
+    "show"
+  );
 
   clearTimeout(
     feedbackTimer
@@ -1748,11 +2544,19 @@ function flashLock(text){
   feedbackTimer =
   setTimeout(()=>{
 
-    flash.classList.remove("show");
+    flash
+    .classList
+    .remove(
+      "show"
+    );
 
   },650);
 
 }
+
+/* =========================
+   MOVEMENT CLEANUP
+========================= */
 
 function stopMovement(){
 
@@ -1760,16 +2564,29 @@ function stopMovement(){
     walkTimer
   );
 
-  walkTimer = null;
+  walkTimer =
+  null;
 
-  hold = false;
+  hold =
+  false;
 
-  movementPointerActive = false;
+  movementPointerActive =
+  false;
+
+  touchMoveActive =
+  false;
 
   $("#person")
-  .classList.remove("walking");
+  .classList
+  .remove(
+    "walking"
+  );
 
 }
+
+/* =========================
+   ALL TIMER CLEANUP
+========================= */
 
 function stopEverything(){
 
@@ -1795,27 +2612,60 @@ function stopEverything(){
     cueTimer
   );
 
-  urgeTimer = null;
-  doubtTimer = null;
-  reliefTimer = null;
-  feedbackTimer = null;
-  cueTimer = null;
+  urgeTimer =
+  null;
 
-  if(navigator.vibrate){
-    navigator.vibrate(0);
+  doubtTimer =
+  null;
+
+  reliefTimer =
+  null;
+
+  feedbackTimer =
+  null;
+
+  cueTimer =
+  null;
+
+  if(
+    navigator.vibrate
+  ){
+
+    navigator
+    .vibrate(
+      0
+    );
+
   }
 
 }
+
+/* =========================
+   PLAYER VISUAL RESET
+========================= */
 
 function resetPersonVisual(){
 
   const person =
   $("#person");
 
-  person.classList.remove("walking");
-  person.classList.remove("lookback");
+  person
+  .classList
+  .remove(
+    "walking"
+  );
+
+  person
+  .classList
+  .remove(
+    "lookback"
+  );
 
 }
+
+/* =========================
+   CONTROLS
+========================= */
 
 function setControlsForPhase(){
 
@@ -1841,7 +2691,9 @@ function setControlsForPhase(){
     current === "car"
   ){
 
-    fob.classList.toggle(
+    fob
+    .classList
+    .toggle(
       "disabled",
       relief
     );
@@ -1850,18 +2702,34 @@ function setControlsForPhase(){
 
 }
 
+/* =========================
+   LOAD MISSION
+========================= */
+
 function loadMission(key){
 
   stopEverything();
 
-  current = key;
-  phase = "lock";
+  current =
+  key;
 
-  momentum = 0;
-  urge = 46;
-  checks = 0;
-  thoughtIndex = 0;
-  midpointShown = false;
+  phase =
+  "lock";
+
+  momentum =
+  0;
+
+  urge =
+  46;
+
+  checks =
+  0;
+
+  thoughtIndex =
+  0;
+
+  midpointShown =
+  false;
 
   resetPersonVisual();
 
@@ -1874,21 +2742,28 @@ function loadMission(key){
   missions[key].env;
 
   $("#environment")
-  .style.transform =
+  .style
+  .transform =
   "scale(1)";
 
   $("#environment")
-  .style.opacity =
+  .style
+  .opacity =
   "1";
 
   $("#environment")
-  .classList.remove("reliefFlash");
+  .classList
+  .remove(
+    "reliefFlash"
+  );
 
   $("#person")
-  .style.bottom =
+  .style
+  .bottom =
   "24%";
 
   hideDoubt();
+
   hideCue();
 
   $("#title")
@@ -1904,17 +2779,23 @@ function loadMission(key){
   "LOCK";
 
   $("#meters")
-  .style.display =
+  .style
+  .display =
   "none";
 
   $("#checkBtn")
-  .style.display =
+  .style
+  .display =
   "none";
 
   $("#forwardBtn")
-  .style.display =
+  .style
+  .display =
+
   key === "door"
+
   ? "block"
+
   : "none";
 
   $("#forwardBtn")
@@ -1922,16 +2803,26 @@ function loadMission(key){
   "LOCK ONCE";
 
   $("#keyfob")
-  .style.display =
+  .style
+  .display =
+
   key === "car"
+
   ? "block"
+
   : "none";
 
   $("#keyfob")
-  .classList.remove("disabled");
+  .classList
+  .remove(
+    "disabled"
+  );
 
   $("#beep")
-  .classList.remove("show");
+  .classList
+  .remove(
+    "show"
+  );
 
   $("#beep")
   .textContent =
@@ -1941,7 +2832,9 @@ function loadMission(key){
 
   setControlsForPhase();
 
-  show("mission");
+  show(
+    "mission"
+  );
 
   announce(
     missions[key].name +
@@ -1950,35 +2843,64 @@ function loadMission(key){
 
 }
 
+/* =========================
+   EXIT
+========================= */
+
 function exitMission(){
 
   stopEverything();
 
   hideDoubt();
+
   hideCue();
 
   resetPersonVisual();
 
   $("#beep")
-  .classList.remove("show");
+  .classList
+  .remove(
+    "show"
+  );
 
   $("#environment")
-  .classList.remove("reliefFlash");
+  .classList
+  .remove(
+    "reliefFlash"
+  );
 
-  current = null;
-  phase = "idle";
+  current =
+  null;
 
-  momentum = 0;
-  urge = 46;
-  checks = 0;
-  thoughtIndex = 0;
-  midpointShown = false;
+  phase =
+  "idle";
 
-  movementPointerActive = false;
+  momentum =
+  0;
+
+  urge =
+  46;
+
+  checks =
+  0;
+
+  thoughtIndex =
+  0;
+
+  midpointShown =
+  false;
+
+  movementPointerActive =
+  false;
+
+  touchMoveActive =
+  false;
 
   updateMissionCompletionUI();
 
-  show("missionSelect");
+  show(
+    "missionSelect"
+  );
 
   announce(
     "Mission exited."
@@ -1986,20 +2908,31 @@ function exitMission(){
 
 }
 
+/* =========================
+   INITIAL LOCK
+========================= */
+
 function initialLock(){
 
   if(
     phase !== "lock"
   ){
+
     return;
+
   }
 
-  phase = "ready";
+  phase =
+  "ready";
 
   flashLock(
+
     current === "door"
+
     ? "CLICK • LOCKED"
+
     : "BEEP • LOCKED"
+
   );
 
   vibrate([
@@ -2009,7 +2942,8 @@ function initialLock(){
   ]);
 
   $("#meters")
-  .style.display =
+  .style
+  .display =
   "grid";
 
   $("#title")
@@ -2018,8 +2952,11 @@ function initialLock(){
 
   $("#copy")
   .textContent =
+
   current === "car"
+
   ? "Walk toward your destination. The fob stays available."
+
   : "Walk away from the house. Doubt may follow.";
 
   $("#phaseHint")
@@ -2027,7 +2964,8 @@ function initialLock(){
   "READY";
 
   $("#forwardBtn")
-  .style.display =
+  .style
+  .display =
   "block";
 
   $("#forwardBtn")
@@ -2035,9 +2973,13 @@ function initialLock(){
   "HOLD TO MOVE";
 
   $("#checkBtn")
-  .style.display =
+  .style
+  .display =
+
   current === "door"
+
   ? "block"
+
   : "none";
 
   setControlsForPhase();
@@ -2071,10 +3013,15 @@ function initialLock(){
 
 }
 
+/* =========================
+   DOUBT SCHEDULING
+========================= */
+
 function nextThought(){
 
   const list =
-  missions[current].thoughts;
+  missions[current]
+  .thoughts;
 
   const thought =
   list[
@@ -2106,7 +3053,9 @@ function scheduleDoubt(
       phase === "complete" ||
       phase === "idle"
     ){
+
       return;
+
     }
 
     showDoubt(
@@ -2125,35 +3074,50 @@ function scheduleDoubt(
     .textContent =
     "DOUBT";
 
-    vibrate(28);
+    vibrate(
+      28
+    );
 
   },delay);
 
 }
+
+/* =========================
+   WALKING
+========================= */
 
 function startWalking(){
 
   if(
     phase !== "ready"
   ){
+
     return false;
+
   }
 
   if(
     hold ||
     momentum >= 100
   ){
+
     return false;
+
   }
 
-  phase = "moving";
+  phase =
+  "moving";
 
-  hold = true;
+  hold =
+  true;
 
   resetPersonVisual();
 
   $("#person")
-  .classList.add("walking");
+  .classList
+  .add(
+    "walking"
+  );
 
   hideDoubt();
 
@@ -2185,14 +3149,16 @@ function startWalking(){
     );
 
     $("#person")
-    .style.bottom =
+    .style
+    .bottom =
     (
       24 +
       momentum * .15
     ) + "%";
 
     $("#environment")
-    .style.transform =
+    .style
+    .transform =
     `scale(${
       1 -
       momentum * .0019
@@ -2207,14 +3173,18 @@ function startWalking(){
 
       if(car){
 
-        car.style.transform =
+        car
+        .style
+        .transform =
         `translateX(-50%)
         scale(${
           1 -
           momentum * .0045
         })`;
 
-        car.style.opacity =
+        car
+        .style
+        .opacity =
         String(
           Math.max(
             .18,
@@ -2258,7 +3228,11 @@ function stopWalking(){
     phase !== "moving"
   ){
 
-    movementPointerActive = false;
+    movementPointerActive =
+    false;
+
+    touchMoveActive =
+    false;
 
     return;
 
@@ -2266,7 +3240,8 @@ function stopWalking(){
 
   stopMovement();
 
-  phase = "ready";
+  phase =
+  "ready";
 
   $("#phaseHint")
   .textContent =
@@ -2286,13 +3261,19 @@ function stopWalking(){
 
 }
 
+/* =========================
+   RECHECK
+========================= */
+
 function recheck(source){
 
   if(
     phase !== "ready" &&
     phase !== "moving"
   ){
+
     return;
+
   }
 
   checks++;
@@ -2303,7 +3284,8 @@ function recheck(source){
     doubtTimer
   );
 
-  phase = "relief";
+  phase =
+  "relief";
 
   setControlsForPhase();
 
@@ -2314,7 +3296,10 @@ function recheck(source){
   ]);
 
   $("#person")
-  .classList.add("lookback");
+  .classList
+  .add(
+    "lookback"
+  );
 
   urge =
   Math.max(
@@ -2323,9 +3308,8 @@ function recheck(source){
   );
 
   /*
-  Intentionally NO momentum loss.
-  Rechecking pauses forward movement
-  but does not move the character backward.
+  IMPORTANT:
+  Momentum is never reduced here.
   */
 
   updateMeters();
@@ -2346,18 +3330,32 @@ function recheck(source){
     beep.textContent =
     "BEEP • RELIEF";
 
-    beep.classList.add("show");
+    beep
+    .classList
+    .add(
+      "show"
+    );
 
     $("#environment")
-    .classList.add("reliefFlash");
+    .classList
+    .add(
+      "reliefFlash"
+    );
 
     feedbackTimer =
     setTimeout(()=>{
 
-      beep.classList.remove("show");
+      beep
+      .classList
+      .remove(
+        "show"
+      );
 
       $("#environment")
-      .classList.remove("reliefFlash");
+      .classList
+      .remove(
+        "reliefFlash"
+      );
 
     },600);
 
@@ -2379,7 +3377,10 @@ function recheck(source){
   setTimeout(()=>{
 
     $("#person")
-    .classList.remove("lookback");
+    .classList
+    .remove(
+      "lookback"
+    );
 
     const carQuestions = [
 
@@ -2433,7 +3434,8 @@ function recheck(source){
 
     updateMeters();
 
-    phase = "ready";
+    phase =
+    "ready";
 
     setControlsForPhase();
 
@@ -2449,28 +3451,39 @@ function recheck(source){
     .textContent =
     "The question changed. Your destination didn't.";
 
-    reliefTimer = null;
+    reliefTimer =
+    null;
 
   },800);
 
 }
 
+/* =========================
+   COMPLETE
+========================= */
+
 function completeMission(){
 
   stopEverything();
 
-  phase = "complete";
+  phase =
+  "complete";
 
   const earned =
+
   checks === 0
+
   ? 30
+
   : 25;
 
-  xp += earned;
+  xp +=
+  earned;
 
   updateXP();
 
-  localStorage.setItem(
+  localStorage
+  .setItem(
     "completed_" + current,
     "yes"
   );
@@ -2483,8 +3496,11 @@ function completeMission(){
 
   $("#result")
   .textContent =
+
   checks === 0
+
   ? "You reached the destination while uncertainty was still allowed to exist."
+
   : `You checked ${checks} ${
       checks === 1
       ? "time"
@@ -2495,39 +3511,44 @@ function completeMission(){
     "Mission complete."
   );
 
-  show("reward");
+  show(
+    "reward"
+  );
 
 }
 
+/* =========================
+   NON-GAME NAVIGATION
+========================= */
+
 $("#enter")
-.onclick =
-()=>show("map");
-
-$("#checking")
-.onclick =
-()=>{
-
-  updateMissionCompletionUI();
-
-  show("missionSelect");
-
-};
-
-$("#backMap")
-.onclick =
-()=>show("map");
-
-$("#missionExit")
 .addEventListener(
   "click",
-  event=>{
+  ()=>show(
+    "map"
+  )
+);
 
-    event.preventDefault();
-    event.stopPropagation();
+$("#checking")
+.addEventListener(
+  "click",
+  ()=>{
 
-    exitMission();
+    updateMissionCompletionUI();
+
+    show(
+      "missionSelect"
+    );
 
   }
+);
+
+$("#backMap")
+.addEventListener(
+  "click",
+  ()=>show(
+    "map"
+  )
 );
 
 $$(
@@ -2535,43 +3556,296 @@ $$(
 )
 .forEach(
 
-  button =>
+  button =>{
 
-  button.onclick =
-  ()=>loadMission(
-    button.dataset.mission
-  )
+    button
+    .addEventListener(
+      "click",
+      ()=>loadMission(
+        button.dataset.mission
+      )
+    );
+
+  }
 
 );
 
-$("#checkBtn")
-.onclick =
-()=>recheck("door");
+$("#continueBtn")
+.addEventListener(
+  "click",
+  ()=>{
 
-$("#fobLock")
-.onclick =
-()=>{
+    updateMissionCompletionUI();
 
-  if(
-    phase === "lock"
-  ){
-
-    initialLock();
+    show(
+      "missionSelect"
+    );
 
   }
+);
 
-  else{
+/* =========================
+   PROTECTED TAP HANDLER
+========================= */
 
-    recheck("fob");
+function protectTap(
+  element,
+  action
+){
+
+  let touchTriggered =
+  false;
+
+  element
+  .addEventListener(
+    "touchstart",
+    event=>{
+
+      event.preventDefault();
+
+      event.stopPropagation();
+
+      touchTriggered =
+      true;
+
+    },
+    {
+      passive:false
+    }
+  );
+
+  element
+  .addEventListener(
+    "touchend",
+    event=>{
+
+      event.preventDefault();
+
+      event.stopPropagation();
+
+      action();
+
+      /*
+      Prevent following synthetic click
+      from activating action twice.
+      */
+
+      setTimeout(()=>{
+
+        touchTriggered =
+        false;
+
+      },400);
+
+    },
+    {
+      passive:false
+    }
+  );
+
+  element
+  .addEventListener(
+    "touchcancel",
+    event=>{
+
+      event.preventDefault();
+
+      touchTriggered =
+      false;
+
+    },
+    {
+      passive:false
+    }
+  );
+
+  element
+  .addEventListener(
+    "contextmenu",
+    event=>{
+
+      event.preventDefault();
+
+    }
+  );
+
+  element
+  .addEventListener(
+    "click",
+    event=>{
+
+      if(
+        touchTriggered
+      ){
+
+        event.preventDefault();
+
+        return;
+
+      }
+
+      action();
+
+    }
+  );
+
+}
+
+/* =========================
+   PROTECTED GAME TAPS
+========================= */
+
+protectTap(
+  $("#missionExit"),
+  exitMission
+);
+
+protectTap(
+  $("#checkBtn"),
+  ()=>recheck(
+    "door"
+  )
+);
+
+protectTap(
+  $("#fobLock"),
+  ()=>{
+
+    if(
+      phase === "lock"
+    ){
+
+      initialLock();
+
+    }
+
+    else{
+
+      recheck(
+        "fob"
+      );
+
+    }
 
   }
+);
 
-};
+/* =========================
+   HOLD TO MOVE
+   IPHONE TOUCH
+========================= */
 
-$("#forwardBtn")
+const forward =
+$("#forwardBtn");
+
+forward
+.addEventListener(
+  "touchstart",
+  event=>{
+
+    event.preventDefault();
+
+    event.stopPropagation();
+
+    if(
+      phase === "lock"
+    ){
+
+      initialLock();
+
+      touchMoveActive =
+      false;
+
+      return;
+
+    }
+
+    touchMoveActive =
+    startWalking();
+
+  },
+  {
+    passive:false
+  }
+);
+
+forward
+.addEventListener(
+  "touchend",
+  event=>{
+
+    event.preventDefault();
+
+    event.stopPropagation();
+
+    if(
+      touchMoveActive
+    ){
+
+      stopWalking();
+
+    }
+
+    touchMoveActive =
+    false;
+
+  },
+  {
+    passive:false
+  }
+);
+
+forward
+.addEventListener(
+  "touchcancel",
+  event=>{
+
+    event.preventDefault();
+
+    if(
+      touchMoveActive
+    ){
+
+      stopWalking();
+
+    }
+
+    touchMoveActive =
+    false;
+
+  },
+  {
+    passive:false
+  }
+);
+
+forward
+.addEventListener(
+  "contextmenu",
+  event=>{
+
+    event.preventDefault();
+
+  }
+);
+
+/* =========================
+   HOLD TO MOVE
+   DESKTOP / NON-TOUCH
+========================= */
+
+forward
 .addEventListener(
   "pointerdown",
   event=>{
+
+    if(
+      event.pointerType === "touch"
+    ){
+
+      return;
+
+    }
 
     event.preventDefault();
 
@@ -2581,19 +3855,8 @@ $("#forwardBtn")
 
       initialLock();
 
-      movementPointerActive = false;
-
-      return;
-
-    }
-
-    if(
-      phase === "relief" ||
-      phase === "complete" ||
-      phase === "idle"
-    ){
-
-      movementPointerActive = false;
+      movementPointerActive =
+      false;
 
       return;
 
@@ -2605,88 +3868,128 @@ $("#forwardBtn")
   }
 );
 
-$("#forwardBtn")
-.addEventListener(
+[
   "pointerup",
-  event=>{
-
-    event.preventDefault();
-
-    if(
-      !movementPointerActive
-    ){
-      return;
-    }
-
-    movementPointerActive = false;
-
-    stopWalking();
-
-  }
-);
-
-$("#forwardBtn")
-.addEventListener(
   "pointercancel",
-  event=>{
+  "pointerleave"
+]
+.forEach(
 
-    event.preventDefault();
+  type=>{
 
-    if(
-      !movementPointerActive
-    ){
-      return;
-    }
+    forward
+    .addEventListener(
+      type,
+      event=>{
 
-    movementPointerActive = false;
+        if(
+          event.pointerType === "touch"
+        ){
 
-    stopWalking();
+          return;
+
+        }
+
+        if(
+          !movementPointerActive
+        ){
+
+          return;
+
+        }
+
+        movementPointerActive =
+        false;
+
+        stopWalking();
+
+      }
+    );
 
   }
+
 );
 
-$("#forwardBtn")
-.addEventListener(
-  "pointerleave",
-  event=>{
-
-    if(
-      movementPointerActive &&
-      event.buttons
-    ){
-
-      movementPointerActive = false;
-
-      stopWalking();
-
-    }
-
-  }
-);
-
-$("#continueBtn")
-.onclick =
-()=>{
-
-  updateMissionCompletionUI();
-
-  show("missionSelect");
-
-};
+/* =========================
+   BROWSER GESTURE BLOCKING
+========================= */
 
 document
 .addEventListener(
   "contextmenu",
-  event =>
-  event.preventDefault()
+  event=>{
+
+    event.preventDefault();
+
+  }
 );
 
 document
 .addEventListener(
   "selectstart",
-  event =>
-  event.preventDefault()
+  event=>{
+
+    event.preventDefault();
+
+  }
 );
+
+document
+.addEventListener(
+  "dragstart",
+  event=>{
+
+    event.preventDefault();
+
+  }
+);
+
+/* =========================
+   SAFARI PINCH PROTECTION
+========================= */
+
+document
+.addEventListener(
+  "gesturestart",
+  event=>{
+
+    event.preventDefault();
+
+  },
+  {
+    passive:false
+  }
+);
+
+document
+.addEventListener(
+  "gesturechange",
+  event=>{
+
+    event.preventDefault();
+
+  },
+  {
+    passive:false
+  }
+);
+
+document
+.addEventListener(
+  "gestureend",
+  event=>{
+
+    event.preventDefault();
+
+  },
+  {
+    passive:false
+  }
+);
+
+/* =========================
+   STARTUP
+========================= */
 
 updateXP();
 
