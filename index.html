@@ -9,7 +9,7 @@
 
 <meta name="theme-color" content="#07101c">
 
-<title>UNCERTAIN — Checking District v10.6</title>
+<title>UNCERTAIN — Checking District v10.7</title>
 
 <style>
 
@@ -130,6 +130,13 @@ button{
   color:#0c1420;
   font-weight:950;
   font-size:17px;
+}
+
+.btn.secondary{
+  margin-top:10px;
+  background:#152238;
+  color:#f7fbff;
+  border:1px solid #ffffff2a;
 }
 
 .small{
@@ -1321,6 +1328,16 @@ button{
   margin:10px 0;
 }
 
+.sessionNote{
+  margin:15px 0 0;
+  padding:11px 12px;
+  border-radius:14px;
+  background:#08132199;
+  color:#aebbd0;
+  font-size:12px;
+  line-height:1.4;
+}
+
 .srOnly{
   position:absolute;
   width:1px;
@@ -1815,12 +1832,24 @@ button{
       <button
         type="button"
         class="btn"
-        id="continueBtn"
-        style="margin-top:17px">
+        id="continueBtn">
 
         BACK TO CHECKING DISTRICT
 
       </button>
+
+      <button
+        type="button"
+        class="btn secondary"
+        id="doneBtn">
+
+        DONE FOR NOW
+
+      </button>
+
+      <div class="sessionNote">
+        Stopping here is allowed. Progress does not require another mission.
+      </div>
 
     </div>
 
@@ -2407,14 +2436,6 @@ function stopMovement(){
 }
 
 
-/*
-If iOS/Safari interrupts an active
-touch, immediately release movement.
-
-This does NOT punish the player,
-remove momentum, or exit the mission.
-*/
-
 function releaseInterruptedHold(){
 
   if(
@@ -2427,18 +2448,23 @@ function releaseInterruptedHold(){
 
   }
 
+
   stopMovement();
+
 
   clearTimeout(
     doubtTimer
   );
 
+
   phase =
   "ready";
+
 
   $("#phaseHint")
   .textContent =
   "READY";
+
 
   setControlsForPhase();
 
@@ -2473,6 +2499,7 @@ function stopEverything(){
     cueTimer
   );
 
+
   urgeTimer =
   null;
 
@@ -2487,6 +2514,7 @@ function stopEverything(){
 
   cueTimer =
   null;
+
 
   if(
     navigator.vibrate
@@ -2544,6 +2572,7 @@ function setControlsForPhase(){
   .disabled =
   relief;
 
+
   if(
     current === "car"
   ){
@@ -2556,6 +2585,7 @@ function setControlsForPhase(){
     );
 
   }
+
 
   if(
     current === "stove"
@@ -2700,55 +2730,72 @@ function loadMission(key){
 
   stopEverything();
 
+
   current =
   key;
+
 
   phase =
   "lock";
 
+
   momentum =
   0;
+
 
   urge =
   46;
 
+
   checks =
   0;
+
 
   thoughtIndex =
   0;
 
+
   midpointShown =
   false;
+
 
   recoveredAfterCheck =
   false;
 
+
   recoveryCount =
   0;
+
 
   urgeWavePhase =
   0;
 
+
   urgePeakCueShown =
   false;
 
+
   resetPersonVisual();
+
 
   $("#missionName")
   .textContent =
   missions[key].name;
 
+
   $("#environment")
   .innerHTML =
   missions[key].env;
 
+
   resetDepth();
+
 
   $("#environment")
   .style
   .opacity =
   "1";
+
 
   $("#environment")
   .classList
@@ -2756,31 +2803,39 @@ function loadMission(key){
     "reliefFlash"
   );
 
+
   $("#person")
   .style
   .bottom =
   "24%";
 
+
   hideDoubt();
 
+
   hideCue();
+
 
   $("#title")
   .textContent =
   missions[key].title;
 
+
   $("#copy")
   .textContent =
   missions[key].copy;
+
 
   $("#phaseHint")
   .textContent =
   "ACTION";
 
+
   $("#meters")
   .style
   .display =
   "none";
+
 
   $("#checkBtn")
   .style
@@ -2861,11 +2916,14 @@ function loadMission(key){
 
   updateMeters();
 
+
   setControlsForPhase();
+
 
   show(
     "mission"
   );
+
 
   announce(
     missions[key].name +
@@ -2876,18 +2934,22 @@ function loadMission(key){
 
 
 /* =========================
-   EXIT
+   EXIT MISSION
 ========================= */
 
 function exitMission(){
 
   stopEverything();
 
+
   hideDoubt();
+
 
   hideCue();
 
+
   resetPersonVisual();
+
 
   $("#beep")
   .classList
@@ -2895,50 +2957,65 @@ function exitMission(){
     "show"
   );
 
+
   $("#environment")
   .classList
   .remove(
     "reliefFlash"
   );
 
+
   current =
   null;
+
 
   phase =
   "idle";
 
+
   momentum =
   0;
+
 
   urge =
   46;
 
+
   checks =
   0;
+
 
   thoughtIndex =
   0;
 
+
   midpointShown =
   false;
+
 
   recoveredAfterCheck =
   false;
 
+
   recoveryCount =
   0;
+
 
   urgeWavePhase =
   0;
 
+
   urgePeakCueShown =
   false;
 
+
   updateMissionCompletionUI();
+
 
   show(
     "missionSelect"
   );
+
 
   announce(
     "Mission exited."
@@ -2960,6 +3037,7 @@ function initialAction(){
     return;
 
   }
+
 
   phase =
   "ready";
@@ -2994,6 +3072,7 @@ function initialAction(){
     flashLock(
       "CLICK • OFF"
     );
+
 
     $("#stoveIndicator")
     .classList
@@ -3090,15 +3169,9 @@ function initialAction(){
   );
 
 
-  /*
-  URGE WAVE
-
-  Discomfort rises and falls
-  independently of checking.
-  */
-
   urgeWavePhase =
   0;
+
 
   urgePeakCueShown =
   false;
@@ -3154,10 +3227,12 @@ function initialAction(){
       urgePeakCueShown =
       true;
 
+
       showCue(
         "RIDE THE WAVE ›",
         1300
       );
+
 
       announce(
         "The urge is high. It can change without another check."
@@ -3177,6 +3252,7 @@ function initialAction(){
 
 
     updateMeters();
+
 
   },180);
 
@@ -3198,13 +3274,16 @@ function nextThought(){
   missions[current]
   .thoughts;
 
+
   const thought =
   list[
     thoughtIndex %
     list.length
   ];
 
+
   thoughtIndex++;
+
 
   return thought;
 
@@ -3218,6 +3297,7 @@ function scheduleDoubt(
   clearTimeout(
     doubtTimer
   );
+
 
   doubtTimer =
   setTimeout(()=>{
@@ -3274,8 +3354,10 @@ function updateParkDepth(){
   const t =
   momentum / 100;
 
+
   const store =
   $("#environment .store");
+
 
   const car =
   $("#car");
@@ -3295,6 +3377,7 @@ function updateParkDepth(){
     `translateX(-50%)
     scale(${1 + t * .34})`;
 
+
     store
     .style
     .top =
@@ -3311,10 +3394,12 @@ function updateParkDepth(){
     `translateX(-50%)
     scale(${1 - t * .52})`;
 
+
     car
     .style
     .top =
     `${57 + t * 9}%`;
+
 
     car
     .style
@@ -3337,10 +3422,12 @@ function updateParkDepth(){
       const drift =
       8 + index * 3;
 
+
       line
       .style
       .translate =
       `0 ${t * drift}px`;
+
 
       line
       .style
@@ -3378,8 +3465,10 @@ function updateStoveDepth(){
   const t =
   momentum / 100;
 
+
   const stove =
   $("#stove");
+
 
   const exit =
   $("#environment .exitDoor");
@@ -3399,10 +3488,12 @@ function updateStoveDepth(){
     `translateX(-50%)
     scale(${1 - t * .48})`;
 
+
     stove
     .style
     .top =
     `${48 + t * 12}%`;
+
 
     stove
     .style
@@ -3421,6 +3512,7 @@ function updateStoveDepth(){
     .transform =
     `translateX(-50%)
     scale(${1 + t * .38})`;
+
 
     exit
     .style
@@ -3469,11 +3561,14 @@ function startWalking(){
     recoveredAfterCheck =
     false;
 
+
     recoveryCount++;
+
 
     showCue(
       "BACK TO WHAT MATTERS ›"
     );
+
 
     announce(
       "Back to what matters."
@@ -3485,10 +3580,13 @@ function startWalking(){
   phase =
   "moving";
 
+
   hold =
   true;
 
+
   resetPersonVisual();
+
 
   $("#person")
   .classList
@@ -3496,11 +3594,14 @@ function startWalking(){
     "walking"
   );
 
+
   hideDoubt();
+
 
   $("#phaseHint")
   .textContent =
   "MOVING";
+
 
   setControlsForPhase();
 
@@ -3594,8 +3695,10 @@ function stopWalking(){
     movementPointerActive =
     false;
 
+
     touchMoveActive =
     false;
+
 
     return;
 
@@ -3603,6 +3706,7 @@ function stopWalking(){
 
 
   stopMovement();
+
 
   phase =
   "ready";
@@ -3647,17 +3751,22 @@ function recheck(source){
 
   checks++;
 
+
   recoveredAfterCheck =
   true;
 
+
   stopMovement();
+
 
   clearTimeout(
     doubtTimer
   );
 
+
   phase =
   "relief";
+
 
   setControlsForPhase();
 
@@ -3676,11 +3785,6 @@ function recheck(source){
   );
 
 
-  /*
-  Temporary relief.
-  Momentum remains untouched.
-  */
-
   urge =
   Math.max(
     14,
@@ -3689,6 +3793,7 @@ function recheck(source){
 
 
   updateMeters();
+
 
   hideDoubt();
 
@@ -3705,8 +3810,10 @@ function recheck(source){
     const beep =
     $("#beep");
 
+
     beep.textContent =
     "BEEP • RELIEF";
+
 
     beep
     .classList
@@ -3941,6 +4048,7 @@ function completeMission(){
 
   stopEverything();
 
+
   phase =
   "complete";
 
@@ -4000,6 +4108,77 @@ function completeMission(){
 
 
 /* =========================
+   END SESSION
+========================= */
+
+function endSession(){
+
+  stopEverything();
+
+
+  current =
+  null;
+
+
+  phase =
+  "idle";
+
+
+  momentum =
+  0;
+
+
+  urge =
+  46;
+
+
+  checks =
+  0;
+
+
+  thoughtIndex =
+  0;
+
+
+  midpointShown =
+  false;
+
+
+  recoveredAfterCheck =
+  false;
+
+
+  recoveryCount =
+  0;
+
+
+  urgeWavePhase =
+  0;
+
+
+  urgePeakCueShown =
+  false;
+
+
+  updateXP();
+
+
+  updateMissionCompletionUI();
+
+
+  show(
+    "start"
+  );
+
+
+  announce(
+    "Session ended. Progress saved."
+  );
+
+}
+
+
+/* =========================
    NAVIGATION
 ========================= */
 
@@ -4018,6 +4197,7 @@ $("#checking")
   ()=>{
 
     updateMissionCompletionUI();
+
 
     show(
       "missionSelect"
@@ -4061,9 +4241,21 @@ $("#continueBtn")
 
     updateMissionCompletionUI();
 
+
     show(
       "missionSelect"
     );
+
+  }
+);
+
+
+$("#doneBtn")
+.addEventListener(
+  "click",
+  ()=>{
+
+    endSession();
 
   }
 );
@@ -4089,7 +4281,9 @@ function protectTap(
 
       event.preventDefault();
 
+
       event.stopPropagation();
+
 
       touchTriggered =
       true;
@@ -4108,7 +4302,9 @@ function protectTap(
 
       event.preventDefault();
 
+
       event.stopPropagation();
+
 
       action();
 
@@ -4133,6 +4329,7 @@ function protectTap(
     event=>{
 
       event.preventDefault();
+
 
       touchTriggered =
       false;
@@ -4165,6 +4362,7 @@ function protectTap(
       ){
 
         event.preventDefault();
+
 
         return;
 
@@ -4258,6 +4456,7 @@ forward
 
     event.preventDefault();
 
+
     event.stopPropagation();
 
 
@@ -4267,8 +4466,10 @@ forward
 
       initialAction();
 
+
       touchMoveActive =
       false;
+
 
       return;
 
@@ -4305,6 +4506,7 @@ forward
   event=>{
 
     event.preventDefault();
+
 
     event.stopPropagation();
 
@@ -4384,8 +4586,10 @@ forward
 
       initialAction();
 
+
       movementPointerActive =
       false;
+
 
       return;
 
@@ -4426,6 +4630,7 @@ forward
       movementPointerActive =
       false;
 
+
       stopWalking();
 
     }
@@ -4437,12 +4642,6 @@ forward
 /* =========================
    IOS INTERRUPTION SAFETY
 ========================= */
-
-/*
-If Safari loses focus while the user
-is holding HOLD TO MOVE, movement
-must not continue automatically.
-*/
 
 window
 .addEventListener(
