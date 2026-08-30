@@ -9,7 +9,7 @@
 
 <meta name="theme-color" content="#07101c">
 
-<title>UNCERTAIN — Checking District v10.4</title>
+<title>UNCERTAIN — Checking District v10.6</title>
 
 <style>
 
@@ -138,9 +138,7 @@ button{
   color:#9eacbd;
 }
 
-/* =========================
-   START
-========================= */
+/* START */
 
 #start{
   padding:92px 22px 26px;
@@ -179,9 +177,7 @@ button{
   bottom:max(22px,env(safe-area-inset-bottom));
 }
 
-/* =========================
-   MAP
-========================= */
+/* MAP */
 
 #map{
   background:
@@ -267,9 +263,7 @@ button{
   background:#081321d9;
 }
 
-/* =========================
-   MISSION SELECT
-========================= */
+/* MISSION SELECT */
 
 #missionSelect{
   background:
@@ -325,9 +319,7 @@ button{
   letter-spacing:.05em;
 }
 
-/* =========================
-   EXIT
-========================= */
+/* EXIT */
 
 .missionExit{
   position:absolute;
@@ -348,9 +340,7 @@ button{
   pointer-events:auto;
 }
 
-/* =========================
-   WORLD
-========================= */
+/* WORLD */
 
 .scene{
   position:absolute;
@@ -454,9 +444,7 @@ button{
   }
 }
 
-/* =========================
-   HOUSE
-========================= */
+/* HOUSE */
 
 .houseShell{
   position:absolute;
@@ -553,9 +541,7 @@ button{
   border:6px solid #6a7a8f;
 }
 
-/* =========================
-   PARK & WALK
-========================= */
+/* PARK */
 
 .parkingGround{
   position:absolute;
@@ -721,9 +707,7 @@ button{
   right:20px;
 }
 
-/* =========================
-   OFF & OUT / KITCHEN
-========================= */
+/* OFF & OUT */
 
 .kitchen{
   position:absolute;
@@ -956,9 +940,7 @@ button{
   background:#6fe0ba;
 }
 
-/* =========================
-   PLAYER
-========================= */
+/* PLAYER */
 
 .person{
   position:absolute;
@@ -1067,9 +1049,7 @@ button{
   }
 }
 
-/* =========================
-   DOUBT
-========================= */
+/* DOUBT */
 
 #doubtVignette{
   position:absolute;
@@ -1118,9 +1098,7 @@ button{
   margin-bottom:7px;
 }
 
-/* =========================
-   CUES
-========================= */
+/* CUES */
 
 .choiceCue{
   position:absolute;
@@ -1171,9 +1149,7 @@ button{
   opacity:1;
 }
 
-/* =========================
-   GAME PANEL
-========================= */
+/* GAME PANEL */
 
 .gamePanel{
   position:absolute;
@@ -1256,9 +1232,7 @@ button{
   opacity:.45;
 }
 
-/* =========================
-   FOB
-========================= */
+/* FOB */
 
 #keyfob{
   position:absolute;
@@ -1320,9 +1294,7 @@ button{
   filter:brightness(1.16);
 }
 
-/* =========================
-   REWARD
-========================= */
+/* REWARD */
 
 #reward{
   background:
@@ -1362,10 +1334,12 @@ button{
 }
 
 @media(prefers-reduced-motion:reduce){
+
   *{
     animation:none!important;
     transition:none!important;
   }
+
 }
 
 </style>
@@ -1375,11 +1349,7 @@ button{
 
 <div id="app">
 
-<!-- START -->
-
-<section
-  id="start"
-  class="screen active">
+<section id="start" class="screen active">
 
   <div class="logo">
     UNCERTAIN
@@ -1396,12 +1366,8 @@ button{
 
   <div class="startCard card">
 
-    <button
-      class="btn"
-      id="enter">
-
+    <button class="btn" id="enter">
       ENTER THE LOOP
-
     </button>
 
     <p class="small">
@@ -1413,17 +1379,11 @@ button{
 </section>
 
 
-<!-- MAP -->
-
-<section
-  id="map"
-  class="screen">
+<section id="map" class="screen">
 
   <div class="road"></div>
 
-  <button
-    id="checking"
-    class="node">
+  <button id="checking" class="node">
 
     <strong>
       Checking District
@@ -1435,9 +1395,7 @@ button{
 
   </button>
 
-  <button
-    class="node locked"
-    disabled>
+  <button class="node locked" disabled>
 
     <strong>
       Next District
@@ -1480,11 +1438,7 @@ button{
 </section>
 
 
-<!-- MISSION SELECT -->
-
-<section
-  id="missionSelect"
-  class="screen">
+<section id="missionSelect" class="screen">
 
   <div class="hud">
 
@@ -1591,11 +1545,7 @@ button{
 </section>
 
 
-<!-- MISSION -->
-
-<section
-  id="mission"
-  class="screen">
+<section id="mission" class="screen">
 
   <button
     type="button"
@@ -1608,9 +1558,7 @@ button{
   </button>
 
 
-  <div
-    id="scene"
-    class="scene">
+  <div id="scene" class="scene">
 
     <div class="skyGlow"></div>
 
@@ -1623,22 +1571,14 @@ button{
     <div id="environment"></div>
 
 
-    <div
-      id="person"
-      class="person">
+    <div id="person" class="person">
 
       <i class="shadow"></i>
-
       <i class="head"></i>
-
       <i class="body"></i>
-
       <i class="arm a"></i>
-
       <i class="arm b"></i>
-
       <i class="leg a"></i>
-
       <i class="leg b"></i>
 
     </div>
@@ -1842,11 +1782,7 @@ button{
 </section>
 
 
-<!-- REWARD -->
-
-<section
-  id="reward"
-  class="screen">
+<section id="reward" class="screen">
 
   <div class="hud">
 
@@ -1869,9 +1805,7 @@ button{
       </div>
 
       <div class="rewardBig">
-
         +<span id="xpEarned">30</span> XP
-
       </div>
 
       <p id="result">
@@ -1906,10 +1840,6 @@ button{
 
 
 <script>
-
-/* =========================
-   HELPERS
-========================= */
 
 const $ =
 selector =>
@@ -1988,6 +1918,15 @@ false;
 
 let recoveryCount =
 0;
+
+let urgeWavePhase =
+0;
+
+let urgePeakCueShown =
+false;
+
+const detailedRecheckLimit =
+2;
 
 
 /* =========================
@@ -2332,7 +2271,7 @@ function showDoubt(text){
 
 
 /* =========================
-   GAME CUES
+   CUES
 ========================= */
 
 function hideCue(){
@@ -2438,7 +2377,7 @@ function flashLock(text){
 
 
 /* =========================
-   CLEANUP
+   MOVEMENT CLEANUP
 ========================= */
 
 function stopMovement(){
@@ -2467,6 +2406,48 @@ function stopMovement(){
 
 }
 
+
+/*
+If iOS/Safari interrupts an active
+touch, immediately release movement.
+
+This does NOT punish the player,
+remove momentum, or exit the mission.
+*/
+
+function releaseInterruptedHold(){
+
+  if(
+    phase !== "moving"
+  ){
+
+    stopMovement();
+
+    return;
+
+  }
+
+  stopMovement();
+
+  clearTimeout(
+    doubtTimer
+  );
+
+  phase =
+  "ready";
+
+  $("#phaseHint")
+  .textContent =
+  "READY";
+
+  setControlsForPhase();
+
+}
+
+
+/* =========================
+   FULL CLEANUP
+========================= */
 
 function stopEverything(){
 
@@ -2593,7 +2574,7 @@ function setControlsForPhase(){
 
 
 /* =========================
-   RESET DEPTH
+   DEPTH RESET
 ========================= */
 
 function resetDepth(){
@@ -2745,6 +2726,12 @@ function loadMission(key){
 
   recoveryCount =
   0;
+
+  urgeWavePhase =
+  0;
+
+  urgePeakCueShown =
+  false;
 
   resetPersonVisual();
 
@@ -2941,6 +2928,12 @@ function exitMission(){
   recoveryCount =
   0;
 
+  urgeWavePhase =
+  0;
+
+  urgePeakCueShown =
+  false;
+
   updateMissionCompletionUI();
 
   show(
@@ -2955,7 +2948,7 @@ function exitMission(){
 
 
 /* =========================
-   INITIAL NORMAL ACTION
+   INITIAL ACTION
 ========================= */
 
 function initialAction(){
@@ -3097,24 +3090,95 @@ function initialAction(){
   );
 
 
+  /*
+  URGE WAVE
+
+  Discomfort rises and falls
+  independently of checking.
+  */
+
+  urgeWavePhase =
+  0;
+
+  urgePeakCueShown =
+  false;
+
+
   urgeTimer =
   setInterval(()=>{
 
+    urgeWavePhase +=
+    .105;
+
+
+    const wave =
+    (
+      Math.sin(
+        urgeWavePhase
+      ) + 1
+    ) / 2;
+
+
+    const target =
+    24 +
+    wave * 64;
+
+
+    const variation =
+    Math.random() * 4 - 2;
+
+
     urge +=
-    Math.random() * 18 - 7;
+    (
+      target +
+      variation -
+      urge
+    ) * .18;
+
 
     urge =
     Math.max(
       18,
       Math.min(
-        96,
+        94,
         urge
       )
     );
 
+
+    if(
+      urge >= 80 &&
+      !urgePeakCueShown
+    ){
+
+      urgePeakCueShown =
+      true;
+
+      showCue(
+        "RIDE THE WAVE ›",
+        1300
+      );
+
+      announce(
+        "The urge is high. It can change without another check."
+      );
+
+    }
+
+
+    if(
+      urge <= 48
+    ){
+
+      urgePeakCueShown =
+      false;
+
+    }
+
+
     updateMeters();
 
-  },430);
+  },180);
 
 
   scheduleDoubt(
@@ -3170,9 +3234,11 @@ function scheduleDoubt(
 
     }
 
+
     showDoubt(
       nextThought()
     );
+
 
     urge =
     Math.min(
@@ -3180,15 +3246,19 @@ function scheduleDoubt(
       urge + 12
     );
 
+
     updateMeters();
+
 
     $("#phaseHint")
     .textContent =
     "DOUBT";
 
+
     vibrate(
       28
     );
+
 
   },delay);
 
@@ -3196,7 +3266,7 @@ function scheduleDoubt(
 
 
 /* =========================
-   DEPTH — PARK
+   PARK DEPTH
 ========================= */
 
 function updateParkDepth(){
@@ -3300,7 +3370,7 @@ function updateParkDepth(){
 
 
 /* =========================
-   DEPTH — OFF & OUT
+   STOVE DEPTH
 ========================= */
 
 function updateStoveDepth(){
@@ -3320,11 +3390,6 @@ function updateStoveDepth(){
   .transform =
   "scale(1)";
 
-
-  /*
-  Stove remains behind the character
-  and recedes as the exit approaches.
-  */
 
   if(stove){
 
@@ -3450,20 +3515,6 @@ function startWalking(){
     );
 
 
-    urge +=
-    Math.random() * 3 - 1.5;
-
-
-    urge =
-    Math.max(
-      18,
-      Math.min(
-        94,
-        urge
-      )
-    );
-
-
     if(
       current === "car"
     ){
@@ -3525,6 +3576,7 @@ function startWalking(){
 
     }
 
+
   },70);
 
 
@@ -3555,9 +3607,11 @@ function stopWalking(){
   phase =
   "ready";
 
+
   $("#phaseHint")
   .textContent =
   "READY";
+
 
   setControlsForPhase();
 
@@ -3622,6 +3676,11 @@ function recheck(source){
   );
 
 
+  /*
+  Temporary relief.
+  Momentum remains untouched.
+  */
+
   urge =
   Math.max(
     14,
@@ -3655,6 +3714,7 @@ function recheck(source){
       "show"
     );
 
+
     $("#environment")
     .classList
     .add(
@@ -3671,11 +3731,13 @@ function recheck(source){
         "show"
       );
 
+
       $("#environment")
       .classList
       .remove(
         "reliefFlash"
       );
+
 
     },600);
 
@@ -3689,6 +3751,7 @@ function recheck(source){
     flashLock(
       "LOOK • RELIEF"
     );
+
 
     $("#environment")
     .classList
@@ -3705,6 +3768,7 @@ function recheck(source){
       .remove(
         "reliefFlash"
       );
+
 
     },600);
 
@@ -3740,11 +3804,7 @@ function recheck(source){
 
       "Okay... but did ALL the doors lock?",
 
-      "Was that definitely your car that beeped?",
-
-      "What if the signal didn't reach the passenger door?",
-
-      "Maybe another press would make it certain."
+      "Was that definitely your car that beeped?"
 
     ];
 
@@ -3753,9 +3813,7 @@ function recheck(source){
 
       "Okay... but did you pull it closed tightly enough?",
 
-      "What if the deadbolt didn't fully catch?",
-
-      "Maybe one more check would make it certain."
+      "What if the deadbolt didn't fully catch?"
 
     ];
 
@@ -3764,11 +3822,7 @@ function recheck(source){
 
       "Okay... but was every burner really off?",
 
-      "What if you looked at the wrong knob?",
-
-      "Maybe you should check the burners themselves.",
-
-      "One more look might feel more certain."
+      "What if you looked at the wrong knob?"
 
     ];
 
@@ -3797,13 +3851,30 @@ function recheck(source){
     }
 
 
-    const question =
-    questions[
-      Math.min(
-        checks - 1,
-        questions.length - 1
-      )
-    ];
+    let question;
+
+
+    if(
+      checks <= detailedRecheckLimit
+    ){
+
+      question =
+      questions[
+        Math.min(
+          checks - 1,
+          questions.length - 1
+        )
+      ];
+
+    }
+
+
+    else{
+
+      question =
+      "The loop is asking for certainty again.";
+
+    }
 
 
     showDoubt(
@@ -3820,8 +3891,10 @@ function recheck(source){
 
     updateMeters();
 
+
     phase =
     "ready";
+
 
     setControlsForPhase();
 
@@ -3833,16 +3906,27 @@ function recheck(source){
 
     $("#title")
     .textContent =
-    "Doubt moved the finish line.";
+
+    checks <= detailedRecheckLimit
+
+    ? "Doubt moved the finish line."
+
+    : "Same loop. New request.";
 
 
     $("#copy")
     .textContent =
-    "The question changed. Your destination didn't.";
+
+    checks <= detailedRecheckLimit
+
+    ? "The question changed. Your destination didn't."
+
+    : "You don't have to solve the next question before moving.";
 
 
     reliefTimer =
     null;
+
 
   },800);
 
@@ -3860,11 +3944,6 @@ function completeMission(){
   phase =
   "complete";
 
-
-  /*
-  Flat XP.
-  Rechecking never lowers the reward.
-  */
 
   const earned =
   30;
@@ -3991,7 +4070,7 @@ $("#continueBtn")
 
 
 /* =========================
-   MOBILE-SAFE TAP
+   MOBILE SAFE TAP
 ========================= */
 
 function protectTap(
@@ -4091,6 +4170,7 @@ function protectTap(
 
       }
 
+
       action();
 
     }
@@ -4099,9 +4179,7 @@ function protectTap(
 }
 
 
-/* =========================
-   PROTECTED CONTROLS
-========================= */
+/* PROTECTED CONTROLS */
 
 protectTap(
   $("#missionExit"),
@@ -4209,6 +4287,20 @@ forward
 
 forward
 .addEventListener(
+  "touchmove",
+  event=>{
+
+    event.preventDefault();
+
+  },
+  {
+    passive:false
+  }
+);
+
+
+forward
+.addEventListener(
   "touchend",
   event=>{
 
@@ -4244,17 +4336,8 @@ forward
     event.preventDefault();
 
 
-    if(
-      touchMoveActive
-    ){
+    releaseInterruptedHold();
 
-      stopWalking();
-
-    }
-
-
-    touchMoveActive =
-    false;
 
   },
   {
@@ -4275,7 +4358,7 @@ forward
 
 
 /* =========================
-   NON-TOUCH FALLBACK
+   DESKTOP FALLBACK
 ========================= */
 
 forward
@@ -4352,6 +4435,55 @@ forward
 
 
 /* =========================
+   IOS INTERRUPTION SAFETY
+========================= */
+
+/*
+If Safari loses focus while the user
+is holding HOLD TO MOVE, movement
+must not continue automatically.
+*/
+
+window
+.addEventListener(
+  "blur",
+  ()=>{
+
+    releaseInterruptedHold();
+
+  }
+);
+
+
+window
+.addEventListener(
+  "pagehide",
+  ()=>{
+
+    releaseInterruptedHold();
+
+  }
+);
+
+
+document
+.addEventListener(
+  "visibilitychange",
+  ()=>{
+
+    if(
+      document.hidden
+    ){
+
+      releaseInterruptedHold();
+
+    }
+
+  }
+);
+
+
+/* =========================
    SAFARI / IOS PROTECTION
 ========================= */
 
@@ -4414,7 +4546,7 @@ document
 
 
 /* =========================
-   START
+   STARTUP
 ========================= */
 
 updateXP();
