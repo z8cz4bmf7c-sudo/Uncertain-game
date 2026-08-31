@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#07101c">
-<title>UNCERTAIN — Checking District v10.9</title>
+<title>UNCERTAIN — Checking District v10.10</title>
 
 <style>
 :root{--bg:#07101c;--panel:#0b1523ee;--text:#f7fbff;--muted:#aebbd0;--accent:#74e7c5;--line:#ffffff26}
@@ -56,7 +56,10 @@ button{font:inherit;color:inherit;-webkit-appearance:none;appearance:none;-webki
 .ground{position:absolute;left:0;right:0;bottom:0;height:58%;background:linear-gradient(#1f2b37,#111923)}
 .path{position:absolute;left:50%;bottom:-4%;width:56%;height:60%;transform:translateX(-50%) perspective(300px) rotateX(58deg);transform-origin:center bottom;background:linear-gradient(90deg,#334251,#536578 50%,#334251);clip-path:polygon(38% 0,62% 0,100% 100%,0 100%)}
 .destinationGlow{position:absolute;left:50%;top:19%;width:80px;height:80px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,#74e7c555,transparent 68%);animation:pulse 1.8s infinite alternate;pointer-events:none}
-@keyframes pulse{to{transform:translateX(-50%) scale(1.15);opacity:.65}}
+
+@keyframes pulse{
+  to{transform:translateX(-50%) scale(1.15);opacity:.65}
+}
 
 .houseShell{position:absolute;left:50%;top:11%;transform:translateX(-50%);width:310px;height:270px}
 .houseBody{position:absolute;left:16px;right:16px;top:48px;bottom:0;background:linear-gradient(#47576a,#303b49);border:6px solid #1b2735}
@@ -152,7 +155,10 @@ button{font:inherit;color:inherit;-webkit-appearance:none;appearance:none;-webki
 .leg.b{right:14px}
 .person.walking .leg.a{animation:step .28s infinite alternate}
 .person.walking .leg.b{animation:step .28s infinite alternate-reverse}
-@keyframes step{to{transform:translateY(4px) rotate(9deg)}}
+
+@keyframes step{
+  to{transform:translateY(4px) rotate(9deg)}
+}
 
 #doubtVignette{position:absolute;z-index:21;inset:0;background:radial-gradient(circle at 50% 45%,transparent 32%,#210d2a99 100%);opacity:0;pointer-events:none;transition:.18s}
 #doubtVignette.show{opacity:1}
@@ -203,20 +209,30 @@ button{font:inherit;color:inherit;-webkit-appearance:none;appearance:none;-webki
 <div id="app">
 
 <section id="start" class="screen active">
+
   <div class="logo">UNCERTAIN</div>
-  <div class="hero">BREAK<br>THE <span>LOOP.</span></div>
+
+  <div class="hero">
+    BREAK<br>
+    THE <span>LOOP.</span>
+  </div>
 
   <p style="font-size:18px;color:#cbd6e3;line-height:1.45">
     Move forward without making certainty the price of admission.
   </p>
 
   <div class="startCard card">
-    <button class="btn" id="enter">ENTER THE LOOP</button>
+
+    <button class="btn" id="enter">
+      ENTER THE LOOP
+    </button>
 
     <p class="small">
       Prototype only. ERP-informed gameplay is not a replacement for professional mental-health care.
     </p>
+
   </div>
+
 </section>
 
 
@@ -229,7 +245,7 @@ button{font:inherit;color:inherit;-webkit-appearance:none;appearance:none;-webki
     <small>3 missions available</small>
   </button>
 
-  <button class="node locked" disabled>
+  <button class="node locked" disabled">
     <strong>Next District</strong>
     <small>Under construction</small>
   </button>
@@ -336,6 +352,7 @@ button{font:inherit;color:inherit;-webkit-appearance:none;appearance:none;-webki
     </div>
 
     <div id="keyfob" style="display:none">
+
       <div class="ring"></div>
 
       <button
@@ -348,6 +365,7 @@ button{font:inherit;color:inherit;-webkit-appearance:none;appearance:none;-webki
       <div class="small" style="margin-top:6px">
         LOCK
       </div>
+
     </div>
 
     <div id="stoveControlWrap" style="display:none">
@@ -385,29 +403,44 @@ button{font:inherit;color:inherit;-webkit-appearance:none;appearance:none;-webki
 
       <div>
         <b id="title">One normal action.</b>
-        <div class="small" id="copy">No extra certainty required.</div>
+        <div class="small" id="copy">
+          No extra certainty required.
+        </div>
       </div>
 
-      <span id="phaseHint">READY</span>
+      <span id="phaseHint">
+        READY
+      </span>
 
     </div>
 
-    <div id="meters" class="meters" style="display:none">
+    <div
+      id="meters"
+      class="meters"
+      style="display:none">
 
       <div>
-        <span class="meterLabel">URGE WAVE</span>
+
+        <span class="meterLabel">
+          URGE WAVE
+        </span>
 
         <div class="meter">
           <i id="urge"></i>
         </div>
+
       </div>
 
       <div>
-        <span class="meterLabel">FORWARD MOMENTUM</span>
+
+        <span class="meterLabel">
+          FORWARD MOMENTUM
+        </span>
 
         <div class="meter">
           <i id="progress"></i>
         </div>
+
       </div>
 
     </div>
@@ -507,6 +540,7 @@ Number(
 
 let current=null;
 let phase="idle";
+
 let momentum=0;
 let urge=46;
 let checks=0;
@@ -520,10 +554,12 @@ let feedbackTimer=null;
 let cueTimer=null;
 
 let hold=false;
+
 let movementPointerActive=false;
 let touchMoveActive=false;
 
 let midpointShown=false;
+
 let recoveredAfterCheck=false;
 let recoveryCount=0;
 
@@ -537,11 +573,14 @@ const missions={
 
 door:{
 
-  name:"LOCK & LEAVE",
+  name:
+  "LOCK & LEAVE",
 
-  title:"Lock the door.",
+  title:
+  "Lock the door.",
 
-  copy:"Perform one normal lock.",
+  copy:
+  "Perform one normal lock.",
 
   thoughts:[
     "Are you sure it clicked?",
@@ -551,27 +590,30 @@ door:{
   ],
 
   env:
-    '<div class="houseShell">'+
-    '<div class="roof"></div>'+
-    '<div class="houseBody"></div>'+
-    '<div class="window left"></div>'+
-    '<div class="window right"></div>'+
-    '<div class="porch"></div>'+
-    '<div class="door">'+
-    '<div class="knob"></div>'+
-    '</div>'+
-    '</div>'
+  '<div class="houseShell">'+
+  '<div class="roof"></div>'+
+  '<div class="houseBody"></div>'+
+  '<div class="window left"></div>'+
+  '<div class="window right"></div>'+
+  '<div class="porch"></div>'+
+  '<div class="door">'+
+  '<div class="knob"></div>'+
+  '</div>'+
+  '</div>'
 
 },
 
 
 car:{
 
-  name:"PARK & WALK",
+  name:
+  "PARK & WALK",
 
-  title:"Lock the car.",
+  title:
+  "Lock the car.",
 
-  copy:"Press the key fob once.",
+  copy:
+  "Press the key fob once.",
 
   thoughts:[
     "Did you hear it lock?",
@@ -582,29 +624,32 @@ car:{
   ],
 
   env:
-    '<div class="store">'+
-    '<div class="storeDoor"></div>'+
-    '</div>'+
-    '<div class="parkingGround"></div>'+
-    '<div class="parkingLine line1"></div>'+
-    '<div class="parkingLine line2"></div>'+
-    '<div class="parkingLine line3"></div>'+
-    '<div class="parkingLine line4"></div>'+
-    '<div class="car" id="car">'+
-    '<div class="carWindow"></div>'+
-    '<div class="carLight"></div>'+
-    '</div>'
+  '<div class="store">'+
+  '<div class="storeDoor"></div>'+
+  '</div>'+
+  '<div class="parkingGround"></div>'+
+  '<div class="parkingLine line1"></div>'+
+  '<div class="parkingLine line2"></div>'+
+  '<div class="parkingLine line3"></div>'+
+  '<div class="parkingLine line4"></div>'+
+  '<div class="car" id="car">'+
+  '<div class="carWindow"></div>'+
+  '<div class="carLight"></div>'+
+  '</div>'
 
 },
 
 
 stove:{
 
-  name:"OFF & OUT",
+  name:
+  "OFF & OUT",
 
-  title:"Turn the stove off.",
+  title:
+  "Turn the stove off.",
 
-  copy:"One normal action.",
+  copy:
+  "One normal action.",
 
   thoughts:[
     "Was that definitely the right knob?",
@@ -615,25 +660,25 @@ stove:{
   ],
 
   env:
-    '<div class="kitchen">'+
-    '<div class="kitchenWall"></div>'+
-    '<div class="kitchenFloor"></div>'+
-    '<div class="exitDoor">'+
-    '<div class="exitHandle"></div>'+
-    '</div>'+
-    '<div class="counter"></div>'+
-    '<div class="stove" id="stove">'+
-    '<div class="stoveTop"></div>'+
-    '<div class="burner one"></div>'+
-    '<div class="burner two"></div>'+
-    '<div class="stovePanel"></div>'+
-    '<div class="stoveKnob one"></div>'+
-    '<div class="stoveKnob two"></div>'+
-    '<div class="stoveKnob three"></div>'+
-    '<div class="stoveKnob four"></div>'+
-    '<div class="stoveOven"></div>'+
-    '</div>'+
-    '</div>'
+  '<div class="kitchen">'+
+  '<div class="kitchenWall"></div>'+
+  '<div class="kitchenFloor"></div>'+
+  '<div class="exitDoor">'+
+  '<div class="exitHandle"></div>'+
+  '</div>'+
+  '<div class="counter"></div>'+
+  '<div class="stove" id="stove">'+
+  '<div class="stoveTop"></div>'+
+  '<div class="burner one"></div>'+
+  '<div class="burner two"></div>'+
+  '<div class="stovePanel"></div>'+
+  '<div class="stoveKnob one"></div>'+
+  '<div class="stoveKnob two"></div>'+
+  '<div class="stoveKnob three"></div>'+
+  '<div class="stoveKnob four"></div>'+
+  '<div class="stoveOven"></div>'+
+  '</div>'+
+  '</div>'
 
 }
 
@@ -878,7 +923,6 @@ function stopMovement(){
   hold=false;
 
   movementPointerActive=false;
-
   touchMoveActive=false;
 
   $("#person")
@@ -1115,18 +1159,15 @@ function resetDepth(){
 
 
 /*
-v10.9
+v10.10
 
-The character and starting object
-now occupy separate lanes.
+The no-intersection layout remains,
+but the player starts slightly closer
+to the center than v10.9.
 
-The player stays left while the
-car/stove move farther right and
-recede.
-
-Only after roughly 64% momentum
-does the player turn toward the
-center destination.
+The walking path now bends inward
+gradually instead of staying hard-left
+and turning abruptly near the end.
 */
 
 function positionPlayerAtStart(){
@@ -1140,7 +1181,7 @@ function positionPlayerAtStart(){
   ){
 
     person.style.left=
-    "20%";
+    "23%";
 
     person.style.bottom=
     "12%";
@@ -1669,12 +1710,16 @@ function scheduleDoubt(
 
 
 /*
-Player stays in the left passing lane
-until the obstacle has substantially
-receded.
+v10.10 smooth route
 
-Then the route curves smoothly toward
-the center destination.
+Early movement:
+slight inward drift.
+
+Middle/late movement:
+gradual curve toward the center.
+
+The curve begins earlier than v10.9
+but keeps clearance from the car/stove.
 */
 
 function playerRoute(t){
@@ -1682,47 +1727,56 @@ function playerRoute(t){
   const person=
   $("#person");
 
-  const turnStart=
-  .64;
 
-  const turn=
-  t<=turnStart
-  ? 0
-  : Math.min(
+  const smooth=
+  x=>
+  x*x*(3-2*x);
+
+
+  const drift=
+  smooth(
+    Math.min(
       1,
-      (t-turnStart)/
-      (1-turnStart)
-    );
-
-  const eased=
-  turn*
-  turn*
-  (
-    3-
-    2*turn
+      t/.48
+    )
   );
 
+
+  const turn=
+  smooth(
+    Math.max(
+      0,
+      Math.min(
+        1,
+        (t-.34)/.66
+      )
+    )
+  );
+
+
   const left=
-  20+
-  (
-    50-20
-  )*
-  eased;
+  23+
+  6*drift+
+  21*turn;
+
 
   const bottom=
   12+
-  28*t;
+  28*smooth(t);
+
 
   const scale=
   1.02-
-  .18*t;
+  .18*smooth(t);
 
 
   person.style.left=
   left+"%";
 
+
   person.style.bottom=
   bottom+"%";
+
 
   person.style.transform=
   `translateX(-50%)
@@ -1734,9 +1788,9 @@ function playerRoute(t){
 /*
 Park & Walk
 
-The car moves to the right,
-drops lower, shrinks, and fades
-while the player passes on the left.
+Car continues moving away/right
+while the new smoother player route
+curves toward the destination.
 */
 
 function updateParkDepth(){
@@ -1826,8 +1880,9 @@ function updateParkDepth(){
 /*
 Off & Out
 
-The stove uses the same separated
-lane model as the car.
+Stove retains the separated
+depth lane while the character
+uses the smoother route.
 */
 
 function updateStoveDepth(){
