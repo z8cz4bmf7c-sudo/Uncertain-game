@@ -2,1363 +2,199 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#07101c">
-
-<title>UNCERTAIN — Checking District v10.7</title>
+<title>UNCERTAIN — Checking District v10.9</title>
 
 <style>
-
-:root{
-  --bg:#07101c;
-  --panel:#0b1523ee;
-  --text:#f7fbff;
-  --muted:#aebbd0;
-  --accent:#74e7c5;
-  --line:#ffffff26;
-}
-
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-  -webkit-touch-callout:none;
-  -webkit-user-select:none;
-  user-select:none;
-}
-
-html,
-body{
-  margin:0;
-  width:100%;
-  height:100%;
-  overflow:hidden;
-  overscroll-behavior:none;
-  background:#040912;
-  color:var(--text);
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
-}
-
-button{
-  font:inherit;
-  color:inherit;
-  -webkit-appearance:none;
-  appearance:none;
-  -webkit-user-select:none;
-  user-select:none;
-  -webkit-touch-callout:none;
-}
-
-#app{
-  height:100vh;
-  height:100dvh;
-  max-width:520px;
-  margin:auto;
-  position:relative;
-  overflow:hidden;
-  background:var(--bg);
-  touch-action:none;
-}
-
-.btn,
-.control,
-.missionCard,
-.node,
-.missionExit,
-#fobLock,
-#stoveControl{
-  touch-action:manipulation;
-}
-
-#forwardBtn{
-  touch-action:none;
-}
-
-.screen{
-  display:none;
-  position:absolute;
-  inset:0;
-}
-
-.screen.active{
-  display:block;
-}
-
-.hud{
-  position:absolute;
-  z-index:80;
-  top:0;
-  left:0;
-  right:0;
-  padding:max(12px,env(safe-area-inset-top)) 12px 8px;
-  display:flex;
-  justify-content:space-between;
-  pointer-events:none;
-}
-
-.pill{
-  padding:8px 11px;
-  border:1px solid var(--line);
-  border-radius:999px;
-  background:#07111de8;
-  font-size:12px;
-  font-weight:950;
-}
-
-.card{
-  background:linear-gradient(180deg,#101d30f2,#0b1625f2);
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:16px;
-  box-shadow:0 18px 44px #0009;
-}
-
-.btn{
-  width:100%;
-  min-height:58px;
-  border:0;
-  border-radius:17px;
-  background:#eef3f8;
-  color:#0c1420;
-  font-weight:950;
-  font-size:17px;
-}
-
-.btn.secondary{
-  margin-top:10px;
-  background:#152238;
-  color:#f7fbff;
-  border:1px solid #ffffff2a;
-}
-
-.small{
-  font-size:12px;
-  line-height:1.4;
-  color:#9eacbd;
-}
-
-/* START */
-
-#start{
-  padding:92px 22px 26px;
-  background:
-    radial-gradient(
-      circle at 50% 25%,
-      #355271,
-      #111b2a 55%,
-      #060b13
-    );
-}
-
-.logo{
-  font-size:13px;
-  letter-spacing:.25em;
-  font-weight:950;
-  color:#a9b7ca;
-}
-
-.hero{
-  font-size:53px;
-  line-height:.92;
-  margin:24px 0 16px;
-  font-weight:1000;
-  letter-spacing:-.055em;
-}
-
-.hero span{
-  color:var(--accent);
-}
-
-.startCard{
-  position:absolute;
-  left:16px;
-  right:16px;
-  bottom:max(22px,env(safe-area-inset-bottom));
-}
-
-/* MAP */
-
-#map{
-  background:
-    linear-gradient(
-      145deg,
-      #29425f,
-      #112238 64%,
-      #07101c
-    );
-}
-
-.road{
-  position:absolute;
-  width:155%;
-  height:100px;
-  left:-30%;
-  top:49%;
-  transform:rotate(-18deg);
-  background:#46566c;
-  box-shadow:0 0 0 9px #1d2837;
-}
-
-.road:after{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  top:48px;
-  border-top:4px dashed #e8edf566;
-}
-
-.node{
-  position:absolute;
-  border:2px solid #ffffff32;
-  background:#0b1729ed;
-  border-radius:23px;
-  padding:15px;
-  text-align:left;
-  box-shadow:0 16px 36px #0009;
-}
-
-.node strong{
-  display:block;
-  font-size:18px;
-}
-
-.node small{
-  opacity:.72;
-}
-
-#checking{
-  left:6%;
-  top:21%;
-  width:195px;
-}
-
-.locked{
-  right:5%;
-  bottom:25%;
-  width:170px;
-  opacity:.48;
-}
-
-.avatarMini{
-  position:absolute;
-  left:47%;
-  top:63%;
-  width:44px;
-  height:44px;
-  border-radius:50%;
-  background:#eef3f8;
-  border:7px solid #405675;
-}
-
-.mapInfo{
-  position:absolute;
-  left:14px;
-  right:14px;
-  bottom:max(14px,env(safe-area-inset-bottom));
-  padding:13px 15px;
-  border:1px solid var(--line);
-  border-radius:18px;
-  background:#081321d9;
-}
-
-/* MISSION SELECT */
-
-#missionSelect{
-  background:
-    radial-gradient(
-      circle at 50% 30%,
-      #274762,
-      #0b1625 65%
-    );
-}
-
-.selectWrap{
-  position:absolute;
-  inset:88px 14px 18px;
-  overflow:auto;
-  padding-bottom:30px;
-}
-
-.missionCard{
-  width:100%;
-  border:1px solid var(--line);
-  border-radius:22px;
-  background:#0d192aef;
-  padding:17px;
-  text-align:left;
-  margin-bottom:12px;
-  min-height:118px;
-}
-
-.missionCard b{
-  display:block;
-  font-size:20px;
-}
-
-.missionCard span{
-  display:block;
-  color:#b7c5d6;
-  margin-top:7px;
-  line-height:1.35;
-}
-
-.tag{
-  font-size:11px!important;
-  color:var(--accent)!important;
-  font-weight:900;
-  letter-spacing:.08em;
-}
-
-.completion{
-  min-height:15px;
-  font-size:11px!important;
-  color:var(--accent)!important;
-  font-weight:950!important;
-  letter-spacing:.05em;
-}
-
-/* EXIT */
-
-.missionExit{
-  position:absolute;
-  z-index:9999;
-  left:12px;
-  top:max(58px,calc(env(safe-area-inset-top) + 48px));
-  min-width:82px;
-  min-height:46px;
-  padding:8px 13px;
-  border:1px solid #ffffff42;
-  border-radius:999px;
-  background:#08111bf2;
-  color:#f5f8fc;
-  box-shadow:0 6px 18px #0008;
-  font-size:12px;
-  font-weight:950;
-  letter-spacing:.04em;
-  pointer-events:auto;
-}
-
-/* WORLD */
-
-.scene{
-  position:absolute;
-  z-index:1;
-  inset:0;
-  overflow:hidden;
-  background:
-    linear-gradient(
-      #24364b 0 47%,
-      #101923 47%
-    );
-}
-
-#environment{
-  position:absolute;
-  inset:0;
-  transition:
-    transform .12s linear,
-    filter .12s linear,
-    opacity .12s linear;
-}
-
-.skyGlow{
-  position:absolute;
-  left:0;
-  right:0;
-  top:0;
-  height:38%;
-  background:
-    radial-gradient(
-      circle at 70% 16%,
-      #526d8a55,
-      transparent 30%
-    );
-}
-
-.ground{
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  height:58%;
-  background:
-    linear-gradient(
-      #1f2b37,
-      #111923
-    );
-}
-
-.path{
-  position:absolute;
-  left:50%;
-  bottom:-4%;
-  width:56%;
-  height:60%;
-  transform:
-    translateX(-50%)
-    perspective(300px)
-    rotateX(58deg);
-  transform-origin:center bottom;
-  background:
-    linear-gradient(
-      90deg,
-      #334251,
-      #536578 50%,
-      #334251
-    );
-  clip-path:
-    polygon(
-      38% 0,
-      62% 0,
-      100% 100%,
-      0 100%
-    );
-}
-
-.destinationGlow{
-  position:absolute;
-  left:50%;
-  top:19%;
-  width:80px;
-  height:80px;
-  transform:translateX(-50%);
-  border-radius:50%;
-  background:
-    radial-gradient(
-      circle,
-      #74e7c555,
-      transparent 68%
-    );
-  animation:pulse 1.8s infinite alternate;
-  pointer-events:none;
-}
-
-@keyframes pulse{
-  to{
-    transform:
-      translateX(-50%)
-      scale(1.15);
-    opacity:.65;
-  }
-}
-
-/* HOUSE */
-
-.houseShell{
-  position:absolute;
-  left:50%;
-  top:11%;
-  transform:translateX(-50%);
-  width:310px;
-  height:270px;
-}
-
-.houseBody{
-  position:absolute;
-  left:16px;
-  right:16px;
-  top:48px;
-  bottom:0;
-  background:
-    linear-gradient(
-      #47576a,
-      #303b49
-    );
-  border:6px solid #1b2735;
-}
-
-.roof{
-  position:absolute;
-  left:0;
-  right:0;
-  top:0;
-  height:110px;
-  background:#202c3a;
-  clip-path:
-    polygon(
-      50% 0,
-      100% 54%,
-      92% 54%,
-      92% 100%,
-      8% 100%,
-      8% 54%,
-      0 54%
-    );
-}
-
-.window{
-  position:absolute;
-  top:92px;
-  width:55px;
-  height:70px;
-  background:#d2a55f;
-  border:6px solid #1b2735;
-}
-
-.window.left{
-  left:38px;
-}
-
-.window.right{
-  right:38px;
-}
-
-.porch{
-  position:absolute;
-  left:50%;
-  bottom:-7px;
-  transform:translateX(-50%);
-  width:180px;
-  height:28px;
-  background:#1c2835;
-}
-
-.door{
-  position:absolute;
-  left:50%;
-  bottom:20px;
-  transform:translateX(-50%);
-  width:112px;
-  height:172px;
-  background:
-    linear-gradient(
-      #2f4155,
-      #1b2a3a
-    );
-  border:7px solid #111a25;
-}
-
-.knob{
-  position:absolute;
-  right:8px;
-  top:74px;
-  width:36px;
-  height:36px;
-  border-radius:50%;
-  background:#e8eef5;
-  border:6px solid #6a7a8f;
-}
-
-/* PARK */
-
-.parkingGround{
-  position:absolute;
-  inset:34% 0 0;
-  background:
-    linear-gradient(
-      170deg,
-      #303b49,
-      #141c26
-    );
-}
-
-.store{
-  position:absolute;
-  left:50%;
-  top:5%;
-  transform:translateX(-50%) scale(1);
-  transform-origin:50% 100%;
-  width:305px;
-  height:178px;
-  background:
-    linear-gradient(
-      #54667a,
-      #3b4a5d
-    );
-  border:8px solid #223040;
-  transition:
-    transform .12s linear,
-    top .12s linear;
-  z-index:4;
-}
-
-.store:before{
-  content:"DESTINATION";
-  position:absolute;
-  left:0;
-  right:0;
-  top:26px;
-  text-align:center;
-  font-weight:1000;
-  letter-spacing:.12em;
-}
-
-.storeDoor{
-  position:absolute;
-  left:50%;
-  bottom:0;
-  transform:translateX(-50%);
-  width:82px;
-  height:96px;
-  background:#142638;
-  border:5px solid #71849a;
-}
-
-.parkingLine{
-  position:absolute;
-  height:5px;
-  background:#edf3fa4a;
-  transition:
-    translate .12s linear,
-    opacity .12s linear;
-}
-
-.line1{
-  width:65%;
-  left:-4%;
-  top:61%;
-  transform:rotate(-19deg);
-}
-
-.line2{
-  width:65%;
-  right:-13%;
-  top:61%;
-  transform:rotate(19deg);
-}
-
-.line3{
-  width:56%;
-  left:4%;
-  top:78%;
-  transform:rotate(-14deg);
-}
-
-.line4{
-  width:56%;
-  right:-3%;
-  top:78%;
-  transform:rotate(14deg);
-}
+:root{--bg:#07101c;--panel:#0b1523ee;--text:#f7fbff;--muted:#aebbd0;--accent:#74e7c5;--line:#ffffff26}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;overscroll-behavior:none;background:#040912;color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button{font:inherit;color:inherit;-webkit-appearance:none;appearance:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+#app{height:100vh;height:100dvh;max-width:520px;margin:auto;position:relative;overflow:hidden;background:var(--bg);touch-action:none}
+.btn,.control,.missionCard,.node,.missionExit,#fobLock,#stoveControl{touch-action:manipulation}
+#forwardBtn{touch-action:none}
+.screen{display:none;position:absolute;inset:0}
+.screen.active{display:block}
+.hud{position:absolute;z-index:80;top:0;left:0;right:0;padding:max(12px,env(safe-area-inset-top)) 12px 8px;display:flex;justify-content:space-between;pointer-events:none}
+.pill{padding:8px 11px;border:1px solid var(--line);border-radius:999px;background:#07111de8;font-size:12px;font-weight:950}
+.card{background:linear-gradient(180deg,#101d30f2,#0b1625f2);border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:0 18px 44px #0009}
+.btn{width:100%;min-height:58px;border:0;border-radius:17px;background:#eef3f8;color:#0c1420;font-weight:950;font-size:17px}
+.btn.secondary{margin-top:10px;background:#152238;color:#f7fbff;border:1px solid #ffffff2a}
+.small{font-size:12px;line-height:1.4;color:#9eacbd}
+
+#start{padding:92px 22px 26px;background:radial-gradient(circle at 50% 25%,#355271,#111b2a 55%,#060b13)}
+.logo{font-size:13px;letter-spacing:.25em;font-weight:950;color:#a9b7ca}
+.hero{font-size:53px;line-height:.92;margin:24px 0 16px;font-weight:1000;letter-spacing:-.055em}
+.hero span{color:var(--accent)}
+.startCard{position:absolute;left:16px;right:16px;bottom:max(22px,env(safe-area-inset-bottom))}
+
+#map{background:linear-gradient(145deg,#29425f,#112238 64%,#07101c)}
+.road{position:absolute;width:155%;height:100px;left:-30%;top:49%;transform:rotate(-18deg);background:#46566c;box-shadow:0 0 0 9px #1d2837}
+.road:after{content:"";position:absolute;left:0;right:0;top:48px;border-top:4px dashed #e8edf566}
+.node{position:absolute;border:2px solid #ffffff32;background:#0b1729ed;border-radius:23px;padding:15px;text-align:left;box-shadow:0 16px 36px #0009}
+.node strong{display:block;font-size:18px}
+.node small{opacity:.72}
+#checking{left:6%;top:21%;width:195px}
+.locked{right:5%;bottom:25%;width:170px;opacity:.48}
+.avatarMini{position:absolute;left:47%;top:63%;width:44px;height:44px;border-radius:50%;background:#eef3f8;border:7px solid #405675}
+.mapInfo{position:absolute;left:14px;right:14px;bottom:max(14px,env(safe-area-inset-bottom));padding:13px 15px;border:1px solid var(--line);border-radius:18px;background:#081321d9}
+
+#missionSelect{background:radial-gradient(circle at 50% 30%,#274762,#0b1625 65%)}
+.selectWrap{position:absolute;inset:88px 14px 18px;overflow:auto;padding-bottom:30px}
+.missionCard{width:100%;border:1px solid var(--line);border-radius:22px;background:#0d192aef;padding:17px;text-align:left;margin-bottom:12px;min-height:118px}
+.missionCard b{display:block;font-size:20px}
+.missionCard span{display:block;color:#b7c5d6;margin-top:7px;line-height:1.35}
+.tag{font-size:11px!important;color:var(--accent)!important;font-weight:900;letter-spacing:.08em}
+.completion{min-height:15px;font-size:11px!important;color:var(--accent)!important;font-weight:950!important;letter-spacing:.05em}
+
+.missionExit{position:absolute;z-index:9999;left:12px;top:max(58px,calc(env(safe-area-inset-top) + 48px));min-width:82px;min-height:46px;padding:8px 13px;border:1px solid #ffffff42;border-radius:999px;background:#08111bf2;color:#f5f8fc;box-shadow:0 6px 18px #0008;font-size:12px;font-weight:950;letter-spacing:.04em;pointer-events:auto}
+
+.scene{position:absolute;z-index:1;inset:0;overflow:hidden;background:linear-gradient(#24364b 0 47%,#101923 47%)}
+#environment{position:absolute;inset:0;transition:transform .12s linear,filter .12s linear,opacity .12s linear}
+.skyGlow{position:absolute;left:0;right:0;top:0;height:38%;background:radial-gradient(circle at 70% 16%,#526d8a55,transparent 30%)}
+.ground{position:absolute;left:0;right:0;bottom:0;height:58%;background:linear-gradient(#1f2b37,#111923)}
+.path{position:absolute;left:50%;bottom:-4%;width:56%;height:60%;transform:translateX(-50%) perspective(300px) rotateX(58deg);transform-origin:center bottom;background:linear-gradient(90deg,#334251,#536578 50%,#334251);clip-path:polygon(38% 0,62% 0,100% 100%,0 100%)}
+.destinationGlow{position:absolute;left:50%;top:19%;width:80px;height:80px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,#74e7c555,transparent 68%);animation:pulse 1.8s infinite alternate;pointer-events:none}
+@keyframes pulse{to{transform:translateX(-50%) scale(1.15);opacity:.65}}
+
+.houseShell{position:absolute;left:50%;top:11%;transform:translateX(-50%);width:310px;height:270px}
+.houseBody{position:absolute;left:16px;right:16px;top:48px;bottom:0;background:linear-gradient(#47576a,#303b49);border:6px solid #1b2735}
+.roof{position:absolute;left:0;right:0;top:0;height:110px;background:#202c3a;clip-path:polygon(50% 0,100% 54%,92% 54%,92% 100%,8% 100%,8% 54%,0 54%)}
+.window{position:absolute;top:92px;width:55px;height:70px;background:#d2a55f;border:6px solid #1b2735}
+.window.left{left:38px}
+.window.right{right:38px}
+.porch{position:absolute;left:50%;bottom:-7px;transform:translateX(-50%);width:180px;height:28px;background:#1c2835}
+.door{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);width:112px;height:172px;background:linear-gradient(#2f4155,#1b2a3a);border:7px solid #111a25}
+.knob{position:absolute;right:8px;top:74px;width:36px;height:36px;border-radius:50%;background:#e8eef5;border:6px solid #6a7a8f}
+
+.parkingGround{position:absolute;inset:34% 0 0;background:linear-gradient(170deg,#303b49,#141c26)}
+.store{position:absolute;left:50%;top:5%;transform:translateX(-50%) scale(1);transform-origin:50% 100%;width:305px;height:178px;background:linear-gradient(#54667a,#3b4a5d);border:8px solid #223040;transition:transform .12s linear,top .12s linear;z-index:4}
+.store:before{content:"DESTINATION";position:absolute;left:0;right:0;top:26px;text-align:center;font-weight:1000;letter-spacing:.12em}
+.storeDoor{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:82px;height:96px;background:#142638;border:5px solid #71849a}
+.parkingLine{position:absolute;height:5px;background:#edf3fa4a;transition:translate .12s linear,opacity .12s linear}
+.line1{width:65%;left:-4%;top:61%;transform:rotate(-19deg)}
+.line2{width:65%;right:-13%;top:61%;transform:rotate(19deg)}
+.line3{width:56%;left:4%;top:78%;transform:rotate(-14deg)}
+.line4{width:56%;right:-3%;top:78%;transform:rotate(14deg)}
 
 .car{
   position:absolute;
-  left:50%;
-  top:57%;
-  transform:
-    translateX(-50%)
-    scale(1);
+  left:66%;
+  top:53%;
+  transform:translateX(-50%) scale(1);
   transform-origin:50% 50%;
   width:192px;
   height:86px;
-  border-radius:
-    38px
-    42px
-    18px
-    18px;
-  background:
-    linear-gradient(
-      #8fa0b5,
-      #687a91
-    );
+  border-radius:38px 42px 18px 18px;
+  background:linear-gradient(#8fa0b5,#687a91);
   border:7px solid #101722;
   z-index:8;
-  transition:
-    transform .12s linear,
-    top .12s linear,
-    opacity .12s linear;
+  transition:transform .12s linear,top .12s linear,left .12s linear,opacity .12s linear;
 }
 
-.carWindow{
-  position:absolute;
-  left:44px;
-  top:-8px;
-  width:104px;
-  height:44px;
-  background:#21354a;
-  clip-path:
-    polygon(
-      20% 100%,
-      35% 0,
-      78% 0,
-      100% 100%
-    );
-}
+.carWindow{position:absolute;left:44px;top:-8px;width:104px;height:44px;background:#21354a;clip-path:polygon(20% 100%,35% 0,78% 0,100% 100%)}
+.carLight{position:absolute;right:8px;top:37px;width:24px;height:14px;border-radius:8px;background:#e9c978}
+.car:before,.car:after{content:"";position:absolute;bottom:-18px;width:34px;height:34px;border-radius:50%;background:#0a0d12;border:6px solid #394554}
+.car:before{left:20px}
+.car:after{right:20px}
 
-.carLight{
-  position:absolute;
-  right:8px;
-  top:37px;
-  width:24px;
-  height:14px;
-  border-radius:8px;
-  background:#e9c978;
-}
-
-.car:before,
-.car:after{
-  content:"";
-  position:absolute;
-  bottom:-18px;
-  width:34px;
-  height:34px;
-  border-radius:50%;
-  background:#0a0d12;
-  border:6px solid #394554;
-}
-
-.car:before{
-  left:20px;
-}
-
-.car:after{
-  right:20px;
-}
-
-/* OFF & OUT */
-
-.kitchen{
-  position:absolute;
-  inset:0;
-}
-
-.kitchenWall{
-  position:absolute;
-  left:0;
-  right:0;
-  top:0;
-  height:49%;
-  background:
-    linear-gradient(
-      #435160,
-      #2d3947
-    );
-}
-
-.kitchenFloor{
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  height:55%;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #222c36 0,
-      #222c36 52px,
-      #2d3944 53px,
-      #2d3944 56px
-    );
-}
-
-.exitDoor{
-  position:absolute;
-  left:50%;
-  top:6%;
-  transform:
-    translateX(-50%)
-    scale(1);
-  transform-origin:50% 100%;
-  width:125px;
-  height:220px;
-  background:
-    linear-gradient(
-      #30475a,
-      #172837
-    );
-  border:8px solid #172330;
-  z-index:5;
-  transition:
-    transform .12s linear,
-    top .12s linear;
-}
-
-.exitDoor:before{
-  content:"EXIT";
-  position:absolute;
-  top:18px;
-  left:0;
-  right:0;
-  text-align:center;
-  font-size:12px;
-  font-weight:1000;
-  letter-spacing:.15em;
-  color:#99edcf;
-}
-
-.exitHandle{
-  position:absolute;
-  right:13px;
-  top:104px;
-  width:27px;
-  height:27px;
-  border-radius:50%;
-  background:#d5dee7;
-  border:5px solid #6f8194;
-}
-
-.counter{
-  position:absolute;
-  left:0;
-  right:0;
-  top:48%;
-  height:72px;
-  background:#252f39;
-  border-top:10px solid #586574;
-}
+.kitchen{position:absolute;inset:0}
+.kitchenWall{position:absolute;left:0;right:0;top:0;height:49%;background:linear-gradient(#435160,#2d3947)}
+.kitchenFloor{position:absolute;left:0;right:0;bottom:0;height:55%;background:repeating-linear-gradient(90deg,#222c36 0,#222c36 52px,#2d3944 53px,#2d3944 56px)}
+.exitDoor{position:absolute;left:50%;top:6%;transform:translateX(-50%) scale(1);transform-origin:50% 100%;width:125px;height:220px;background:linear-gradient(#30475a,#172837);border:8px solid #172330;z-index:5;transition:transform .12s linear,top .12s linear}
+.exitDoor:before{content:"EXIT";position:absolute;top:18px;left:0;right:0;text-align:center;font-size:12px;font-weight:1000;letter-spacing:.15em;color:#99edcf}
+.exitHandle{position:absolute;right:13px;top:104px;width:27px;height:27px;border-radius:50%;background:#d5dee7;border:5px solid #6f8194}
+.counter{position:absolute;left:0;right:0;top:48%;height:72px;background:#252f39;border-top:10px solid #586574}
 
 .stove{
   position:absolute;
-  left:50%;
-  top:48%;
-  transform:
-    translateX(-50%)
-    scale(1);
+  left:66%;
+  top:45%;
+  transform:translateX(-50%) scale(1);
   width:220px;
   height:145px;
-  background:
-    linear-gradient(
-      #6f7d8c,
-      #424e5b
-    );
+  background:linear-gradient(#6f7d8c,#424e5b);
   border:7px solid #18222c;
   border-radius:8px;
   z-index:8;
-  transition:
-    transform .12s linear,
-    top .12s linear,
-    opacity .12s linear;
-}
-
-.stoveTop{
-  position:absolute;
-  top:-42px;
-  left:-7px;
-  width:220px;
-  height:52px;
-  background:#1a222b;
-  border:7px solid #111820;
-}
-
-.burner{
-  position:absolute;
-  top:-27px;
-  width:47px;
-  height:22px;
-  border-radius:50%;
-  border:5px solid #55616d;
-  background:#0c1117;
-}
-
-.burner.one{
-  left:20px;
-}
-
-.burner.two{
-  right:20px;
-}
-
-.stovePanel{
-  position:absolute;
-  top:16px;
-  left:15px;
-  right:15px;
-  height:49px;
-  background:#27313b;
-  border-radius:5px;
-}
-
-.stoveKnob{
-  position:absolute;
-  top:26px;
-  width:31px;
-  height:31px;
-  border-radius:50%;
-  background:#d9e1e8;
-  border:6px solid #697887;
-}
-
-.stoveKnob.one{
-  left:29px;
-}
-
-.stoveKnob.two{
-  left:76px;
-}
-
-.stoveKnob.three{
-  right:76px;
-}
-
-.stoveKnob.four{
-  right:29px;
-}
-
-.stoveOven{
-  position:absolute;
-  left:27px;
-  right:27px;
-  bottom:15px;
-  height:56px;
-  background:#101820;
-  border:6px solid #2c3742;
-}
-
-#stoveControlWrap{
-  position:absolute;
-  z-index:67;
-  right:15px;
-  bottom:188px;
-  width:92px;
-  min-height:110px;
-  padding:9px;
-  border-radius:22px;
-  background:#111923;
-  border:4px solid #748496;
-  text-align:center;
-}
-
-#stoveControl{
-  width:100%;
-  min-height:54px;
-  border:0;
-  border-radius:14px;
-  background:#e3eaf0;
-  color:#111827;
-  font-weight:1000;
-  font-size:12px;
-  line-height:1.1;
-}
-
-#stoveControlWrap.disabled{
-  opacity:.45;
-  pointer-events:none;
-}
-
-.stoveIndicator{
-  display:inline-block;
-  width:9px;
-  height:9px;
-  border-radius:50%;
-  background:#d95d5d;
-  margin-right:4px;
-}
-
-.stoveIndicator.off{
-  background:#6fe0ba;
-}
-
-/* PLAYER */
-
-.person{
-  position:absolute;
-  z-index:18;
-  left:50%;
-  bottom:24%;
-  width:62px;
-  height:106px;
-  transform:translateX(-50%);
-  transition:
-    bottom .12s linear,
-    transform .12s linear;
-}
-
-.person.lookback{
-  transform:
-    translateX(-50%)
-    translateX(-5px)
-    rotate(-4deg);
-}
-
-.shadow{
-  position:absolute;
-  left:50%;
-  bottom:-4px;
-  transform:translateX(-50%);
-  width:54px;
-  height:13px;
-  border-radius:50%;
-  background:#0007;
-}
-
-.head{
-  position:absolute;
-  left:17px;
-  top:0;
-  width:28px;
-  height:28px;
-  border-radius:50%;
-  background:#eef3f8;
-}
-
-.body{
-  position:absolute;
-  left:12px;
-  top:28px;
-  width:38px;
-  height:46px;
-  border-radius:16px 16px 10px 10px;
-  background:
-    linear-gradient(
-      #e8eef5,
-      #c8d4df
-    );
-}
-
-.arm{
-  position:absolute;
-  top:35px;
-  width:11px;
-  height:37px;
-  border-radius:10px;
-  background:#cfdbe6;
-}
-
-.arm.a{
-  left:5px;
-}
-
-.arm.b{
-  right:5px;
-}
-
-.leg{
-  position:absolute;
-  top:70px;
-  width:13px;
-  height:33px;
-  border-radius:9px;
-  background:#bcc9d5;
-}
-
-.leg.a{
-  left:14px;
-}
-
-.leg.b{
-  right:14px;
-}
-
-.person.walking .leg.a{
-  animation:
-    step .28s infinite alternate;
-}
-
-.person.walking .leg.b{
-  animation:
-    step .28s infinite alternate-reverse;
-}
-
-@keyframes step{
-  to{
-    transform:
-      translateY(4px)
-      rotate(9deg);
-  }
-}
-
-/* DOUBT */
-
-#doubtVignette{
-  position:absolute;
-  z-index:21;
-  inset:0;
-  background:
-    radial-gradient(
-      circle at 50% 45%,
-      transparent 32%,
-      #210d2a99 100%
-    );
-  opacity:0;
-  pointer-events:none;
-  transition:.18s;
-}
-
-#doubtVignette.show{
-  opacity:1;
-}
-
-.doubtText{
-  position:absolute;
-  z-index:24;
-  top:15%;
-  left:8%;
-  right:8%;
-  text-align:center;
-  font-size:24px;
-  font-weight:1000;
-  line-height:1.05;
-  text-shadow:0 4px 16px #000;
-  opacity:0;
-  transition:.18s;
-  pointer-events:none;
-}
-
-.doubtText.show{
-  opacity:1;
-}
-
-.doubtLabel{
-  display:block;
-  font-size:10px;
-  letter-spacing:.16em;
-  color:#d2a3cf;
-  margin-bottom:7px;
-}
-
-/* CUES */
-
-.choiceCue{
-  position:absolute;
-  z-index:40;
-  left:50%;
-  top:48%;
-  transform:
-    translate(-50%,10px)
-    scale(.96);
-  padding:10px 16px;
-  border:1px solid #74e7c566;
-  border-radius:999px;
-  background:#07141ee8;
-  color:var(--accent);
-  font-size:13px;
-  font-weight:1000;
-  letter-spacing:.08em;
-  opacity:0;
-  pointer-events:none;
-  box-shadow:0 8px 24px #0008;
-  transition:.2s;
-  white-space:nowrap;
-}
-
-.choiceCue.show{
-  opacity:1;
-  transform:
-    translate(-50%,0)
-    scale(1);
-}
-
-.lockFlash{
-  position:absolute;
-  left:50%;
-  top:38%;
-  z-index:30;
-  transform:translateX(-50%);
-  padding:9px 14px;
-  border-radius:999px;
-  background:#081321ed;
-  border:1px solid #ffffff35;
-  font-weight:1000;
-  opacity:0;
-  transition:.15s;
-}
-
-.lockFlash.show{
-  opacity:1;
-}
-
-/* GAME PANEL */
-
-.gamePanel{
-  position:absolute;
-  z-index:60;
-  left:10px;
-  right:10px;
-  bottom:max(10px,env(safe-area-inset-bottom));
-  padding:11px 12px;
-  border:1px solid #ffffff24;
-  border-radius:20px;
-  background:#081321df;
-  backdrop-filter:blur(12px);
-}
-
-.gameTitle{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-}
-
-.gameTitle b{
-  font-size:15px;
-}
-
-.gameTitle span{
-  font-size:11px;
-  color:#aebbd0;
-}
-
-.meters{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:9px;
-}
-
-.meterLabel{
-  font-size:9px;
-  letter-spacing:.1em;
-  color:#aeb9c7;
-}
-
-.meter{
-  height:9px;
-  background:#29364a;
-  border-radius:999px;
-  overflow:hidden;
-  margin-top:4px;
-}
-
-.meter i{
-  display:block;
-  height:100%;
-  width:0;
-  border-radius:999px;
-  background:#eef3f8;
-}
-
-.controls{
-  display:flex;
-  gap:9px;
-  margin-top:10px;
-}
-
-.control{
-  flex:1;
-  min-height:54px;
-  border:1px solid #ffffff2a;
-  border-radius:15px;
-  background:#152238;
-  font-weight:950;
-}
-
-.control.primary{
-  background:#eef3f8;
-  color:#101826;
-}
-
-.control:disabled{
-  opacity:.45;
-}
-
-/* FOB */
-
-#keyfob{
-  position:absolute;
-  z-index:65;
-  right:15px;
-  bottom:188px;
-  width:84px;
-  height:108px;
-  border-radius:24px;
-  background:#101821;
-  border:4px solid #75859b;
-  padding:9px;
-  text-align:center;
-}
-
-#keyfob .ring{
-  width:19px;
-  height:19px;
-  border:4px solid #8fa0b5;
-  border-radius:50%;
-  margin:-24px auto 8px;
-}
-
-#keyfob button{
-  width:100%;
-  min-height:53px;
-  border:0;
-  border-radius:14px;
-  background:#dce5ee;
-  color:#111827;
-  font-size:22px;
-  font-weight:1000;
-}
-
-#keyfob.disabled{
-  opacity:.45;
-  pointer-events:none;
-}
-
-#beep{
-  position:absolute;
-  z-index:66;
-  right:104px;
-  bottom:236px;
-  padding:8px 11px;
-  border-radius:999px;
-  background:#07111de8;
-  border:1px solid #ffffff32;
-  font-weight:1000;
-  opacity:0;
-  transition:.12s;
-}
-
-#beep.show{
-  opacity:1;
-}
-
-.reliefFlash{
-  filter:brightness(1.16);
-}
-
-/* REWARD */
-
-#reward{
-  background:
-    radial-gradient(
-      circle at 50% 38%,
-      #35516e,
-      #101927 62%,
-      #060b13
-    );
-}
-
-.rewardBox{
-  position:absolute;
-  left:18px;
-  right:18px;
-  top:50%;
-  transform:translateY(-50%);
-  text-align:center;
-}
-
-.rewardBig{
-  font-size:45px;
-  font-weight:1000;
-  margin:10px 0;
-}
-
-.sessionNote{
-  margin:15px 0 0;
-  padding:11px 12px;
-  border-radius:14px;
-  background:#08132199;
-  color:#aebbd0;
-  font-size:12px;
-  line-height:1.4;
-}
-
-.srOnly{
-  position:absolute;
-  width:1px;
-  height:1px;
-  padding:0;
-  margin:-1px;
-  overflow:hidden;
-  clip:rect(0,0,0,0);
-  white-space:nowrap;
-  border:0;
-}
+  transition:transform .12s linear,top .12s linear,left .12s linear,opacity .12s linear;
+}
+
+.stoveTop{position:absolute;top:-42px;left:-7px;width:220px;height:52px;background:#1a222b;border:7px solid #111820}
+.burner{position:absolute;top:-27px;width:47px;height:22px;border-radius:50%;border:5px solid #55616d;background:#0c1117}
+.burner.one{left:20px}
+.burner.two{right:20px}
+.stovePanel{position:absolute;top:16px;left:15px;right:15px;height:49px;background:#27313b;border-radius:5px}
+.stoveKnob{position:absolute;top:26px;width:31px;height:31px;border-radius:50%;background:#d9e1e8;border:6px solid #697887}
+.stoveKnob.one{left:29px}
+.stoveKnob.two{left:76px}
+.stoveKnob.three{right:76px}
+.stoveKnob.four{right:29px}
+.stoveOven{position:absolute;left:27px;right:27px;bottom:15px;height:56px;background:#101820;border:6px solid #2c3742}
+
+#stoveControlWrap{position:absolute;z-index:67;right:15px;bottom:188px;width:92px;min-height:110px;padding:9px;border-radius:22px;background:#111923;border:4px solid #748496;text-align:center}
+#stoveControl{width:100%;min-height:54px;border:0;border-radius:14px;background:#e3eaf0;color:#111827;font-weight:1000;font-size:12px;line-height:1.1}
+#stoveControlWrap.disabled{opacity:.45;pointer-events:none}
+.stoveIndicator{display:inline-block;width:9px;height:9px;border-radius:50%;background:#d95d5d;margin-right:4px}
+.stoveIndicator.off{background:#6fe0ba}
+
+.person{position:absolute;z-index:18;left:50%;bottom:24%;width:62px;height:106px;transform:translateX(-50%);transition:bottom .12s linear,left .12s linear,transform .12s linear}
+.person.lookback{transform:translateX(-50%) translateX(-5px) rotate(-4deg)}
+.shadow{position:absolute;left:50%;bottom:-4px;transform:translateX(-50%);width:54px;height:13px;border-radius:50%;background:#0007}
+.head{position:absolute;left:17px;top:0;width:28px;height:28px;border-radius:50%;background:#eef3f8}
+.body{position:absolute;left:12px;top:28px;width:38px;height:46px;border-radius:16px 16px 10px 10px;background:linear-gradient(#e8eef5,#c8d4df)}
+.arm{position:absolute;top:35px;width:11px;height:37px;border-radius:10px;background:#cfdbe6}
+.arm.a{left:5px}
+.arm.b{right:5px}
+.leg{position:absolute;top:70px;width:13px;height:33px;border-radius:9px;background:#bcc9d5}
+.leg.a{left:14px}
+.leg.b{right:14px}
+.person.walking .leg.a{animation:step .28s infinite alternate}
+.person.walking .leg.b{animation:step .28s infinite alternate-reverse}
+@keyframes step{to{transform:translateY(4px) rotate(9deg)}}
+
+#doubtVignette{position:absolute;z-index:21;inset:0;background:radial-gradient(circle at 50% 45%,transparent 32%,#210d2a99 100%);opacity:0;pointer-events:none;transition:.18s}
+#doubtVignette.show{opacity:1}
+.doubtText{position:absolute;z-index:24;top:15%;left:8%;right:8%;text-align:center;font-size:24px;font-weight:1000;line-height:1.05;text-shadow:0 4px 16px #000;opacity:0;transition:.18s;pointer-events:none}
+.doubtText.show{opacity:1}
+.doubtLabel{display:block;font-size:10px;letter-spacing:.16em;color:#d2a3cf;margin-bottom:7px}
+
+.choiceCue{position:absolute;z-index:40;left:50%;top:48%;transform:translate(-50%,10px) scale(.96);padding:10px 16px;border:1px solid #74e7c566;border-radius:999px;background:#07141ee8;color:var(--accent);font-size:13px;font-weight:1000;letter-spacing:.08em;opacity:0;pointer-events:none;box-shadow:0 8px 24px #0008;transition:.2s;white-space:nowrap}
+.choiceCue.show{opacity:1;transform:translate(-50%,0) scale(1)}
+.lockFlash{position:absolute;left:50%;top:38%;z-index:30;transform:translateX(-50%);padding:9px 14px;border-radius:999px;background:#081321ed;border:1px solid #ffffff35;font-weight:1000;opacity:0;transition:.15s}
+.lockFlash.show{opacity:1}
+
+.gamePanel{position:absolute;z-index:60;left:10px;right:10px;bottom:max(10px,env(safe-area-inset-bottom));padding:11px 12px;border:1px solid #ffffff24;border-radius:20px;background:#081321df;backdrop-filter:blur(12px)}
+.gameTitle{display:flex;justify-content:space-between;gap:12px}
+.gameTitle b{font-size:15px}
+.gameTitle span{font-size:11px;color:#aebbd0}
+.meters{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:9px}
+.meterLabel{font-size:9px;letter-spacing:.1em;color:#aeb9c7}
+.meter{height:9px;background:#29364a;border-radius:999px;overflow:hidden;margin-top:4px}
+.meter i{display:block;height:100%;width:0;border-radius:999px;background:#eef3f8}
+.controls{display:flex;gap:9px;margin-top:10px}
+.control{flex:1;min-height:54px;border:1px solid #ffffff2a;border-radius:15px;background:#152238;font-weight:950}
+.control.primary{background:#eef3f8;color:#101826}
+.control:disabled{opacity:.45}
+
+#keyfob{position:absolute;z-index:65;right:15px;bottom:188px;width:84px;height:108px;border-radius:24px;background:#101821;border:4px solid #75859b;padding:9px;text-align:center}
+#keyfob .ring{width:19px;height:19px;border:4px solid #8fa0b5;border-radius:50%;margin:-24px auto 8px}
+#keyfob button{width:100%;min-height:53px;border:0;border-radius:14px;background:#dce5ee;color:#111827;font-size:22px;font-weight:1000}
+#keyfob.disabled{opacity:.45;pointer-events:none}
+#beep{position:absolute;z-index:66;right:104px;bottom:236px;padding:8px 11px;border-radius:999px;background:#07111de8;border:1px solid #ffffff32;font-weight:1000;opacity:0;transition:.12s}
+#beep.show{opacity:1}
+.reliefFlash{filter:brightness(1.16)}
+
+#reward{background:radial-gradient(circle at 50% 38%,#35516e,#101927 62%,#060b13)}
+.rewardBox{position:absolute;left:18px;right:18px;top:50%;transform:translateY(-50%);text-align:center}
+.rewardBig{font-size:45px;font-weight:1000;margin:10px 0}
+.sessionNote{margin:15px 0 0;padding:11px 12px;border-radius:14px;background:#08132199;color:#aebbd0;font-size:12px;line-height:1.4}
+.srOnly{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 @media(prefers-reduced-motion:reduce){
-
-  *{
-    animation:none!important;
-    transition:none!important;
-  }
-
+  *{animation:none!important;transition:none!important}
 }
-
 </style>
 </head>
 
@@ -1367,32 +203,20 @@ button{
 <div id="app">
 
 <section id="start" class="screen active">
-
-  <div class="logo">
-    UNCERTAIN
-  </div>
-
-  <div class="hero">
-    BREAK<br>
-    THE <span>LOOP.</span>
-  </div>
+  <div class="logo">UNCERTAIN</div>
+  <div class="hero">BREAK<br>THE <span>LOOP.</span></div>
 
   <p style="font-size:18px;color:#cbd6e3;line-height:1.45">
     Move forward without making certainty the price of admission.
   </p>
 
   <div class="startCard card">
-
-    <button class="btn" id="enter">
-      ENTER THE LOOP
-    </button>
+    <button class="btn" id="enter">ENTER THE LOOP</button>
 
     <p class="small">
       Prototype only. ERP-informed gameplay is not a replacement for professional mental-health care.
     </p>
-
   </div>
-
 </section>
 
 
@@ -1401,55 +225,25 @@ button{
   <div class="road"></div>
 
   <button id="checking" class="node">
-
-    <strong>
-      Checking District
-    </strong>
-
-    <small>
-      3 missions available
-    </small>
-
+    <strong>Checking District</strong>
+    <small>3 missions available</small>
   </button>
 
   <button class="node locked" disabled>
-
-    <strong>
-      Next District
-    </strong>
-
-    <small>
-      Under construction
-    </small>
-
+    <strong>Next District</strong>
+    <small>Under construction</small>
   </button>
 
   <div class="avatarMini"></div>
 
   <div class="hud">
-
-    <span class="pill">
-      THE LOOP
-    </span>
-
-    <span class="pill">
-      XP <b class="xp">0</b>
-    </span>
-
+    <span class="pill">THE LOOP</span>
+    <span class="pill">XP <b class="xp">0</b></span>
   </div>
 
   <div class="mapInfo">
-
-    <b>
-      Checking District
-    </b>
-
-    <br>
-
-    <span>
-      Certainty always seems one more check away.
-    </span>
-
+    <b>Checking District</b><br>
+    <span>Certainty always seems one more check away.</span>
   </div>
 
 </section>
@@ -1458,103 +252,36 @@ button{
 <section id="missionSelect" class="screen">
 
   <div class="hud">
-
-    <span class="pill">
-      CHECKING DISTRICT
-    </span>
-
-    <span class="pill">
-      XP <b class="xp">0</b>
-    </span>
-
+    <span class="pill">CHECKING DISTRICT</span>
+    <span class="pill">XP <b class="xp">0</b></span>
   </div>
 
   <div class="selectWrap">
 
-    <button
-      class="missionCard"
-      data-mission="door">
-
-      <span class="tag">
-        PHYSICAL CHECKING
-      </span>
-
-      <b>
-        Lock & Leave
-      </b>
-
-      <span
-        class="completion"
-        data-completion="door">
-      </span>
-
-      <span>
-        Lock the house once, then keep moving while Doubt tries to pull you back.
-      </span>
-
+    <button class="missionCard" data-mission="door">
+      <span class="tag">PHYSICAL CHECKING</span>
+      <b>Lock & Leave</b>
+      <span class="completion" data-completion="door"></span>
+      <span>Lock the house once, then keep moving while Doubt tries to pull you back.</span>
     </button>
 
-
-    <button
-      class="missionCard"
-      data-mission="car">
-
-      <span class="tag">
-        PHYSICAL + MENTAL CHECKING
-      </span>
-
-      <b>
-        Park & Walk
-      </b>
-
-      <span
-        class="completion"
-        data-completion="car">
-      </span>
-
-      <span>
-        Lock the car once. The key fob stays available. Doubt does too.
-      </span>
-
+    <button class="missionCard" data-mission="car">
+      <span class="tag">PHYSICAL + MENTAL CHECKING</span>
+      <b>Park & Walk</b>
+      <span class="completion" data-completion="car"></span>
+      <span>Lock the car once. The key fob stays available. Doubt does too.</span>
     </button>
 
-
-    <button
-      class="missionCard"
-      data-mission="stove">
-
-      <span class="tag">
-        APPLIANCE CHECKING
-      </span>
-
-      <b>
-        Off & Out
-      </b>
-
-      <span
-        class="completion"
-        data-completion="stove">
-      </span>
-
-      <span>
-        Turn the stove off once, then head for the door while Doubt asks for another look.
-      </span>
-
+    <button class="missionCard" data-mission="stove">
+      <span class="tag">APPLIANCE CHECKING</span>
+      <b>Off & Out</b>
+      <span class="completion" data-completion="stove"></span>
+      <span>Turn the stove off once, then head for the door while Doubt asks for another look.</span>
     </button>
 
-
-    <button
-      class="missionCard"
-      id="backMap">
-
-      <span class="tag">
-        RETURN
-      </span>
-
-      <b>
-        Back to The Loop
-      </b>
-
+    <button class="missionCard" id="backMap">
+      <span class="tag">RETURN</span>
+      <b>Back to The Loop</b>
     </button>
 
   </div>
@@ -1569,27 +296,19 @@ button{
     id="missionExit"
     class="missionExit"
     aria-label="Exit mission">
-
     ‹ EXIT
-
   </button>
-
 
   <div id="scene" class="scene">
 
     <div class="skyGlow"></div>
-
     <div class="ground"></div>
-
     <div class="path"></div>
-
     <div class="destinationGlow"></div>
 
     <div id="environment"></div>
 
-
     <div id="person" class="person">
-
       <i class="shadow"></i>
       <i class="head"></i>
       <i class="body"></i>
@@ -1597,77 +316,41 @@ button{
       <i class="arm b"></i>
       <i class="leg a"></i>
       <i class="leg b"></i>
-
     </div>
 
-
-    <div
-      id="lockFlash"
-      class="lockFlash">
-    </div>
-
+    <div id="lockFlash" class="lockFlash"></div>
 
     <div id="doubtVignette"></div>
 
-
-    <div
-      id="doubtOverlay"
-      class="doubtText">
-
-      <span class="doubtLabel">
-        DOUBT
-      </span>
-
-      <span id="doubtMessage">
-        Are you sure?
-      </span>
-
+    <div id="doubtOverlay" class="doubtText">
+      <span class="doubtLabel">DOUBT</span>
+      <span id="doubtMessage">Are you sure?</span>
     </div>
 
-
-    <div
-      id="choiceCue"
-      class="choiceCue">
-
+    <div id="choiceCue" class="choiceCue">
       KEEP GOING ›
-
     </div>
-
 
     <div id="beep">
       BEEP • LOCKED
     </div>
 
-
-    <div
-      id="keyfob"
-      style="display:none">
-
+    <div id="keyfob" style="display:none">
       <div class="ring"></div>
 
       <button
         type="button"
         id="fobLock"
         aria-label="Lock car">
-
         🔒
-
       </button>
 
-      <div
-        class="small"
-        style="margin-top:6px">
-
+      <div class="small" style="margin-top:6px">
         LOCK
-
       </div>
-
     </div>
 
-
-    <div
-      id="stoveControlWrap"
-      style="display:none">
+    <div id="stoveControlWrap" style="display:none">
 
       <button
         type="button"
@@ -1683,94 +366,51 @@ button{
 
       </button>
 
-      <div
-        class="small"
-        style="margin-top:8px">
-
+      <div class="small" style="margin-top:8px">
         STOVE
-
       </div>
 
     </div>
 
   </div>
 
-
   <div class="hud">
-
-    <span
-      class="pill"
-      id="missionName">
-
-      MISSION
-
-    </span>
-
-    <span class="pill">
-      XP <b class="xp">0</b>
-    </span>
-
+    <span class="pill" id="missionName">MISSION</span>
+    <span class="pill">XP <b class="xp">0</b></span>
   </div>
-
 
   <div class="gamePanel">
 
     <div class="gameTitle">
 
       <div>
-
-        <b id="title">
-          One normal action.
-        </b>
-
-        <div
-          class="small"
-          id="copy">
-
-          No extra certainty required.
-
-        </div>
-
+        <b id="title">One normal action.</b>
+        <div class="small" id="copy">No extra certainty required.</div>
       </div>
 
-      <span id="phaseHint">
-        READY
-      </span>
+      <span id="phaseHint">READY</span>
 
     </div>
 
-
-    <div
-      id="meters"
-      class="meters"
-      style="display:none">
+    <div id="meters" class="meters" style="display:none">
 
       <div>
-
-        <span class="meterLabel">
-          URGE WAVE
-        </span>
+        <span class="meterLabel">URGE WAVE</span>
 
         <div class="meter">
           <i id="urge"></i>
         </div>
-
       </div>
 
       <div>
-
-        <span class="meterLabel">
-          FORWARD MOMENTUM
-        </span>
+        <span class="meterLabel">FORWARD MOMENTUM</span>
 
         <div class="meter">
           <i id="progress"></i>
         </div>
-
       </div>
 
     </div>
-
 
     <div class="controls">
 
@@ -1778,18 +418,14 @@ button{
         type="button"
         class="control"
         id="checkBtn">
-
         CHECK AGAIN
-
       </button>
 
       <button
         type="button"
         class="control primary"
         id="forwardBtn">
-
         START
-
       </button>
 
     </div>
@@ -1802,15 +438,8 @@ button{
 <section id="reward" class="screen">
 
   <div class="hud">
-
-    <span class="pill">
-      MOMENTUM
-    </span>
-
-    <span class="pill">
-      XP <b class="xp">0</b>
-    </span>
-
+    <span class="pill">MOMENTUM</span>
+    <span class="pill">XP <b class="xp">0</b></span>
   </div>
 
   <div class="rewardBox">
@@ -1833,18 +462,14 @@ button{
         type="button"
         class="btn"
         id="continueBtn">
-
         BACK TO CHECKING DISTRICT
-
       </button>
 
       <button
         type="button"
         class="btn secondary"
         id="doneBtn">
-
         DONE FOR NOW
-
       </button>
 
       <div class="sessionNote">
@@ -1870,293 +495,163 @@ button{
 
 <script>
 
-const $ =
-selector =>
-document.querySelector(
-  selector
-);
+const $=s=>document.querySelector(s);
+const $$=s=>document.querySelectorAll(s);
 
-const $$ =
-selector =>
-document.querySelectorAll(
-  selector
-);
-
-
-/* =========================
-   STATE
-========================= */
-
-let xp =
+let xp=
 Number(
   localStorage.getItem(
     "uncertainXP"
-  ) || 0
+  )||0
 );
 
-let current =
-null;
+let current=null;
+let phase="idle";
+let momentum=0;
+let urge=46;
+let checks=0;
+let thoughtIndex=0;
 
-let phase =
-"idle";
+let walkTimer=null;
+let urgeTimer=null;
+let doubtTimer=null;
+let reliefTimer=null;
+let feedbackTimer=null;
+let cueTimer=null;
 
-let momentum =
-0;
+let hold=false;
+let movementPointerActive=false;
+let touchMoveActive=false;
 
-let urge =
-46;
+let midpointShown=false;
+let recoveredAfterCheck=false;
+let recoveryCount=0;
 
-let checks =
-0;
+let urgeWavePhase=0;
+let urgePeakCueShown=false;
 
-let thoughtIndex =
-0;
-
-let walkTimer =
-null;
-
-let urgeTimer =
-null;
-
-let doubtTimer =
-null;
-
-let reliefTimer =
-null;
-
-let feedbackTimer =
-null;
-
-let cueTimer =
-null;
-
-let hold =
-false;
-
-let movementPointerActive =
-false;
-
-let touchMoveActive =
-false;
-
-let midpointShown =
-false;
-
-let recoveredAfterCheck =
-false;
-
-let recoveryCount =
-0;
-
-let urgeWavePhase =
-0;
-
-let urgePeakCueShown =
-false;
-
-const detailedRecheckLimit =
-2;
+const detailedRecheckLimit=2;
 
 
-/* =========================
-   MISSIONS
-========================= */
-
-const missions = {
+const missions={
 
 door:{
 
-  name:
-  "LOCK & LEAVE",
+  name:"LOCK & LEAVE",
 
-  title:
-  "Lock the door.",
+  title:"Lock the door.",
 
-  copy:
-  "Perform one normal lock.",
+  copy:"Perform one normal lock.",
 
   thoughts:[
-
     "Are you sure it clicked?",
-
     "Maybe the deadbolt didn't catch.",
-
     "What if the door opens after you leave?",
-
     "One more check would feel safer."
-
   ],
 
   env:
-
-  '<div class="houseShell">' +
-
-  '<div class="roof"></div>' +
-
-  '<div class="houseBody"></div>' +
-
-  '<div class="window left"></div>' +
-
-  '<div class="window right"></div>' +
-
-  '<div class="porch"></div>' +
-
-  '<div class="door">' +
-
-  '<div class="knob"></div>' +
-
-  '</div>' +
-
-  '</div>'
+    '<div class="houseShell">'+
+    '<div class="roof"></div>'+
+    '<div class="houseBody"></div>'+
+    '<div class="window left"></div>'+
+    '<div class="window right"></div>'+
+    '<div class="porch"></div>'+
+    '<div class="door">'+
+    '<div class="knob"></div>'+
+    '</div>'+
+    '</div>'
 
 },
 
 
 car:{
 
-  name:
-  "PARK & WALK",
+  name:"PARK & WALK",
 
-  title:
-  "Lock the car.",
+  title:"Lock the car.",
 
-  copy:
-  "Press the key fob once.",
+  copy:"Press the key fob once.",
 
   thoughts:[
-
     "Did you hear it lock?",
-
     "Was that your car that beeped?",
-
     "Maybe the passenger door is unlocked.",
-
     "What if the signal didn't reach it?",
-
     "You could press it one more time."
-
   ],
 
   env:
-
-  '<div class="store">' +
-
-  '<div class="storeDoor"></div>' +
-
-  '</div>' +
-
-  '<div class="parkingGround"></div>' +
-
-  '<div class="parkingLine line1"></div>' +
-
-  '<div class="parkingLine line2"></div>' +
-
-  '<div class="parkingLine line3"></div>' +
-
-  '<div class="parkingLine line4"></div>' +
-
-  '<div class="car" id="car">' +
-
-  '<div class="carWindow"></div>' +
-
-  '<div class="carLight"></div>' +
-
-  '</div>'
+    '<div class="store">'+
+    '<div class="storeDoor"></div>'+
+    '</div>'+
+    '<div class="parkingGround"></div>'+
+    '<div class="parkingLine line1"></div>'+
+    '<div class="parkingLine line2"></div>'+
+    '<div class="parkingLine line3"></div>'+
+    '<div class="parkingLine line4"></div>'+
+    '<div class="car" id="car">'+
+    '<div class="carWindow"></div>'+
+    '<div class="carLight"></div>'+
+    '</div>'
 
 },
 
 
 stove:{
 
-  name:
-  "OFF & OUT",
+  name:"OFF & OUT",
 
-  title:
-  "Turn the stove off.",
+  title:"Turn the stove off.",
 
-  copy:
-  "One normal action.",
+  copy:"One normal action.",
 
   thoughts:[
-
     "Was that definitely the right knob?",
-
     "What if one burner is still on?",
-
     "Did you actually see it reach OFF?",
-
     "Maybe you turned it past OFF.",
-
     "One more look would feel safer."
-
   ],
 
   env:
-
-  '<div class="kitchen">' +
-
-  '<div class="kitchenWall"></div>' +
-
-  '<div class="kitchenFloor"></div>' +
-
-  '<div class="exitDoor">' +
-
-  '<div class="exitHandle"></div>' +
-
-  '</div>' +
-
-  '<div class="counter"></div>' +
-
-  '<div class="stove" id="stove">' +
-
-  '<div class="stoveTop"></div>' +
-
-  '<div class="burner one"></div>' +
-
-  '<div class="burner two"></div>' +
-
-  '<div class="stovePanel"></div>' +
-
-  '<div class="stoveKnob one"></div>' +
-
-  '<div class="stoveKnob two"></div>' +
-
-  '<div class="stoveKnob three"></div>' +
-
-  '<div class="stoveKnob four"></div>' +
-
-  '<div class="stoveOven"></div>' +
-
-  '</div>' +
-
-  '</div>'
+    '<div class="kitchen">'+
+    '<div class="kitchenWall"></div>'+
+    '<div class="kitchenFloor"></div>'+
+    '<div class="exitDoor">'+
+    '<div class="exitHandle"></div>'+
+    '</div>'+
+    '<div class="counter"></div>'+
+    '<div class="stove" id="stove">'+
+    '<div class="stoveTop"></div>'+
+    '<div class="burner one"></div>'+
+    '<div class="burner two"></div>'+
+    '<div class="stovePanel"></div>'+
+    '<div class="stoveKnob one"></div>'+
+    '<div class="stoveKnob two"></div>'+
+    '<div class="stoveKnob three"></div>'+
+    '<div class="stoveKnob four"></div>'+
+    '<div class="stoveOven"></div>'+
+    '</div>'+
+    '</div>'
 
 }
 
 };
 
 
-/* =========================
-   BASIC UI
-========================= */
-
 function show(id){
 
   $$(".screen")
   .forEach(
-
-    screen =>
-    screen
-    .classList
-    .remove(
+    screen=>
+    screen.classList.remove(
       "active"
     )
-
   );
 
-  $("#" + id)
-  .classList
-  .add(
+  $("#"+id)
+  .classList.add(
     "active"
   );
 
@@ -2166,7 +661,7 @@ function show(id){
 function announce(text){
 
   $("#liveStatus")
-  .textContent =
+  .textContent=
   text;
 
 }
@@ -2178,8 +673,7 @@ function vibrate(pattern){
     navigator.vibrate
   ){
 
-    navigator
-    .vibrate(
+    navigator.vibrate(
       pattern
     );
 
@@ -2190,19 +684,15 @@ function vibrate(pattern){
 
 function updateXP(){
 
-  localStorage
-  .setItem(
+  localStorage.setItem(
     "uncertainXP",
     xp
   );
 
   $$(".xp")
   .forEach(
-
-    element =>
-    element.textContent =
-    xp
-
+    element=>
+    element.textContent=xp
   );
 
 }
@@ -2212,27 +702,22 @@ function updateMissionCompletionUI(){
 
   $$(".completion")
   .forEach(
+    element=>{
 
-    element =>{
-
-      const mission =
+      const mission=
       element.dataset.completion;
 
-      const completed =
+      const completed=
       localStorage.getItem(
-        "completed_" + mission
-      ) === "yes";
+        "completed_"+mission
+      )==="yes";
 
-      element.textContent =
-
+      element.textContent=
       completed
-
       ? "✓ COMPLETED • REPLAY AVAILABLE"
-
       : "";
 
     }
-
   );
 
 }
@@ -2241,33 +726,25 @@ function updateMissionCompletionUI(){
 function updateMeters(){
 
   $("#progress")
-  .style
-  .width =
-  momentum + "%";
+  .style.width=
+  momentum+"%";
 
   $("#urge")
-  .style
-  .width =
-  urge + "%";
+  .style.width=
+  urge+"%";
 
 }
 
 
-/* =========================
-   DOUBT
-========================= */
-
 function hideDoubt(){
 
   $("#doubtOverlay")
-  .classList
-  .remove(
+  .classList.remove(
     "show"
   );
 
   $("#doubtVignette")
-  .classList
-  .remove(
+  .classList.remove(
     "show"
   );
 
@@ -2277,37 +754,30 @@ function hideDoubt(){
 function showDoubt(text){
 
   $("#doubtMessage")
-  .textContent =
+  .textContent=
   text;
 
   $("#doubtOverlay")
-  .classList
-  .add(
+  .classList.add(
     "show"
   );
 
   $("#doubtVignette")
-  .classList
-  .add(
+  .classList.add(
     "show"
   );
 
   announce(
-    "Doubt: " + text
+    "Doubt: "+text
   );
 
 }
 
 
-/* =========================
-   CUES
-========================= */
-
 function hideCue(){
 
   $("#choiceCue")
-  .classList
-  .remove(
+  .classList.remove(
     "show"
   );
 
@@ -2316,18 +786,16 @@ function hideCue(){
 
 function showCue(
   text,
-  duration = 1100
+  duration=1100
 ){
 
-  const cue =
+  const cue=
   $("#choiceCue");
 
-  cue.textContent =
+  cue.textContent=
   text;
 
-  cue
-  .classList
-  .add(
+  cue.classList.add(
     "show"
   );
 
@@ -2335,12 +803,12 @@ function showCue(
     cueTimer
   );
 
-  cueTimer =
+  cueTimer=
   setTimeout(()=>{
 
     hideCue();
 
-    cue.textContent =
+    cue.textContent=
     "KEEP GOING ›";
 
   },duration);
@@ -2353,12 +821,10 @@ function showMidpointCue(){
   if(
     midpointShown
   ){
-
     return;
-
   }
 
-  midpointShown =
+  midpointShown=
   true;
 
   showCue(
@@ -2375,15 +841,13 @@ function showMidpointCue(){
 
 function flashLock(text){
 
-  const flash =
+  const flash=
   $("#lockFlash");
 
-  flash.textContent =
+  flash.textContent=
   text;
 
-  flash
-  .classList
-  .add(
+  flash.classList.add(
     "show"
   );
 
@@ -2391,12 +855,10 @@ function flashLock(text){
     feedbackTimer
   );
 
-  feedbackTimer =
+  feedbackTimer=
   setTimeout(()=>{
 
-    flash
-    .classList
-    .remove(
+    flash.classList.remove(
       "show"
     );
 
@@ -2405,31 +867,22 @@ function flashLock(text){
 }
 
 
-/* =========================
-   MOVEMENT CLEANUP
-========================= */
-
 function stopMovement(){
 
   clearInterval(
     walkTimer
   );
 
-  walkTimer =
-  null;
+  walkTimer=null;
 
-  hold =
-  false;
+  hold=false;
 
-  movementPointerActive =
-  false;
+  movementPointerActive=false;
 
-  touchMoveActive =
-  false;
+  touchMoveActive=false;
 
   $("#person")
-  .classList
-  .remove(
+  .classList.remove(
     "walking"
   );
 
@@ -2439,7 +892,7 @@ function stopMovement(){
 function releaseInterruptedHold(){
 
   if(
-    phase !== "moving"
+    phase!=="moving"
   ){
 
     stopMovement();
@@ -2448,32 +901,23 @@ function releaseInterruptedHold(){
 
   }
 
-
   stopMovement();
-
 
   clearTimeout(
     doubtTimer
   );
 
-
-  phase =
+  phase=
   "ready";
 
-
   $("#phaseHint")
-  .textContent =
+  .textContent=
   "READY";
-
 
   setControlsForPhase();
 
 }
 
-
-/* =========================
-   FULL CLEANUP
-========================= */
 
 function stopEverything(){
 
@@ -2499,29 +943,17 @@ function stopEverything(){
     cueTimer
   );
 
-
-  urgeTimer =
-  null;
-
-  doubtTimer =
-  null;
-
-  reliefTimer =
-  null;
-
-  feedbackTimer =
-  null;
-
-  cueTimer =
-  null;
-
+  urgeTimer=null;
+  doubtTimer=null;
+  reliefTimer=null;
+  feedbackTimer=null;
+  cueTimer=null;
 
   if(
     navigator.vibrate
   ){
 
-    navigator
-    .vibrate(
+    navigator.vibrate(
       0
     );
 
@@ -2532,68 +964,51 @@ function stopEverything(){
 
 function resetPersonVisual(){
 
-  const person =
+  const person=
   $("#person");
 
-  person
-  .classList
-  .remove(
-    "walking"
-  );
-
-  person
-  .classList
-  .remove(
+  person.classList.remove(
+    "walking",
     "lookback"
   );
 
-  person
-  .style
-  .transform =
+  person.style.transform=
   "translateX(-50%)";
 
 }
 
 
-/* =========================
-   CONTROLS
-========================= */
-
 function setControlsForPhase(){
 
-  const relief =
-  phase === "relief";
+  const relief=
+  phase==="relief";
 
   $("#forwardBtn")
-  .disabled =
+  .disabled=
   relief;
 
   $("#checkBtn")
-  .disabled =
+  .disabled=
   relief;
 
-
   if(
-    current === "car"
+    current==="car"
   ){
 
     $("#keyfob")
-    .classList
-    .toggle(
+    .classList.toggle(
       "disabled",
       relief
     );
 
   }
 
-
   if(
-    current === "stove"
+    current==="stove"
   ){
 
     $("#stoveControlWrap")
-    .classList
-    .toggle(
+    .classList.toggle(
       "disabled",
       relief
     );
@@ -2603,419 +1018,356 @@ function setControlsForPhase(){
 }
 
 
-/* =========================
-   DEPTH RESET
-========================= */
-
 function resetDepth(){
 
-  $("#environment")
-  .style
-  .transform =
+  const environment=
+  $("#environment");
+
+  environment.style.transform=
   "scale(1)";
 
 
-  const store =
+  const store=
   $("#environment .store");
 
   if(store){
 
-    store
-    .style
-    .transform =
+    store.style.transform=
     "translateX(-50%) scale(1)";
 
-    store
-    .style
-    .top =
+    store.style.top=
     "5%";
 
   }
 
 
-  const car =
+  const car=
   $("#environment #car");
 
   if(car){
 
-    car
-    .style
-    .transform =
+    car.style.left=
+    "66%";
+
+    car.style.transform=
     "translateX(-50%) scale(1)";
 
-    car
-    .style
-    .top =
-    "57%";
+    car.style.top=
+    "53%";
 
-    car
-    .style
-    .opacity =
+    car.style.opacity=
     "1";
 
   }
 
 
-  const stove =
+  const stove=
   $("#environment #stove");
 
   if(stove){
 
-    stove
-    .style
-    .transform =
+    stove.style.left=
+    "66%";
+
+    stove.style.transform=
     "translateX(-50%) scale(1)";
 
-    stove
-    .style
-    .top =
-    "48%";
+    stove.style.top=
+    "45%";
 
-    stove
-    .style
-    .opacity =
+    stove.style.opacity=
     "1";
 
   }
 
 
-  const exit =
+  const exit=
   $("#environment .exitDoor");
 
   if(exit){
 
-    exit
-    .style
-    .transform =
+    exit.style.transform=
     "translateX(-50%) scale(1)";
 
-    exit
-    .style
-    .top =
+    exit.style.top=
     "6%";
 
   }
 
 
-  $("#environment")
+  environment
   .querySelectorAll(
     ".parkingLine"
   )
   .forEach(
+    line=>{
 
-    line =>{
-
-      line
-      .style
-      .translate =
+      line.style.translate=
       "0 0";
 
-      line
-      .style
-      .opacity =
+      line.style.opacity=
       "1";
 
     }
-
   );
 
 }
 
 
-/* =========================
-   LOAD MISSION
-========================= */
+/*
+v10.9
+
+The character and starting object
+now occupy separate lanes.
+
+The player stays left while the
+car/stove move farther right and
+recede.
+
+Only after roughly 64% momentum
+does the player turn toward the
+center destination.
+*/
+
+function positionPlayerAtStart(){
+
+  const person=
+  $("#person");
+
+  if(
+    current==="car" ||
+    current==="stove"
+  ){
+
+    person.style.left=
+    "20%";
+
+    person.style.bottom=
+    "12%";
+
+    person.style.transform=
+    "translateX(-50%) scale(1.02)";
+
+  }
+
+  else{
+
+    person.style.left=
+    "50%";
+
+    person.style.bottom=
+    "24%";
+
+    person.style.transform=
+    "translateX(-50%)";
+
+  }
+
+}
+
 
 function loadMission(key){
 
   stopEverything();
 
-
-  current =
+  current=
   key;
 
-
-  phase =
+  phase=
   "lock";
 
-
-  momentum =
+  momentum=
   0;
 
-
-  urge =
+  urge=
   46;
 
-
-  checks =
+  checks=
   0;
 
-
-  thoughtIndex =
+  thoughtIndex=
   0;
 
-
-  midpointShown =
+  midpointShown=
   false;
 
-
-  recoveredAfterCheck =
+  recoveredAfterCheck=
   false;
 
-
-  recoveryCount =
+  recoveryCount=
   0;
 
-
-  urgeWavePhase =
+  urgeWavePhase=
   0;
 
-
-  urgePeakCueShown =
+  urgePeakCueShown=
   false;
-
 
   resetPersonVisual();
 
-
   $("#missionName")
-  .textContent =
+  .textContent=
   missions[key].name;
 
-
   $("#environment")
-  .innerHTML =
+  .innerHTML=
   missions[key].env;
-
 
   resetDepth();
 
-
   $("#environment")
-  .style
-  .opacity =
+  .style.opacity=
   "1";
 
-
   $("#environment")
-  .classList
-  .remove(
+  .classList.remove(
     "reliefFlash"
   );
 
-
-  $("#person")
-  .style
-  .bottom =
-  "24%";
-
+  positionPlayerAtStart();
 
   hideDoubt();
 
-
   hideCue();
 
-
   $("#title")
-  .textContent =
+  .textContent=
   missions[key].title;
 
-
   $("#copy")
-  .textContent =
+  .textContent=
   missions[key].copy;
 
-
   $("#phaseHint")
-  .textContent =
+  .textContent=
   "ACTION";
 
-
   $("#meters")
-  .style
-  .display =
+  .style.display=
   "none";
-
 
   $("#checkBtn")
-  .style
-  .display =
+  .style.display=
   "none";
 
-
   $("#keyfob")
-  .style
-  .display =
-
-  key === "car"
-
+  .style.display=
+  key==="car"
   ? "block"
-
   : "none";
-
 
   $("#stoveControlWrap")
-  .style
-  .display =
-
-  key === "stove"
-
+  .style.display=
+  key==="stove"
   ? "block"
-
   : "none";
 
-
   $("#forwardBtn")
-  .style
-  .display =
-
-  key === "door"
-
+  .style.display=
+  key==="door"
   ? "block"
-
   : "none";
 
-
   $("#forwardBtn")
-  .textContent =
-
-  key === "door"
-
+  .textContent=
+  key==="door"
   ? "LOCK ONCE"
-
   : "HOLD TO MOVE";
 
-
   $("#keyfob")
-  .classList
-  .remove(
+  .classList.remove(
     "disabled"
   );
-
 
   $("#stoveControlWrap")
-  .classList
-  .remove(
+  .classList.remove(
     "disabled"
   );
 
-
   $("#stoveIndicator")
-  .classList
-  .remove(
+  .classList.remove(
     "off"
   );
 
-
   $("#beep")
-  .classList
-  .remove(
+  .classList.remove(
     "show"
   );
 
-
   updateMeters();
 
-
   setControlsForPhase();
-
 
   show(
     "mission"
   );
 
-
   announce(
-    missions[key].name +
+    missions[key].name+
     " mission opened."
   );
 
 }
 
 
-/* =========================
-   EXIT MISSION
-========================= */
-
 function exitMission(){
 
   stopEverything();
 
-
   hideDoubt();
-
 
   hideCue();
 
-
   resetPersonVisual();
 
-
   $("#beep")
-  .classList
-  .remove(
+  .classList.remove(
     "show"
   );
 
-
   $("#environment")
-  .classList
-  .remove(
+  .classList.remove(
     "reliefFlash"
   );
 
-
-  current =
+  current=
   null;
 
-
-  phase =
+  phase=
   "idle";
 
-
-  momentum =
+  momentum=
   0;
 
-
-  urge =
+  urge=
   46;
 
-
-  checks =
+  checks=
   0;
 
-
-  thoughtIndex =
+  thoughtIndex=
   0;
 
-
-  midpointShown =
+  midpointShown=
   false;
 
-
-  recoveredAfterCheck =
+  recoveredAfterCheck=
   false;
 
-
-  recoveryCount =
+  recoveryCount=
   0;
 
-
-  urgeWavePhase =
+  urgeWavePhase=
   0;
 
-
-  urgePeakCueShown =
+  urgePeakCueShown=
   false;
-
 
   updateMissionCompletionUI();
-
 
   show(
     "missionSelect"
   );
-
 
   announce(
     "Mission exited."
@@ -3024,27 +1376,20 @@ function exitMission(){
 }
 
 
-/* =========================
-   INITIAL ACTION
-========================= */
-
 function initialAction(){
 
   if(
-    phase !== "lock"
+    phase!=="lock"
   ){
-
     return;
-
   }
 
-
-  phase =
+  phase=
   "ready";
 
 
   if(
-    current === "door"
+    current==="door"
   ){
 
     flashLock(
@@ -3055,7 +1400,7 @@ function initialAction(){
 
 
   if(
-    current === "car"
+    current==="car"
   ){
 
     flashLock(
@@ -3066,17 +1411,15 @@ function initialAction(){
 
 
   if(
-    current === "stove"
+    current==="stove"
   ){
 
     flashLock(
       "CLICK • OFF"
     );
 
-
     $("#stoveIndicator")
-    .classList
-    .add(
+    .classList.add(
       "off"
     );
 
@@ -3091,73 +1434,67 @@ function initialAction(){
 
 
   $("#meters")
-  .style
-  .display =
+  .style.display=
   "grid";
 
 
   $("#title")
-  .textContent =
+  .textContent=
   "Now move on.";
 
 
   if(
-    current === "door"
+    current==="door"
   ){
 
     $("#copy")
-    .textContent =
+    .textContent=
     "Walk away from the house. Doubt may follow.";
 
   }
 
 
   if(
-    current === "car"
+    current==="car"
   ){
 
     $("#copy")
-    .textContent =
-    "Walk toward your destination. The fob stays available.";
+    .textContent=
+    "Walk around the car and toward your destination.";
 
   }
 
 
   if(
-    current === "stove"
+    current==="stove"
   ){
 
     $("#copy")
-    .textContent =
-    "Head for the exit. The stove stays behind you.";
+    .textContent=
+    "Move past the stove and toward the exit.";
 
   }
 
 
   $("#phaseHint")
-  .textContent =
+  .textContent=
   "READY";
 
 
   $("#forwardBtn")
-  .style
-  .display =
+  .style.display=
   "block";
 
 
   $("#forwardBtn")
-  .textContent =
+  .textContent=
   "HOLD TO MOVE";
 
 
   $("#checkBtn")
-  .style
-  .display =
-
-  current === "door"
-
+  .style.display=
+  current==="door"
   ? "block"
-
   : "none";
 
 
@@ -3169,47 +1506,46 @@ function initialAction(){
   );
 
 
-  urgeWavePhase =
+  urgeWavePhase=
   0;
 
-
-  urgePeakCueShown =
+  urgePeakCueShown=
   false;
 
 
-  urgeTimer =
+  urgeTimer=
   setInterval(()=>{
 
-    urgeWavePhase +=
+    urgeWavePhase+=
     .105;
 
 
-    const wave =
+    const wave=
     (
       Math.sin(
         urgeWavePhase
-      ) + 1
-    ) / 2;
+      )+1
+    )/2;
 
 
-    const target =
-    24 +
-    wave * 64;
+    const target=
+    24+
+    wave*64;
 
 
-    const variation =
-    Math.random() * 4 - 2;
+    const variation=
+    Math.random()*4-2;
 
 
-    urge +=
+    urge+=
     (
-      target +
-      variation -
+      target+
+      variation-
       urge
-    ) * .18;
+    )*.18;
 
 
-    urge =
+    urge=
     Math.max(
       18,
       Math.min(
@@ -3220,19 +1556,17 @@ function initialAction(){
 
 
     if(
-      urge >= 80 &&
+      urge>=80 &&
       !urgePeakCueShown
     ){
 
-      urgePeakCueShown =
+      urgePeakCueShown=
       true;
-
 
       showCue(
         "RIDE THE WAVE ›",
         1300
       );
-
 
       announce(
         "The urge is high. It can change without another check."
@@ -3242,17 +1576,16 @@ function initialAction(){
 
 
     if(
-      urge <= 48
+      urge<=48
     ){
 
-      urgePeakCueShown =
+      urgePeakCueShown=
       false;
 
     }
 
 
     updateMeters();
-
 
   },180);
 
@@ -3264,26 +1597,19 @@ function initialAction(){
 }
 
 
-/* =========================
-   DOUBT
-========================= */
-
 function nextThought(){
 
-  const list =
+  const list=
   missions[current]
   .thoughts;
 
-
-  const thought =
+  const thought=
   list[
-    thoughtIndex %
+    thoughtIndex%
     list.length
   ];
 
-
   thoughtIndex++;
-
 
   return thought;
 
@@ -3291,7 +1617,7 @@ function nextThought(){
 
 
 function scheduleDoubt(
-  delay = 1200
+  delay=1200
 ){
 
   clearTimeout(
@@ -3299,19 +1625,17 @@ function scheduleDoubt(
   );
 
 
-  doubtTimer =
+  doubtTimer=
   setTimeout(()=>{
 
     if(
       !current ||
-      phase === "lock" ||
-      phase === "relief" ||
-      phase === "complete" ||
-      phase === "idle"
+      phase==="lock" ||
+      phase==="relief" ||
+      phase==="complete" ||
+      phase==="idle"
     ){
-
       return;
-
     }
 
 
@@ -3320,10 +1644,10 @@ function scheduleDoubt(
     );
 
 
-    urge =
+    urge=
     Math.min(
       98,
-      urge + 12
+      urge+12
     );
 
 
@@ -3331,7 +1655,7 @@ function scheduleDoubt(
 
 
     $("#phaseHint")
-    .textContent =
+    .textContent=
     "DOUBT";
 
 
@@ -3339,73 +1663,128 @@ function scheduleDoubt(
       28
     );
 
-
   },delay);
 
 }
 
 
-/* =========================
-   PARK DEPTH
-========================= */
+/*
+Player stays in the left passing lane
+until the obstacle has substantially
+receded.
+
+Then the route curves smoothly toward
+the center destination.
+*/
+
+function playerRoute(t){
+
+  const person=
+  $("#person");
+
+  const turnStart=
+  .64;
+
+  const turn=
+  t<=turnStart
+  ? 0
+  : Math.min(
+      1,
+      (t-turnStart)/
+      (1-turnStart)
+    );
+
+  const eased=
+  turn*
+  turn*
+  (
+    3-
+    2*turn
+  );
+
+  const left=
+  20+
+  (
+    50-20
+  )*
+  eased;
+
+  const bottom=
+  12+
+  28*t;
+
+  const scale=
+  1.02-
+  .18*t;
+
+
+  person.style.left=
+  left+"%";
+
+  person.style.bottom=
+  bottom+"%";
+
+  person.style.transform=
+  `translateX(-50%)
+   scale(${scale})`;
+
+}
+
+
+/*
+Park & Walk
+
+The car moves to the right,
+drops lower, shrinks, and fades
+while the player passes on the left.
+*/
 
 function updateParkDepth(){
 
-  const t =
-  momentum / 100;
+  const t=
+  momentum/100;
 
 
-  const store =
+  const store=
   $("#environment .store");
 
 
-  const car =
+  const car=
   $("#car");
 
 
   $("#environment")
-  .style
-  .transform =
+  .style.transform=
   "scale(1)";
 
 
   if(store){
 
-    store
-    .style
-    .transform =
+    store.style.transform=
     `translateX(-50%)
-    scale(${1 + t * .34})`;
+     scale(${1+t*.34})`;
 
-
-    store
-    .style
-    .top =
-    `${5 - t * 1.5}%`;
+    store.style.top=
+    `${5-t*1.5}%`;
 
   }
 
 
   if(car){
 
-    car
-    .style
-    .transform =
+    car.style.left=
+    `${66+t*6}%`;
+
+    car.style.transform=
     `translateX(-50%)
-    scale(${1 - t * .52})`;
+     scale(${1-t*.62})`;
 
+    car.style.top=
+    `${53+t*17}%`;
 
-    car
-    .style
-    .top =
-    `${57 + t * 9}%`;
-
-
-    car
-    .style
-    .opacity =
+    car.style.opacity=
     String(
-      1 - t * .45
+      1-t*.58
     );
 
   }
@@ -3416,90 +1795,75 @@ function updateParkDepth(){
     ".parkingLine"
   )
   .forEach(
+    (
+      line,
+      index
+    )=>{
 
-    (line,index)=>{
+      const drift=
+      9+
+      index*4;
 
-      const drift =
-      8 + index * 3;
+      line.style.translate=
+      `0 ${t*drift}px`;
 
-
-      line
-      .style
-      .translate =
-      `0 ${t * drift}px`;
-
-
-      line
-      .style
-      .opacity =
+      line.style.opacity=
       String(
-        1 - t * .25
+        1-t*.28
       );
 
     }
-
   );
 
 
-  $("#person")
-  .style
-  .bottom =
-  `${24 + t * 22}%`;
-
-
-  $("#person")
-  .style
-  .transform =
-  `translateX(-50%)
-  scale(${1 - t * .18})`;
+  playerRoute(
+    t
+  );
 
 }
 
 
-/* =========================
-   STOVE DEPTH
-========================= */
+/*
+Off & Out
+
+The stove uses the same separated
+lane model as the car.
+*/
 
 function updateStoveDepth(){
 
-  const t =
-  momentum / 100;
+  const t=
+  momentum/100;
 
 
-  const stove =
+  const stove=
   $("#stove");
 
 
-  const exit =
+  const exit=
   $("#environment .exitDoor");
 
 
   $("#environment")
-  .style
-  .transform =
+  .style.transform=
   "scale(1)";
 
 
   if(stove){
 
-    stove
-    .style
-    .transform =
+    stove.style.left=
+    `${66+t*6}%`;
+
+    stove.style.transform=
     `translateX(-50%)
-    scale(${1 - t * .48})`;
+     scale(${1-t*.58})`;
 
+    stove.style.top=
+    `${45+t*19}%`;
 
-    stove
-    .style
-    .top =
-    `${48 + t * 12}%`;
-
-
-    stove
-    .style
-    .opacity =
+    stove.style.opacity=
     String(
-      1 - t * .48
+      1-t*.58
     );
 
   }
@@ -3507,50 +1871,31 @@ function updateStoveDepth(){
 
   if(exit){
 
-    exit
-    .style
-    .transform =
+    exit.style.transform=
     `translateX(-50%)
-    scale(${1 + t * .38})`;
+     scale(${1+t*.38})`;
 
-
-    exit
-    .style
-    .top =
-    `${6 - t * 2}%`;
+    exit.style.top=
+    `${6-t*2}%`;
 
   }
 
 
-  $("#person")
-  .style
-  .bottom =
-  `${24 + t * 22}%`;
-
-
-  $("#person")
-  .style
-  .transform =
-  `translateX(-50%)
-  scale(${1 - t * .16})`;
+  playerRoute(
+    t
+  );
 
 }
 
 
-/* =========================
-   WALK
-========================= */
-
 function startWalking(){
 
   if(
-    phase !== "ready" ||
+    phase!=="ready" ||
     hold ||
-    momentum >= 100
+    momentum>=100
   ){
-
     return false;
-
   }
 
 
@@ -3558,9 +1903,8 @@ function startWalking(){
     recoveredAfterCheck
   ){
 
-    recoveredAfterCheck =
+    recoveredAfterCheck=
     false;
-
 
     recoveryCount++;
 
@@ -3577,11 +1921,11 @@ function startWalking(){
   }
 
 
-  phase =
+  phase=
   "moving";
 
 
-  hold =
+  hold=
   true;
 
 
@@ -3589,8 +1933,7 @@ function startWalking(){
 
 
   $("#person")
-  .classList
-  .add(
+  .classList.add(
     "walking"
   );
 
@@ -3599,25 +1942,25 @@ function startWalking(){
 
 
   $("#phaseHint")
-  .textContent =
+  .textContent=
   "MOVING";
 
 
   setControlsForPhase();
 
 
-  walkTimer =
+  walkTimer=
   setInterval(()=>{
 
-    momentum =
+    momentum=
     Math.min(
       100,
-      momentum + 2.2
+      momentum+2.2
     );
 
 
     if(
-      current === "car"
+      current==="car"
     ){
 
       updateParkDepth();
@@ -3626,7 +1969,7 @@ function startWalking(){
 
 
     else if(
-      current === "stove"
+      current==="stove"
     ){
 
       updateStoveDepth();
@@ -3637,27 +1980,25 @@ function startWalking(){
     else{
 
       $("#person")
-      .style
-      .bottom =
+      .style.bottom=
       (
-        24 +
-        momentum * .15
-      ) + "%";
+        24+
+        momentum*.15
+      )+"%";
 
 
       $("#environment")
-      .style
-      .transform =
+      .style.transform=
       `scale(${
-        1 -
-        momentum * .0019
+        1-
+        momentum*.0019
       })`;
 
     }
 
 
     if(
-      momentum >= 50 &&
+      momentum>=50 &&
       !midpointShown
     ){
 
@@ -3670,7 +2011,7 @@ function startWalking(){
 
 
     if(
-      momentum >= 100
+      momentum>=100
     ){
 
       completeMission();
@@ -3689,16 +2030,14 @@ function startWalking(){
 function stopWalking(){
 
   if(
-    phase !== "moving"
+    phase!=="moving"
   ){
 
-    movementPointerActive =
+    movementPointerActive=
     false;
 
-
-    touchMoveActive =
+    touchMoveActive=
     false;
-
 
     return;
 
@@ -3708,12 +2047,12 @@ function stopWalking(){
   stopMovement();
 
 
-  phase =
+  phase=
   "ready";
 
 
   $("#phaseHint")
-  .textContent =
+  .textContent=
   "READY";
 
 
@@ -3721,7 +2060,7 @@ function stopWalking(){
 
 
   if(
-    momentum < 100
+    momentum<100
   ){
 
     scheduleDoubt(
@@ -3733,26 +2072,20 @@ function stopWalking(){
 }
 
 
-/* =========================
-   RECHECK
-========================= */
-
 function recheck(source){
 
   if(
-    phase !== "ready" &&
-    phase !== "moving"
+    phase!=="ready" &&
+    phase!=="moving"
   ){
-
     return;
-
   }
 
 
   checks++;
 
 
-  recoveredAfterCheck =
+  recoveredAfterCheck=
   true;
 
 
@@ -3764,7 +2097,7 @@ function recheck(source){
   );
 
 
-  phase =
+  phase=
   "relief";
 
 
@@ -3779,16 +2112,15 @@ function recheck(source){
 
 
   $("#person")
-  .classList
-  .add(
+  .classList.add(
     "lookback"
   );
 
 
-  urge =
+  urge=
   Math.max(
     14,
-    urge - 28
+    urge-28
   );
 
 
@@ -3799,52 +2131,44 @@ function recheck(source){
 
 
   $("#phaseHint")
-  .textContent =
+  .textContent=
   "RELIEF";
 
 
   if(
-    source === "fob"
+    source==="fob"
   ){
 
-    const beep =
+    const beep=
     $("#beep");
 
 
-    beep.textContent =
+    beep.textContent=
     "BEEP • RELIEF";
 
 
-    beep
-    .classList
-    .add(
+    beep.classList.add(
       "show"
     );
 
 
     $("#environment")
-    .classList
-    .add(
+    .classList.add(
       "reliefFlash"
     );
 
 
-    feedbackTimer =
+    feedbackTimer=
     setTimeout(()=>{
 
-      beep
-      .classList
-      .remove(
+      beep.classList.remove(
         "show"
       );
 
-
       $("#environment")
-      .classList
-      .remove(
+      .classList.remove(
         "reliefFlash"
       );
-
 
     },600);
 
@@ -3852,7 +2176,7 @@ function recheck(source){
 
 
   if(
-    source === "stove"
+    source==="stove"
   ){
 
     flashLock(
@@ -3861,21 +2185,18 @@ function recheck(source){
 
 
     $("#environment")
-    .classList
-    .add(
+    .classList.add(
       "reliefFlash"
     );
 
 
-    feedbackTimer =
+    feedbackTimer=
     setTimeout(()=>{
 
       $("#environment")
-      .classList
-      .remove(
+      .classList.remove(
         "reliefFlash"
       );
-
 
     },600);
 
@@ -3883,12 +2204,12 @@ function recheck(source){
 
 
   $("#title")
-  .textContent =
+  .textContent=
   "Relief landed.";
 
 
   $("#copy")
-  .textContent =
+  .textContent=
   "For a moment, the question feels answered.";
 
 
@@ -3897,62 +2218,52 @@ function recheck(source){
   );
 
 
-  reliefTimer =
+  reliefTimer=
   setTimeout(()=>{
 
     $("#person")
-    .classList
-    .remove(
+    .classList.remove(
       "lookback"
     );
 
 
-    const carQuestions = [
-
+    const carQuestions=[
       "Okay... but did ALL the doors lock?",
-
       "Was that definitely your car that beeped?"
-
     ];
 
 
-    const doorQuestions = [
-
+    const doorQuestions=[
       "Okay... but did you pull it closed tightly enough?",
-
       "What if the deadbolt didn't fully catch?"
-
     ];
 
 
-    const stoveQuestions = [
-
+    const stoveQuestions=[
       "Okay... but was every burner really off?",
-
       "What if you looked at the wrong knob?"
-
     ];
 
 
-    let questions =
+    let questions=
     doorQuestions;
 
 
     if(
-      current === "car"
+      current==="car"
     ){
 
-      questions =
+      questions=
       carQuestions;
 
     }
 
 
     if(
-      current === "stove"
+      current==="stove"
     ){
 
-      questions =
+      questions=
       stoveQuestions;
 
     }
@@ -3962,14 +2273,15 @@ function recheck(source){
 
 
     if(
-      checks <= detailedRecheckLimit
+      checks<=
+      detailedRecheckLimit
     ){
 
-      question =
+      question=
       questions[
         Math.min(
-          checks - 1,
-          questions.length - 1
+          checks-1,
+          questions.length-1
         )
       ];
 
@@ -3978,7 +2290,7 @@ function recheck(source){
 
     else{
 
-      question =
+      question=
       "The loop is asking for certainty again.";
 
     }
@@ -3989,17 +2301,17 @@ function recheck(source){
     );
 
 
-    urge =
+    urge=
     Math.min(
       96,
-      urge + 21
+      urge+21
     );
 
 
     updateMeters();
 
 
-    phase =
+    phase=
     "ready";
 
 
@@ -4007,31 +2319,25 @@ function recheck(source){
 
 
     $("#phaseHint")
-    .textContent =
+    .textContent=
     "DOUBT";
 
 
     $("#title")
-    .textContent =
-
-    checks <= detailedRecheckLimit
-
+    .textContent=
+    checks<=detailedRecheckLimit
     ? "Doubt moved the finish line."
-
     : "Same loop. New request.";
 
 
     $("#copy")
-    .textContent =
-
-    checks <= detailedRecheckLimit
-
+    .textContent=
+    checks<=detailedRecheckLimit
     ? "The question changed. Your destination didn't."
-
     : "You don't have to solve the next question before moving.";
 
 
-    reliefTimer =
+    reliefTimer=
     null;
 
 
@@ -4040,33 +2346,28 @@ function recheck(source){
 }
 
 
-/* =========================
-   COMPLETE
-========================= */
-
 function completeMission(){
 
   stopEverything();
 
 
-  phase =
+  phase=
   "complete";
 
 
-  const earned =
+  const earned=
   30;
 
 
-  xp +=
+  xp+=
   earned;
 
 
   updateXP();
 
 
-  localStorage
-  .setItem(
-    "completed_" + current,
+  localStorage.setItem(
+    "completed_"+current,
     "yes"
   );
 
@@ -4075,24 +2376,15 @@ function completeMission(){
 
 
   $("#xpEarned")
-  .textContent =
+  .textContent=
   earned;
 
 
   $("#result")
-  .textContent =
-
-  checks === 0
-
+  .textContent=
+  checks===0
   ? "You reached the destination while uncertainty was still allowed to exist."
-
-  : `You noticed the pull to check and returned to moving forward ${
-      recoveryCount
-    } ${
-      recoveryCount === 1
-      ? "time"
-      : "times"
-    }. The goal was movement, not a perfect run.`;
+  : `You noticed the pull to check and returned to moving forward ${recoveryCount} ${recoveryCount===1 ? "time" : "times"}. The goal was movement, not a perfect run.`;
 
 
   announce(
@@ -4107,56 +2399,52 @@ function completeMission(){
 }
 
 
-/* =========================
-   END SESSION
-========================= */
-
 function endSession(){
 
   stopEverything();
 
 
-  current =
+  current=
   null;
 
 
-  phase =
+  phase=
   "idle";
 
 
-  momentum =
+  momentum=
   0;
 
 
-  urge =
+  urge=
   46;
 
 
-  checks =
+  checks=
   0;
 
 
-  thoughtIndex =
+  thoughtIndex=
   0;
 
 
-  midpointShown =
+  midpointShown=
   false;
 
 
-  recoveredAfterCheck =
+  recoveredAfterCheck=
   false;
 
 
-  recoveryCount =
+  recoveryCount=
   0;
 
 
-  urgeWavePhase =
+  urgeWavePhase=
   0;
 
 
-  urgePeakCueShown =
+  urgePeakCueShown=
   false;
 
 
@@ -4178,9 +2466,7 @@ function endSession(){
 }
 
 
-/* =========================
-   NAVIGATION
-========================= */
+/* NAVIGATION */
 
 $("#enter")
 .addEventListener(
@@ -4197,7 +2483,6 @@ $("#checking")
   ()=>{
 
     updateMissionCompletionUI();
-
 
     show(
       "missionSelect"
@@ -4220,17 +2505,13 @@ $$(
   ".missionCard[data-mission]"
 )
 .forEach(
-
-  button =>
-
-  button
-  .addEventListener(
+  button=>
+  button.addEventListener(
     "click",
     ()=>loadMission(
       button.dataset.mission
     )
   )
-
 );
 
 
@@ -4240,7 +2521,6 @@ $("#continueBtn")
   ()=>{
 
     updateMissionCompletionUI();
-
 
     show(
       "missionSelect"
@@ -4253,39 +2533,30 @@ $("#continueBtn")
 $("#doneBtn")
 .addEventListener(
   "click",
-  ()=>{
-
-    endSession();
-
-  }
+  endSession
 );
 
 
-/* =========================
-   MOBILE SAFE TAP
-========================= */
+/* SAFE TOUCH TAP */
 
 function protectTap(
   element,
   action
 ){
 
-  let touchTriggered =
+  let touchTriggered=
   false;
 
 
-  element
-  .addEventListener(
+  element.addEventListener(
     "touchstart",
     event=>{
 
       event.preventDefault();
 
-
       event.stopPropagation();
 
-
-      touchTriggered =
+      touchTriggered=
       true;
 
     },
@@ -4295,23 +2566,20 @@ function protectTap(
   );
 
 
-  element
-  .addEventListener(
+  element.addEventListener(
     "touchend",
     event=>{
 
       event.preventDefault();
 
-
       event.stopPropagation();
-
 
       action();
 
 
       setTimeout(()=>{
 
-        touchTriggered =
+        touchTriggered=
         false;
 
       },400);
@@ -4323,15 +2591,13 @@ function protectTap(
   );
 
 
-  element
-  .addEventListener(
+  element.addEventListener(
     "touchcancel",
     event=>{
 
       event.preventDefault();
 
-
-      touchTriggered =
+      touchTriggered=
       false;
 
     },
@@ -4341,19 +2607,14 @@ function protectTap(
   );
 
 
-  element
-  .addEventListener(
+  element.addEventListener(
     "contextmenu",
-    event=>{
-
-      event.preventDefault();
-
-    }
+    event=>
+    event.preventDefault()
   );
 
 
-  element
-  .addEventListener(
+  element.addEventListener(
     "click",
     event=>{
 
@@ -4362,7 +2623,6 @@ function protectTap(
       ){
 
         event.preventDefault();
-
 
         return;
 
@@ -4376,8 +2636,6 @@ function protectTap(
 
 }
 
-
-/* PROTECTED CONTROLS */
 
 protectTap(
   $("#missionExit"),
@@ -4398,7 +2656,7 @@ protectTap(
   ()=>{
 
     if(
-      phase === "lock"
+      phase==="lock"
     ){
 
       initialAction();
@@ -4422,7 +2680,7 @@ protectTap(
   ()=>{
 
     if(
-      phase === "lock"
+      phase==="lock"
     ){
 
       initialAction();
@@ -4441,42 +2699,36 @@ protectTap(
 );
 
 
-/* =========================
-   HOLD TO MOVE — TOUCH
-========================= */
+/* HOLD TO MOVE */
 
-const forward =
+const forward=
 $("#forwardBtn");
 
 
-forward
-.addEventListener(
+forward.addEventListener(
   "touchstart",
   event=>{
 
     event.preventDefault();
 
-
     event.stopPropagation();
 
 
     if(
-      phase === "lock"
+      phase==="lock"
     ){
 
       initialAction();
 
-
-      touchMoveActive =
+      touchMoveActive=
       false;
-
 
       return;
 
     }
 
 
-    touchMoveActive =
+    touchMoveActive=
     startWalking();
 
   },
@@ -4486,27 +2738,21 @@ forward
 );
 
 
-forward
-.addEventListener(
+forward.addEventListener(
   "touchmove",
-  event=>{
-
-    event.preventDefault();
-
-  },
+  event=>
+  event.preventDefault(),
   {
     passive:false
   }
 );
 
 
-forward
-.addEventListener(
+forward.addEventListener(
   "touchend",
   event=>{
 
     event.preventDefault();
-
 
     event.stopPropagation();
 
@@ -4520,7 +2766,7 @@ forward
     }
 
 
-    touchMoveActive =
+    touchMoveActive=
     false;
 
   },
@@ -4530,16 +2776,13 @@ forward
 );
 
 
-forward
-.addEventListener(
+forward.addEventListener(
   "touchcancel",
   event=>{
 
     event.preventDefault();
 
-
     releaseInterruptedHold();
-
 
   },
   {
@@ -4548,32 +2791,23 @@ forward
 );
 
 
-forward
-.addEventListener(
+forward.addEventListener(
   "contextmenu",
-  event=>{
-
-    event.preventDefault();
-
-  }
+  event=>
+  event.preventDefault()
 );
 
 
-/* =========================
-   DESKTOP FALLBACK
-========================= */
+/* DESKTOP FALLBACK */
 
-forward
-.addEventListener(
+forward.addEventListener(
   "pointerdown",
   event=>{
 
     if(
-      event.pointerType === "touch"
+      event.pointerType==="touch"
     ){
-
       return;
-
     }
 
 
@@ -4581,22 +2815,20 @@ forward
 
 
     if(
-      phase === "lock"
+      phase==="lock"
     ){
 
       initialAction();
 
-
-      movementPointerActive =
+      movementPointerActive=
       false;
-
 
       return;
 
     }
 
 
-    movementPointerActive =
+    movementPointerActive=
     startWalking();
 
   }
@@ -4609,25 +2841,20 @@ forward
   "pointerleave"
 ]
 .forEach(
-
-  type =>
-
-  forward
-  .addEventListener(
+  type=>
+  forward.addEventListener(
     type,
     event=>{
 
       if(
-        event.pointerType === "touch" ||
+        event.pointerType==="touch" ||
         !movementPointerActive
       ){
-
         return;
-
       }
 
 
-      movementPointerActive =
+      movementPointerActive=
       false;
 
 
@@ -4635,38 +2862,24 @@ forward
 
     }
   )
-
 );
 
 
-/* =========================
-   IOS INTERRUPTION SAFETY
-========================= */
+/* IOS INTERRUPTION SAFETY */
 
-window
-.addEventListener(
+window.addEventListener(
   "blur",
-  ()=>{
-
-    releaseInterruptedHold();
-
-  }
+  releaseInterruptedHold
 );
 
 
-window
-.addEventListener(
+window.addEventListener(
   "pagehide",
-  ()=>{
-
-    releaseInterruptedHold();
-
-  }
+  releaseInterruptedHold
 );
 
 
-document
-.addEventListener(
+document.addEventListener(
   "visibilitychange",
   ()=>{
 
@@ -4682,40 +2895,26 @@ document
 );
 
 
-/* =========================
-   SAFARI / IOS PROTECTION
-========================= */
+/* SAFARI / IOS PROTECTION */
 
-document
-.addEventListener(
+document.addEventListener(
   "contextmenu",
-  event=>{
-
-    event.preventDefault();
-
-  }
+  event=>
+  event.preventDefault()
 );
 
 
-document
-.addEventListener(
+document.addEventListener(
   "selectstart",
-  event=>{
-
-    event.preventDefault();
-
-  }
+  event=>
+  event.preventDefault()
 );
 
 
-document
-.addEventListener(
+document.addEventListener(
   "dragstart",
-  event=>{
-
-    event.preventDefault();
-
-  }
+  event=>
+  event.preventDefault()
 );
 
 
@@ -4725,34 +2924,24 @@ document
   "gestureend"
 ]
 .forEach(
-
-  type =>
-
-  document
-  .addEventListener(
+  type=>
+  document.addEventListener(
     type,
-    event=>{
-
-      event.preventDefault();
-
-    },
+    event=>
+    event.preventDefault(),
     {
       passive:false
     }
   )
-
 );
 
 
-/* =========================
-   STARTUP
-========================= */
+/* STARTUP */
 
 updateXP();
 
 updateMissionCompletionUI();
 
 </script>
-
 </body>
 </html>
