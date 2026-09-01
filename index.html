@@ -1,22 +1,12 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-
 <meta charset="utf-8">
-
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-
-<meta
-  name="theme-color"
-  content="#07101c">
-
-<title>UNCERTAIN — Checking District v10.17</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#07101c">
+<title>UNCERTAIN — Checking District v10.18</title>
 
 <style>
-
 :root{
   --bg:#07101c;
   --panel:#0b1523ee;
@@ -86,13 +76,7 @@ button{
   top:0;
   left:0;
   right:0;
-  padding:
-  max(
-    12px,
-    env(safe-area-inset-top)
-  )
-  12px
-  8px;
+  padding:max(12px,env(safe-area-inset-top)) 12px 8px;
   display:flex;
   justify-content:space-between;
   pointer-events:none
@@ -566,6 +550,135 @@ button{
 }
 
 
+/* DRIVEWAY */
+
+.driveway{
+  position:absolute;
+  left:34%;
+  top:36%;
+  width:64%;
+  height:70%;
+  background:
+  linear-gradient(
+    160deg,
+    #3b4651,
+    #1c252e
+  );
+  clip-path:
+  polygon(
+    24% 0,
+    58% 0,
+    100% 100%,
+    0 100%
+  );
+  z-index:2
+}
+
+.drivewayEdge{
+  position:absolute;
+  top:37%;
+  height:66%;
+  width:4px;
+  background:#d9e1e833;
+  z-index:3
+}
+
+.drivewayEdge.left{
+  left:31%;
+  transform:rotate(7deg)
+}
+
+.drivewayEdge.right{
+  right:5%;
+  transform:rotate(-7deg)
+}
+
+.drivewayVehicle{
+  position:absolute;
+  z-index:9;
+  left:72%;
+  top:62%;
+  width:180px;
+  height:82px;
+  transform:
+  translateX(-50%)
+  scale(.78);
+  transform-origin:50% 60%;
+  border-radius:36px 40px 18px 18px;
+  background:
+  linear-gradient(
+    #8093aa,
+    #566a83
+  );
+  border:7px solid #101722;
+  transition:
+  transform .12s linear,
+  top .12s linear,
+  left .12s linear,
+  opacity .12s linear
+}
+
+.drivewayVehicle .carWindow{
+  left:40px;
+  width:96px
+}
+
+.drivewayVehicle:before,
+.drivewayVehicle:after{
+  content:"";
+  position:absolute;
+  bottom:-17px;
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  background:#0a0d12;
+  border:6px solid #394554
+}
+
+.drivewayVehicle:before{
+  left:18px
+}
+
+.drivewayVehicle:after{
+  right:18px
+}
+
+.vehicleTarget{
+  position:absolute;
+  z-index:7;
+  left:72%;
+  top:60%;
+  width:120px;
+  height:120px;
+  transform:translateX(-50%);
+  border-radius:50%;
+  background:
+  radial-gradient(
+    circle,
+    #74e7c53d,
+    transparent 68%
+  );
+  pointer-events:none
+}
+
+.doorRouteLabel{
+  position:absolute;
+  z-index:11;
+  left:50%;
+  top:47%;
+  transform:translateX(-50%);
+  padding:6px 9px;
+  border-radius:999px;
+  background:#07141ecc;
+  border:1px solid #74e7c544;
+  color:#a9f1db;
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:.08em;
+  pointer-events:none
+}
+
+
 /* PARKING */
 
 .parkingGround{
@@ -659,6 +772,9 @@ button{
   top:78%;
   transform:rotate(14deg)
 }
+
+
+/* CARS */
 
 .car{
   position:absolute;
@@ -822,6 +938,9 @@ button{
   background:#252f39;
   border-top:10px solid #586574
 }
+
+
+/* STOVE */
 
 .stove{
   position:absolute;
@@ -1275,7 +1394,6 @@ button{
   pointer-events:none;
   display:none;
   place-items:center;
-
   background:
 
   radial-gradient(
@@ -1411,7 +1529,7 @@ button{
 }
 
 
-/* BOTTOM GAME PANEL */
+/* GAME PANEL */
 
 .gamePanel{
   position:absolute;
@@ -1550,7 +1668,7 @@ button{
 }
 
 
-/* SMALLER PHONES */
+/* SHORT PHONES */
 
 @media(max-height:700px){
 
@@ -1600,7 +1718,7 @@ button{
 }
 
 
-/* REDUCED MOTION */
+/* ACCESSIBILITY */
 
 @media(prefers-reduced-motion:reduce){
 
@@ -1861,7 +1979,6 @@ button{
   id="mission"
   class="screen">
 
-
   <button
     type="button"
     id="missionExit"
@@ -1877,7 +1994,6 @@ button{
     id="scene"
     class="scene">
 
-
     <div class="skyGlow"></div>
 
     <div class="ground"></div>
@@ -1885,7 +2001,6 @@ button{
     <div class="path"></div>
 
     <div class="destinationGlow"></div>
-
 
     <div id="environment"></div>
 
@@ -2260,16 +2375,16 @@ document.querySelectorAll(s);
 
 const clamp=
 (
-  number,
-  minimum,
-  maximum
+  n,
+  a,
+  b
 )=>
 
 Math.max(
-  minimum,
+  a,
   Math.min(
-    maximum,
-    number
+    b,
+    n
   )
 );
 
@@ -2405,6 +2520,14 @@ door:{
 
   env:
 
+  '<div class="driveway"></div>'+
+
+  '<div class="drivewayEdge left"></div>'+
+
+  '<div class="drivewayEdge right"></div>'+
+
+  '<div class="vehicleTarget"></div>'+
+
   '<div class="houseShell">'+
 
   '<div class="roof"></div>'+
@@ -2422,6 +2545,20 @@ door:{
   '<div class="knob"></div>'+
 
   '</div>'+
+
+  '</div>'+
+
+  '<div class="drivewayVehicle" id="drivewayVehicle">'+
+
+  '<div class="carWindow"></div>'+
+
+  '<div class="carLight"></div>'+
+
+  '</div>'+
+
+  '<div class="doorRouteLabel">'+
+
+  'DRIVEWAY → VEHICLE'+
 
   '</div>'
 
@@ -3186,7 +3323,7 @@ function setControlsForPhase(){
 
 
 
-/* DEPTH */
+/* DEPTH RESET */
 
 function resetDepth(){
 
@@ -3295,6 +3432,58 @@ function resetDepth(){
   }
 
 
+  const house=
+  environment.querySelector(
+    ".houseShell"
+  );
+
+
+  if(house){
+
+
+    house.style.transform=
+    "translateX(-50%) scale(1)";
+
+
+    house.style.top=
+    "11%";
+
+
+    house.style.opacity=
+    "1";
+
+
+  }
+
+
+  const drivewayVehicle=
+  environment.querySelector(
+    "#drivewayVehicle"
+  );
+
+
+  if(drivewayVehicle){
+
+
+    drivewayVehicle.style.left=
+    "72%";
+
+
+    drivewayVehicle.style.top=
+    "62%";
+
+
+    drivewayVehicle.style.transform=
+    "translateX(-50%) scale(.78)";
+
+
+    drivewayVehicle.style.opacity=
+    "1";
+
+
+  }
+
+
   environment
   .querySelectorAll(
     ".parkingLine"
@@ -3327,6 +3516,26 @@ function positionPlayerAtStart(){
 
 
   if(
+    current==="door"
+  ){
+
+
+    person.style.left=
+    "49%";
+
+
+    person.style.bottom=
+    "43%";
+
+
+    person.style.transform=
+    "translateX(-50%) scale(.86)";
+
+
+  }
+
+
+  else if(
     current==="car" ||
     current==="stove"
   ){
@@ -3704,7 +3913,7 @@ function initialAction(){
 
   current==="door"
 
-  ? "Walk away from the house. Doubt may follow."
+  ? "Walk down the driveway toward your vehicle. Doubt may follow."
 
   : current==="car"
 
@@ -3925,7 +4134,125 @@ function scheduleDoubt(
 
 
 
-/* PLAYER ROUTE */
+/* LOCK & LEAVE ROUTE */
+
+function updateDoorDepth(){
+
+
+  const t=
+  momentum/100;
+
+
+  const person=
+  $("#person");
+
+
+  const house=
+  $("#environment .houseShell");
+
+
+  const vehicle=
+  $("#drivewayVehicle");
+
+
+  const smooth=
+  x=>
+  x*x*(3-2*x);
+
+
+  const progress=
+  smooth(
+    t
+  );
+
+
+  person.style.left=
+  (
+    49+
+    20*progress
+  )+"%";
+
+
+  person.style.bottom=
+  (
+    43-
+    28*progress
+  )+"%";
+
+
+  person.style.transform=
+  `translateX(-50%) scale(${
+    .86+
+    .18*progress
+  })`;
+
+
+  if(house){
+
+
+    house.style.transform=
+    `translateX(-50%) scale(${
+      1-
+      .30*progress
+    })`;
+
+
+    house.style.top=
+    `${
+      11-
+      5*progress
+    }%`;
+
+
+    house.style.opacity=
+    String(
+      Math.max(
+        .38,
+        1-
+        .50*progress
+      )
+    );
+
+
+  }
+
+
+  if(vehicle){
+
+
+    vehicle.style.left=
+    `${
+      72-
+      3*progress
+    }%`;
+
+
+    vehicle.style.top=
+    `${
+      62+
+      4*progress
+    }%`;
+
+
+    vehicle.style.transform=
+    `translateX(-50%) scale(${
+      .78+
+      .36*progress
+    })`;
+
+
+    vehicle.style.opacity=
+    "1";
+
+
+  }
+
+
+}
+
+
+
+/* OTHER MISSION ROUTES */
 
 function playerRoute(t){
 
@@ -3991,8 +4318,6 @@ function playerRoute(t){
 }
 
 
-
-/* PARK DEPTH */
 
 function updateParkDepth(){
 
@@ -4099,8 +4424,6 @@ function updateParkDepth(){
 }
 
 
-
-/* STOVE DEPTH */
 
 function updateStoveDepth(){
 
@@ -4268,6 +4591,17 @@ function startWalking(){
 
 
     if(
+      current==="door"
+    ){
+
+
+      updateDoorDepth();
+
+
+    }
+
+
+    else if(
       current==="car"
     ){
 
@@ -4284,28 +4618,6 @@ function startWalking(){
 
 
       updateStoveDepth();
-
-
-    }
-
-
-    else{
-
-
-      $("#person")
-      .style.bottom=
-      (
-        24+
-        momentum*.15
-      )+"%";
-
-
-      $("#environment")
-      .style.transform=
-      `scale(${
-        1-
-        momentum*.0019
-      })`;
 
 
     }
@@ -4496,12 +4808,6 @@ function recheck(source){
   ]);
 
 
-  $("#person")
-  .classList.add(
-    "lookback"
-  );
-
-
   urge=
   Math.max(
     14,
@@ -4520,159 +4826,297 @@ function recheck(source){
   "RELIEF";
 
 
-  if(
-    source==="fob"
-  ){
-
-
-    const beep=
-    $("#beep");
-
-
-    beep.textContent=
-    "BEEP • RELIEF";
-
-
-    beep.classList.add(
-      "show"
-    );
-
-
-    feedbackTimer=
-    setTimeout(()=>{
-
-
-      beep.classList.remove(
-        "show"
-      );
-
-
-    },600);
-
-
-  }
-
-
-  if(
-    source==="stove"
-  ){
-
-
-    flashLock(
-      "LOOK • RELIEF"
-    );
-
-
-  }
-
-
   $("#title")
   .textContent=
-  "Relief landed.";
+
+  current==="door"
+
+  ? "Turning back..."
+
+  : "Relief landed.";
 
 
   $("#copy")
   .textContent=
-  "For a moment, the question feels answered.";
+
+  current==="door"
+
+  ? "The check pulls you back toward the house."
+
+  : "For a moment, the question feels answered.";
 
 
-  reliefTimer=
-  setTimeout(()=>{
+
+  const finishRelief=
+  ()=>{
 
 
-    $("#person")
-    .classList.remove(
+    if(
+      source==="fob"
+    ){
+
+
+      const beep=
+      $("#beep");
+
+
+      beep.textContent=
+      "BEEP • RELIEF";
+
+
+      beep.classList.add(
+        "show"
+      );
+
+
+      feedbackTimer=
+      setTimeout(()=>{
+
+
+        beep.classList.remove(
+          "show"
+        );
+
+
+      },600);
+
+
+    }
+
+
+    if(
+      source==="stove"
+    ){
+
+
+      flashLock(
+        "LOOK • RELIEF"
+      );
+
+
+    }
+
+
+    if(
+      current==="door"
+    ){
+
+
+      flashLock(
+        "CLICK • CHECKED AGAIN"
+      );
+
+
+    }
+
+
+    reliefTimer=
+    setTimeout(()=>{
+
+
+      $("#person")
+      .classList.remove(
+        "lookback",
+        "walking"
+      );
+
+
+      const questions=
+
+      current==="car"
+
+      ? [
+
+        "Okay... but did ALL the doors lock?",
+
+        "Was that definitely your car that beeped?"
+
+      ]
+
+      : current==="stove"
+
+      ? [
+
+        "Okay... but was every burner really off?",
+
+        "What if you looked at the wrong knob?"
+
+      ]
+
+      : [
+
+        "Okay... but did you pull it closed tightly enough?",
+
+        "What if the deadbolt didn't fully catch?"
+
+      ];
+
+
+      showDoubt(
+
+        checks<=2
+
+        ? questions[
+            Math.min(
+              checks-1,
+              questions.length-1
+            )
+          ]
+
+        : "The loop is asking for certainty again."
+
+      );
+
+
+      urge=
+      Math.min(
+        96,
+        urge+21
+      );
+
+
+      updateMeters();
+
+
+      phase=
+      "ready";
+
+
+      $("#phaseHint")
+      .textContent=
+      "DOUBT";
+
+
+      $("#title")
+      .textContent=
+
+      checks<=2
+
+      ? "Doubt moved the finish line."
+
+      : "Same loop. New request.";
+
+
+      $("#copy")
+      .textContent=
+
+      checks<=2
+
+      ? "The question changed. What matters didn't."
+
+      : "You don't have to solve the next question before moving.";
+
+
+    },650);
+
+
+  };
+
+
+
+  /*
+  Lock & Leave physically walks
+  the character back to the house.
+  */
+
+  if(
+    current==="door"
+  ){
+
+
+    const person=
+    $("#person");
+
+
+    person.classList.add(
+      "walking",
       "lookback"
     );
 
 
-    const questions=
-
-    current==="car"
-
-    ? [
-
-      "Okay... but did ALL the doors lock?",
-
-      "Was that definitely your car that beeped?"
-
-    ]
-
-    : current==="stove"
-
-    ? [
-
-      "Okay... but was every burner really off?",
-
-      "What if you looked at the wrong knob?"
-
-    ]
-
-    : [
-
-      "Okay... but did you pull it closed tightly enough?",
-
-      "What if the deadbolt didn't fully catch?"
-
-    ];
+    const startMomentum=
+    momentum;
 
 
-    showDoubt(
+    const frames=
+    18;
 
-      checks<=2
 
-      ? questions[
-          Math.min(
-            checks-1,
-            questions.length-1
-          )
-        ]
+    let frame=
+    0;
 
-      : "The loop is asking for certainty again."
 
+    const rewind=
+    setInterval(()=>{
+
+
+      frame++;
+
+
+      momentum=
+      Math.max(
+        0,
+        startMomentum*
+        (
+          1-
+          frame/frames
+        )
+      );
+
+
+      updateDoorDepth();
+
+
+      updateMeters();
+
+
+      if(
+        frame>=frames
+      ){
+
+
+        clearInterval(
+          rewind
+        );
+
+
+        momentum=
+        0;
+
+
+        updateDoorDepth();
+
+
+        person.classList.remove(
+          "walking"
+        );
+
+
+        finishRelief();
+
+
+      }
+
+
+    },38);
+
+
+  }
+
+
+  else{
+
+
+    $("#person")
+    .classList.add(
+      "lookback"
     );
 
 
-    urge=
-    Math.min(
-      96,
-      urge+21
-    );
+    finishRelief();
 
 
-    updateMeters();
-
-
-    phase=
-    "ready";
-
-
-    $("#phaseHint")
-    .textContent=
-    "DOUBT";
-
-
-    $("#title")
-    .textContent=
-
-    checks<=2
-
-    ? "Doubt moved the finish line."
-
-    : "Same loop. New request.";
-
-
-    $("#copy")
-    .textContent=
-
-    checks<=2
-
-    ? "The question changed. What matters didn't."
-
-    : "You don't have to solve the next question before moving.";
-
-
-  },800);
+  }
 
 
 }
@@ -4717,7 +5161,13 @@ function completeMission(){
 
   checks===0
 
-  ? "You reached the destination while uncertainty was still allowed to exist."
+  ? (
+      current==="door"
+
+      ? "You reached your vehicle and kept going while uncertainty was still allowed to exist."
+
+      : "You reached the destination while uncertainty was still allowed to exist."
+    )
 
   : `You noticed the pull to check and returned to moving forward ${recoveryCount} ${recoveryCount===1 ? "time" : "times"}. The goal was movement, not a perfect run.`;
 
@@ -4740,8 +5190,6 @@ function completeMission(){
 }
 
 
-
-/* END SESSION */
 
 function endSession(){
 
@@ -4787,6 +5235,7 @@ $("#enter")
 );
 
 
+
 $("#checking")
 .addEventListener(
   "click",
@@ -4805,6 +5254,7 @@ $("#checking")
 );
 
 
+
 $("#backMap")
 .addEventListener(
   "click",
@@ -4812,6 +5262,7 @@ $("#backMap")
     "map"
   )
 );
+
 
 
 $$(
@@ -4826,6 +5277,7 @@ $$(
     )
   )
 );
+
 
 
 $("#continueBtn")
@@ -4846,11 +5298,13 @@ $("#continueBtn")
 );
 
 
+
 $("#doneBtn")
 .addEventListener(
   "click",
   endSession
 );
+
 
 
 $("#missionExit")
@@ -4860,6 +5314,7 @@ $("#missionExit")
 );
 
 
+
 $("#checkBtn")
 .addEventListener(
   "click",
@@ -4867,6 +5322,7 @@ $("#checkBtn")
     "door"
   )
 );
+
 
 
 $("#fobLock")
@@ -4899,6 +5355,7 @@ $("#fobLock")
 
   }
 );
+
 
 
 $("#stoveControl")
@@ -4940,6 +5397,7 @@ const forward=
 $("#forwardBtn");
 
 
+
 forward.addEventListener(
   "touchstart",
   event=>{
@@ -4973,6 +5431,7 @@ forward.addEventListener(
 );
 
 
+
 forward.addEventListener(
   "touchmove",
   event=>{
@@ -4986,6 +5445,7 @@ forward.addEventListener(
     passive:false
   }
 );
+
 
 
 forward.addEventListener(
@@ -5016,6 +5476,7 @@ forward.addEventListener(
     passive:false
   }
 );
+
 
 
 forward.addEventListener(
@@ -5080,6 +5541,7 @@ forward.addEventListener(
 );
 
 
+
 [
   "pointerup",
   "pointercancel",
@@ -5125,10 +5587,12 @@ window.addEventListener(
 );
 
 
+
 window.addEventListener(
   "pagehide",
   releaseInterruptedHold
 );
+
 
 
 document.addEventListener(
@@ -5151,11 +5615,13 @@ document.addEventListener(
 );
 
 
+
 document.addEventListener(
   "contextmenu",
   event=>
   event.preventDefault()
 );
+
 
 
 document.addEventListener(
@@ -5165,11 +5631,13 @@ document.addEventListener(
 );
 
 
+
 document.addEventListener(
   "dragstart",
   event=>
   event.preventDefault()
 );
+
 
 
 [
