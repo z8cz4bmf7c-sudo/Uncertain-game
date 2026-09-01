@@ -1,93 +1,1279 @@
-<script>
-/*
- UNCERTAIN v10.16
- Single-paste upgrade for the current v10.11 index.html.
+<!doctype html>
+<html lang="en">
 
- Paste this entire block immediately BEFORE </body>.
- No extra files required.
-*/
+<head>
 
-(()=>{
-"use strict";
+<meta charset="utf-8">
 
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 
-/* VERSION */
+<meta
+  name="theme-color"
+  content="#07101c">
 
-document.title=
-"UNCERTAIN — Checking District v10.16";
+<title>UNCERTAIN — Checking District v10.17</title>
 
+<style>
 
-const scene=
-document.querySelector(
-  "#scene"
-);
+:root{
+  --bg:#07101c;
+  --panel:#0b1523ee;
+  --text:#f7fbff;
+  --muted:#aebbd0;
+  --accent:#74e7c5;
+  --line:#ffffff26;
+  --doubt:#d8b8e4
+}
 
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+  -webkit-touch-callout:none;
+  -webkit-user-select:none;
+  user-select:none
+}
 
-if(
-  !scene ||
-  document.querySelector(
-    "#v1016Upgrade"
+html,
+body{
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  overscroll-behavior:none;
+  background:#040912;
+  color:var(--text);
+  font-family:
+  system-ui,
+  -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  sans-serif
+}
+
+button{
+  font:inherit;
+  color:inherit;
+  -webkit-appearance:none;
+  appearance:none
+}
+
+#app{
+  height:100vh;
+  height:100dvh;
+  max-width:520px;
+  margin:auto;
+  position:relative;
+  overflow:hidden;
+  background:var(--bg);
+  touch-action:none
+}
+
+.screen{
+  display:none;
+  position:absolute;
+  inset:0
+}
+
+.screen.active{
+  display:block
+}
+
+.hud{
+  position:absolute;
+  z-index:90;
+  top:0;
+  left:0;
+  right:0;
+  padding:
+  max(
+    12px,
+    env(safe-area-inset-top)
   )
-){
-  return;
+  12px
+  8px;
+  display:flex;
+  justify-content:space-between;
+  pointer-events:none
+}
+
+.pill{
+  padding:8px 11px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:#07111de8;
+  font-size:12px;
+  font-weight:950
+}
+
+.btn{
+  width:100%;
+  min-height:58px;
+  border:0;
+  border-radius:17px;
+  background:#eef3f8;
+  color:#0c1420;
+  font-weight:950;
+  font-size:17px;
+  touch-action:manipulation
+}
+
+.btn.secondary{
+  margin-top:10px;
+  background:#152238;
+  color:#f7fbff;
+  border:1px solid #ffffff2a
+}
+
+.small{
+  font-size:12px;
+  line-height:1.4;
+  color:#aebbd0
+}
+
+.card{
+  background:
+  linear-gradient(
+    180deg,
+    #101d30f2,
+    #0b1625f2
+  );
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:16px;
+  box-shadow:0 18px 44px #0009
 }
 
 
-/* MARKER */
+/* START */
 
-const marker=
-document.createElement(
-  "div"
-);
+#start{
+  padding:92px 22px 26px;
+  background:
+  radial-gradient(
+    circle at 50% 25%,
+    #355271,
+    #111b2a 55%,
+    #060b13
+  )
+}
 
-marker.id=
-"v1016Upgrade";
+.logo{
+  font-size:13px;
+  letter-spacing:.25em;
+  font-weight:950;
+  color:#a9b7ca
+}
 
-marker.hidden=
-true;
+.hero{
+  font-size:53px;
+  line-height:.92;
+  margin:24px 0 16px;
+  font-weight:1000;
+  letter-spacing:-.055em
+}
 
-document.body
-.appendChild(
-  marker
-);
+.hero span{
+  color:var(--accent)
+}
+
+.startCard{
+  position:absolute;
+  left:16px;
+  right:16px;
+  bottom:max(
+    22px,
+    env(safe-area-inset-bottom)
+  )
+}
 
 
-/* NEW MOBILE UI */
+/* MAP */
 
-const style=
-document.createElement(
-  "style"
-);
+#map{
+  background:
+  linear-gradient(
+    145deg,
+    #29425f,
+    #112238 64%,
+    #07101c
+  )
+}
+
+.road{
+  position:absolute;
+  width:155%;
+  height:100px;
+  left:-30%;
+  top:49%;
+  transform:rotate(-18deg);
+  background:#46566c;
+  box-shadow:0 0 0 9px #1d2837
+}
+
+.road:after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:48px;
+  border-top:4px dashed #e8edf566
+}
+
+.node{
+  position:absolute;
+  border:2px solid #ffffff32;
+  background:#0b1729ed;
+  border-radius:23px;
+  padding:15px;
+  text-align:left;
+  box-shadow:0 16px 36px #0009;
+  touch-action:manipulation
+}
+
+.node strong{
+  display:block;
+  font-size:18px
+}
+
+.node small{
+  opacity:.72
+}
+
+#checking{
+  left:6%;
+  top:21%;
+  width:195px
+}
+
+.locked{
+  right:5%;
+  bottom:25%;
+  width:170px;
+  opacity:.48
+}
+
+.avatarMini{
+  position:absolute;
+  left:47%;
+  top:63%;
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  background:#eef3f8;
+  border:7px solid #405675
+}
+
+.mapInfo{
+  position:absolute;
+  left:14px;
+  right:14px;
+  bottom:max(
+    14px,
+    env(safe-area-inset-bottom)
+  );
+  padding:13px 15px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#081321d9
+}
 
 
-style.textContent=`
+/* MISSION SELECT */
 
-/* DOUBT PRESENCE */
+#missionSelect{
+  background:
+  radial-gradient(
+    circle at 50% 30%,
+    #274762,
+    #0b1625 65%
+  )
+}
+
+.selectWrap{
+  position:absolute;
+  inset:88px 14px 18px;
+  overflow:auto;
+  padding-bottom:30px
+}
+
+.missionCard{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:#0d192aef;
+  padding:17px;
+  text-align:left;
+  margin-bottom:12px;
+  min-height:112px;
+  touch-action:manipulation
+}
+
+.missionCard b{
+  display:block;
+  font-size:20px
+}
+
+.missionCard span{
+  display:block;
+  color:#b7c5d6;
+  margin-top:7px;
+  line-height:1.35
+}
+
+.tag{
+  font-size:11px!important;
+  color:var(--accent)!important;
+  font-weight:900;
+  letter-spacing:.08em
+}
+
+.completion{
+  min-height:15px;
+  font-size:11px!important;
+  color:var(--accent)!important;
+  font-weight:950!important
+}
+
+
+/* MISSION */
+
+#mission{
+  background:#0a111a
+}
+
+.missionExit{
+  position:absolute;
+  z-index:100;
+  left:12px;
+  top:max(
+    58px,
+    calc(
+      env(safe-area-inset-top) + 48px
+    )
+  );
+  min-width:82px;
+  min-height:46px;
+  padding:8px 13px;
+  border:1px solid #ffffff42;
+  border-radius:999px;
+  background:#08111bf2;
+  color:#f5f8fc;
+  font-size:12px;
+  font-weight:950;
+  touch-action:manipulation
+}
+
+.scene{
+  position:absolute;
+  z-index:1;
+  inset:0;
+  overflow:hidden;
+  background:
+  linear-gradient(
+    #24364b 0 47%,
+    #101923 47%
+  )
+}
+
+#environment{
+  position:absolute;
+  inset:0;
+  transition:
+  transform .12s linear,
+  filter .12s linear,
+  opacity .12s linear
+}
+
+.skyGlow{
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  height:38%;
+  background:
+  radial-gradient(
+    circle at 70% 16%,
+    #526d8a55,
+    transparent 30%
+  )
+}
+
+.ground{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:58%;
+  background:
+  linear-gradient(
+    #1f2b37,
+    #111923
+  )
+}
+
+.path{
+  position:absolute;
+  left:50%;
+  bottom:-4%;
+  width:56%;
+  height:60%;
+  transform:
+  translateX(-50%)
+  perspective(300px)
+  rotateX(58deg);
+  transform-origin:center bottom;
+  background:
+  linear-gradient(
+    90deg,
+    #334251,
+    #536578 50%,
+    #334251
+  );
+  clip-path:
+  polygon(
+    38% 0,
+    62% 0,
+    100% 100%,
+    0 100%
+  )
+}
+
+.destinationGlow{
+  position:absolute;
+  left:50%;
+  top:19%;
+  width:80px;
+  height:80px;
+  transform:translateX(-50%);
+  border-radius:50%;
+  background:
+  radial-gradient(
+    circle,
+    #74e7c555,
+    transparent 68%
+  );
+  animation:pulse 1.8s infinite alternate;
+  pointer-events:none
+}
+
+@keyframes pulse{
+  to{
+    transform:
+    translateX(-50%)
+    scale(1.15);
+    opacity:.65
+  }
+}
+
+
+/* HOUSE */
+
+.houseShell{
+  position:absolute;
+  left:50%;
+  top:11%;
+  transform:translateX(-50%);
+  width:310px;
+  height:270px
+}
+
+.houseBody{
+  position:absolute;
+  left:16px;
+  right:16px;
+  top:48px;
+  bottom:0;
+  background:
+  linear-gradient(
+    #47576a,
+    #303b49
+  );
+  border:6px solid #1b2735
+}
+
+.roof{
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  height:110px;
+  background:#202c3a;
+  clip-path:
+  polygon(
+    50% 0,
+    100% 54%,
+    92% 54%,
+    92% 100%,
+    8% 100%,
+    8% 54%,
+    0 54%
+  )
+}
+
+.window{
+  position:absolute;
+  top:92px;
+  width:55px;
+  height:70px;
+  background:#d2a55f;
+  border:6px solid #1b2735
+}
+
+.window.left{
+  left:38px
+}
+
+.window.right{
+  right:38px
+}
+
+.porch{
+  position:absolute;
+  left:50%;
+  bottom:-7px;
+  transform:translateX(-50%);
+  width:180px;
+  height:28px;
+  background:#1c2835
+}
+
+.door{
+  position:absolute;
+  left:50%;
+  bottom:20px;
+  transform:translateX(-50%);
+  width:112px;
+  height:172px;
+  background:
+  linear-gradient(
+    #2f4155,
+    #1b2a3a
+  );
+  border:7px solid #111a25
+}
+
+.knob{
+  position:absolute;
+  right:8px;
+  top:74px;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background:#e8eef5;
+  border:6px solid #6a7a8f
+}
+
+
+/* PARKING */
+
+.parkingGround{
+  position:absolute;
+  inset:34% 0 0;
+  background:
+  linear-gradient(
+    170deg,
+    #303b49,
+    #141c26
+  )
+}
+
+.store{
+  position:absolute;
+  left:50%;
+  top:5%;
+  transform:
+  translateX(-50%)
+  scale(1);
+  transform-origin:50% 100%;
+  width:305px;
+  height:178px;
+  background:
+  linear-gradient(
+    #54667a,
+    #3b4a5d
+  );
+  border:8px solid #223040;
+  transition:
+  transform .12s linear,
+  top .12s linear;
+  z-index:4
+}
+
+.store:before{
+  content:"DESTINATION";
+  position:absolute;
+  left:0;
+  right:0;
+  top:26px;
+  text-align:center;
+  font-weight:1000;
+  letter-spacing:.12em
+}
+
+.storeDoor{
+  position:absolute;
+  left:50%;
+  bottom:0;
+  transform:translateX(-50%);
+  width:82px;
+  height:96px;
+  background:#142638;
+  border:5px solid #71849a
+}
+
+.parkingLine{
+  position:absolute;
+  height:5px;
+  background:#edf3fa4a;
+  transition:
+  translate .12s linear,
+  opacity .12s linear
+}
+
+.line1{
+  width:65%;
+  left:-4%;
+  top:61%;
+  transform:rotate(-19deg)
+}
+
+.line2{
+  width:65%;
+  right:-13%;
+  top:61%;
+  transform:rotate(19deg)
+}
+
+.line3{
+  width:56%;
+  left:4%;
+  top:78%;
+  transform:rotate(-14deg)
+}
+
+.line4{
+  width:56%;
+  right:-3%;
+  top:78%;
+  transform:rotate(14deg)
+}
+
+.car{
+  position:absolute;
+  left:66%;
+  top:53%;
+  transform:
+  translateX(-50%)
+  scale(1);
+  width:192px;
+  height:86px;
+  border-radius:38px 42px 18px 18px;
+  background:
+  linear-gradient(
+    #8fa0b5,
+    #687a91
+  );
+  border:7px solid #101722;
+  z-index:8;
+  transition:
+  transform .12s linear,
+  top .12s linear,
+  left .12s linear,
+  opacity .12s linear
+}
+
+.carWindow{
+  position:absolute;
+  left:44px;
+  top:-8px;
+  width:104px;
+  height:44px;
+  background:#21354a;
+  clip-path:
+  polygon(
+    20% 100%,
+    35% 0,
+    78% 0,
+    100% 100%
+  )
+}
+
+.carLight{
+  position:absolute;
+  right:8px;
+  top:37px;
+  width:24px;
+  height:14px;
+  border-radius:8px;
+  background:#e9c978
+}
+
+.car:before,
+.car:after{
+  content:"";
+  position:absolute;
+  bottom:-18px;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  background:#0a0d12;
+  border:6px solid #394554
+}
+
+.car:before{
+  left:20px
+}
+
+.car:after{
+  right:20px
+}
+
+
+/* KITCHEN */
+
+.kitchen{
+  position:absolute;
+  inset:0
+}
+
+.kitchenWall{
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  height:49%;
+  background:
+  linear-gradient(
+    #435160,
+    #2d3947
+  )
+}
+
+.kitchenFloor{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:55%;
+  background:
+  repeating-linear-gradient(
+    90deg,
+    #222c36 0,
+    #222c36 52px,
+    #2d3944 53px,
+    #2d3944 56px
+  )
+}
+
+.exitDoor{
+  position:absolute;
+  left:50%;
+  top:6%;
+  transform:
+  translateX(-50%)
+  scale(1);
+  transform-origin:50% 100%;
+  width:125px;
+  height:220px;
+  background:
+  linear-gradient(
+    #30475a,
+    #172837
+  );
+  border:8px solid #172330;
+  z-index:5;
+  transition:
+  transform .12s linear,
+  top .12s linear
+}
+
+.exitDoor:before{
+  content:"EXIT";
+  position:absolute;
+  top:18px;
+  left:0;
+  right:0;
+  text-align:center;
+  font-size:12px;
+  font-weight:1000;
+  letter-spacing:.15em;
+  color:#99edcf
+}
+
+.exitHandle{
+  position:absolute;
+  right:13px;
+  top:104px;
+  width:27px;
+  height:27px;
+  border-radius:50%;
+  background:#d5dee7;
+  border:5px solid #6f8194
+}
+
+.counter{
+  position:absolute;
+  left:0;
+  right:0;
+  top:48%;
+  height:72px;
+  background:#252f39;
+  border-top:10px solid #586574
+}
+
+.stove{
+  position:absolute;
+  left:66%;
+  top:45%;
+  transform:
+  translateX(-50%)
+  scale(1);
+  width:220px;
+  height:145px;
+  background:
+  linear-gradient(
+    #6f7d8c,
+    #424e5b
+  );
+  border:7px solid #18222c;
+  border-radius:8px;
+  z-index:8;
+  transition:
+  transform .12s linear,
+  top .12s linear,
+  left .12s linear,
+  opacity .12s linear
+}
+
+.stoveTop{
+  position:absolute;
+  top:-42px;
+  left:-7px;
+  width:220px;
+  height:52px;
+  background:#1a222b;
+  border:7px solid #111820
+}
+
+.burner{
+  position:absolute;
+  top:-27px;
+  width:47px;
+  height:22px;
+  border-radius:50%;
+  border:5px solid #55616d;
+  background:#0c1117
+}
+
+.burner.one{
+  left:20px
+}
+
+.burner.two{
+  right:20px
+}
+
+.stovePanel{
+  position:absolute;
+  top:16px;
+  left:15px;
+  right:15px;
+  height:49px;
+  background:#27313b;
+  border-radius:5px
+}
+
+.stoveKnob{
+  position:absolute;
+  top:26px;
+  width:31px;
+  height:31px;
+  border-radius:50%;
+  background:#d9e1e8;
+  border:6px solid #697887
+}
+
+.stoveKnob.one{
+  left:29px
+}
+
+.stoveKnob.two{
+  left:76px
+}
+
+.stoveKnob.three{
+  right:76px
+}
+
+.stoveKnob.four{
+  right:29px
+}
+
+.stoveOven{
+  position:absolute;
+  left:27px;
+  right:27px;
+  bottom:15px;
+  height:56px;
+  background:#101820;
+  border:6px solid #2c3742
+}
+
+
+/* OBJECT CONTROLS */
+
+#keyfob,
+#stoveControlWrap{
+  position:absolute;
+  z-index:67;
+  right:15px;
+  bottom:188px;
+  width:92px;
+  min-height:110px;
+  padding:9px;
+  border-radius:22px;
+  background:#111923;
+  border:4px solid #748496;
+  text-align:center
+}
+
+#keyfob{
+  width:84px;
+  height:108px
+}
+
+#keyfob .ring{
+  width:19px;
+  height:19px;
+  border:4px solid #8fa0b5;
+  border-radius:50%;
+  margin:-24px auto 8px
+}
+
+#keyfob button,
+#stoveControl{
+  width:100%;
+  min-height:54px;
+  border:0;
+  border-radius:14px;
+  background:#e3eaf0;
+  color:#111827;
+  font-weight:1000;
+  touch-action:manipulation
+}
+
+#keyfob button{
+  font-size:22px
+}
+
+.disabled{
+  opacity:.45;
+  pointer-events:none
+}
+
+.stoveIndicator{
+  display:inline-block;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#d95d5d;
+  margin-right:4px
+}
+
+.stoveIndicator.off{
+  background:#6fe0ba
+}
+
+#beep{
+  position:absolute;
+  z-index:66;
+  right:104px;
+  bottom:236px;
+  padding:8px 11px;
+  border-radius:999px;
+  background:#07111de8;
+  border:1px solid #ffffff32;
+  font-weight:1000;
+  opacity:0;
+  transition:.12s
+}
+
+#beep.show{
+  opacity:1
+}
+
+.reliefFlash{
+  filter:brightness(1.16)
+}
+
+
+/* PLAYER */
+
+.person{
+  position:absolute;
+  z-index:18;
+  left:50%;
+  bottom:24%;
+  width:62px;
+  height:106px;
+  transform:translateX(-50%);
+  transition:
+  bottom .12s linear,
+  left .12s linear,
+  transform .12s linear
+}
+
+.person.lookback{
+  transform:
+  translateX(-50%)
+  translateX(-5px)
+  rotate(-4deg)
+}
+
+.shadow{
+  position:absolute;
+  left:50%;
+  bottom:-4px;
+  transform:translateX(-50%);
+  width:54px;
+  height:13px;
+  border-radius:50%;
+  background:#0007
+}
+
+.head{
+  position:absolute;
+  left:17px;
+  top:0;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  background:#eef3f8
+}
+
+.body{
+  position:absolute;
+  left:12px;
+  top:28px;
+  width:38px;
+  height:46px;
+  border-radius:16px 16px 10px 10px;
+  background:
+  linear-gradient(
+    #e8eef5,
+    #c8d4df
+  )
+}
+
+.arm{
+  position:absolute;
+  top:35px;
+  width:11px;
+  height:37px;
+  border-radius:10px;
+  background:#cfdbe6
+}
+
+.arm.a{
+  left:5px
+}
+
+.arm.b{
+  right:5px
+}
+
+.leg{
+  position:absolute;
+  top:70px;
+  width:13px;
+  height:33px;
+  border-radius:9px;
+  background:#bcc9d5
+}
+
+.leg.a{
+  left:14px
+}
+
+.leg.b{
+  right:14px
+}
+
+.person.walking .leg.a{
+  animation:step .28s infinite alternate
+}
+
+.person.walking .leg.b{
+  animation:step .28s infinite alternate-reverse
+}
+
+@keyframes step{
+  to{
+    transform:
+    translateY(4px)
+    rotate(9deg)
+  }
+}
+
+
+/* DOUBT */
+
+#doubtVignette{
+  position:absolute;
+  z-index:21;
+  inset:0;
+  background:
+  radial-gradient(
+    circle at 50% 45%,
+    transparent 32%,
+    #210d2a99 100%
+  );
+  opacity:0;
+  pointer-events:none;
+  transition:.18s
+}
+
+#doubtVignette.show{
+  opacity:1
+}
+
+.doubtText{
+  position:absolute;
+  z-index:24;
+  top:15%;
+  left:8%;
+  right:8%;
+  text-align:center;
+  font-size:24px;
+  font-weight:1000;
+  line-height:1.05;
+  text-shadow:0 4px 16px #000;
+  opacity:0;
+  transition:.18s;
+  pointer-events:none
+}
+
+.doubtText.show{
+  opacity:1
+}
+
+.doubtLabel{
+  display:block;
+  font-size:10px;
+  letter-spacing:.16em;
+  color:#d2a3cf;
+  margin-bottom:7px
+}
+
+.choiceCue{
+  position:absolute;
+  z-index:40;
+  left:50%;
+  top:48%;
+  transform:
+  translate(-50%,10px)
+  scale(.96);
+  padding:10px 16px;
+  border:1px solid #74e7c566;
+  border-radius:999px;
+  background:#07141ee8;
+  color:var(--accent);
+  font-size:13px;
+  font-weight:1000;
+  letter-spacing:.08em;
+  opacity:0;
+  pointer-events:none;
+  box-shadow:0 8px 24px #0008;
+  transition:.2s;
+  white-space:nowrap
+}
+
+.choiceCue.show{
+  opacity:1;
+  transform:
+  translate(-50%,0)
+  scale(1)
+}
+
+.lockFlash{
+  position:absolute;
+  left:50%;
+  top:38%;
+  z-index:30;
+  transform:translateX(-50%);
+  padding:9px 14px;
+  border-radius:999px;
+  background:#081321ed;
+  border:1px solid #ffffff35;
+  font-weight:1000;
+  opacity:0;
+  transition:.15s
+}
+
+.lockFlash.show{
+  opacity:1
+}
+
+
+/* WHAT MATTERS */
+
+#whatMatters{
+  position:absolute;
+  z-index:36;
+  left:12px;
+  top:max(
+    116px,
+    calc(
+      env(safe-area-inset-top) + 96px
+    )
+  );
+  max-width:190px;
+  padding:9px 11px;
+  border:1px solid #74e7c54a;
+  border-radius:15px;
+  background:#07141ee8;
+  box-shadow:0 8px 22px #0007;
+  pointer-events:none;
+  display:none
+}
+
+.wmLabel{
+  display:block;
+  font-size:9px;
+  font-weight:1000;
+  letter-spacing:.13em;
+  color:var(--accent);
+  margin-bottom:4px
+}
+
+.wmText{
+  display:block;
+  font-size:11px;
+  line-height:1.25;
+  font-weight:850;
+  color:#f4fbf8
+}
+
+
+/* LOOP GRIP */
 
 #doubtPresence{
-
   position:absolute;
-
   z-index:34;
-
   right:14px;
-
   top:max(
     112px,
     calc(
       env(safe-area-inset-top) + 92px
     )
   );
-
   width:74px;
   height:74px;
-
   border-radius:50%;
-
   pointer-events:none;
-
   display:none;
-
   place-items:center;
 
   background:
@@ -117,624 +1303,959 @@ style.textContent=`
     #140b1e 100%
   );
 
-  border:
-  2px solid #e6d4ed55;
+  border:2px solid #e6d4ed55;
 
   box-shadow:
   0 10px 28px #0009,
   0 0 22px #a94de52b;
 
-  transform:
-  scale(.75);
+  transform:scale(.75);
 
   opacity:.58;
 
   transition:
   transform .22s ease,
   opacity .22s ease,
-  filter .22s ease;
-
+  filter .22s ease
 }
 
-
-#doubtPresence::after{
-
+#doubtPresence:after{
   content:"?";
-
   font-size:33px;
-
   font-weight:1000;
-
   color:#f3eaf7;
-
-  text-shadow:
-  0 3px 9px #000;
-
+  text-shadow:0 3px 9px #000
 }
-
 
 #doubtPresence.feed{
-
-  animation:
-  doubtFeed .34s ease-out;
-
+  animation:doubtFeed .34s ease-out
 }
-
 
 #doubtPresence.release{
-
-  animation:
-  doubtRelease .42s ease-out;
-
+  animation:doubtRelease .42s ease-out
 }
-
 
 @keyframes doubtFeed{
-
   45%{
-
-    filter:
-    brightness(1.55);
-
+    filter:brightness(1.55)
   }
-
 }
-
 
 @keyframes doubtRelease{
-
   45%{
-
-    filter:
-    brightness(.72);
-
+    filter:brightness(.72)
   }
-
 }
-
-
-/* LOOP GRIP + WHAT MATTERS */
-
-#loopGripPanel,
-#whatMatters{
-
-  position:absolute;
-
-  z-index:35;
-
-  pointer-events:none;
-
-  border:
-  1px solid #ffffff28;
-
-  border-radius:14px;
-
-  background:#081321e8;
-
-  box-shadow:
-  0 8px 22px #0007;
-
-}
-
 
 #loopGripPanel{
-
+  position:absolute;
+  z-index:35;
   right:10px;
-
   top:max(
     198px,
     calc(
       env(safe-area-inset-top) + 178px
     )
   );
-
   width:126px;
-
-  padding:
-  8px 9px 9px;
-
-  display:none;
-
-}
-
-
-#whatMatters{
-
-  left:12px;
-
-  top:max(
-    116px,
-    calc(
-      env(safe-area-inset-top) + 96px
-    )
-  );
-
-  max-width:190px;
-
-  padding:
-  9px 11px;
-
-  display:none;
-
-  border-color:
-  #74e7c54a;
-
-}
-
-
-.v1016Row{
-
-  display:flex;
-
-  justify-content:
-  space-between;
-
-  gap:8px;
-
-  margin-bottom:5px;
-
-}
-
-
-.v1016Label{
-
-  font-size:9px;
-
-  font-weight:1000;
-
-  letter-spacing:.12em;
-
-  color:#dac5e3;
-
-}
-
-
-#whatMatters .v1016Label{
-
-  display:block;
-
-  color:#74e7c5;
-
-  margin-bottom:4px;
-
-}
-
-
-#loopGripState{
-
-  font-size:9px;
-
-  font-weight:950;
-
-  color:#d5dfeb;
-
-}
-
-
-#loopGripTrack{
-
-  height:7px;
-
-  border-radius:999px;
-
-  overflow:hidden;
-
-  background:#ffffff20;
-
-}
-
-
-#loopGripTrack i{
-
-  display:block;
-
-  width:24%;
-
-  height:100%;
-
-  border-radius:999px;
-
-  background:#d6b6df;
-
-  transition:
-  width .22s ease;
-
-}
-
-
-.v1016Note{
-
-  margin-top:6px;
-
-  font-size:8px;
-
-  line-height:1.25;
-
-  color:#aebbd0;
-
-}
-
-
-#whatMattersText{
-
-  font-size:11px;
-
-  line-height:1.3;
-
-  font-weight:850;
-
-  color:#f5fbf8;
-
-}
-
-
-/* ONE-TIME EXPLANATION */
-
-#behaviorLegend{
-
-  position:absolute;
-
-  z-index:36;
-
-  left:12px;
-  right:12px;
-
-  bottom:max(
-    178px,
-    calc(
-      env(safe-area-inset-bottom) + 168px
-    )
-  );
-
-  padding:
-  7px 10px;
-
-  border-radius:12px;
-
-  background:#07111dd9;
-
-  border:
-  1px solid #ffffff20;
-
-  display:none;
-
+  padding:8px 9px 9px;
+  border:1px solid #ffffff28;
+  border-radius:14px;
+  background:#081321e8;
+  box-shadow:0 8px 22px #0007;
   pointer-events:none;
+  display:none
+}
 
+.gripRow{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  margin-bottom:5px
+}
+
+.gripTitle{
   font-size:9px;
+  font-weight:1000;
+  letter-spacing:.12em;
+  color:#dac5e3
+}
 
+.gripState{
+  font-size:9px;
+  font-weight:950;
+  color:#d5dfeb
+}
+
+.gripTrack{
+  height:7px;
+  border-radius:999px;
+  overflow:hidden;
+  background:#ffffff20
+}
+
+.gripTrack i{
+  display:block;
+  width:24%;
+  height:100%;
+  border-radius:999px;
+  background:var(--doubt);
+  transition:width .22s ease
+}
+
+.gripNote{
+  margin-top:6px;
+  font-size:8px;
   line-height:1.25;
-
-  color:#c4cfdb;
-
-  text-align:center;
-
+  color:#aebbd0
 }
 
 
-#behaviorLegend b{
+/* BOTTOM GAME PANEL */
 
-  color:#f5fbff;
+.gamePanel{
+  position:absolute;
+  z-index:60;
+  left:10px;
+  right:10px;
+  bottom:max(
+    10px,
+    env(safe-area-inset-bottom)
+  );
+  padding:11px 12px;
+  border:1px solid #ffffff24;
+  border-radius:20px;
+  background:#081321df;
+  backdrop-filter:blur(12px)
+}
 
+.gameTitle{
+  display:flex;
+  justify-content:space-between;
+  gap:12px
+}
+
+.gameTitle b{
+  font-size:15px
+}
+
+.gameTitle span{
+  font-size:11px;
+  color:#aebbd0
+}
+
+.meters{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:9px
+}
+
+.meterLabel{
+  font-size:9px;
+  letter-spacing:.1em;
+  color:#aeb9c7
+}
+
+.meter{
+  height:9px;
+  background:#29364a;
+  border-radius:999px;
+  overflow:hidden;
+  margin-top:4px
+}
+
+.meter i{
+  display:block;
+  height:100%;
+  width:0;
+  border-radius:999px;
+  background:#eef3f8
+}
+
+.controls{
+  display:flex;
+  gap:9px;
+  margin-top:10px
+}
+
+.control{
+  flex:1;
+  min-height:54px;
+  border:1px solid #ffffff2a;
+  border-radius:15px;
+  background:#152238;
+  font-weight:950;
+  touch-action:manipulation
+}
+
+.control.primary{
+  background:#eef3f8;
+  color:#101826;
+  touch-action:none
+}
+
+.control:disabled{
+  opacity:.45
 }
 
 
-#behaviorLegend .sep{
+/* REWARD */
 
-  opacity:.42;
+#reward{
+  background:
+  radial-gradient(
+    circle at 50% 38%,
+    #35516e,
+    #101927 62%,
+    #060b13
+  )
+}
 
-  padding:
-  0 4px;
+.rewardBox{
+  position:absolute;
+  left:18px;
+  right:18px;
+  top:50%;
+  transform:translateY(-50%);
+  text-align:center
+}
 
+.rewardBig{
+  font-size:45px;
+  font-weight:1000;
+  margin:10px 0
+}
+
+.sessionNote{
+  margin:15px 0 0;
+  padding:11px 12px;
+  border-radius:14px;
+  background:#08132199;
+  color:#aebbd0;
+  font-size:12px;
+  line-height:1.4
+}
+
+.srOnly{
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0
 }
 
 
-/* SHORT PHONE SCREENS */
+/* SMALLER PHONES */
 
 @media(max-height:700px){
 
   #doubtPresence{
-
     width:62px;
     height:62px;
-
     top:max(
       104px,
       calc(
         env(safe-area-inset-top) + 84px
       )
-    );
-
+    )
   }
 
-
-  #doubtPresence::after{
-
-    font-size:27px;
-
+  #doubtPresence:after{
+    font-size:27px
   }
-
 
   #loopGripPanel{
-
     top:max(
       174px,
       calc(
         env(safe-area-inset-top) + 154px
       )
     );
-
-    width:114px;
-
+    width:114px
   }
 
-
   #whatMatters{
-
     top:max(
       104px,
       calc(
         env(safe-area-inset-top) + 84px
       )
     );
-
-    max-width:160px;
-
+    max-width:160px
   }
 
+  .gamePanel{
+    padding:9px 10px
+  }
 
-  #behaviorLegend{
-
-    bottom:max(
-      164px,
-      calc(
-        env(safe-area-inset-bottom) + 154px
-      )
-    );
-
+  .control{
+    min-height:50px
   }
 
 }
 
 
-/* ACCESSIBILITY */
+/* REDUCED MOTION */
 
 @media(prefers-reduced-motion:reduce){
 
-  #doubtPresence,
-  #loopGripTrack i{
-
-    transition:none!important;
-
+  *{
     animation:none!important;
-
+    transition:none!important
   }
 
 }
 
-`;
+</style>
+
+</head>
 
 
-document.head
-.appendChild(
-  style
-);
+<body>
 
 
-/* DOUBT CHARACTER */
-
-const presence=
-document.createElement(
-  "div"
-);
+<div id="app">
 
 
-presence.id=
-"doubtPresence";
+<!-- START -->
+
+<section
+  id="start"
+  class="screen active">
+
+  <div class="logo">
+    UNCERTAIN
+  </div>
+
+  <div class="hero">
+    BREAK<br>
+    THE <span>LOOP.</span>
+  </div>
+
+  <p
+    style="
+    font-size:18px;
+    color:#cbd6e3;
+    line-height:1.45">
+
+    Move forward without making certainty
+    the price of admission.
+
+  </p>
+
+  <div class="startCard card">
+
+    <button
+      class="btn"
+      id="enter">
+
+      ENTER THE LOOP
+
+    </button>
+
+    <p class="small">
+
+      Prototype only. ERP-informed gameplay
+      is not a replacement for professional
+      mental-health care.
+
+    </p>
+
+  </div>
+
+</section>
 
 
-presence.setAttribute(
-  "aria-hidden",
-  "true"
-);
+<!-- MAP -->
+
+<section
+  id="map"
+  class="screen">
+
+  <div class="road"></div>
+
+  <button
+    id="checking"
+    class="node">
+
+    <strong>
+      Checking District
+    </strong>
+
+    <small>
+      3 missions available
+    </small>
+
+  </button>
+
+  <button
+    class="node locked"
+    disabled>
+
+    <strong>
+      Next District
+    </strong>
+
+    <small>
+      Under construction
+    </small>
+
+  </button>
+
+  <div class="avatarMini"></div>
+
+  <div class="hud">
+
+    <span class="pill">
+      THE LOOP
+    </span>
+
+    <span class="pill">
+      XP <b class="xp">0</b>
+    </span>
+
+  </div>
+
+  <div class="mapInfo">
+
+    <b>
+      Checking District
+    </b>
+
+    <br>
+
+    <span>
+      Certainty always seems one more check away.
+    </span>
+
+  </div>
+
+</section>
 
 
-scene.appendChild(
-  presence
-);
+<!-- MISSION SELECT -->
+
+<section
+  id="missionSelect"
+  class="screen">
+
+  <div class="hud">
+
+    <span class="pill">
+      CHECKING DISTRICT
+    </span>
+
+    <span class="pill">
+      XP <b class="xp">0</b>
+    </span>
+
+  </div>
+
+  <div class="selectWrap">
 
 
-/* LOOP GRIP PANEL */
+    <button
+      class="missionCard"
+      data-mission="door">
 
-const grip=
-document.createElement(
-  "div"
-);
+      <span class="tag">
+        PHYSICAL CHECKING
+      </span>
+
+      <b>
+        Lock & Leave
+      </b>
+
+      <span
+        class="completion"
+        data-completion="door">
+      </span>
+
+      <span>
+        Lock the house once, then keep moving
+        while Doubt tries to pull you back.
+      </span>
+
+    </button>
 
 
-grip.id=
-"loopGripPanel";
+    <button
+      class="missionCard"
+      data-mission="car">
+
+      <span class="tag">
+        PHYSICAL + MENTAL CHECKING
+      </span>
+
+      <b>
+        Park & Walk
+      </b>
+
+      <span
+        class="completion"
+        data-completion="car">
+      </span>
+
+      <span>
+        Lock the car once. The key fob stays
+        available. Doubt does too.
+      </span>
+
+    </button>
 
 
-grip.setAttribute(
-  "aria-hidden",
-  "true"
-);
+    <button
+      class="missionCard"
+      data-mission="stove">
+
+      <span class="tag">
+        APPLIANCE CHECKING
+      </span>
+
+      <b>
+        Off & Out
+      </b>
+
+      <span
+        class="completion"
+        data-completion="stove">
+      </span>
+
+      <span>
+        Turn the stove off once, then head
+        for the door while Doubt asks for
+        another look.
+      </span>
+
+    </button>
 
 
-grip.innerHTML=`
+    <button
+      class="missionCard"
+      id="backMap">
 
-<div class="v1016Row">
+      <span class="tag">
+        RETURN
+      </span>
 
-  <span class="v1016Label">
+      <b>
+        Back to The Loop
+      </b>
 
-    LOOP GRIP
+    </button>
 
-  </span>
 
-  <span id="loopGripState">
+  </div>
 
-    LOW
+</section>
 
-  </span>
+
+<!-- MISSION -->
+
+<section
+  id="mission"
+  class="screen">
+
+
+  <button
+    type="button"
+    id="missionExit"
+    class="missionExit"
+    aria-label="Exit mission">
+
+    ‹ EXIT
+
+  </button>
+
+
+  <div
+    id="scene"
+    class="scene">
+
+
+    <div class="skyGlow"></div>
+
+    <div class="ground"></div>
+
+    <div class="path"></div>
+
+    <div class="destinationGlow"></div>
+
+
+    <div id="environment"></div>
+
+
+    <div
+      id="person"
+      class="person">
+
+      <i class="shadow"></i>
+
+      <i class="head"></i>
+
+      <i class="body"></i>
+
+      <i class="arm a"></i>
+
+      <i class="arm b"></i>
+
+      <i class="leg a"></i>
+
+      <i class="leg b"></i>
+
+    </div>
+
+
+    <div
+      id="lockFlash"
+      class="lockFlash">
+    </div>
+
+
+    <div id="doubtVignette"></div>
+
+
+    <div
+      id="doubtOverlay"
+      class="doubtText">
+
+      <span class="doubtLabel">
+        DOUBT
+      </span>
+
+      <span id="doubtMessage">
+        Are you sure?
+      </span>
+
+    </div>
+
+
+    <div
+      id="choiceCue"
+      class="choiceCue">
+
+      KEEP GOING ›
+
+    </div>
+
+
+    <div id="whatMatters">
+
+      <span class="wmLabel">
+        WHAT MATTERS
+      </span>
+
+      <span
+        class="wmText"
+        id="whatMattersText">
+      </span>
+
+    </div>
+
+
+    <div
+      id="doubtPresence"
+      aria-hidden="true">
+    </div>
+
+
+    <div
+      id="loopGripPanel"
+      aria-hidden="true">
+
+      <div class="gripRow">
+
+        <span class="gripTitle">
+          LOOP GRIP
+        </span>
+
+        <span class="gripState">
+          LOW
+        </span>
+
+      </div>
+
+      <div class="gripTrack">
+        <i></i>
+      </div>
+
+      <div class="gripNote">
+        Tracks certainty-seeking, not anxiety.
+      </div>
+
+    </div>
+
+
+    <div id="beep">
+      BEEP • LOCKED
+    </div>
+
+
+    <div
+      id="keyfob"
+      style="display:none">
+
+      <div class="ring"></div>
+
+      <button
+        type="button"
+        id="fobLock"
+        aria-label="Lock car">
+
+        🔒
+
+      </button>
+
+      <div
+        class="small"
+        style="margin-top:6px">
+
+        LOCK
+
+      </div>
+
+    </div>
+
+
+    <div
+      id="stoveControlWrap"
+      style="display:none">
+
+      <button
+        type="button"
+        id="stoveControl"
+        aria-label="Turn stove off">
+
+        <span
+          id="stoveIndicator"
+          class="stoveIndicator">
+        </span>
+
+        OFF
+
+      </button>
+
+      <div
+        class="small"
+        style="margin-top:8px">
+
+        STOVE
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+  <div class="hud">
+
+    <span
+      class="pill"
+      id="missionName">
+
+      MISSION
+
+    </span>
+
+    <span class="pill">
+      XP <b class="xp">0</b>
+    </span>
+
+  </div>
+
+
+  <div class="gamePanel">
+
+
+    <div class="gameTitle">
+
+      <div>
+
+        <b id="title">
+          One normal action.
+        </b>
+
+        <div
+          class="small"
+          id="copy">
+
+          No extra certainty required.
+
+        </div>
+
+      </div>
+
+      <span id="phaseHint">
+        READY
+      </span>
+
+    </div>
+
+
+    <div
+      id="meters"
+      class="meters"
+      style="display:none">
+
+      <div>
+
+        <span class="meterLabel">
+          URGE WAVE
+        </span>
+
+        <div class="meter">
+          <i id="urge"></i>
+        </div>
+
+      </div>
+
+      <div>
+
+        <span class="meterLabel">
+          FORWARD MOMENTUM
+        </span>
+
+        <div class="meter">
+          <i id="progress"></i>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="controls">
+
+      <button
+        type="button"
+        class="control"
+        id="checkBtn">
+
+        CHECK AGAIN
+
+      </button>
+
+      <button
+        type="button"
+        class="control primary"
+        id="forwardBtn">
+
+        START
+
+      </button>
+
+    </div>
+
+
+  </div>
+
+
+</section>
+
+
+<!-- REWARD -->
+
+<section
+  id="reward"
+  class="screen">
+
+
+  <div class="hud">
+
+    <span class="pill">
+      MOMENTUM
+    </span>
+
+    <span class="pill">
+      XP <b class="xp">0</b>
+    </span>
+
+  </div>
+
+
+  <div class="rewardBox">
+
+    <div class="card">
+
+      <div class="small">
+        MISSION COMPLETE
+      </div>
+
+      <div class="rewardBig">
+
+        +<span id="xpEarned">
+          30
+        </span> XP
+
+      </div>
+
+      <p id="result">
+        You moved forward while uncertainty
+        was still present.
+      </p>
+
+      <button
+        type="button"
+        class="btn"
+        id="continueBtn">
+
+        BACK TO CHECKING DISTRICT
+
+      </button>
+
+      <button
+        type="button"
+        class="btn secondary"
+        id="doneBtn">
+
+        DONE FOR NOW
+
+      </button>
+
+      <div class="sessionNote">
+
+        Stopping here is allowed.
+        Progress does not require another mission.
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+</section>
+
+
+<div
+  id="liveStatus"
+  class="srOnly"
+  aria-live="polite"
+  aria-atomic="true">
+</div>
+
 
 </div>
 
 
-<div id="loopGripTrack">
+<script>
 
-  <i></i>
 
-</div>
+const $=
+s=>
+document.querySelector(s);
 
 
-<div class="v1016Note">
-
-  Tracks certainty-seeking,
-  not anxiety.
-
-</div>
-
-`;
-
-
-scene.appendChild(
-  grip
-);
-
-
-/* VALUES ANCHOR */
-
-const matters=
-document.createElement(
-  "div"
-);
-
-
-matters.id=
-"whatMatters";
-
-
-matters.setAttribute(
-  "aria-hidden",
-  "true"
-);
-
-
-matters.innerHTML=`
-
-<span class="v1016Label">
-
-  WHAT MATTERS
-
-</span>
-
-
-<span id="whatMattersText">
-
-  Continue with your day.
-
-</span>
-
-`;
-
-
-scene.appendChild(
-  matters
-);
-
-
-/* BEHAVIOR LEGEND */
-
-const legend=
-document.createElement(
-  "div"
-);
-
-
-legend.id=
-"behaviorLegend";
-
-
-legend.setAttribute(
-  "aria-hidden",
-  "true"
-);
-
-
-legend.innerHTML=
-
-  `<b>URGE WAVE</b> = what you feel `+
-
-  `<span class="sep">•</span>`+
-
-  `<b>LOOP GRIP</b> = what the checking loop is getting`;
-
-
-scene.appendChild(
-  legend
-);
-
-
-/* MISSION VALUES */
-
-const values={
-
-  door:
-  "Leave home and continue your day.",
-
-  car:
-  "Go where you were headed.",
-
-  stove:
-  "Leave the kitchen and continue."
-
-};
-
-
-/* LOOP GRIP STATE */
-
-let gripValue=
-24;
-
-
-let lastChecks=
-
-typeof checks==="number"
-
-? checks
-
-: 0;
-
-
-let lastMomentum=
-
-typeof momentum==="number"
-
-? momentum
-
-: 0;
-
-
-let lastCurrent=
-
-typeof current!=="undefined"
-
-? current
-
-: null;
-
-
-let lastPhase=
-
-typeof phase!=="undefined"
-
-? phase
-
-: "idle";
-
-
-let legendShownForMission=
-false;
+const $$=
+s=>
+document.querySelectorAll(s);
 
 
 const clamp=
@@ -753,9 +2274,631 @@ Math.max(
 );
 
 
-/* VISUAL RESPONSE */
 
-function pulse(type){
+let xp=
+Number(
+  localStorage.getItem(
+    "uncertainXP"
+  )||0
+);
+
+
+let current=
+null;
+
+
+let phase=
+"idle";
+
+
+let momentum=
+0;
+
+
+let urge=
+46;
+
+
+let checks=
+0;
+
+
+let thoughtIndex=
+0;
+
+
+let walkTimer=
+null;
+
+
+let urgeTimer=
+null;
+
+
+let doubtTimer=
+null;
+
+
+let reliefTimer=
+null;
+
+
+let feedbackTimer=
+null;
+
+
+let cueTimer=
+null;
+
+
+let hold=
+false;
+
+
+let movementPointerActive=
+false;
+
+
+let touchMoveActive=
+false;
+
+
+let midpointShown=
+false;
+
+
+let recoveredAfterCheck=
+false;
+
+
+let recoveryCount=
+0;
+
+
+let urgeWavePhase=
+0;
+
+
+let urgePeakCueShown=
+false;
+
+
+let loopGrip=
+24;
+
+
+
+const missions={
+
+
+door:{
+
+
+  name:
+  "LOCK & LEAVE",
+
+
+  title:
+  "Lock the door.",
+
+
+  copy:
+  "Perform one normal lock.",
+
+
+  value:
+  "Leave home and continue your day.",
+
+
+  thoughts:[
+
+    "Are you sure it clicked?",
+
+    "Maybe the deadbolt didn't catch.",
+
+    "What if the door opens after you leave?",
+
+    "One more check would feel safer."
+
+  ],
+
+
+  env:
+
+  '<div class="houseShell">'+
+
+  '<div class="roof"></div>'+
+
+  '<div class="houseBody"></div>'+
+
+  '<div class="window left"></div>'+
+
+  '<div class="window right"></div>'+
+
+  '<div class="porch"></div>'+
+
+  '<div class="door">'+
+
+  '<div class="knob"></div>'+
+
+  '</div>'+
+
+  '</div>'
+
+
+},
+
+
+
+car:{
+
+
+  name:
+  "PARK & WALK",
+
+
+  title:
+  "Lock the car.",
+
+
+  copy:
+  "Press the key fob once.",
+
+
+  value:
+  "Go where you were headed.",
+
+
+  thoughts:[
+
+    "Did you hear it lock?",
+
+    "Was that your car that beeped?",
+
+    "Maybe the passenger door is unlocked.",
+
+    "What if the signal didn't reach it?",
+
+    "You could press it one more time."
+
+  ],
+
+
+  env:
+
+  '<div class="store">'+
+
+  '<div class="storeDoor"></div>'+
+
+  '</div>'+
+
+  '<div class="parkingGround"></div>'+
+
+  '<div class="parkingLine line1"></div>'+
+
+  '<div class="parkingLine line2"></div>'+
+
+  '<div class="parkingLine line3"></div>'+
+
+  '<div class="parkingLine line4"></div>'+
+
+  '<div class="car" id="car">'+
+
+  '<div class="carWindow"></div>'+
+
+  '<div class="carLight"></div>'+
+
+  '</div>'
+
+
+},
+
+
+
+stove:{
+
+
+  name:
+  "OFF & OUT",
+
+
+  title:
+  "Turn the stove off.",
+
+
+  copy:
+  "One normal action.",
+
+
+  value:
+  "Leave the kitchen and continue.",
+
+
+  thoughts:[
+
+    "Was that definitely the right knob?",
+
+    "What if one burner is still on?",
+
+    "Did you actually see it reach OFF?",
+
+    "Maybe you turned it past OFF.",
+
+    "One more look would feel safer."
+
+  ],
+
+
+  env:
+
+  '<div class="kitchen">'+
+
+  '<div class="kitchenWall"></div>'+
+
+  '<div class="kitchenFloor"></div>'+
+
+  '<div class="exitDoor">'+
+
+  '<div class="exitHandle"></div>'+
+
+  '</div>'+
+
+  '<div class="counter"></div>'+
+
+  '<div class="stove" id="stove">'+
+
+  '<div class="stoveTop"></div>'+
+
+  '<div class="burner one"></div>'+
+
+  '<div class="burner two"></div>'+
+
+  '<div class="stovePanel"></div>'+
+
+  '<div class="stoveKnob one"></div>'+
+
+  '<div class="stoveKnob two"></div>'+
+
+  '<div class="stoveKnob three"></div>'+
+
+  '<div class="stoveKnob four"></div>'+
+
+  '<div class="stoveOven"></div>'+
+
+  '</div>'+
+
+  '</div>'
+
+
+}
+
+
+};
+
+
+
+function show(id){
+
+
+  $$(".screen")
+  .forEach(
+    screen=>
+    screen.classList.remove(
+      "active"
+    )
+  );
+
+
+  $("#"+id)
+  .classList.add(
+    "active"
+  );
+
+
+}
+
+
+
+function announce(text){
+
+
+  $("#liveStatus")
+  .textContent=
+  text;
+
+
+}
+
+
+
+function vibrate(pattern){
+
+
+  if(
+    navigator.vibrate
+  ){
+
+
+    navigator.vibrate(
+      pattern
+    );
+
+
+  }
+
+
+}
+
+
+
+function updateXP(){
+
+
+  localStorage.setItem(
+    "uncertainXP",
+    xp
+  );
+
+
+  $$(".xp")
+  .forEach(
+    element=>
+    element.textContent=xp
+  );
+
+
+}
+
+
+
+function updateMissionCompletionUI(){
+
+
+  $$(".completion")
+  .forEach(
+    element=>{
+
+
+      element.textContent=
+
+      localStorage.getItem(
+        "completed_"+
+        element.dataset.completion
+      )==="yes"
+
+      ? "✓ COMPLETED • REPLAY AVAILABLE"
+
+      : "";
+
+
+    }
+  );
+
+
+}
+
+
+
+function updateMeters(){
+
+
+  $("#progress")
+  .style.width=
+  momentum+"%";
+
+
+  $("#urge")
+  .style.width=
+  urge+"%";
+
+
+}
+
+
+
+function hideDoubt(){
+
+
+  $("#doubtOverlay")
+  .classList.remove(
+    "show"
+  );
+
+
+  $("#doubtVignette")
+  .classList.remove(
+    "show"
+  );
+
+
+}
+
+
+
+function showDoubt(text){
+
+
+  $("#doubtMessage")
+  .textContent=
+  text;
+
+
+  $("#doubtOverlay")
+  .classList.add(
+    "show"
+  );
+
+
+  $("#doubtVignette")
+  .classList.add(
+    "show"
+  );
+
+
+  announce(
+    "Doubt: "+text
+  );
+
+
+}
+
+
+
+function hideCue(){
+
+
+  $("#choiceCue")
+  .classList.remove(
+    "show"
+  );
+
+
+}
+
+
+
+function showCue(
+  text,
+  duration=1100
+){
+
+
+  const cue=
+  $("#choiceCue");
+
+
+  cue.textContent=
+  text;
+
+
+  cue.classList.add(
+    "show"
+  );
+
+
+  clearTimeout(
+    cueTimer
+  );
+
+
+  cueTimer=
+  setTimeout(()=>{
+
+
+    hideCue();
+
+
+    cue.textContent=
+    "KEEP GOING ›";
+
+
+  },duration);
+
+
+}
+
+
+
+function flashLock(text){
+
+
+  const flash=
+  $("#lockFlash");
+
+
+  flash.textContent=
+  text;
+
+
+  flash.classList.add(
+    "show"
+  );
+
+
+  clearTimeout(
+    feedbackTimer
+  );
+
+
+  feedbackTimer=
+  setTimeout(()=>{
+
+
+    flash.classList.remove(
+      "show"
+    );
+
+
+  },650);
+
+
+}
+
+
+
+/* LOOP GRIP */
+
+function renderLoopGrip(){
+
+
+  const value=
+  clamp(
+    loopGrip,
+    0,
+    100
+  );
+
+
+  const presence=
+  $("#doubtPresence");
+
+
+  presence.style.transform=
+  `scale(${
+    .66+
+    value*.0052
+  })`;
+
+
+  presence.style.opacity=
+  String(
+    clamp(
+      .46+
+      value*.0046,
+      .46,
+      .94
+    )
+  );
+
+
+  $(".gripTrack i")
+  .style.width=
+  value+"%";
+
+
+  $(".gripState")
+  .textContent=
+
+  value>=72
+
+  ? "STRONG"
+
+  : value>=42
+
+  ? "ACTIVE"
+
+  : "LOW";
+
+
+}
+
+
+
+function pulseDoubt(type){
+
+
+  const presence=
+  $("#doubtPresence");
 
 
   presence.classList.remove(
@@ -787,268 +2930,1407 @@ function pulse(type){
 
 
 
-function render(){
+function setMissionOverlayVisible(
+  visible
+){
 
 
-  const value=
-  clamp(
-    gripValue,
-    0,
-    100
+  $("#doubtPresence")
+  .style.display=
+
+  visible
+
+  ? "grid"
+
+  : "none";
+
+
+  $("#loopGripPanel")
+  .style.display=
+
+  visible
+
+  ? "block"
+
+  : "none";
+
+
+  $("#whatMatters")
+  .style.display=
+
+  visible
+
+  ? "block"
+
+  : "none";
+
+
+}
+
+
+
+/* MOVEMENT SAFETY */
+
+function stopMovement(){
+
+
+  clearInterval(
+    walkTimer
   );
 
 
-  presence.style.transform=
-  `scale(${.68+value*.0048})`;
+  walkTimer=
+  null;
 
 
-  presence.style.opacity=
-  String(
-    clamp(
-      .48+
-      value*.0044,
-      .48,
-      .92
-    )
+  hold=
+  false;
+
+
+  movementPointerActive=
+  false;
+
+
+  touchMoveActive=
+  false;
+
+
+  $("#person")
+  .classList.remove(
+    "walking"
   );
 
 
-  document
-  .querySelector(
-    "#loopGripTrack i"
-  )
-  .style.width=
-  value+"%";
+}
 
 
-  document
-  .querySelector(
-    "#loopGripState"
+
+function releaseInterruptedHold(){
+
+
+  if(
+    phase!=="moving"
+  ){
+
+
+    stopMovement();
+
+
+    return;
+
+
+  }
+
+
+  stopMovement();
+
+
+  clearTimeout(
+    doubtTimer
+  );
+
+
+  phase=
+  "ready";
+
+
+  $("#phaseHint")
+  .textContent=
+  "READY";
+
+
+  setControlsForPhase();
+
+
+}
+
+
+
+function stopEverything(){
+
+
+  stopMovement();
+
+
+  clearInterval(
+    urgeTimer
+  );
+
+
+  clearTimeout(
+    doubtTimer
+  );
+
+
+  clearTimeout(
+    reliefTimer
+  );
+
+
+  clearTimeout(
+    feedbackTimer
+  );
+
+
+  clearTimeout(
+    cueTimer
+  );
+
+
+  urgeTimer=
+  null;
+
+
+  doubtTimer=
+  null;
+
+
+  reliefTimer=
+  null;
+
+
+  feedbackTimer=
+  null;
+
+
+  cueTimer=
+  null;
+
+
+  if(
+    navigator.vibrate
+  ){
+
+
+    navigator.vibrate(
+      0
+    );
+
+
+  }
+
+
+}
+
+
+
+function resetPersonVisual(){
+
+
+  const person=
+  $("#person");
+
+
+  person.classList.remove(
+    "walking",
+    "lookback"
+  );
+
+
+  person.style.transform=
+  "translateX(-50%)";
+
+
+}
+
+
+
+function setControlsForPhase(){
+
+
+  const relief=
+  phase==="relief";
+
+
+  $("#forwardBtn")
+  .disabled=
+  relief;
+
+
+  $("#checkBtn")
+  .disabled=
+  relief;
+
+
+  if(
+    current==="car"
+  ){
+
+
+    $("#keyfob")
+    .classList.toggle(
+      "disabled",
+      relief
+    );
+
+
+  }
+
+
+  if(
+    current==="stove"
+  ){
+
+
+    $("#stoveControlWrap")
+    .classList.toggle(
+      "disabled",
+      relief
+    );
+
+
+  }
+
+
+}
+
+
+
+/* DEPTH */
+
+function resetDepth(){
+
+
+  const environment=
+  $("#environment");
+
+
+  environment.style.transform=
+  "scale(1)";
+
+
+  const store=
+  environment.querySelector(
+    ".store"
+  );
+
+
+  if(store){
+
+
+    store.style.transform=
+    "translateX(-50%) scale(1)";
+
+
+    store.style.top=
+    "5%";
+
+
+  }
+
+
+  const car=
+  environment.querySelector(
+    "#car"
+  );
+
+
+  if(car){
+
+
+    car.style.left=
+    "66%";
+
+
+    car.style.transform=
+    "translateX(-50%) scale(1)";
+
+
+    car.style.top=
+    "53%";
+
+
+    car.style.opacity=
+    "1";
+
+
+  }
+
+
+  const stove=
+  environment.querySelector(
+    "#stove"
+  );
+
+
+  if(stove){
+
+
+    stove.style.left=
+    "66%";
+
+
+    stove.style.transform=
+    "translateX(-50%) scale(1)";
+
+
+    stove.style.top=
+    "45%";
+
+
+    stove.style.opacity=
+    "1";
+
+
+  }
+
+
+  const exit=
+  environment.querySelector(
+    ".exitDoor"
+  );
+
+
+  if(exit){
+
+
+    exit.style.transform=
+    "translateX(-50%) scale(1)";
+
+
+    exit.style.top=
+    "6%";
+
+
+  }
+
+
+  environment
+  .querySelectorAll(
+    ".parkingLine"
   )
+  .forEach(
+    line=>{
+
+
+      line.style.translate=
+      "0 0";
+
+
+      line.style.opacity=
+      "1";
+
+
+    }
+  );
+
+
+}
+
+
+
+function positionPlayerAtStart(){
+
+
+  const person=
+  $("#person");
+
+
+  if(
+    current==="car" ||
+    current==="stove"
+  ){
+
+
+    person.style.left=
+    "23%";
+
+
+    person.style.bottom=
+    "12%";
+
+
+    person.style.transform=
+    "translateX(-50%) scale(1.02)";
+
+
+  }
+
+
+  else{
+
+
+    person.style.left=
+    "50%";
+
+
+    person.style.bottom=
+    "24%";
+
+
+    person.style.transform=
+    "translateX(-50%)";
+
+
+  }
+
+
+}
+
+
+
+/* LOAD MISSION */
+
+function loadMission(key){
+
+
+  stopEverything();
+
+
+  current=
+  key;
+
+
+  phase=
+  "lock";
+
+
+  momentum=
+  0;
+
+
+  urge=
+  46;
+
+
+  checks=
+  0;
+
+
+  thoughtIndex=
+  0;
+
+
+  midpointShown=
+  false;
+
+
+  recoveredAfterCheck=
+  false;
+
+
+  recoveryCount=
+  0;
+
+
+  urgeWavePhase=
+  0;
+
+
+  urgePeakCueShown=
+  false;
+
+
+  loopGrip=
+  24;
+
+
+  resetPersonVisual();
+
+
+  $("#missionName")
+  .textContent=
+  missions[key].name;
+
+
+  $("#environment")
+  .innerHTML=
+  missions[key].env;
+
+
+  resetDepth();
+
+
+  positionPlayerAtStart();
+
+
+  hideDoubt();
+
+
+  hideCue();
+
+
+  $("#title")
+  .textContent=
+  missions[key].title;
+
+
+  $("#copy")
+  .textContent=
+  missions[key].copy;
+
+
+  $("#whatMattersText")
+  .textContent=
+  missions[key].value;
+
+
+  $("#phaseHint")
+  .textContent=
+  "ACTION";
+
+
+  $("#meters")
+  .style.display=
+  "none";
+
+
+  $("#checkBtn")
+  .style.display=
+  "none";
+
+
+  $("#keyfob")
+  .style.display=
+
+  key==="car"
+
+  ? "block"
+
+  : "none";
+
+
+  $("#stoveControlWrap")
+  .style.display=
+
+  key==="stove"
+
+  ? "block"
+
+  : "none";
+
+
+  $("#forwardBtn")
+  .style.display=
+
+  key==="door"
+
+  ? "block"
+
+  : "none";
+
+
+  $("#forwardBtn")
   .textContent=
 
-  value>=72
+  key==="door"
 
-  ? "STRONG"
+  ? "LOCK ONCE"
 
-  : value>=42
-
-  ? "ACTIVE"
-
-  : "LOW";
+  : "HOLD TO MOVE";
 
 
-}
-
-
-
-function announceSafe(text){
-
-
-  if(
-    typeof announce===
-    "function"
-  ){
-
-
-    announce(
-      text
-    );
-
-
-  }
-
-
-}
-
-
-/* STATE OBSERVER */
-
-function tick(){
-
-
-  const nowCurrent=
-
-  typeof current!=="undefined"
-
-  ? current
-
-  : null;
-
-
-  const nowChecks=
-
-  typeof checks==="number"
-
-  ? checks
-
-  : 0;
-
-
-  const nowMomentum=
-
-  typeof momentum==="number"
-
-  ? momentum
-
-  : 0;
-
-
-  const nowPhase=
-
-  typeof phase!=="undefined"
-
-  ? phase
-
-  : "idle";
-
-
-  const missionVisible=
-  Boolean(
-
-    document.querySelector(
-      "#mission.active"
-    ) &&
-
-    nowCurrent
-
+  $("#keyfob")
+  .classList.remove(
+    "disabled"
   );
 
 
-  /*
-  NEW MISSION
-  */
+  $("#stoveControlWrap")
+  .classList.remove(
+    "disabled"
+  );
+
+
+  $("#stoveIndicator")
+  .classList.remove(
+    "off"
+  );
+
+
+  $("#beep")
+  .classList.remove(
+    "show"
+  );
+
+
+  updateMeters();
+
+
+  renderLoopGrip();
+
+
+  setControlsForPhase();
+
+
+  setMissionOverlayVisible(
+    true
+  );
+
+
+  show(
+    "mission"
+  );
+
+
+  announce(
+    missions[key].name+
+    " mission opened."
+  );
+
+
+}
+
+
+
+/* EXIT */
+
+function exitMission(){
+
+
+  stopEverything();
+
+
+  hideDoubt();
+
+
+  hideCue();
+
+
+  setMissionOverlayVisible(
+    false
+  );
+
+
+  current=
+  null;
+
+
+  phase=
+  "idle";
+
+
+  updateMissionCompletionUI();
+
+
+  show(
+    "missionSelect"
+  );
+
+
+  announce(
+    "Mission exited."
+  );
+
+
+}
+
+
+
+/* INITIAL ACTION */
+
+function initialAction(){
 
 
   if(
-    nowCurrent!==
-    lastCurrent
+    phase!=="lock"
   ){
 
 
-    gripValue=
-    24;
-
-
-    lastChecks=
-    nowChecks;
-
-
-    lastMomentum=
-    nowMomentum;
-
-
-    legendShownForMission=
-    false;
-
-
-    document
-    .querySelector(
-      "#whatMattersText"
-    )
-    .textContent=
-
-    values[
-      nowCurrent
-    ] ||
-
-    "Continue with what matters to you.";
+    return;
 
 
   }
 
 
-  /*
-  RE-CHECKING FEEDS LOOP GRIP
-
-  Anxiety reduction is NOT
-  treated as success.
-  */
+  phase=
+  "ready";
 
 
   if(
-    nowChecks>
-    lastChecks
+    current==="door"
   ){
 
 
-    gripValue=
-    clamp(
-
-      gripValue+
-
-      24*
-      (
-        nowChecks-
-        lastChecks
-      ),
-
-      0,
-
-      100
-
-    );
-
-
-    pulse(
-      "feed"
-    );
-
-
-    announceSafe(
-      "The Loop grabbed for more certainty. You can still return to what matters."
+    flashLock(
+      "CLICK • LOCKED"
     );
 
 
   }
 
 
-  /*
-  ACTUAL MOVEMENT REDUCES
-  LOOP GRIP.
-
-  This is independent from
-  the Urge Wave meter.
-  */
-
-
   if(
-    nowMomentum>
-    lastMomentum &&
-
-    nowPhase===
-    "moving"
+    current==="car"
   ){
 
 
-    const before=
-    gripValue;
+    flashLock(
+      "BEEP • LOCKED"
+    );
 
 
-    gripValue=
+  }
+
+
+  if(
+    current==="stove"
+  ){
+
+
+    flashLock(
+      "CLICK • OFF"
+    );
+
+
+    $("#stoveIndicator")
+    .classList.add(
+      "off"
+    );
+
+
+  }
+
+
+  vibrate([
+    20,
+    40,
+    20
+  ]);
+
+
+  $("#meters")
+  .style.display=
+  "grid";
+
+
+  $("#title")
+  .textContent=
+  "Now move on.";
+
+
+  $("#copy")
+  .textContent=
+
+  current==="door"
+
+  ? "Walk away from the house. Doubt may follow."
+
+  : current==="car"
+
+  ? "Walk around the car and toward your destination."
+
+  : "Move past the stove and toward the exit.";
+
+
+  $("#phaseHint")
+  .textContent=
+  "READY";
+
+
+  $("#forwardBtn")
+  .style.display=
+  "block";
+
+
+  $("#forwardBtn")
+  .textContent=
+  "HOLD TO MOVE";
+
+
+  $("#checkBtn")
+  .style.display=
+
+  current==="door"
+
+  ? "block"
+
+  : "none";
+
+
+  setControlsForPhase();
+
+
+  announce(
+    "Normal action complete. Ready to move."
+  );
+
+
+  urgeTimer=
+  setInterval(()=>{
+
+
+    urgeWavePhase+=
+    .105;
+
+
+    const wave=
+    (
+      Math.sin(
+        urgeWavePhase
+      )+1
+    )/2;
+
+
+    const target=
+    24+
+    wave*64;
+
+
+    const variation=
+    Math.random()*4-2;
+
+
+    urge+=
+    (
+      target+
+      variation-
+      urge
+    )*.18;
+
+
+    urge=
     clamp(
-
-      gripValue-
-
-      (
-        nowMomentum-
-        lastMomentum
-      )*.72,
-
-      8,
-
-      100
-
+      urge,
+      18,
+      94
     );
 
 
     if(
-      before>=55 &&
-      gripValue<55
+      urge>=80 &&
+      !urgePeakCueShown
     ){
 
 
-      pulse(
+      urgePeakCueShown=
+      true;
+
+
+      showCue(
+        "RIDE THE WAVE ›",
+        1300
+      );
+
+
+    }
+
+
+    if(
+      urge<=48
+    ){
+
+
+      urgePeakCueShown=
+      false;
+
+
+    }
+
+
+    updateMeters();
+
+
+  },180);
+
+
+  scheduleDoubt(
+    950
+  );
+
+
+}
+
+
+
+/* DOUBT */
+
+function nextThought(){
+
+
+  const list=
+  missions[current]
+  .thoughts;
+
+
+  const thought=
+  list[
+    thoughtIndex%
+    list.length
+  ];
+
+
+  thoughtIndex++;
+
+
+  return thought;
+
+
+}
+
+
+
+function scheduleDoubt(
+  delay=1200
+){
+
+
+  clearTimeout(
+    doubtTimer
+  );
+
+
+  doubtTimer=
+  setTimeout(()=>{
+
+
+    if(
+      !current ||
+      [
+        "lock",
+        "relief",
+        "complete",
+        "idle"
+      ].includes(
+        phase
+      )
+    ){
+
+
+      return;
+
+
+    }
+
+
+    showDoubt(
+      nextThought()
+    );
+
+
+    urge=
+    Math.min(
+      98,
+      urge+12
+    );
+
+
+    updateMeters();
+
+
+    $("#phaseHint")
+    .textContent=
+    "DOUBT";
+
+
+    vibrate(
+      28
+    );
+
+
+  },delay);
+
+
+}
+
+
+
+/* PLAYER ROUTE */
+
+function playerRoute(t){
+
+
+  const person=
+  $("#person");
+
+
+  const smooth=
+  x=>
+  x*x*(3-2*x);
+
+
+  const drift=
+  smooth(
+    Math.min(
+      1,
+      t/.48
+    )
+  );
+
+
+  const turn=
+  smooth(
+    Math.max(
+      0,
+      Math.min(
+        1,
+        (t-.34)/.66
+      )
+    )
+  );
+
+
+  const left=
+  23+
+  6*drift+
+  21*turn;
+
+
+  const bottom=
+  12+
+  28*smooth(t);
+
+
+  const scale=
+  1.02-
+  .18*smooth(t);
+
+
+  person.style.left=
+  left+"%";
+
+
+  person.style.bottom=
+  bottom+"%";
+
+
+  person.style.transform=
+  `translateX(-50%) scale(${scale})`;
+
+
+}
+
+
+
+/* PARK DEPTH */
+
+function updateParkDepth(){
+
+
+  const t=
+  momentum/100;
+
+
+  const store=
+  $("#environment .store");
+
+
+  const car=
+  $("#car");
+
+
+  if(store){
+
+
+    store.style.transform=
+    `translateX(-50%) scale(${
+      1+t*.36
+    })`;
+
+
+    store.style.top=
+    `${
+      5-t*1.8
+    }%`;
+
+
+  }
+
+
+  if(car){
+
+
+    car.style.left=
+    `${
+      66+t*2
+    }%`;
+
+
+    car.style.transform=
+    `translateX(-50%) scale(${
+      1-t*.70
+    })`;
+
+
+    car.style.top=
+    `${
+      53+t*22
+    }%`;
+
+
+    car.style.opacity=
+    String(
+      Math.max(
+        .18,
+        1-t*.76
+      )
+    );
+
+
+  }
+
+
+  $("#environment")
+  .querySelectorAll(
+    ".parkingLine"
+  )
+  .forEach(
+    (
+      line,
+      index
+    )=>{
+
+
+      line.style.translate=
+      `0 ${
+        t*
+        (
+          10+
+          index*4
+        )
+      }px`;
+
+
+      line.style.opacity=
+      String(
+        1-t*.32
+      );
+
+
+    }
+  );
+
+
+  playerRoute(
+    t
+  );
+
+
+}
+
+
+
+/* STOVE DEPTH */
+
+function updateStoveDepth(){
+
+
+  const t=
+  momentum/100;
+
+
+  const stove=
+  $("#stove");
+
+
+  const exit=
+  $("#environment .exitDoor");
+
+
+  if(stove){
+
+
+    stove.style.left=
+    `${
+      66+t*2
+    }%`;
+
+
+    stove.style.transform=
+    `translateX(-50%) scale(${
+      1-t*.68
+    })`;
+
+
+    stove.style.top=
+    `${
+      45+t*23
+    }%`;
+
+
+    stove.style.opacity=
+    String(
+      Math.max(
+        .18,
+        1-t*.76
+      )
+    );
+
+
+  }
+
+
+  if(exit){
+
+
+    exit.style.transform=
+    `translateX(-50%) scale(${
+      1+t*.40
+    })`;
+
+
+    exit.style.top=
+    `${
+      6-t*2.2
+    }%`;
+
+
+  }
+
+
+  playerRoute(
+    t
+  );
+
+
+}
+
+
+
+/* START WALKING */
+
+function startWalking(){
+
+
+  if(
+    phase!=="ready" ||
+    hold ||
+    momentum>=100
+  ){
+
+
+    return false;
+
+
+  }
+
+
+  if(
+    recoveredAfterCheck
+  ){
+
+
+    recoveredAfterCheck=
+    false;
+
+
+    recoveryCount++;
+
+
+    showCue(
+      "BACK TO WHAT MATTERS ›",
+      1250
+    );
+
+
+    vibrate([
+      12,
+      35,
+      12
+    ]);
+
+
+  }
+
+
+  phase=
+  "moving";
+
+
+  hold=
+  true;
+
+
+  resetPersonVisual();
+
+
+  $("#person")
+  .classList.add(
+    "walking"
+  );
+
+
+  hideDoubt();
+
+
+  $("#phaseHint")
+  .textContent=
+  "MOVING";
+
+
+  walkTimer=
+  setInterval(()=>{
+
+
+    const before=
+    momentum;
+
+
+    momentum=
+    Math.min(
+      100,
+      momentum+2.2
+    );
+
+
+    const moved=
+    momentum-before;
+
+
+    if(
+      current==="car"
+    ){
+
+
+      updateParkDepth();
+
+
+    }
+
+
+    else if(
+      current==="stove"
+    ){
+
+
+      updateStoveDepth();
+
+
+    }
+
+
+    else{
+
+
+      $("#person")
+      .style.bottom=
+      (
+        24+
+        momentum*.15
+      )+"%";
+
+
+      $("#environment")
+      .style.transform=
+      `scale(${
+        1-
+        momentum*.0019
+      })`;
+
+
+    }
+
+
+    const beforeGrip=
+    loopGrip;
+
+
+    loopGrip=
+    clamp(
+      loopGrip-
+      moved*.72,
+      8,
+      100
+    );
+
+
+    if(
+      beforeGrip>=55 &&
+      loopGrip<55
+    ){
+
+
+      pulseDoubt(
         "release"
       );
 
@@ -1056,149 +4338,871 @@ function tick(){
     }
 
 
-  }
+    renderLoopGrip();
 
 
-  /*
-  AFTER TEMPORARY RELIEF,
-  BRIEFLY EMPHASIZE THE
-  PLAYER'S DIRECTION.
-  */
+    if(
+      momentum>=50 &&
+      !midpointShown
+    ){
+
+
+      midpointShown=
+      true;
+
+
+      showCue(
+        "KEEP GOING ›",
+        1200
+      );
+
+
+    }
+
+
+    updateMeters();
+
+
+    if(
+      momentum>=100
+    ){
+
+
+      completeMission();
+
+
+    }
+
+
+  },70);
+
+
+  return true;
+
+
+}
+
+
+
+/* STOP WALKING */
+
+function stopWalking(){
 
 
   if(
-    lastPhase==="relief" &&
-    nowPhase==="ready"
+    phase!=="moving"
   ){
 
 
-    const anchor=
-    document.querySelector(
-      "#whatMatters"
+    movementPointerActive=
+    false;
+
+
+    touchMoveActive=
+    false;
+
+
+    return;
+
+
+  }
+
+
+  stopMovement();
+
+
+  phase=
+  "ready";
+
+
+  $("#phaseHint")
+  .textContent=
+  "READY";
+
+
+  if(
+    momentum<100
+  ){
+
+
+    scheduleDoubt(
+      650
     );
 
 
-    anchor.style.transform=
-    "scale(1.03)";
-
-
-    setTimeout(()=>{
-
-
-      if(anchor){
-
-
-        anchor.style.transform=
-        "scale(1)";
-
-
-      }
-
-
-    },220);
-
-
   }
 
 
-  /*
-  EXPLAIN URGE VS BEHAVIOR
-  ONCE PER MISSION.
-  */
+}
+
+
+
+/* RECHECK */
+
+function recheck(source){
 
 
   if(
-    missionVisible &&
-
-    !legendShownForMission &&
-
-    nowPhase!=="lock"
+    phase!=="ready" &&
+    phase!=="moving"
   ){
 
 
-    legendShownForMission=
-    true;
-
-
-    legend.style.display=
-    "block";
-
-
-    setTimeout(()=>{
-
-
-      legend.style.display=
-      "none";
-
-
-    },2600);
+    return;
 
 
   }
 
 
-  presence.style.display=
-
-  missionVisible
-
-  ? "grid"
-
-  : "none";
+  checks++;
 
 
-  grip.style.display=
-
-  missionVisible
-
-  ? "block"
-
-  : "none";
+  recoveredAfterCheck=
+  true;
 
 
-  matters.style.display=
-
-  missionVisible
-
-  ? "block"
-
-  : "none";
+  stopMovement();
 
 
-  lastChecks=
-  nowChecks;
+  clearTimeout(
+    doubtTimer
+  );
 
 
-  lastMomentum=
-  nowMomentum;
+  phase=
+  "relief";
 
 
-  lastCurrent=
-  nowCurrent;
+  loopGrip=
+  clamp(
+    loopGrip+24,
+    0,
+    100
+  );
 
 
-  lastPhase=
-  nowPhase;
+  renderLoopGrip();
 
 
-  render();
+  pulseDoubt(
+    "feed"
+  );
 
 
-  requestAnimationFrame(
-    tick
+  vibrate([
+    35,
+    30,
+    35
+  ]);
+
+
+  $("#person")
+  .classList.add(
+    "lookback"
+  );
+
+
+  urge=
+  Math.max(
+    14,
+    urge-28
+  );
+
+
+  updateMeters();
+
+
+  hideDoubt();
+
+
+  $("#phaseHint")
+  .textContent=
+  "RELIEF";
+
+
+  if(
+    source==="fob"
+  ){
+
+
+    const beep=
+    $("#beep");
+
+
+    beep.textContent=
+    "BEEP • RELIEF";
+
+
+    beep.classList.add(
+      "show"
+    );
+
+
+    feedbackTimer=
+    setTimeout(()=>{
+
+
+      beep.classList.remove(
+        "show"
+      );
+
+
+    },600);
+
+
+  }
+
+
+  if(
+    source==="stove"
+  ){
+
+
+    flashLock(
+      "LOOK • RELIEF"
+    );
+
+
+  }
+
+
+  $("#title")
+  .textContent=
+  "Relief landed.";
+
+
+  $("#copy")
+  .textContent=
+  "For a moment, the question feels answered.";
+
+
+  reliefTimer=
+  setTimeout(()=>{
+
+
+    $("#person")
+    .classList.remove(
+      "lookback"
+    );
+
+
+    const questions=
+
+    current==="car"
+
+    ? [
+
+      "Okay... but did ALL the doors lock?",
+
+      "Was that definitely your car that beeped?"
+
+    ]
+
+    : current==="stove"
+
+    ? [
+
+      "Okay... but was every burner really off?",
+
+      "What if you looked at the wrong knob?"
+
+    ]
+
+    : [
+
+      "Okay... but did you pull it closed tightly enough?",
+
+      "What if the deadbolt didn't fully catch?"
+
+    ];
+
+
+    showDoubt(
+
+      checks<=2
+
+      ? questions[
+          Math.min(
+            checks-1,
+            questions.length-1
+          )
+        ]
+
+      : "The loop is asking for certainty again."
+
+    );
+
+
+    urge=
+    Math.min(
+      96,
+      urge+21
+    );
+
+
+    updateMeters();
+
+
+    phase=
+    "ready";
+
+
+    $("#phaseHint")
+    .textContent=
+    "DOUBT";
+
+
+    $("#title")
+    .textContent=
+
+    checks<=2
+
+    ? "Doubt moved the finish line."
+
+    : "Same loop. New request.";
+
+
+    $("#copy")
+    .textContent=
+
+    checks<=2
+
+    ? "The question changed. What matters didn't."
+
+    : "You don't have to solve the next question before moving.";
+
+
+  },800);
+
+
+}
+
+
+
+/* COMPLETE */
+
+function completeMission(){
+
+
+  stopEverything();
+
+
+  phase=
+  "complete";
+
+
+  xp+=
+  30;
+
+
+  updateXP();
+
+
+  localStorage.setItem(
+    "completed_"+current,
+    "yes"
+  );
+
+
+  updateMissionCompletionUI();
+
+
+  $("#xpEarned")
+  .textContent=
+  "30";
+
+
+  $("#result")
+  .textContent=
+
+  checks===0
+
+  ? "You reached the destination while uncertainty was still allowed to exist."
+
+  : `You noticed the pull to check and returned to moving forward ${recoveryCount} ${recoveryCount===1 ? "time" : "times"}. The goal was movement, not a perfect run.`;
+
+
+  setMissionOverlayVisible(
+    false
+  );
+
+
+  show(
+    "reward"
+  );
+
+
+  announce(
+    "Mission complete."
   );
 
 
 }
 
 
-render();
+
+/* END SESSION */
+
+function endSession(){
 
 
-requestAnimationFrame(
-  tick
+  stopEverything();
+
+
+  current=
+  null;
+
+
+  phase=
+  "idle";
+
+
+  setMissionOverlayVisible(
+    false
+  );
+
+
+  show(
+    "start"
+  );
+
+
+  announce(
+    "Session ended. Progress saved."
+  );
+
+
+}
+
+
+
+/* NAVIGATION */
+
+$("#enter")
+.addEventListener(
+  "click",
+  ()=>show(
+    "map"
+  )
 );
 
 
-})();
+$("#checking")
+.addEventListener(
+  "click",
+  ()=>{
+
+
+    updateMissionCompletionUI();
+
+
+    show(
+      "missionSelect"
+    );
+
+
+  }
+);
+
+
+$("#backMap")
+.addEventListener(
+  "click",
+  ()=>show(
+    "map"
+  )
+);
+
+
+$$(
+  ".missionCard[data-mission]"
+)
+.forEach(
+  button=>
+  button.addEventListener(
+    "click",
+    ()=>loadMission(
+      button.dataset.mission
+    )
+  )
+);
+
+
+$("#continueBtn")
+.addEventListener(
+  "click",
+  ()=>{
+
+
+    updateMissionCompletionUI();
+
+
+    show(
+      "missionSelect"
+    );
+
+
+  }
+);
+
+
+$("#doneBtn")
+.addEventListener(
+  "click",
+  endSession
+);
+
+
+$("#missionExit")
+.addEventListener(
+  "click",
+  exitMission
+);
+
+
+$("#checkBtn")
+.addEventListener(
+  "click",
+  ()=>recheck(
+    "door"
+  )
+);
+
+
+$("#fobLock")
+.addEventListener(
+  "click",
+  ()=>{
+
+
+    if(
+      phase==="lock"
+    ){
+
+
+      initialAction();
+
+
+    }
+
+
+    else{
+
+
+      recheck(
+        "fob"
+      );
+
+
+    }
+
+
+  }
+);
+
+
+$("#stoveControl")
+.addEventListener(
+  "click",
+  ()=>{
+
+
+    if(
+      phase==="lock"
+    ){
+
+
+      initialAction();
+
+
+    }
+
+
+    else{
+
+
+      recheck(
+        "stove"
+      );
+
+
+    }
+
+
+  }
+);
+
+
+
+/* HOLD TO MOVE */
+
+const forward=
+$("#forwardBtn");
+
+
+forward.addEventListener(
+  "touchstart",
+  event=>{
+
+
+    event.preventDefault();
+
+
+    if(
+      phase==="lock"
+    ){
+
+
+      initialAction();
+
+
+      return;
+
+
+    }
+
+
+    touchMoveActive=
+    startWalking();
+
+
+  },
+  {
+    passive:false
+  }
+);
+
+
+forward.addEventListener(
+  "touchmove",
+  event=>{
+
+
+    event.preventDefault();
+
+
+  },
+  {
+    passive:false
+  }
+);
+
+
+forward.addEventListener(
+  "touchend",
+  event=>{
+
+
+    event.preventDefault();
+
+
+    if(
+      touchMoveActive
+    ){
+
+
+      stopWalking();
+
+
+    }
+
+
+    touchMoveActive=
+    false;
+
+
+  },
+  {
+    passive:false
+  }
+);
+
+
+forward.addEventListener(
+  "touchcancel",
+  event=>{
+
+
+    event.preventDefault();
+
+
+    releaseInterruptedHold();
+
+
+  },
+  {
+    passive:false
+  }
+);
+
+
+
+/* DESKTOP FALLBACK */
+
+forward.addEventListener(
+  "pointerdown",
+  event=>{
+
+
+    if(
+      event.pointerType==="touch"
+    ){
+
+
+      return;
+
+
+    }
+
+
+    event.preventDefault();
+
+
+    if(
+      phase==="lock"
+    ){
+
+
+      initialAction();
+
+
+      return;
+
+
+    }
+
+
+    movementPointerActive=
+    startWalking();
+
+
+  }
+);
+
+
+[
+  "pointerup",
+  "pointercancel",
+  "pointerleave"
+]
+.forEach(
+  type=>
+  forward.addEventListener(
+    type,
+    event=>{
+
+
+      if(
+        event.pointerType==="touch" ||
+        !movementPointerActive
+      ){
+
+
+        return;
+
+
+      }
+
+
+      movementPointerActive=
+      false;
+
+
+      stopWalking();
+
+
+    }
+  )
+);
+
+
+
+/* IOS SAFETY */
+
+window.addEventListener(
+  "blur",
+  releaseInterruptedHold
+);
+
+
+window.addEventListener(
+  "pagehide",
+  releaseInterruptedHold
+);
+
+
+document.addEventListener(
+  "visibilitychange",
+  ()=>{
+
+
+    if(
+      document.hidden
+    ){
+
+
+      releaseInterruptedHold();
+
+
+    }
+
+
+  }
+);
+
+
+document.addEventListener(
+  "contextmenu",
+  event=>
+  event.preventDefault()
+);
+
+
+document.addEventListener(
+  "selectstart",
+  event=>
+  event.preventDefault()
+);
+
+
+document.addEventListener(
+  "dragstart",
+  event=>
+  event.preventDefault()
+);
+
+
+[
+  "gesturestart",
+  "gesturechange",
+  "gestureend"
+]
+.forEach(
+  type=>
+  document.addEventListener(
+    type,
+    event=>
+    event.preventDefault(),
+    {
+      passive:false
+    }
+  )
+);
+
+
+
+/* STARTUP */
+
+updateXP();
+
+updateMissionCompletionUI();
+
+renderLoopGrip();
+
 
 </script>
+
+
+</body>
+
+</html>
