@@ -4,25 +4,25 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#07101c">
-<title>UNCERTAIN — Checking District v10.18</title>
+
+<title>UNCERTAIN — Checking District v10.29</title>
 
 <style>
+
 :root{
   --bg:#07101c;
-  --panel:#0b1523ee;
+  --panel:#0b1523f2;
   --text:#f7fbff;
   --muted:#aebbd0;
   --accent:#74e7c5;
   --line:#ffffff26;
-  --doubt:#d8b8e4
+  --doubt:#d8b8e4;
 }
 
 *{
   box-sizing:border-box;
   -webkit-tap-highlight-color:transparent;
   -webkit-touch-callout:none;
-  -webkit-user-select:none;
-  user-select:none
 }
 
 html,
@@ -39,14 +39,14 @@ body{
   -apple-system,
   BlinkMacSystemFont,
   "Segoe UI",
-  sans-serif
+  sans-serif;
 }
 
 button{
   font:inherit;
   color:inherit;
   -webkit-appearance:none;
-  appearance:none
+  appearance:none;
 }
 
 #app{
@@ -57,17 +57,17 @@ button{
   position:relative;
   overflow:hidden;
   background:var(--bg);
-  touch-action:none
+  touch-action:none;
 }
 
 .screen{
   display:none;
   position:absolute;
-  inset:0
+  inset:0;
 }
 
 .screen.active{
-  display:block
+  display:block;
 }
 
 .hud{
@@ -76,10 +76,18 @@ button{
   top:0;
   left:0;
   right:0;
-  padding:max(12px,env(safe-area-inset-top)) 12px 8px;
+
+  padding:
+  max(
+    12px,
+    env(safe-area-inset-top)
+  )
+  12px
+  8px;
+
   display:flex;
   justify-content:space-between;
-  pointer-events:none
+  pointer-events:none;
 }
 
 .pill{
@@ -88,7 +96,21 @@ button{
   border-radius:999px;
   background:#07111de8;
   font-size:12px;
-  font-weight:950
+  font-weight:900;
+}
+
+.card{
+  background:
+  linear-gradient(
+    180deg,
+    #101d30f5,
+    #0b1625f5
+  );
+
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:16px;
+  box-shadow:0 18px 44px #0009;
 }
 
 .btn{
@@ -100,33 +122,20 @@ button{
   color:#0c1420;
   font-weight:950;
   font-size:17px;
-  touch-action:manipulation
+  touch-action:manipulation;
 }
 
 .btn.secondary{
   margin-top:10px;
   background:#152238;
   color:#f7fbff;
-  border:1px solid #ffffff2a
+  border:1px solid #ffffff2a;
 }
 
 .small{
   font-size:12px;
   line-height:1.4;
-  color:#aebbd0
-}
-
-.card{
-  background:
-  linear-gradient(
-    180deg,
-    #101d30f2,
-    #0b1625f2
-  );
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:16px;
-  box-shadow:0 18px 44px #0009
+  color:var(--muted);
 }
 
 
@@ -134,20 +143,21 @@ button{
 
 #start{
   padding:92px 22px 26px;
+
   background:
   radial-gradient(
     circle at 50% 25%,
     #355271,
     #111b2a 55%,
     #060b13
-  )
+  );
 }
 
 .logo{
   font-size:13px;
   letter-spacing:.25em;
   font-weight:950;
-  color:#a9b7ca
+  color:#a9b7ca;
 }
 
 .hero{
@@ -155,21 +165,22 @@ button{
   line-height:.92;
   margin:24px 0 16px;
   font-weight:1000;
-  letter-spacing:-.055em
+  letter-spacing:-.055em;
 }
 
 .hero span{
-  color:var(--accent)
+  color:var(--accent);
 }
 
 .startCard{
   position:absolute;
   left:16px;
   right:16px;
+
   bottom:max(
     22px,
     env(safe-area-inset-bottom)
-  )
+  );
 }
 
 
@@ -182,7 +193,7 @@ button{
     #29425f,
     #112238 64%,
     #07101c
-  )
+  );
 }
 
 .road{
@@ -193,7 +204,7 @@ button{
   top:49%;
   transform:rotate(-18deg);
   background:#46566c;
-  box-shadow:0 0 0 9px #1d2837
+  box-shadow:0 0 0 9px #1d2837;
 }
 
 .road:after{
@@ -202,7 +213,7 @@ button{
   left:0;
   right:0;
   top:48px;
-  border-top:4px dashed #e8edf566
+  border-top:4px dashed #e8edf566;
 }
 
 .node{
@@ -213,54 +224,45 @@ button{
   padding:15px;
   text-align:left;
   box-shadow:0 16px 36px #0009;
-  touch-action:manipulation
+  touch-action:manipulation;
 }
 
 .node strong{
   display:block;
-  font-size:18px
+  font-size:18px;
 }
 
 .node small{
-  opacity:.72
+  opacity:.72;
 }
 
 #checking{
   left:6%;
   top:21%;
-  width:195px
+  width:195px;
 }
 
 .locked{
   right:5%;
   bottom:25%;
   width:170px;
-  opacity:.48
-}
-
-.avatarMini{
-  position:absolute;
-  left:47%;
-  top:63%;
-  width:44px;
-  height:44px;
-  border-radius:50%;
-  background:#eef3f8;
-  border:7px solid #405675
+  opacity:.48;
 }
 
 .mapInfo{
   position:absolute;
   left:14px;
   right:14px;
+
   bottom:max(
     14px,
     env(safe-area-inset-bottom)
   );
+
   padding:13px 15px;
   border:1px solid var(--line);
   border-radius:18px;
-  background:#081321d9
+  background:#081321d9;
 }
 
 
@@ -272,14 +274,14 @@ button{
     circle at 50% 30%,
     #274762,
     #0b1625 65%
-  )
+  );
 }
 
 .selectWrap{
   position:absolute;
   inset:88px 14px 18px;
   overflow:auto;
-  padding-bottom:30px
+  padding-bottom:30px;
 }
 
 .missionCard{
@@ -291,62 +293,63 @@ button{
   text-align:left;
   margin-bottom:12px;
   min-height:112px;
-  touch-action:manipulation
+  touch-action:manipulation;
 }
 
 .missionCard b{
   display:block;
-  font-size:20px
+  font-size:20px;
 }
 
 .missionCard span{
   display:block;
   color:#b7c5d6;
   margin-top:7px;
-  line-height:1.35
+  line-height:1.35;
 }
 
 .tag{
   font-size:11px!important;
   color:var(--accent)!important;
   font-weight:900;
-  letter-spacing:.08em
+  letter-spacing:.08em;
 }
 
 .completion{
   min-height:15px;
   font-size:11px!important;
   color:var(--accent)!important;
-  font-weight:950!important
+  font-weight:950!important;
 }
 
 
 /* MISSION */
 
 #mission{
-  background:#0a111a
+  background:#0a111a;
 }
 
 .missionExit{
   position:absolute;
   z-index:100;
   left:12px;
+
   top:max(
     58px,
     calc(
       env(safe-area-inset-top) + 48px
     )
   );
+
   min-width:82px;
   min-height:46px;
   padding:8px 13px;
   border:1px solid #ffffff42;
   border-radius:999px;
   background:#08111bf2;
-  color:#f5f8fc;
   font-size:12px;
   font-weight:950;
-  touch-action:manipulation
+  touch-action:manipulation;
 }
 
 .scene{
@@ -354,34 +357,33 @@ button{
   z-index:1;
   inset:0;
   overflow:hidden;
+
   background:
   linear-gradient(
     #24364b 0 47%,
     #101923 47%
-  )
+  );
 }
 
 #environment{
   position:absolute;
   inset:0;
+
   transition:
-  transform .12s linear,
-  filter .12s linear,
-  opacity .12s linear
+  transform .15s linear,
+  opacity .15s linear;
 }
 
 .skyGlow{
   position:absolute;
-  left:0;
-  right:0;
-  top:0;
-  height:38%;
+  inset:0 0 62%;
+
   background:
   radial-gradient(
     circle at 70% 16%,
     #526d8a55,
     transparent 30%
-  )
+  );
 }
 
 .ground{
@@ -390,11 +392,12 @@ button{
   right:0;
   bottom:0;
   height:58%;
+
   background:
   linear-gradient(
     #1f2b37,
     #111923
-  )
+  );
 }
 
 .path{
@@ -403,11 +406,14 @@ button{
   bottom:-4%;
   width:56%;
   height:60%;
+
   transform:
   translateX(-50%)
   perspective(300px)
   rotateX(58deg);
+
   transform-origin:center bottom;
+
   background:
   linear-gradient(
     90deg,
@@ -415,716 +421,90 @@ button{
     #536578 50%,
     #334251
   );
+
   clip-path:
   polygon(
     38% 0,
     62% 0,
     100% 100%,
     0 100%
-  )
+  );
 }
 
-.destinationGlow{
+.destination{
   position:absolute;
   left:50%;
   top:19%;
-  width:80px;
-  height:80px;
+  width:86px;
+  height:86px;
   transform:translateX(-50%);
   border-radius:50%;
+
   background:
   radial-gradient(
     circle,
     #74e7c555,
     transparent 68%
   );
-  animation:pulse 1.8s infinite alternate;
-  pointer-events:none
+
+  animation:
+  pulse 1.8s infinite alternate;
 }
 
 @keyframes pulse{
+
   to{
     transform:
     translateX(-50%)
     scale(1.15);
-    opacity:.65
+
+    opacity:.65;
   }
+
 }
 
 
-/* HOUSE */
+/* OBJECT */
 
-.houseShell{
+.object{
   position:absolute;
   left:50%;
-  top:11%;
-  transform:translateX(-50%);
-  width:310px;
-  height:270px
-}
+  top:16%;
 
-.houseBody{
-  position:absolute;
-  left:16px;
-  right:16px;
-  top:48px;
-  bottom:0;
-  background:
-  linear-gradient(
-    #47576a,
-    #303b49
-  );
-  border:6px solid #1b2735
-}
-
-.roof{
-  position:absolute;
-  left:0;
-  right:0;
-  top:0;
-  height:110px;
-  background:#202c3a;
-  clip-path:
-  polygon(
-    50% 0,
-    100% 54%,
-    92% 54%,
-    92% 100%,
-    8% 100%,
-    8% 54%,
-    0 54%
-  )
-}
-
-.window{
-  position:absolute;
-  top:92px;
-  width:55px;
-  height:70px;
-  background:#d2a55f;
-  border:6px solid #1b2735
-}
-
-.window.left{
-  left:38px
-}
-
-.window.right{
-  right:38px
-}
-
-.porch{
-  position:absolute;
-  left:50%;
-  bottom:-7px;
-  transform:translateX(-50%);
-  width:180px;
-  height:28px;
-  background:#1c2835
-}
-
-.door{
-  position:absolute;
-  left:50%;
-  bottom:20px;
-  transform:translateX(-50%);
-  width:112px;
-  height:172px;
-  background:
-  linear-gradient(
-    #2f4155,
-    #1b2a3a
-  );
-  border:7px solid #111a25
-}
-
-.knob{
-  position:absolute;
-  right:8px;
-  top:74px;
-  width:36px;
-  height:36px;
-  border-radius:50%;
-  background:#e8eef5;
-  border:6px solid #6a7a8f
-}
-
-
-/* DRIVEWAY */
-
-.driveway{
-  position:absolute;
-  left:34%;
-  top:36%;
-  width:64%;
-  height:70%;
-  background:
-  linear-gradient(
-    160deg,
-    #3b4651,
-    #1c252e
-  );
-  clip-path:
-  polygon(
-    24% 0,
-    58% 0,
-    100% 100%,
-    0 100%
-  );
-  z-index:2
-}
-
-.drivewayEdge{
-  position:absolute;
-  top:37%;
-  height:66%;
-  width:4px;
-  background:#d9e1e833;
-  z-index:3
-}
-
-.drivewayEdge.left{
-  left:31%;
-  transform:rotate(7deg)
-}
-
-.drivewayEdge.right{
-  right:5%;
-  transform:rotate(-7deg)
-}
-
-.drivewayVehicle{
-  position:absolute;
-  z-index:9;
-  left:72%;
-  top:62%;
-  width:180px;
-  height:82px;
   transform:
-  translateX(-50%)
-  scale(.78);
-  transform-origin:50% 60%;
-  border-radius:36px 40px 18px 18px;
+  translateX(-50%);
+
+  width:220px;
+  height:155px;
+
+  border:7px solid #172330;
+  border-radius:18px;
+
   background:
   linear-gradient(
-    #8093aa,
-    #566a83
+    #526579,
+    #2a3949
   );
-  border:7px solid #101722;
-  transition:
-  transform .12s linear,
-  top .12s linear,
-  left .12s linear,
-  opacity .12s linear
-}
 
-.drivewayVehicle .carWindow{
-  left:40px;
-  width:96px
-}
-
-.drivewayVehicle:before,
-.drivewayVehicle:after{
-  content:"";
-  position:absolute;
-  bottom:-17px;
-  width:32px;
-  height:32px;
-  border-radius:50%;
-  background:#0a0d12;
-  border:6px solid #394554
-}
-
-.drivewayVehicle:before{
-  left:18px
-}
-
-.drivewayVehicle:after{
-  right:18px
-}
-
-.vehicleTarget{
-  position:absolute;
-  z-index:7;
-  left:72%;
-  top:60%;
-  width:120px;
-  height:120px;
-  transform:translateX(-50%);
-  border-radius:50%;
-  background:
-  radial-gradient(
-    circle,
-    #74e7c53d,
-    transparent 68%
-  );
-  pointer-events:none
-}
-
-.doorRouteLabel{
-  position:absolute;
-  z-index:11;
-  left:50%;
-  top:47%;
-  transform:translateX(-50%);
-  padding:6px 9px;
-  border-radius:999px;
-  background:#07141ecc;
-  border:1px solid #74e7c544;
-  color:#a9f1db;
-  font-size:9px;
+  display:grid;
+  place-items:center;
+  text-align:center;
   font-weight:950;
-  letter-spacing:.08em;
-  pointer-events:none
-}
 
-
-/* PARKING */
-
-.parkingGround{
-  position:absolute;
-  inset:34% 0 0;
-  background:
-  linear-gradient(
-    170deg,
-    #303b49,
-    #141c26
-  )
-}
-
-.store{
-  position:absolute;
-  left:50%;
-  top:5%;
-  transform:
-  translateX(-50%)
-  scale(1);
-  transform-origin:50% 100%;
-  width:305px;
-  height:178px;
-  background:
-  linear-gradient(
-    #54667a,
-    #3b4a5d
-  );
-  border:8px solid #223040;
   transition:
-  transform .12s linear,
-  top .12s linear;
-  z-index:4
+  transform .15s linear,
+  opacity .15s linear;
 }
 
-.store:before{
-  content:"DESTINATION";
-  position:absolute;
-  left:0;
-  right:0;
-  top:26px;
-  text-align:center;
-  font-weight:1000;
-  letter-spacing:.12em
+.object .icon{
+  font-size:54px;
+  line-height:1;
 }
 
-.storeDoor{
-  position:absolute;
-  left:50%;
-  bottom:0;
-  transform:translateX(-50%);
-  width:82px;
-  height:96px;
-  background:#142638;
-  border:5px solid #71849a
-}
-
-.parkingLine{
-  position:absolute;
-  height:5px;
-  background:#edf3fa4a;
-  transition:
-  translate .12s linear,
-  opacity .12s linear
-}
-
-.line1{
-  width:65%;
-  left:-4%;
-  top:61%;
-  transform:rotate(-19deg)
-}
-
-.line2{
-  width:65%;
-  right:-13%;
-  top:61%;
-  transform:rotate(19deg)
-}
-
-.line3{
-  width:56%;
-  left:4%;
-  top:78%;
-  transform:rotate(-14deg)
-}
-
-.line4{
-  width:56%;
-  right:-3%;
-  top:78%;
-  transform:rotate(14deg)
-}
-
-
-/* CARS */
-
-.car{
-  position:absolute;
-  left:66%;
-  top:53%;
-  transform:
-  translateX(-50%)
-  scale(1);
-  width:192px;
-  height:86px;
-  border-radius:38px 42px 18px 18px;
-  background:
-  linear-gradient(
-    #8fa0b5,
-    #687a91
-  );
-  border:7px solid #101722;
-  z-index:8;
-  transition:
-  transform .12s linear,
-  top .12s linear,
-  left .12s linear,
-  opacity .12s linear
-}
-
-.carWindow{
-  position:absolute;
-  left:44px;
-  top:-8px;
-  width:104px;
-  height:44px;
-  background:#21354a;
-  clip-path:
-  polygon(
-    20% 100%,
-    35% 0,
-    78% 0,
-    100% 100%
-  )
-}
-
-.carLight{
-  position:absolute;
-  right:8px;
-  top:37px;
-  width:24px;
-  height:14px;
-  border-radius:8px;
-  background:#e9c978
-}
-
-.car:before,
-.car:after{
-  content:"";
-  position:absolute;
-  bottom:-18px;
-  width:34px;
-  height:34px;
-  border-radius:50%;
-  background:#0a0d12;
-  border:6px solid #394554
-}
-
-.car:before{
-  left:20px
-}
-
-.car:after{
-  right:20px
-}
-
-
-/* KITCHEN */
-
-.kitchen{
-  position:absolute;
-  inset:0
-}
-
-.kitchenWall{
-  position:absolute;
-  left:0;
-  right:0;
-  top:0;
-  height:49%;
-  background:
-  linear-gradient(
-    #435160,
-    #2d3947
-  )
-}
-
-.kitchenFloor{
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  height:55%;
-  background:
-  repeating-linear-gradient(
-    90deg,
-    #222c36 0,
-    #222c36 52px,
-    #2d3944 53px,
-    #2d3944 56px
-  )
-}
-
-.exitDoor{
-  position:absolute;
-  left:50%;
-  top:6%;
-  transform:
-  translateX(-50%)
-  scale(1);
-  transform-origin:50% 100%;
-  width:125px;
-  height:220px;
-  background:
-  linear-gradient(
-    #30475a,
-    #172837
-  );
-  border:8px solid #172330;
-  z-index:5;
-  transition:
-  transform .12s linear,
-  top .12s linear
-}
-
-.exitDoor:before{
-  content:"EXIT";
-  position:absolute;
-  top:18px;
-  left:0;
-  right:0;
-  text-align:center;
-  font-size:12px;
-  font-weight:1000;
-  letter-spacing:.15em;
-  color:#99edcf
-}
-
-.exitHandle{
-  position:absolute;
-  right:13px;
-  top:104px;
-  width:27px;
-  height:27px;
-  border-radius:50%;
-  background:#d5dee7;
-  border:5px solid #6f8194
-}
-
-.counter{
-  position:absolute;
-  left:0;
-  right:0;
-  top:48%;
-  height:72px;
-  background:#252f39;
-  border-top:10px solid #586574
-}
-
-
-/* STOVE */
-
-.stove{
-  position:absolute;
-  left:66%;
-  top:45%;
-  transform:
-  translateX(-50%)
-  scale(1);
-  width:220px;
-  height:145px;
-  background:
-  linear-gradient(
-    #6f7d8c,
-    #424e5b
-  );
-  border:7px solid #18222c;
-  border-radius:8px;
-  z-index:8;
-  transition:
-  transform .12s linear,
-  top .12s linear,
-  left .12s linear,
-  opacity .12s linear
-}
-
-.stoveTop{
-  position:absolute;
-  top:-42px;
-  left:-7px;
-  width:220px;
-  height:52px;
-  background:#1a222b;
-  border:7px solid #111820
-}
-
-.burner{
-  position:absolute;
-  top:-27px;
-  width:47px;
-  height:22px;
-  border-radius:50%;
-  border:5px solid #55616d;
-  background:#0c1117
-}
-
-.burner.one{
-  left:20px
-}
-
-.burner.two{
-  right:20px
-}
-
-.stovePanel{
-  position:absolute;
-  top:16px;
-  left:15px;
-  right:15px;
-  height:49px;
-  background:#27313b;
-  border-radius:5px
-}
-
-.stoveKnob{
-  position:absolute;
-  top:26px;
-  width:31px;
-  height:31px;
-  border-radius:50%;
-  background:#d9e1e8;
-  border:6px solid #697887
-}
-
-.stoveKnob.one{
-  left:29px
-}
-
-.stoveKnob.two{
-  left:76px
-}
-
-.stoveKnob.three{
-  right:76px
-}
-
-.stoveKnob.four{
-  right:29px
-}
-
-.stoveOven{
-  position:absolute;
-  left:27px;
-  right:27px;
-  bottom:15px;
-  height:56px;
-  background:#101820;
-  border:6px solid #2c3742
-}
-
-
-/* OBJECT CONTROLS */
-
-#keyfob,
-#stoveControlWrap{
-  position:absolute;
-  z-index:67;
-  right:15px;
-  bottom:188px;
-  width:92px;
-  min-height:110px;
-  padding:9px;
-  border-radius:22px;
-  background:#111923;
-  border:4px solid #748496;
-  text-align:center
-}
-
-#keyfob{
-  width:84px;
-  height:108px
-}
-
-#keyfob .ring{
-  width:19px;
-  height:19px;
-  border:4px solid #8fa0b5;
-  border-radius:50%;
-  margin:-24px auto 8px
-}
-
-#keyfob button,
-#stoveControl{
-  width:100%;
-  min-height:54px;
-  border:0;
-  border-radius:14px;
-  background:#e3eaf0;
-  color:#111827;
-  font-weight:1000;
-  touch-action:manipulation
-}
-
-#keyfob button{
-  font-size:22px
-}
-
-.disabled{
-  opacity:.45;
-  pointer-events:none
-}
-
-.stoveIndicator{
-  display:inline-block;
-  width:9px;
-  height:9px;
-  border-radius:50%;
-  background:#d95d5d;
-  margin-right:4px
-}
-
-.stoveIndicator.off{
-  background:#6fe0ba
-}
-
-#beep{
-  position:absolute;
-  z-index:66;
-  right:104px;
-  bottom:236px;
-  padding:8px 11px;
-  border-radius:999px;
-  background:#07111de8;
-  border:1px solid #ffffff32;
-  font-weight:1000;
-  opacity:0;
-  transition:.12s
-}
-
-#beep.show{
-  opacity:1
-}
-
-.reliefFlash{
-  filter:brightness(1.16)
+.object .label{
+  font-size:13px;
+  letter-spacing:.1em;
+  margin-top:4px;
 }
 
 
@@ -1134,32 +514,31 @@ button{
   position:absolute;
   z-index:18;
   left:50%;
-  bottom:24%;
+  bottom:25%;
   width:62px;
   height:106px;
-  transform:translateX(-50%);
+
+  transform:
+  translateX(-50%);
+
   transition:
   bottom .12s linear,
   left .12s linear,
-  transform .12s linear
-}
-
-.person.lookback{
-  transform:
-  translateX(-50%)
-  translateX(-5px)
-  rotate(-4deg)
+  transform .12s linear;
 }
 
 .shadow{
   position:absolute;
   left:50%;
   bottom:-4px;
-  transform:translateX(-50%);
+
+  transform:
+  translateX(-50%);
+
   width:54px;
   height:13px;
   border-radius:50%;
-  background:#0007
+  background:#0007;
 }
 
 .head{
@@ -1169,7 +548,7 @@ button{
   width:28px;
   height:28px;
   border-radius:50%;
-  background:#eef3f8
+  background:#eef3f8;
 }
 
 .body{
@@ -1179,28 +558,12 @@ button{
   width:38px;
   height:46px;
   border-radius:16px 16px 10px 10px;
+
   background:
   linear-gradient(
     #e8eef5,
     #c8d4df
-  )
-}
-
-.arm{
-  position:absolute;
-  top:35px;
-  width:11px;
-  height:37px;
-  border-radius:10px;
-  background:#cfdbe6
-}
-
-.arm.a{
-  left:5px
-}
-
-.arm.b{
-  right:5px
+  );
 }
 
 .leg{
@@ -1209,31 +572,35 @@ button{
   width:13px;
   height:33px;
   border-radius:9px;
-  background:#bcc9d5
+  background:#bcc9d5;
 }
 
 .leg.a{
-  left:14px
+  left:14px;
 }
 
 .leg.b{
-  right:14px
+  right:14px;
 }
 
 .person.walking .leg.a{
-  animation:step .28s infinite alternate
+  animation:
+  step .28s infinite alternate;
 }
 
 .person.walking .leg.b{
-  animation:step .28s infinite alternate-reverse
+  animation:
+  step .28s infinite alternate-reverse;
 }
 
 @keyframes step{
+
   to{
     transform:
     translateY(4px)
-    rotate(9deg)
+    rotate(9deg);
   }
+
 }
 
 
@@ -1243,19 +610,21 @@ button{
   position:absolute;
   z-index:21;
   inset:0;
+
   background:
   radial-gradient(
     circle at 50% 45%,
     transparent 32%,
     #210d2a99 100%
   );
+
   opacity:0;
   pointer-events:none;
-  transition:.18s
+  transition:.18s;
 }
 
 #doubtVignette.show{
-  opacity:1
+  opacity:1;
 }
 
 .doubtText{
@@ -1271,11 +640,11 @@ button{
   text-shadow:0 4px 16px #000;
   opacity:0;
   transition:.18s;
-  pointer-events:none
+  pointer-events:none;
 }
 
 .doubtText.show{
-  opacity:1
+  opacity:1;
 }
 
 .doubtLabel{
@@ -1283,56 +652,72 @@ button{
   font-size:10px;
   letter-spacing:.16em;
   color:#d2a3cf;
-  margin-bottom:7px
+  margin-bottom:7px;
 }
 
-.choiceCue{
+
+/* ERP CUES */
+
+#carryCue,
+#waveCue,
+#recoveryCue{
   position:absolute;
-  z-index:40;
+  z-index:42;
   left:50%;
-  top:48%;
-  transform:
-  translate(-50%,10px)
-  scale(.96);
-  padding:10px 16px;
-  border:1px solid #74e7c566;
+  transform:translateX(-50%);
+  max-width:82%;
+  padding:9px 13px;
   border-radius:999px;
-  background:#07141ee8;
-  color:var(--accent);
-  font-size:13px;
+  background:#07141ef2;
+  font-size:11px;
   font-weight:1000;
-  letter-spacing:.08em;
+  letter-spacing:.06em;
+  text-align:center;
   opacity:0;
   pointer-events:none;
-  box-shadow:0 8px 24px #0008;
   transition:.2s;
-  white-space:nowrap
 }
 
-.choiceCue.show{
+#carryCue{
+  top:max(
+    110px,
+    calc(
+      env(safe-area-inset-top) + 90px
+    )
+  );
+
+  border:1px solid #74e7c566;
+  color:#bff6e5;
+}
+
+#waveCue{
+  top:max(
+    154px,
+    calc(
+      env(safe-area-inset-top) + 134px
+    )
+  );
+
+  border:1px solid #ffffff33;
+  color:#e9eef5;
+}
+
+#recoveryCue{
+  top:max(
+    198px,
+    calc(
+      env(safe-area-inset-top) + 178px
+    )
+  );
+
+  border:1px solid #74e7c566;
+  color:#bff6e5;
+}
+
+#carryCue.show,
+#waveCue.show,
+#recoveryCue.show{
   opacity:1;
-  transform:
-  translate(-50%,0)
-  scale(1)
-}
-
-.lockFlash{
-  position:absolute;
-  left:50%;
-  top:38%;
-  z-index:30;
-  transform:translateX(-50%);
-  padding:9px 14px;
-  border-radius:999px;
-  background:#081321ed;
-  border:1px solid #ffffff35;
-  font-weight:1000;
-  opacity:0;
-  transition:.15s
-}
-
-.lockFlash.show{
-  opacity:1
 }
 
 
@@ -1342,20 +727,20 @@ button{
   position:absolute;
   z-index:36;
   left:12px;
+
   top:max(
-    116px,
+    246px,
     calc(
-      env(safe-area-inset-top) + 96px
+      env(safe-area-inset-top) + 226px
     )
   );
-  max-width:190px;
+
+  max-width:170px;
   padding:9px 11px;
   border:1px solid #74e7c54a;
   border-radius:15px;
   background:#07141ee8;
-  box-shadow:0 8px 22px #0007;
   pointer-events:none;
-  display:none
 }
 
 .wmLabel{
@@ -1364,7 +749,7 @@ button{
   font-weight:1000;
   letter-spacing:.13em;
   color:var(--accent);
-  margin-bottom:4px
+  margin-bottom:4px;
 }
 
 .wmText{
@@ -1372,144 +757,54 @@ button{
   font-size:11px;
   line-height:1.25;
   font-weight:850;
-  color:#f4fbf8
 }
 
 
 /* LOOP GRIP */
 
-#doubtPresence{
-  position:absolute;
-  z-index:34;
-  right:14px;
-  top:max(
-    112px,
-    calc(
-      env(safe-area-inset-top) + 92px
-    )
-  );
-  width:74px;
-  height:74px;
-  border-radius:50%;
-  pointer-events:none;
-  display:none;
-  place-items:center;
-  background:
-
-  radial-gradient(
-    circle at 38% 32%,
-    #e4d4eb 0 7%,
-    transparent 8%
-  ),
-
-  radial-gradient(
-    circle at 62% 32%,
-    #e4d4eb 0 7%,
-    transparent 8%
-  ),
-
-  radial-gradient(
-    circle at 50% 59%,
-    #1b0f27 0 15%,
-    transparent 16%
-  ),
-
-  radial-gradient(
-    circle at 50% 50%,
-    #56386e 0 46%,
-    #2c193d 64%,
-    #140b1e 100%
-  );
-
-  border:2px solid #e6d4ed55;
-
-  box-shadow:
-  0 10px 28px #0009,
-  0 0 22px #a94de52b;
-
-  transform:scale(.75);
-
-  opacity:.58;
-
-  transition:
-  transform .22s ease,
-  opacity .22s ease,
-  filter .22s ease
-}
-
-#doubtPresence:after{
-  content:"?";
-  font-size:33px;
-  font-weight:1000;
-  color:#f3eaf7;
-  text-shadow:0 3px 9px #000
-}
-
-#doubtPresence.feed{
-  animation:doubtFeed .34s ease-out
-}
-
-#doubtPresence.release{
-  animation:doubtRelease .42s ease-out
-}
-
-@keyframes doubtFeed{
-  45%{
-    filter:brightness(1.55)
-  }
-}
-
-@keyframes doubtRelease{
-  45%{
-    filter:brightness(.72)
-  }
-}
-
 #loopGripPanel{
   position:absolute;
   z-index:35;
   right:10px;
+
   top:max(
-    198px,
+    246px,
     calc(
-      env(safe-area-inset-top) + 178px
+      env(safe-area-inset-top) + 226px
     )
   );
+
   width:126px;
-  padding:8px 9px 9px;
+  padding:8px 9px;
   border:1px solid #ffffff28;
   border-radius:14px;
   background:#081321e8;
-  box-shadow:0 8px 22px #0007;
   pointer-events:none;
-  display:none
 }
 
 .gripRow{
   display:flex;
   justify-content:space-between;
   gap:8px;
-  margin-bottom:5px
+  margin-bottom:5px;
+}
+
+.gripTitle,
+.gripState{
+  font-size:9px;
+  font-weight:1000;
+  letter-spacing:.08em;
 }
 
 .gripTitle{
-  font-size:9px;
-  font-weight:1000;
-  letter-spacing:.12em;
-  color:#dac5e3
-}
-
-.gripState{
-  font-size:9px;
-  font-weight:950;
-  color:#d5dfeb
+  color:#dac5e3;
 }
 
 .gripTrack{
   height:7px;
   border-radius:999px;
   overflow:hidden;
-  background:#ffffff20
+  background:#ffffff20;
 }
 
 .gripTrack i{
@@ -1518,14 +813,14 @@ button{
   height:100%;
   border-radius:999px;
   background:var(--doubt);
-  transition:width .22s ease
+  transition:width .22s ease;
 }
 
 .gripNote{
   margin-top:6px;
   font-size:8px;
   line-height:1.25;
-  color:#aebbd0
+  color:#aebbd0;
 }
 
 
@@ -1536,85 +831,98 @@ button{
   z-index:60;
   left:10px;
   right:10px;
+
   bottom:max(
     10px,
     env(safe-area-inset-bottom)
   );
+
   padding:11px 12px;
   border:1px solid #ffffff24;
   border-radius:20px;
-  background:#081321df;
-  backdrop-filter:blur(12px)
+  background:#081321e8;
+  backdrop-filter:blur(12px);
 }
 
 .gameTitle{
   display:flex;
   justify-content:space-between;
-  gap:12px
+  gap:12px;
 }
 
 .gameTitle b{
-  font-size:15px
+  font-size:15px;
 }
 
 .gameTitle span{
   font-size:11px;
-  color:#aebbd0
+  color:#aebbd0;
 }
 
 .meters{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
-  margin-top:9px
+  margin-top:9px;
 }
 
 .meterLabel{
   font-size:9px;
   letter-spacing:.1em;
-  color:#aeb9c7
+  color:#aeb9c7;
 }
 
 .meter{
   height:9px;
   background:#29364a;
   border-radius:999px;
-  overflow:hidden;
-  margin-top:4px
+  overflow:visible;
+  margin-top:4px;
+  position:relative;
 }
 
-.meter i{
+.meter i.fill{
   display:block;
   height:100%;
   width:0;
   border-radius:999px;
-  background:#eef3f8
+  background:#eef3f8;
+}
+
+#recoveryMark{
+  position:absolute;
+  display:none;
+  top:-4px;
+  width:2px;
+  height:17px;
+  background:var(--accent);
+  box-shadow:0 0 0 2px #07101c;
 }
 
 .controls{
   display:flex;
   gap:9px;
-  margin-top:10px
+  margin-top:10px;
 }
 
 .control{
   flex:1;
-  min-height:54px;
+  min-height:58px;
   border:1px solid #ffffff2a;
   border-radius:15px;
   background:#152238;
   font-weight:950;
-  touch-action:manipulation
+  touch-action:manipulation;
 }
 
 .control.primary{
   background:#eef3f8;
   color:#101826;
-  touch-action:none
+  touch-action:none;
 }
 
 .control:disabled{
-  opacity:.45
+  opacity:.45;
 }
 
 
@@ -1627,7 +935,7 @@ button{
     #35516e,
     #101927 62%,
     #060b13
-  )
+  );
 }
 
 .rewardBox{
@@ -1636,13 +944,13 @@ button{
   right:18px;
   top:50%;
   transform:translateY(-50%);
-  text-align:center
+  text-align:center;
 }
 
 .rewardBig{
   font-size:45px;
   font-weight:1000;
-  margin:10px 0
+  margin:10px 0;
 }
 
 .sessionNote{
@@ -1652,7 +960,7 @@ button{
   background:#08132199;
   color:#aebbd0;
   font-size:12px;
-  line-height:1.4
+  line-height:1.4;
 }
 
 .srOnly{
@@ -1664,7 +972,7 @@ button{
   overflow:hidden;
   clip:rect(0,0,0,0);
   white-space:nowrap;
-  border:0
+  border:0;
 }
 
 
@@ -1672,70 +980,49 @@ button{
 
 @media(max-height:700px){
 
-  #doubtPresence{
-    width:62px;
-    height:62px;
-    top:max(
-      104px,
-      calc(
-        env(safe-area-inset-top) + 84px
-      )
-    )
-  }
-
-  #doubtPresence:after{
-    font-size:27px
-  }
-
-  #loopGripPanel{
-    top:max(
-      174px,
-      calc(
-        env(safe-area-inset-top) + 154px
-      )
-    );
-    width:114px
-  }
-
-  #whatMatters{
-    top:max(
-      104px,
-      calc(
-        env(safe-area-inset-top) + 84px
-      )
-    );
-    max-width:160px
+  .hero{
+    font-size:46px;
   }
 
   .gamePanel{
-    padding:9px 10px
+    padding:9px 10px;
   }
 
   .control{
-    min-height:50px
+    min-height:52px;
+  }
+
+  #whatMatters,
+  #loopGripPanel{
+    top:225px;
+  }
+
+  #whatMatters{
+    max-width:150px;
+  }
+
+  #loopGripPanel{
+    width:116px;
   }
 
 }
 
 
-/* ACCESSIBILITY */
+/* REDUCED MOTION */
 
 @media(prefers-reduced-motion:reduce){
 
   *{
     animation:none!important;
-    transition:none!important
+    transition:none!important;
   }
 
 }
 
 </style>
-
 </head>
 
-
 <body>
-
 
 <div id="app">
 
@@ -1825,8 +1112,6 @@ button{
 
   </button>
 
-  <div class="avatarMini"></div>
-
   <div class="hud">
 
     <span class="pill">
@@ -1848,7 +1133,8 @@ button{
     <br>
 
     <span>
-      Certainty always seems one more check away.
+      Certainty always seems one more
+      check away.
     </span>
 
   </div>
@@ -1895,8 +1181,8 @@ button{
       </span>
 
       <span>
-        Lock the house once, then keep moving
-        while Doubt tries to pull you back.
+        Lock once, then keep moving while
+        Doubt tries to pull you back.
       </span>
 
     </button>
@@ -1920,8 +1206,8 @@ button{
       </span>
 
       <span>
-        Lock the car once. The key fob stays
-        available. Doubt does too.
+        Lock the car once. Doubt can come
+        along without another click.
       </span>
 
     </button>
@@ -1946,8 +1232,8 @@ button{
 
       <span>
         Turn the stove off once, then head
-        for the door while Doubt asks for
-        another look.
+        for the exit without solving every
+        question.
       </span>
 
     </button>
@@ -1982,17 +1268,14 @@ button{
   <button
     type="button"
     id="missionExit"
-    class="missionExit"
-    aria-label="Exit mission">
+    class="missionExit">
 
     ‹ EXIT
 
   </button>
 
 
-  <div
-    id="scene"
-    class="scene">
+  <div class="scene">
 
     <div class="skyGlow"></div>
 
@@ -2000,7 +1283,7 @@ button{
 
     <div class="path"></div>
 
-    <div class="destinationGlow"></div>
+    <div class="destination"></div>
 
     <div id="environment"></div>
 
@@ -2015,20 +1298,10 @@ button{
 
       <i class="body"></i>
 
-      <i class="arm a"></i>
-
-      <i class="arm b"></i>
-
       <i class="leg a"></i>
 
       <i class="leg b"></i>
 
-    </div>
-
-
-    <div
-      id="lockFlash"
-      class="lockFlash">
     </div>
 
 
@@ -2050,12 +1323,18 @@ button{
     </div>
 
 
-    <div
-      id="choiceCue"
-      class="choiceCue">
+    <div id="carryCue">
+      ● UNCERTAINTY CAN COME WITH YOU
+    </div>
 
-      KEEP GOING ›
 
+    <div id="waveCue">
+      URGE WAVE • 0.0s WITHOUT CHECKING
+    </div>
+
+
+    <div id="recoveryCue">
+      RETURN TO YOUR PATH • NO RESET
     </div>
 
 
@@ -2073,15 +1352,7 @@ button{
     </div>
 
 
-    <div
-      id="doubtPresence"
-      aria-hidden="true">
-    </div>
-
-
-    <div
-      id="loopGripPanel"
-      aria-hidden="true">
+    <div id="loopGripPanel">
 
       <div class="gripRow">
 
@@ -2095,72 +1366,15 @@ button{
 
       </div>
 
+
       <div class="gripTrack">
         <i></i>
       </div>
 
+
       <div class="gripNote">
-        Tracks certainty-seeking, not anxiety.
-      </div>
-
-    </div>
-
-
-    <div id="beep">
-      BEEP • LOCKED
-    </div>
-
-
-    <div
-      id="keyfob"
-      style="display:none">
-
-      <div class="ring"></div>
-
-      <button
-        type="button"
-        id="fobLock"
-        aria-label="Lock car">
-
-        🔒
-
-      </button>
-
-      <div
-        class="small"
-        style="margin-top:6px">
-
-        LOCK
-
-      </div>
-
-    </div>
-
-
-    <div
-      id="stoveControlWrap"
-      style="display:none">
-
-      <button
-        type="button"
-        id="stoveControl"
-        aria-label="Turn stove off">
-
-        <span
-          id="stoveIndicator"
-          class="stoveIndicator">
-        </span>
-
-        OFF
-
-      </button>
-
-      <div
-        class="small"
-        style="margin-top:8px">
-
-        STOVE
-
+        Tracks certainty-seeking,
+        not anxiety.
       </div>
 
     </div>
@@ -2226,10 +1440,16 @@ button{
         </span>
 
         <div class="meter">
-          <i id="urge"></i>
+
+          <i
+            class="fill"
+            id="urge">
+          </i>
+
         </div>
 
       </div>
+
 
       <div>
 
@@ -2238,10 +1458,18 @@ button{
         </span>
 
         <div class="meter">
-          <i id="progress"></i>
+
+          <i
+            class="fill"
+            id="progress">
+          </i>
+
+          <i id="recoveryMark"></i>
+
         </div>
 
       </div>
+
 
     </div>
 
@@ -2257,6 +1485,7 @@ button{
 
       </button>
 
+
       <button
         type="button"
         class="control primary"
@@ -2271,7 +1500,6 @@ button{
 
   </div>
 
-
 </section>
 
 
@@ -2280,7 +1508,6 @@ button{
 <section
   id="reward"
   class="screen">
-
 
   <div class="hud">
 
@@ -2311,13 +1538,9 @@ button{
 
       </div>
 
-      <p id="result">
-        You moved forward while uncertainty
-        was still present.
-      </p>
+      <p id="result"></p>
 
       <button
-        type="button"
         class="btn"
         id="continueBtn">
 
@@ -2326,7 +1549,6 @@ button{
       </button>
 
       <button
-        type="button"
         class="btn secondary"
         id="doneBtn">
 
@@ -2337,14 +1559,14 @@ button{
       <div class="sessionNote">
 
         Stopping here is allowed.
-        Progress does not require another mission.
+        Progress does not require
+        another mission.
 
       </div>
 
     </div>
 
   </div>
-
 
 </section>
 
@@ -2390,12 +1612,214 @@ Math.max(
 
 
 
+const store={
+
+
+  get(
+    key,
+    fallback=""
+  ){
+
+
+    try{
+
+
+      return localStorage.getItem(
+        key
+      ) ?? fallback;
+
+
+    }
+
+
+    catch{
+
+
+      return fallback;
+
+
+    }
+
+
+  },
+
+
+  set(
+    key,
+    value
+  ){
+
+
+    try{
+
+
+      localStorage.setItem(
+        key,
+        value
+      );
+
+
+    }
+
+
+    catch{
+
+
+    }
+
+
+  }
+
+
+};
+
+
+
+const missions={
+
+
+  door:{
+
+
+    name:
+    "LOCK & LEAVE",
+
+
+    title:
+    "Lock the door.",
+
+
+    copy:
+    "Perform one normal lock.",
+
+
+    value:
+    "Leave home and continue your day.",
+
+
+    icon:
+    "🚪",
+
+
+    label:
+    "FRONT DOOR",
+
+
+    thoughts:[
+
+      "Are you sure it clicked?",
+
+      "Maybe the deadbolt didn't catch.",
+
+      "What if the door opens after you leave?",
+
+      "One more check would feel safer."
+
+    ]
+
+
+  },
+
+
+
+  car:{
+
+
+    name:
+    "PARK & WALK",
+
+
+    title:
+    "Lock the car.",
+
+
+    copy:
+    "Press the key fob once.",
+
+
+    value:
+    "Go where you were headed.",
+
+
+    icon:
+    "🚙",
+
+
+    label:
+    "YOUR CAR",
+
+
+    thoughts:[
+
+      "Did you hear it lock?",
+
+      "Was that your car that beeped?",
+
+      "Maybe a door is unlocked.",
+
+      "You could press it one more time."
+
+    ]
+
+
+  },
+
+
+
+  stove:{
+
+
+    name:
+    "OFF & OUT",
+
+
+    title:
+    "Turn the stove off.",
+
+
+    copy:
+    "One normal action.",
+
+
+    value:
+    "Leave the kitchen and continue.",
+
+
+    icon:
+    "♨️",
+
+
+    label:
+    "STOVE",
+
+
+    thoughts:[
+
+      "Was that definitely the right knob?",
+
+      "What if one burner is still on?",
+
+      "Did you actually see it reach OFF?",
+
+      "One more look would feel safer."
+
+    ]
+
+
+  }
+
+
+};
+
+
+
 let xp=
 Number(
-  localStorage.getItem(
-    "uncertainXP"
-  )||0
-);
+  store.get(
+    "uncertainXP",
+    "0"
+  )
+)||0;
 
 
 let current=
@@ -2422,11 +1846,15 @@ let thoughtIndex=
 0;
 
 
+let loopGrip=
+24;
+
+
+let hold=
+false;
+
+
 let walkTimer=
-null;
-
-
-let urgeTimer=
 null;
 
 
@@ -2434,35 +1862,15 @@ let doubtTimer=
 null;
 
 
-let reliefTimer=
+let urgeTimer=
 null;
 
 
-let feedbackTimer=
+let waveTimer=
 null;
 
 
-let cueTimer=
-null;
-
-
-let hold=
-false;
-
-
-let movementPointerActive=
-false;
-
-
-let touchMoveActive=
-false;
-
-
-let midpointShown=
-false;
-
-
-let recoveredAfterCheck=
+let carrying=
 false;
 
 
@@ -2470,247 +1878,12 @@ let recoveryCount=
 0;
 
 
-let urgeWavePhase=
+let recoveryTarget=
+null;
+
+
+let waveStartedAt=
 0;
-
-
-let urgePeakCueShown=
-false;
-
-
-let loopGrip=
-24;
-
-
-
-const missions={
-
-
-door:{
-
-
-  name:
-  "LOCK & LEAVE",
-
-
-  title:
-  "Lock the door.",
-
-
-  copy:
-  "Perform one normal lock.",
-
-
-  value:
-  "Leave home and continue your day.",
-
-
-  thoughts:[
-
-    "Are you sure it clicked?",
-
-    "Maybe the deadbolt didn't catch.",
-
-    "What if the door opens after you leave?",
-
-    "One more check would feel safer."
-
-  ],
-
-
-  env:
-
-  '<div class="driveway"></div>'+
-
-  '<div class="drivewayEdge left"></div>'+
-
-  '<div class="drivewayEdge right"></div>'+
-
-  '<div class="vehicleTarget"></div>'+
-
-  '<div class="houseShell">'+
-
-  '<div class="roof"></div>'+
-
-  '<div class="houseBody"></div>'+
-
-  '<div class="window left"></div>'+
-
-  '<div class="window right"></div>'+
-
-  '<div class="porch"></div>'+
-
-  '<div class="door">'+
-
-  '<div class="knob"></div>'+
-
-  '</div>'+
-
-  '</div>'+
-
-  '<div class="drivewayVehicle" id="drivewayVehicle">'+
-
-  '<div class="carWindow"></div>'+
-
-  '<div class="carLight"></div>'+
-
-  '</div>'+
-
-  '<div class="doorRouteLabel">'+
-
-  'DRIVEWAY → VEHICLE'+
-
-  '</div>'
-
-
-},
-
-
-
-car:{
-
-
-  name:
-  "PARK & WALK",
-
-
-  title:
-  "Lock the car.",
-
-
-  copy:
-  "Press the key fob once.",
-
-
-  value:
-  "Go where you were headed.",
-
-
-  thoughts:[
-
-    "Did you hear it lock?",
-
-    "Was that your car that beeped?",
-
-    "Maybe the passenger door is unlocked.",
-
-    "What if the signal didn't reach it?",
-
-    "You could press it one more time."
-
-  ],
-
-
-  env:
-
-  '<div class="store">'+
-
-  '<div class="storeDoor"></div>'+
-
-  '</div>'+
-
-  '<div class="parkingGround"></div>'+
-
-  '<div class="parkingLine line1"></div>'+
-
-  '<div class="parkingLine line2"></div>'+
-
-  '<div class="parkingLine line3"></div>'+
-
-  '<div class="parkingLine line4"></div>'+
-
-  '<div class="car" id="car">'+
-
-  '<div class="carWindow"></div>'+
-
-  '<div class="carLight"></div>'+
-
-  '</div>'
-
-
-},
-
-
-
-stove:{
-
-
-  name:
-  "OFF & OUT",
-
-
-  title:
-  "Turn the stove off.",
-
-
-  copy:
-  "One normal action.",
-
-
-  value:
-  "Leave the kitchen and continue.",
-
-
-  thoughts:[
-
-    "Was that definitely the right knob?",
-
-    "What if one burner is still on?",
-
-    "Did you actually see it reach OFF?",
-
-    "Maybe you turned it past OFF.",
-
-    "One more look would feel safer."
-
-  ],
-
-
-  env:
-
-  '<div class="kitchen">'+
-
-  '<div class="kitchenWall"></div>'+
-
-  '<div class="kitchenFloor"></div>'+
-
-  '<div class="exitDoor">'+
-
-  '<div class="exitHandle"></div>'+
-
-  '</div>'+
-
-  '<div class="counter"></div>'+
-
-  '<div class="stove" id="stove">'+
-
-  '<div class="stoveTop"></div>'+
-
-  '<div class="burner one"></div>'+
-
-  '<div class="burner two"></div>'+
-
-  '<div class="stovePanel"></div>'+
-
-  '<div class="stoveKnob one"></div>'+
-
-  '<div class="stoveKnob two"></div>'+
-
-  '<div class="stoveKnob three"></div>'+
-
-  '<div class="stoveKnob four"></div>'+
-
-  '<div class="stoveOven"></div>'+
-
-  '</div>'+
-
-  '</div>'
-
-
-}
-
-
-};
 
 
 
@@ -2771,7 +1944,7 @@ function vibrate(pattern){
 function updateXP(){
 
 
-  localStorage.setItem(
+  store.set(
     "uncertainXP",
     xp
   );
@@ -2788,7 +1961,7 @@ function updateXP(){
 
 
 
-function updateMissionCompletionUI(){
+function completions(){
 
 
   $$(".completion")
@@ -2798,7 +1971,7 @@ function updateMissionCompletionUI(){
 
       element.textContent=
 
-      localStorage.getItem(
+      store.get(
         "completed_"+
         element.dataset.completion
       )==="yes"
@@ -2816,7 +1989,7 @@ function updateMissionCompletionUI(){
 
 
 
-function updateMeters(){
+function meters(){
 
 
   $("#progress")
@@ -2827,6 +2000,40 @@ function updateMeters(){
   $("#urge")
   .style.width=
   urge+"%";
+
+
+}
+
+
+
+function renderGrip(){
+
+
+  loopGrip=
+  clamp(
+    loopGrip,
+    8,
+    100
+  );
+
+
+  $(".gripTrack i")
+  .style.width=
+  loopGrip+"%";
+
+
+  $(".gripState")
+  .textContent=
+
+  loopGrip>=72
+
+  ? "STRONG"
+
+  : loopGrip>=42
+
+  ? "ACTIVE"
+
+  : "LOW";
 
 
 }
@@ -2872,21 +2079,18 @@ function showDoubt(text){
   );
 
 
+  $("#phaseHint")
+  .textContent=
+  "DOUBT";
+
+
   announce(
     "Doubt: "+text
   );
 
 
-}
-
-
-
-function hideCue(){
-
-
-  $("#choiceCue")
-  .classList.remove(
-    "show"
+  vibrate(
+    22
   );
 
 
@@ -2894,263 +2098,59 @@ function hideCue(){
 
 
 
-function showCue(
-  text,
-  duration=1100
-){
+function setCarrying(on){
 
 
-  const cue=
-  $("#choiceCue");
+  carrying=
+  on;
 
 
-  cue.textContent=
-  text;
-
-
-  cue.classList.add(
-    "show"
+  $("#carryCue")
+  .classList.toggle(
+    "show",
+    on
   );
 
 
-  clearTimeout(
-    cueTimer
-  );
+  if(on){
 
 
-  cueTimer=
-  setTimeout(()=>{
-
-
-    hideCue();
-
-
-    cue.textContent=
-    "KEEP GOING ›";
-
-
-  },duration);
-
-
-}
-
-
-
-function flashLock(text){
-
-
-  const flash=
-  $("#lockFlash");
-
-
-  flash.textContent=
-  text;
-
-
-  flash.classList.add(
-    "show"
-  );
-
-
-  clearTimeout(
-    feedbackTimer
-  );
-
-
-  feedbackTimer=
-  setTimeout(()=>{
-
-
-    flash.classList.remove(
-      "show"
+    announce(
+      "Uncertainty can come with you."
     );
 
 
-  },650);
+  }
 
 
 }
 
 
 
-/* LOOP GRIP */
+function setRecoveryTarget(value){
 
-function renderLoopGrip(){
 
+  recoveryTarget=
+  value;
 
-  const value=
-  clamp(
-    loopGrip,
-    0,
-    100
-  );
 
-
-  const presence=
-  $("#doubtPresence");
-
-
-  presence.style.transform=
-  `scale(${
-    .66+
-    value*.0052
-  })`;
-
-
-  presence.style.opacity=
-  String(
-    clamp(
-      .46+
-      value*.0046,
-      .46,
-      .94
-    )
-  );
-
-
-  $(".gripTrack i")
-  .style.width=
-  value+"%";
-
-
-  $(".gripState")
-  .textContent=
-
-  value>=72
-
-  ? "STRONG"
-
-  : value>=42
-
-  ? "ACTIVE"
-
-  : "LOW";
-
-
-}
-
-
-
-function pulseDoubt(type){
-
-
-  const presence=
-  $("#doubtPresence");
-
-
-  presence.classList.remove(
-    "feed",
-    "release"
-  );
-
-
-  void presence.offsetWidth;
-
-
-  presence.classList.add(
-    type
-  );
-
-
-  setTimeout(()=>{
-
-
-    presence.classList.remove(
-      type
-    );
-
-
-  },460);
-
-
-}
-
-
-
-function setMissionOverlayVisible(
-  visible
-){
-
-
-  $("#doubtPresence")
-  .style.display=
-
-  visible
-
-  ? "grid"
-
-  : "none";
-
-
-  $("#loopGripPanel")
-  .style.display=
-
-  visible
-
-  ? "block"
-
-  : "none";
-
-
-  $("#whatMatters")
-  .style.display=
-
-  visible
-
-  ? "block"
-
-  : "none";
-
-
-}
-
-
-
-/* MOVEMENT SAFETY */
-
-function stopMovement(){
-
-
-  clearInterval(
-    walkTimer
-  );
-
-
-  walkTimer=
-  null;
-
-
-  hold=
-  false;
-
-
-  movementPointerActive=
-  false;
-
-
-  touchMoveActive=
-  false;
-
-
-  $("#person")
-  .classList.remove(
-    "walking"
-  );
-
-
-}
-
-
-
-function releaseInterruptedHold(){
+  const mark=
+  $("#recoveryMark");
 
 
   if(
-    phase!=="moving"
+    value===null
   ){
 
 
-    stopMovement();
+    mark.style.display=
+    "none";
+
+
+    $("#recoveryCue")
+    .classList.remove(
+      "show"
+    );
 
 
     return;
@@ -3159,7 +2159,56 @@ function releaseInterruptedHold(){
   }
 
 
-  stopMovement();
+  $("#recoveryCue")
+  .textContent=
+  "RETURN TO YOUR PATH • NO RESET";
+
+
+  mark.style.display=
+  "block";
+
+
+  mark.style.left=
+  `calc(${
+    clamp(
+      value,
+      0,
+      100
+    )
+  }% - 1px)`;
+
+
+  $("#recoveryCue")
+  .classList.add(
+    "show"
+  );
+
+
+}
+
+
+
+function nextThought(){
+
+
+  const list=
+  missions[current]
+  .thoughts;
+
+
+  return list[
+    thoughtIndex++%
+    list.length
+  ];
+
+
+}
+
+
+
+function scheduleDoubt(
+  delay=850
+){
 
 
   clearTimeout(
@@ -3167,26 +2216,169 @@ function releaseInterruptedHold(){
   );
 
 
-  phase=
-  "ready";
+  doubtTimer=
+  setTimeout(()=>{
 
 
-  $("#phaseHint")
-  .textContent=
-  "READY";
+    if(
+      current &&
+      phase==="ready" &&
+      !carrying
+    ){
 
 
-  setControlsForPhase();
+      showDoubt(
+        nextThought()
+      );
+
+
+      urge=
+      clamp(
+        urge+11,
+        18,
+        96
+      );
+
+
+      meters();
+
+
+    }
+
+
+  },delay);
 
 
 }
 
 
 
-function stopEverything(){
+function stopWave(){
 
 
-  stopMovement();
+  clearInterval(
+    waveTimer
+  );
+
+
+  waveTimer=
+  null;
+
+
+  waveStartedAt=
+  0;
+
+
+  $("#waveCue")
+  .classList.remove(
+    "show"
+  );
+
+
+}
+
+
+
+function startWave(){
+
+
+  stopWave();
+
+
+  waveStartedAt=
+  performance.now();
+
+
+  $("#waveCue")
+  .classList.add(
+    "show"
+  );
+
+
+  waveTimer=
+  setInterval(()=>{
+
+
+    if(
+      phase!=="ready" ||
+      !carrying
+    ){
+
+
+      stopWave();
+
+
+      return;
+
+
+    }
+
+
+    const seconds=
+    (
+      performance.now()-
+      waveStartedAt
+    )/1000;
+
+
+    $("#waveCue")
+    .textContent=
+    `URGE WAVE • ${
+      seconds.toFixed(1)
+    }s WITHOUT CHECKING`;
+
+
+    if(
+      seconds>=1.3
+    ){
+
+
+      urge=
+      clamp(
+        urge+
+        (
+          Math.random()-.5
+        )*7,
+        20,
+        92
+      );
+
+
+      loopGrip=
+      clamp(
+        loopGrip-.7,
+        8,
+        100
+      );
+
+
+      meters();
+
+
+      renderGrip();
+
+
+      $("#copy")
+      .textContent=
+      "The urge can change without a check. No need to make it disappear.";
+
+
+    }
+
+
+  },180);
+
+
+}
+
+
+
+function stopAll(){
+
+
+  clearInterval(
+    walkTimer
+  );
 
 
   clearInterval(
@@ -3199,19 +2391,11 @@ function stopEverything(){
   );
 
 
-  clearTimeout(
-    reliefTimer
-  );
+  stopWave();
 
 
-  clearTimeout(
-    feedbackTimer
-  );
-
-
-  clearTimeout(
-    cueTimer
-  );
+  walkTimer=
+  null;
 
 
   urgeTimer=
@@ -3222,16 +2406,14 @@ function stopEverything(){
   null;
 
 
-  reliefTimer=
-  null;
+  hold=
+  false;
 
 
-  feedbackTimer=
-  null;
-
-
-  cueTimer=
-  null;
+  $("#person")
+  .classList.remove(
+    "walking"
+  );
 
 
   if(
@@ -3251,68 +2433,59 @@ function stopEverything(){
 
 
 
-function resetPersonVisual(){
+function updateScene(){
+
+
+  const t=
+  momentum/100;
 
 
   const person=
   $("#person");
 
 
-  person.classList.remove(
-    "walking",
-    "lookback"
-  );
+  const object=
+  $("#environment .object");
+
+
+  person.style.left=
+  (
+    50+
+    20*t
+  )+"%";
+
+
+  person.style.bottom=
+  (
+    25-
+    10*t
+  )+"%";
 
 
   person.style.transform=
-  "translateX(-50%)";
+  `translateX(-50%) scale(${
+    1-
+    .12*t
+  })`;
 
 
-}
+  if(object){
 
 
-
-function setControlsForPhase(){
-
-
-  const relief=
-  phase==="relief";
-
-
-  $("#forwardBtn")
-  .disabled=
-  relief;
+    object.style.transform=
+    `translateX(-50%) scale(${
+      1-
+      .36*t
+    })`;
 
 
-  $("#checkBtn")
-  .disabled=
-  relief;
-
-
-  if(
-    current==="car"
-  ){
-
-
-    $("#keyfob")
-    .classList.toggle(
-      "disabled",
-      relief
-    );
-
-
-  }
-
-
-  if(
-    current==="stove"
-  ){
-
-
-    $("#stoveControlWrap")
-    .classList.toggle(
-      "disabled",
-      relief
+    object.style.opacity=
+    String(
+      Math.max(
+        .25,
+        1-
+        .68*t
+      )
     );
 
 
@@ -3322,268 +2495,11 @@ function setControlsForPhase(){
 }
 
 
-
-/* DEPTH RESET */
-
-function resetDepth(){
-
-
-  const environment=
-  $("#environment");
-
-
-  environment.style.transform=
-  "scale(1)";
-
-
-  const store=
-  environment.querySelector(
-    ".store"
-  );
-
-
-  if(store){
-
-
-    store.style.transform=
-    "translateX(-50%) scale(1)";
-
-
-    store.style.top=
-    "5%";
-
-
-  }
-
-
-  const car=
-  environment.querySelector(
-    "#car"
-  );
-
-
-  if(car){
-
-
-    car.style.left=
-    "66%";
-
-
-    car.style.transform=
-    "translateX(-50%) scale(1)";
-
-
-    car.style.top=
-    "53%";
-
-
-    car.style.opacity=
-    "1";
-
-
-  }
-
-
-  const stove=
-  environment.querySelector(
-    "#stove"
-  );
-
-
-  if(stove){
-
-
-    stove.style.left=
-    "66%";
-
-
-    stove.style.transform=
-    "translateX(-50%) scale(1)";
-
-
-    stove.style.top=
-    "45%";
-
-
-    stove.style.opacity=
-    "1";
-
-
-  }
-
-
-  const exit=
-  environment.querySelector(
-    ".exitDoor"
-  );
-
-
-  if(exit){
-
-
-    exit.style.transform=
-    "translateX(-50%) scale(1)";
-
-
-    exit.style.top=
-    "6%";
-
-
-  }
-
-
-  const house=
-  environment.querySelector(
-    ".houseShell"
-  );
-
-
-  if(house){
-
-
-    house.style.transform=
-    "translateX(-50%) scale(1)";
-
-
-    house.style.top=
-    "11%";
-
-
-    house.style.opacity=
-    "1";
-
-
-  }
-
-
-  const drivewayVehicle=
-  environment.querySelector(
-    "#drivewayVehicle"
-  );
-
-
-  if(drivewayVehicle){
-
-
-    drivewayVehicle.style.left=
-    "72%";
-
-
-    drivewayVehicle.style.top=
-    "62%";
-
-
-    drivewayVehicle.style.transform=
-    "translateX(-50%) scale(.78)";
-
-
-    drivewayVehicle.style.opacity=
-    "1";
-
-
-  }
-
-
-  environment
-  .querySelectorAll(
-    ".parkingLine"
-  )
-  .forEach(
-    line=>{
-
-
-      line.style.translate=
-      "0 0";
-
-
-      line.style.opacity=
-      "1";
-
-
-    }
-  );
-
-
-}
-
-
-
-function positionPlayerAtStart(){
-
-
-  const person=
-  $("#person");
-
-
-  if(
-    current==="door"
-  ){
-
-
-    person.style.left=
-    "49%";
-
-
-    person.style.bottom=
-    "43%";
-
-
-    person.style.transform=
-    "translateX(-50%) scale(.86)";
-
-
-  }
-
-
-  else if(
-    current==="car" ||
-    current==="stove"
-  ){
-
-
-    person.style.left=
-    "23%";
-
-
-    person.style.bottom=
-    "12%";
-
-
-    person.style.transform=
-    "translateX(-50%) scale(1.02)";
-
-
-  }
-
-
-  else{
-
-
-    person.style.left=
-    "50%";
-
-
-    person.style.bottom=
-    "24%";
-
-
-    person.style.transform=
-    "translateX(-50%)";
-
-
-  }
-
-
-}
-
-
-
-/* LOAD MISSION */
 
 function loadMission(key){
 
 
-  stopEverything();
+  stopAll();
 
 
   current=
@@ -3610,11 +2526,11 @@ function loadMission(key){
   0;
 
 
-  midpointShown=
-  false;
+  loopGrip=
+  24;
 
 
-  recoveredAfterCheck=
+  carrying=
   false;
 
 
@@ -3622,41 +2538,33 @@ function loadMission(key){
   0;
 
 
-  urgeWavePhase=
-  0;
+  recoveryTarget=
+  null;
 
 
-  urgePeakCueShown=
-  false;
+  $("#environment")
+  .innerHTML=
 
+  `<div class="object">
 
-  loopGrip=
-  24;
+    <div>
 
+      <div class="icon">
+        ${missions[key].icon}
+      </div>
 
-  resetPersonVisual();
+      <div class="label">
+        ${missions[key].label}
+      </div>
+
+    </div>
+
+  </div>`;
 
 
   $("#missionName")
   .textContent=
   missions[key].name;
-
-
-  $("#environment")
-  .innerHTML=
-  missions[key].env;
-
-
-  resetDepth();
-
-
-  positionPlayerAtStart();
-
-
-  hideDoubt();
-
-
-  hideCue();
 
 
   $("#title")
@@ -3689,36 +2597,6 @@ function loadMission(key){
   "none";
 
 
-  $("#keyfob")
-  .style.display=
-
-  key==="car"
-
-  ? "block"
-
-  : "none";
-
-
-  $("#stoveControlWrap")
-  .style.display=
-
-  key==="stove"
-
-  ? "block"
-
-  : "none";
-
-
-  $("#forwardBtn")
-  .style.display=
-
-  key==="door"
-
-  ? "block"
-
-  : "none";
-
-
   $("#forwardBtn")
   .textContent=
 
@@ -3726,45 +2604,45 @@ function loadMission(key){
 
   ? "LOCK ONCE"
 
-  : "HOLD TO MOVE";
+  : key==="car"
+
+  ? "LOCK CAR ONCE"
+
+  : "TURN OFF ONCE";
 
 
-  $("#keyfob")
-  .classList.remove(
-    "disabled"
+  $("#person")
+  .style.left=
+  "50%";
+
+
+  $("#person")
+  .style.bottom=
+  "25%";
+
+
+  $("#person")
+  .style.transform=
+  "translateX(-50%)";
+
+
+  hideDoubt();
+
+
+  setCarrying(
+    false
   );
 
 
-  $("#stoveControlWrap")
-  .classList.remove(
-    "disabled"
+  setRecoveryTarget(
+    null
   );
 
 
-  $("#stoveIndicator")
-  .classList.remove(
-    "off"
-  );
+  meters();
 
 
-  $("#beep")
-  .classList.remove(
-    "show"
-  );
-
-
-  updateMeters();
-
-
-  renderLoopGrip();
-
-
-  setControlsForPhase();
-
-
-  setMissionOverlayVisible(
-    true
-  );
+  renderGrip();
 
 
   show(
@@ -3774,59 +2652,13 @@ function loadMission(key){
 
   announce(
     missions[key].name+
-    " mission opened."
+    " opened."
   );
 
 
 }
 
 
-
-/* EXIT */
-
-function exitMission(){
-
-
-  stopEverything();
-
-
-  hideDoubt();
-
-
-  hideCue();
-
-
-  setMissionOverlayVisible(
-    false
-  );
-
-
-  current=
-  null;
-
-
-  phase=
-  "idle";
-
-
-  updateMissionCompletionUI();
-
-
-  show(
-    "missionSelect"
-  );
-
-
-  announce(
-    "Mission exited."
-  );
-
-
-}
-
-
-
-/* INITIAL ACTION */
 
 function initialAction(){
 
@@ -3846,61 +2678,19 @@ function initialAction(){
   "ready";
 
 
-  if(
-    current==="door"
-  ){
-
-
-    flashLock(
-      "CLICK • LOCKED"
-    );
-
-
-  }
-
-
-  if(
-    current==="car"
-  ){
-
-
-    flashLock(
-      "BEEP • LOCKED"
-    );
-
-
-  }
-
-
-  if(
-    current==="stove"
-  ){
-
-
-    flashLock(
-      "CLICK • OFF"
-    );
-
-
-    $("#stoveIndicator")
-    .classList.add(
-      "off"
-    );
-
-
-  }
-
-
-  vibrate([
-    20,
-    40,
-    20
-  ]);
-
-
   $("#meters")
   .style.display=
   "grid";
+
+
+  $("#checkBtn")
+  .style.display=
+  "block";
+
+
+  $("#forwardBtn")
+  .textContent=
+  "HOLD TO MOVE";
 
 
   $("#title")
@@ -3913,13 +2703,13 @@ function initialAction(){
 
   current==="door"
 
-  ? "Walk down the driveway toward your vehicle. Doubt may follow."
+  ? "Head toward your vehicle. Doubt may follow."
 
   : current==="car"
 
-  ? "Walk around the car and toward your destination."
+  ? "Walk toward your destination."
 
-  : "Move past the stove and toward the exit.";
+  : "Head for the exit.";
 
 
   $("#phaseHint")
@@ -3927,27 +2717,11 @@ function initialAction(){
   "READY";
 
 
-  $("#forwardBtn")
-  .style.display=
-  "block";
-
-
-  $("#forwardBtn")
-  .textContent=
-  "HOLD TO MOVE";
-
-
-  $("#checkBtn")
-  .style.display=
-
-  current==="door"
-
-  ? "block"
-
-  : "none";
-
-
-  setControlsForPhase();
+  vibrate([
+    18,
+    35,
+    18
+  ]);
 
 
   announce(
@@ -3959,33 +2733,18 @@ function initialAction(){
   setInterval(()=>{
 
 
-    urgeWavePhase+=
-    .105;
-
-
-    const wave=
-    (
-      Math.sin(
-        urgeWavePhase
-      )+1
-    )/2;
-
-
     const target=
-    24+
-    wave*64;
-
-
-    const variation=
-    Math.random()*4-2;
+    54+
+    Math.sin(
+      Date.now()/850
+    )*28;
 
 
     urge+=
     (
-      target+
-      variation-
+      target-
       urge
-    )*.18;
+    )*.08;
 
 
     urge=
@@ -3996,511 +2755,20 @@ function initialAction(){
     );
 
 
-    if(
-      urge>=80 &&
-      !urgePeakCueShown
-    ){
-
-
-      urgePeakCueShown=
-      true;
-
-
-      showCue(
-        "RIDE THE WAVE ›",
-        1300
-      );
-
-
-    }
-
-
-    if(
-      urge<=48
-    ){
-
-
-      urgePeakCueShown=
-      false;
-
-
-    }
-
-
-    updateMeters();
+    meters();
 
 
   },180);
 
 
   scheduleDoubt(
-    950
+    700
   );
 
 
 }
 
 
-
-/* DOUBT */
-
-function nextThought(){
-
-
-  const list=
-  missions[current]
-  .thoughts;
-
-
-  const thought=
-  list[
-    thoughtIndex%
-    list.length
-  ];
-
-
-  thoughtIndex++;
-
-
-  return thought;
-
-
-}
-
-
-
-function scheduleDoubt(
-  delay=1200
-){
-
-
-  clearTimeout(
-    doubtTimer
-  );
-
-
-  doubtTimer=
-  setTimeout(()=>{
-
-
-    if(
-      !current ||
-      [
-        "lock",
-        "relief",
-        "complete",
-        "idle"
-      ].includes(
-        phase
-      )
-    ){
-
-
-      return;
-
-
-    }
-
-
-    showDoubt(
-      nextThought()
-    );
-
-
-    urge=
-    Math.min(
-      98,
-      urge+12
-    );
-
-
-    updateMeters();
-
-
-    $("#phaseHint")
-    .textContent=
-    "DOUBT";
-
-
-    vibrate(
-      28
-    );
-
-
-  },delay);
-
-
-}
-
-
-
-/* LOCK & LEAVE ROUTE */
-
-function updateDoorDepth(){
-
-
-  const t=
-  momentum/100;
-
-
-  const person=
-  $("#person");
-
-
-  const house=
-  $("#environment .houseShell");
-
-
-  const vehicle=
-  $("#drivewayVehicle");
-
-
-  const smooth=
-  x=>
-  x*x*(3-2*x);
-
-
-  const progress=
-  smooth(
-    t
-  );
-
-
-  person.style.left=
-  (
-    49+
-    20*progress
-  )+"%";
-
-
-  person.style.bottom=
-  (
-    43-
-    28*progress
-  )+"%";
-
-
-  person.style.transform=
-  `translateX(-50%) scale(${
-    .86+
-    .18*progress
-  })`;
-
-
-  if(house){
-
-
-    house.style.transform=
-    `translateX(-50%) scale(${
-      1-
-      .30*progress
-    })`;
-
-
-    house.style.top=
-    `${
-      11-
-      5*progress
-    }%`;
-
-
-    house.style.opacity=
-    String(
-      Math.max(
-        .38,
-        1-
-        .50*progress
-      )
-    );
-
-
-  }
-
-
-  if(vehicle){
-
-
-    vehicle.style.left=
-    `${
-      72-
-      3*progress
-    }%`;
-
-
-    vehicle.style.top=
-    `${
-      62+
-      4*progress
-    }%`;
-
-
-    vehicle.style.transform=
-    `translateX(-50%) scale(${
-      .78+
-      .36*progress
-    })`;
-
-
-    vehicle.style.opacity=
-    "1";
-
-
-  }
-
-
-}
-
-
-
-/* OTHER MISSION ROUTES */
-
-function playerRoute(t){
-
-
-  const person=
-  $("#person");
-
-
-  const smooth=
-  x=>
-  x*x*(3-2*x);
-
-
-  const drift=
-  smooth(
-    Math.min(
-      1,
-      t/.48
-    )
-  );
-
-
-  const turn=
-  smooth(
-    Math.max(
-      0,
-      Math.min(
-        1,
-        (t-.34)/.66
-      )
-    )
-  );
-
-
-  const left=
-  23+
-  6*drift+
-  21*turn;
-
-
-  const bottom=
-  12+
-  28*smooth(t);
-
-
-  const scale=
-  1.02-
-  .18*smooth(t);
-
-
-  person.style.left=
-  left+"%";
-
-
-  person.style.bottom=
-  bottom+"%";
-
-
-  person.style.transform=
-  `translateX(-50%) scale(${scale})`;
-
-
-}
-
-
-
-function updateParkDepth(){
-
-
-  const t=
-  momentum/100;
-
-
-  const store=
-  $("#environment .store");
-
-
-  const car=
-  $("#car");
-
-
-  if(store){
-
-
-    store.style.transform=
-    `translateX(-50%) scale(${
-      1+t*.36
-    })`;
-
-
-    store.style.top=
-    `${
-      5-t*1.8
-    }%`;
-
-
-  }
-
-
-  if(car){
-
-
-    car.style.left=
-    `${
-      66+t*2
-    }%`;
-
-
-    car.style.transform=
-    `translateX(-50%) scale(${
-      1-t*.70
-    })`;
-
-
-    car.style.top=
-    `${
-      53+t*22
-    }%`;
-
-
-    car.style.opacity=
-    String(
-      Math.max(
-        .18,
-        1-t*.76
-      )
-    );
-
-
-  }
-
-
-  $("#environment")
-  .querySelectorAll(
-    ".parkingLine"
-  )
-  .forEach(
-    (
-      line,
-      index
-    )=>{
-
-
-      line.style.translate=
-      `0 ${
-        t*
-        (
-          10+
-          index*4
-        )
-      }px`;
-
-
-      line.style.opacity=
-      String(
-        1-t*.32
-      );
-
-
-    }
-  );
-
-
-  playerRoute(
-    t
-  );
-
-
-}
-
-
-
-function updateStoveDepth(){
-
-
-  const t=
-  momentum/100;
-
-
-  const stove=
-  $("#stove");
-
-
-  const exit=
-  $("#environment .exitDoor");
-
-
-  if(stove){
-
-
-    stove.style.left=
-    `${
-      66+t*2
-    }%`;
-
-
-    stove.style.transform=
-    `translateX(-50%) scale(${
-      1-t*.68
-    })`;
-
-
-    stove.style.top=
-    `${
-      45+t*23
-    }%`;
-
-
-    stove.style.opacity=
-    String(
-      Math.max(
-        .18,
-        1-t*.76
-      )
-    );
-
-
-  }
-
-
-  if(exit){
-
-
-    exit.style.transform=
-    `translateX(-50%) scale(${
-      1+t*.40
-    })`;
-
-
-    exit.style.top=
-    `${
-      6-t*2.2
-    }%`;
-
-
-  }
-
-
-  playerRoute(
-    t
-  );
-
-
-}
-
-
-
-/* START WALKING */
 
 function startWalking(){
 
@@ -4518,29 +2786,27 @@ function startWalking(){
   }
 
 
+  stopWave();
+
+
+  const doubtWasVisible=
+  $("#doubtOverlay")
+  .classList.contains(
+    "show"
+  );
+
+
   if(
-    recoveredAfterCheck
+    doubtWasVisible
   ){
 
 
-    recoveredAfterCheck=
-    false;
+    hideDoubt();
 
 
-    recoveryCount++;
-
-
-    showCue(
-      "BACK TO WHAT MATTERS ›",
-      1250
+    setCarrying(
+      true
     );
-
-
-    vibrate([
-      12,
-      35,
-      12
-    ]);
 
 
   }
@@ -4554,21 +2820,20 @@ function startWalking(){
   true;
 
 
-  resetPersonVisual();
+  $("#phaseHint")
+  .textContent=
+
+  recoveryTarget!==null
+
+  ? "RECOVERING"
+
+  : "MOVING";
 
 
   $("#person")
   .classList.add(
     "walking"
   );
-
-
-  hideDoubt();
-
-
-  $("#phaseHint")
-  .textContent=
-  "MOVING";
 
 
   walkTimer=
@@ -4582,7 +2847,7 @@ function startWalking(){
     momentum=
     Math.min(
       100,
-      momentum+2.2
+      momentum+2.1
     );
 
 
@@ -4590,89 +2855,71 @@ function startWalking(){
     momentum-before;
 
 
-    if(
-      current==="door"
-    ){
-
-
-      updateDoorDepth();
-
-
-    }
-
-
-    else if(
-      current==="car"
-    ){
-
-
-      updateParkDepth();
-
-
-    }
-
-
-    else if(
-      current==="stove"
-    ){
-
-
-      updateStoveDepth();
-
-
-    }
-
-
-    const beforeGrip=
-    loopGrip;
-
-
     loopGrip=
     clamp(
       loopGrip-
-      moved*.72,
+      moved*.7,
       8,
       100
     );
 
 
     if(
-      beforeGrip>=55 &&
-      loopGrip<55
+      recoveryTarget!==null &&
+      momentum>=recoveryTarget
     ){
 
 
-      pulseDoubt(
-        "release"
+      setRecoveryTarget(
+        null
       );
+
+
+      $("#recoveryCue")
+      .textContent=
+      "YOU RETURNED • KEEP GOING";
+
+
+      $("#recoveryCue")
+      .classList.add(
+        "show"
+      );
+
+
+      setTimeout(()=>{
+
+
+        $("#recoveryCue")
+        .classList.remove(
+          "show"
+        );
+
+
+      },1100);
+
+
+      announce(
+        "You returned to your path without restarting."
+      );
+
+
+      vibrate([
+        15,
+        30,
+        15
+      ]);
 
 
     }
 
 
-    renderLoopGrip();
+    renderGrip();
 
 
-    if(
-      momentum>=50 &&
-      !midpointShown
-    ){
+    updateScene();
 
 
-      midpointShown=
-      true;
-
-
-      showCue(
-        "KEEP GOING ›",
-        1200
-      );
-
-
-    }
-
-
-    updateMeters();
+    meters();
 
 
     if(
@@ -4696,8 +2943,6 @@ function startWalking(){
 
 
 
-/* STOP WALKING */
-
 function stopWalking(){
 
 
@@ -4706,21 +2951,29 @@ function stopWalking(){
   ){
 
 
-    movementPointerActive=
-    false;
-
-
-    touchMoveActive=
-    false;
-
-
     return;
 
 
   }
 
 
-  stopMovement();
+  clearInterval(
+    walkTimer
+  );
+
+
+  walkTimer=
+  null;
+
+
+  hold=
+  false;
+
+
+  $("#person")
+  .classList.remove(
+    "walking"
+  );
 
 
   phase=
@@ -4729,7 +2982,23 @@ function stopWalking(){
 
   $("#phaseHint")
   .textContent=
-  "READY";
+
+  carrying
+
+  ? "CARRYING"
+
+  : "READY";
+
+
+  if(
+    carrying
+  ){
+
+
+    startWave();
+
+
+  }
 
 
   if(
@@ -4738,7 +3007,13 @@ function stopWalking(){
 
 
     scheduleDoubt(
-      650
+
+      carrying
+
+      ? 1500
+
+      : 650
+
     );
 
 
@@ -4749,14 +3024,16 @@ function stopWalking(){
 
 
 
-/* RECHECK */
-
-function recheck(source){
+function recheck(){
 
 
   if(
-    phase!=="ready" &&
-    phase!=="moving"
+    ![
+      "ready",
+      "moving"
+    ].includes(
+      phase
+    )
   ){
 
 
@@ -4769,11 +3046,16 @@ function recheck(source){
   checks++;
 
 
-  recoveredAfterCheck=
-  true;
+  recoveryCount++;
 
 
-  stopMovement();
+  const highWater=
+  momentum;
+
+
+  clearInterval(
+    walkTimer
+  );
 
 
   clearTimeout(
@@ -4781,44 +3063,48 @@ function recheck(source){
   );
 
 
+  stopWave();
+
+
+  hold=
+  false;
+
+
   phase=
   "relief";
+
+
+  $("#person")
+  .classList.remove(
+    "walking"
+  );
+
+
+  setCarrying(
+    false
+  );
+
+
+  hideDoubt();
 
 
   loopGrip=
   clamp(
     loopGrip+24,
-    0,
+    8,
     100
   );
 
 
-  renderLoopGrip();
-
-
-  pulseDoubt(
-    "feed"
-  );
-
-
-  vibrate([
-    35,
-    30,
-    35
-  ]);
-
-
   urge=
-  Math.max(
-    14,
-    urge-28
+  clamp(
+    urge-27,
+    18,
+    96
   );
 
 
-  updateMeters();
-
-
-  hideDoubt();
+  renderGrip();
 
 
   $("#phaseHint")
@@ -4828,307 +3114,112 @@ function recheck(source){
 
   $("#title")
   .textContent=
-
-  current==="door"
-
-  ? "Turning back..."
-
-  : "Relief landed.";
+  "Relief landed.";
 
 
   $("#copy")
   .textContent=
+  "For a moment, the question feels answered.";
+
+
+  vibrate([
+    30,
+    25,
+    30
+  ]);
+
+
+  const loss=
 
   current==="door"
 
-  ? "The check pulls you back toward the house."
+  ? Math.max(
+      10,
+      momentum*.35
+    )
+
+  : Math.min(
+      momentum,
+      20
+    );
+
+
+  momentum=
+  Math.max(
+    0,
+    momentum-loss
+  );
 
-  : "For a moment, the question feels answered.";
-
-
-
-  const finishRelief=
-  ()=>{
-
-
-    if(
-      source==="fob"
-    ){
-
-
-      const beep=
-      $("#beep");
-
-
-      beep.textContent=
-      "BEEP • RELIEF";
-
-
-      beep.classList.add(
-        "show"
-      );
-
-
-      feedbackTimer=
-      setTimeout(()=>{
-
-
-        beep.classList.remove(
-          "show"
-        );
-
-
-      },600);
-
-
-    }
-
-
-    if(
-      source==="stove"
-    ){
-
-
-      flashLock(
-        "LOOK • RELIEF"
-      );
-
-
-    }
-
-
-    if(
-      current==="door"
-    ){
-
-
-      flashLock(
-        "CLICK • CHECKED AGAIN"
-      );
-
-
-    }
-
-
-    reliefTimer=
-    setTimeout(()=>{
-
-
-      $("#person")
-      .classList.remove(
-        "lookback",
-        "walking"
-      );
-
-
-      const questions=
-
-      current==="car"
-
-      ? [
-
-        "Okay... but did ALL the doors lock?",
-
-        "Was that definitely your car that beeped?"
-
-      ]
-
-      : current==="stove"
-
-      ? [
-
-        "Okay... but was every burner really off?",
-
-        "What if you looked at the wrong knob?"
-
-      ]
-
-      : [
-
-        "Okay... but did you pull it closed tightly enough?",
-
-        "What if the deadbolt didn't fully catch?"
-
-      ];
-
-
-      showDoubt(
-
-        checks<=2
-
-        ? questions[
-            Math.min(
-              checks-1,
-              questions.length-1
-            )
-          ]
-
-        : "The loop is asking for certainty again."
-
-      );
-
-
-      urge=
-      Math.min(
-        96,
-        urge+21
-      );
-
-
-      updateMeters();
-
-
-      phase=
-      "ready";
-
-
-      $("#phaseHint")
-      .textContent=
-      "DOUBT";
-
-
-      $("#title")
-      .textContent=
-
-      checks<=2
-
-      ? "Doubt moved the finish line."
-
-      : "Same loop. New request.";
-
-
-      $("#copy")
-      .textContent=
-
-      checks<=2
-
-      ? "The question changed. What matters didn't."
-
-      : "You don't have to solve the next question before moving.";
-
-
-    },650);
-
-
-  };
-
-
-
-  /*
-  Lock & Leave physically walks
-  the character back to the house.
-  */
 
   if(
-    current==="door"
+    highWater>
+    momentum+3
   ){
 
 
-    const person=
-    $("#person");
-
-
-    person.classList.add(
-      "walking",
-      "lookback"
+    setRecoveryTarget(
+      highWater
     );
-
-
-    const startMomentum=
-    momentum;
-
-
-    const frames=
-    18;
-
-
-    let frame=
-    0;
-
-
-    const rewind=
-    setInterval(()=>{
-
-
-      frame++;
-
-
-      momentum=
-      Math.max(
-        0,
-        startMomentum*
-        (
-          1-
-          frame/frames
-        )
-      );
-
-
-      updateDoorDepth();
-
-
-      updateMeters();
-
-
-      if(
-        frame>=frames
-      ){
-
-
-        clearInterval(
-          rewind
-        );
-
-
-        momentum=
-        0;
-
-
-        updateDoorDepth();
-
-
-        person.classList.remove(
-          "walking"
-        );
-
-
-        finishRelief();
-
-
-      }
-
-
-    },38);
 
 
   }
 
 
-  else{
+  updateScene();
 
 
-    $("#person")
-    .classList.add(
-      "lookback"
+  meters();
+
+
+  setTimeout(()=>{
+
+
+    phase=
+    "ready";
+
+
+    showDoubt(
+
+      checks<3
+
+      ? nextThought()
+
+      : "The loop is asking for certainty again."
+
     );
 
 
-    finishRelief();
+    $("#title")
+    .textContent=
+
+    checks<3
+
+    ? "Doubt moved the finish line."
+
+    : "Same loop. New request.";
 
 
-  }
+    $("#copy")
+    .textContent=
+
+    recoveryTarget!==null
+
+    ? "You do not need to restart. Return to what matters from here."
+
+    : "The question changed. What matters didn't.";
+
+
+  },650);
 
 
 }
 
 
 
-/* COMPLETE */
-
 function completeMission(){
 
 
-  stopEverything();
+  stopAll();
 
 
   phase=
@@ -5142,18 +3233,26 @@ function completeMission(){
   updateXP();
 
 
-  localStorage.setItem(
+  store.set(
     "completed_"+current,
     "yes"
   );
 
 
-  updateMissionCompletionUI();
+  completions();
 
 
-  $("#xpEarned")
-  .textContent=
-  "30";
+  setCarrying(
+    false
+  );
+
+
+  setRecoveryTarget(
+    null
+  );
+
+
+  hideDoubt();
 
 
   $("#result")
@@ -5161,20 +3260,9 @@ function completeMission(){
 
   checks===0
 
-  ? (
-      current==="door"
+  ? "You kept moving while uncertainty was allowed to exist."
 
-      ? "You reached your vehicle and kept going while uncertainty was still allowed to exist."
-
-      : "You reached the destination while uncertainty was still allowed to exist."
-    )
-
-  : `You noticed the pull to check and returned to moving forward ${recoveryCount} ${recoveryCount===1 ? "time" : "times"}. The goal was movement, not a perfect run.`;
-
-
-  setMissionOverlayVisible(
-    false
-  );
+  : `You returned to moving forward after ${recoveryCount} ${recoveryCount===1 ? "check" : "checks"}. A lapse did not reset the mission.`;
 
 
   show(
@@ -5191,10 +3279,23 @@ function completeMission(){
 
 
 
-function endSession(){
+function exitMission(){
 
 
-  stopEverything();
+  stopAll();
+
+
+  setCarrying(
+    false
+  );
+
+
+  setRecoveryTarget(
+    null
+  );
+
+
+  hideDoubt();
 
 
   current=
@@ -5205,18 +3306,11 @@ function endSession(){
   "idle";
 
 
-  setMissionOverlayVisible(
-    false
-  );
+  completions();
 
 
   show(
-    "start"
-  );
-
-
-  announce(
-    "Session ended. Progress saved."
+    "missionSelect"
   );
 
 
@@ -5224,43 +3318,35 @@ function endSession(){
 
 
 
-/* NAVIGATION */
-
 $("#enter")
-.addEventListener(
-  "click",
-  ()=>show(
-    "map"
-  )
+.onclick=
+()=>show(
+  "map"
 );
 
 
 
 $("#checking")
-.addEventListener(
-  "click",
-  ()=>{
+.onclick=
+()=>{
 
 
-    updateMissionCompletionUI();
+  completions();
 
 
-    show(
-      "missionSelect"
-    );
+  show(
+    "missionSelect"
+  );
 
 
-  }
-);
+};
 
 
 
 $("#backMap")
-.addEventListener(
-  "click",
-  ()=>show(
-    "map"
-  )
+.onclick=
+()=>show(
+  "map"
 );
 
 
@@ -5269,28 +3355,12 @@ $$(
   ".missionCard[data-mission]"
 )
 .forEach(
-  button=>
-  button.addEventListener(
-    "click",
+  button=>{
+
+
+    button.onclick=
     ()=>loadMission(
       button.dataset.mission
-    )
-  )
-);
-
-
-
-$("#continueBtn")
-.addEventListener(
-  "click",
-  ()=>{
-
-
-    updateMissionCompletionUI();
-
-
-    show(
-      "missionSelect"
     );
 
 
@@ -5299,99 +3369,59 @@ $("#continueBtn")
 
 
 
-$("#doneBtn")
-.addEventListener(
-  "click",
-  endSession
-);
-
-
-
 $("#missionExit")
-.addEventListener(
-  "click",
-  exitMission
-);
+.onclick=
+exitMission;
 
 
 
 $("#checkBtn")
-.addEventListener(
-  "click",
-  ()=>recheck(
-    "door"
-  )
-);
+.onclick=
+recheck;
 
 
 
-$("#fobLock")
-.addEventListener(
-  "click",
-  ()=>{
+$("#continueBtn")
+.onclick=
+()=>{
 
 
-    if(
-      phase==="lock"
-    ){
+  completions();
 
 
-      initialAction();
+  show(
+    "missionSelect"
+  );
 
 
-    }
-
-
-    else{
-
-
-      recheck(
-        "fob"
-      );
-
-
-    }
-
-
-  }
-);
+};
 
 
 
-$("#stoveControl")
-.addEventListener(
-  "click",
-  ()=>{
+$("#doneBtn")
+.onclick=
+()=>{
 
 
-    if(
-      phase==="lock"
-    ){
+  stopAll();
 
 
-      initialAction();
+  current=
+  null;
 
 
-    }
+  phase=
+  "idle";
 
 
-    else{
+  show(
+    "start"
+  );
 
 
-      recheck(
-        "stove"
-      );
+};
 
 
-    }
-
-
-  }
-);
-
-
-
-/* HOLD TO MOVE */
 
 const forward=
 $("#forwardBtn");
@@ -5399,123 +3429,10 @@ $("#forwardBtn");
 
 
 forward.addEventListener(
-  "touchstart",
-  event=>{
-
-
-    event.preventDefault();
-
-
-    if(
-      phase==="lock"
-    ){
-
-
-      initialAction();
-
-
-      return;
-
-
-    }
-
-
-    touchMoveActive=
-    startWalking();
-
-
-  },
-  {
-    passive:false
-  }
-);
-
-
-
-forward.addEventListener(
-  "touchmove",
-  event=>{
-
-
-    event.preventDefault();
-
-
-  },
-  {
-    passive:false
-  }
-);
-
-
-
-forward.addEventListener(
-  "touchend",
-  event=>{
-
-
-    event.preventDefault();
-
-
-    if(
-      touchMoveActive
-    ){
-
-
-      stopWalking();
-
-
-    }
-
-
-    touchMoveActive=
-    false;
-
-
-  },
-  {
-    passive:false
-  }
-);
-
-
-
-forward.addEventListener(
-  "touchcancel",
-  event=>{
-
-
-    event.preventDefault();
-
-
-    releaseInterruptedHold();
-
-
-  },
-  {
-    passive:false
-  }
-);
-
-
-
-/* DESKTOP FALLBACK */
-
-forward.addEventListener(
   "pointerdown",
   event=>{
 
 
-    if(
-      event.pointerType==="touch"
-    ){
-
-
-      return;
-
-
-    }
-
-
     event.preventDefault();
 
 
@@ -5533,7 +3450,23 @@ forward.addEventListener(
     }
 
 
-    movementPointerActive=
+    try{
+
+
+      forward.setPointerCapture(
+        event.pointerId
+      );
+
+
+    }
+
+
+    catch{
+
+
+    }
+
+
     startWalking();
 
 
@@ -5548,49 +3481,32 @@ forward.addEventListener(
   "pointerleave"
 ]
 .forEach(
-  type=>
-  forward.addEventListener(
-    type,
-    event=>{
+  type=>{
 
 
-      if(
-        event.pointerType==="touch" ||
-        !movementPointerActive
-      ){
+    forward.addEventListener(
+      type,
+      event=>{
 
 
-        return;
+        event.preventDefault();
+
+
+        stopWalking();
 
 
       }
+    );
 
 
-      movementPointerActive=
-      false;
-
-
-      stopWalking();
-
-
-    }
-  )
+  }
 );
 
 
-
-/* IOS SAFETY */
 
 window.addEventListener(
   "blur",
-  releaseInterruptedHold
-);
-
-
-
-window.addEventListener(
-  "pagehide",
-  releaseInterruptedHold
+  stopWalking
 );
 
 
@@ -5605,7 +3521,7 @@ document.addEventListener(
     ){
 
 
-      releaseInterruptedHold();
+      stopWalking();
 
 
     }
@@ -5624,53 +3540,14 @@ document.addEventListener(
 
 
 
-document.addEventListener(
-  "selectstart",
-  event=>
-  event.preventDefault()
-);
-
-
-
-document.addEventListener(
-  "dragstart",
-  event=>
-  event.preventDefault()
-);
-
-
-
-[
-  "gesturestart",
-  "gesturechange",
-  "gestureend"
-]
-.forEach(
-  type=>
-  document.addEventListener(
-    type,
-    event=>
-    event.preventDefault(),
-    {
-      passive:false
-    }
-  )
-);
-
-
-
-/* STARTUP */
-
 updateXP();
 
-updateMissionCompletionUI();
+completions();
 
-renderLoopGrip();
+renderGrip();
 
 
 </script>
 
-
 </body>
-
 </html>
