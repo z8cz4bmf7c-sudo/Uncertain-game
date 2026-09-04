@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#07101c">
-<title>UNCERTAIN — Checking District v10.32</title>
+<title>UNCERTAIN — Checking District v10.34</title>
 
 <style>
 :root{
@@ -120,12 +120,12 @@ button{
   color:var(--muted);
 }
 
-
 /* START */
 
 #start{
   padding:92px 22px 26px;
-  background:radial-gradient(
+  background:
+  radial-gradient(
     circle at 50% 25%,
     #355271,
     #111b2a 55%,
@@ -159,11 +159,11 @@ button{
   bottom:max(22px,env(safe-area-inset-bottom));
 }
 
-
 /* MAP */
 
 #map{
-  background:linear-gradient(
+  background:
+  linear-gradient(
     145deg,
     #29425f,
     #112238 64%,
@@ -235,11 +235,11 @@ button{
   background:#081321d9;
 }
 
-
 /* MISSION SELECT */
 
 #missionSelect{
-  background:radial-gradient(
+  background:
+  radial-gradient(
     circle at 50% 30%,
     #274762,
     #0b1625 65%
@@ -293,7 +293,6 @@ button{
   font-weight:950!important;
 }
 
-
 /* MISSION */
 
 #mission{
@@ -320,7 +319,8 @@ button{
   position:absolute;
   inset:0;
   overflow:hidden;
-  background:linear-gradient(
+  background:
+  linear-gradient(
     #24364b 0 47%,
     #101923 47%
   );
@@ -337,7 +337,8 @@ button{
   right:0;
   top:0;
   height:38%;
-  background:radial-gradient(
+  background:
+  radial-gradient(
     circle at 70% 16%,
     #526d8a55,
     transparent 30%
@@ -350,12 +351,12 @@ button{
   right:0;
   bottom:0;
   height:58%;
-  background:linear-gradient(
+  background:
+  linear-gradient(
     #1f2b37,
     #111923
   );
 }
-
 
 /* HOUSE */
 
@@ -374,7 +375,8 @@ button{
   right:16px;
   top:48px;
   bottom:0;
-  background:linear-gradient(
+  background:
+  linear-gradient(
     #47576a,
     #303b49
   );
@@ -388,7 +390,8 @@ button{
   top:0;
   height:110px;
   background:#202c3a;
-  clip-path:polygon(
+  clip-path:
+  polygon(
     50% 0,
     100% 54%,
     92% 54%,
@@ -423,7 +426,8 @@ button{
   transform:translateX(-50%);
   width:106px;
   height:164px;
-  background:linear-gradient(
+  background:
+  linear-gradient(
     #2f4155,
     #1b2a3a
   );
@@ -447,12 +451,14 @@ button{
   top:35%;
   width:66%;
   height:72%;
-  background:linear-gradient(
+  background:
+  linear-gradient(
     160deg,
     #3b4651,
     #1c252e
   );
-  clip-path:polygon(
+  clip-path:
+  polygon(
     24% 0,
     58% 0,
     100% 100%,
@@ -460,7 +466,6 @@ button{
   );
   z-index:2;
 }
-
 
 /* VEHICLES */
 
@@ -471,7 +476,8 @@ button{
   width:178px;
   height:80px;
   border-radius:36px 40px 18px 18px;
-  background:linear-gradient(
+  background:
+  linear-gradient(
     #8093aa,
     #566a83
   );
@@ -481,12 +487,14 @@ button{
 .drivewayVehicle{
   left:72%;
   top:61%;
-  transform:translateX(-50%) scale(.78);
+  transform:
+  translateX(-50%)
+  scale(.78);
 }
 
 .car{
-  left:66%;
-  top:53%;
+  left:50%;
+  top:66%;
   transform:translateX(-50%);
 }
 
@@ -497,7 +505,8 @@ button{
   width:96px;
   height:42px;
   background:#21354a;
-  clip-path:polygon(
+  clip-path:
+  polygon(
     20% 100%,
     35% 0,
     78% 0,
@@ -529,43 +538,45 @@ button{
   right:18px;
 }
 
-
 /* PARK & WALK */
 
 .parkingGround{
   position:absolute;
-  inset:34% 0 0;
-  background:linear-gradient(
-    170deg,
-    #303b49,
-    #141c26
+  inset:31% 0 0;
+  background:
+  linear-gradient(
+    180deg,
+    #3a4653 0%,
+    #222b35 72%,
+    #171e27 100%
   );
 }
 
 .store{
   position:absolute;
   left:50%;
-  top:5%;
+  top:4%;
   transform:translateX(-50%);
-  width:305px;
-  height:178px;
-  background:linear-gradient(
-    #54667a,
-    #3b4a5d
+  width:310px;
+  height:182px;
+  background:
+  linear-gradient(
+    #596c80,
+    #39495d
   );
   border:8px solid #223040;
   z-index:4;
 }
 
 .store:before{
-  content:"DESTINATION";
+  content:"STORE";
   position:absolute;
   left:0;
   right:0;
-  top:26px;
+  top:24px;
   text-align:center;
   font-weight:1000;
-  letter-spacing:.12em;
+  letter-spacing:.14em;
 }
 
 .storeDoor{
@@ -573,46 +584,94 @@ button{
   left:50%;
   bottom:0;
   transform:translateX(-50%);
-  width:82px;
-  height:96px;
+  width:86px;
+  height:100px;
   background:#142638;
   border:5px solid #71849a;
 }
 
-.parkingLine{
+.crosswalk{
   position:absolute;
-  height:5px;
-  background:#edf3fa4a;
+  z-index:3;
+  left:50%;
+  top:39%;
+  width:115px;
+  height:150px;
+  transform:
+  translateX(-50%)
+  perspective(280px)
+  rotateX(58deg);
+  transform-origin:center bottom;
+  background:
+  repeating-linear-gradient(
+    0deg,
+    #eef3f8 0 12px,
+    transparent 12px 25px
+  );
+  opacity:.72;
 }
 
-.line1{
-  width:65%;
-  left:-4%;
-  top:61%;
-  transform:rotate(-19deg);
+.stallLine{
+  position:absolute;
+  z-index:2;
+  top:49%;
+  width:4px;
+  height:43%;
+  background:#f2f5f8aa;
+  transform-origin:top center;
 }
 
-.line2{
-  width:65%;
-  right:-13%;
-  top:61%;
-  transform:rotate(19deg);
+.stallLine.s1{
+  left:12%;
+  transform:rotate(12deg);
 }
 
-.line3{
-  width:56%;
-  left:4%;
-  top:78%;
-  transform:rotate(-14deg);
+.stallLine.s2{
+  left:28%;
+  transform:rotate(7deg);
 }
 
-.line4{
-  width:56%;
-  right:-3%;
-  top:78%;
-  transform:rotate(14deg);
+.stallLine.s3{
+  left:44%;
+  transform:rotate(2deg);
 }
 
+.stallLine.s4{
+  left:60%;
+  transform:rotate(-3deg);
+}
+
+.stallLine.s5{
+  left:76%;
+  transform:rotate(-8deg);
+}
+
+.stallLine.s6{
+  left:92%;
+  transform:rotate(-13deg);
+}
+
+.stopLine{
+  position:absolute;
+  z-index:2;
+  left:7%;
+  right:7%;
+  top:50%;
+  height:4px;
+  background:#f2f5f866;
+}
+
+.parkingLabel{
+  position:absolute;
+  z-index:5;
+  left:50%;
+  top:45%;
+  transform:translateX(-50%);
+  font-size:9px;
+  letter-spacing:.12em;
+  color:#eaf0f6b5;
+  font-weight:950;
+}
 
 /* KITCHEN */
 
@@ -622,7 +681,8 @@ button{
   right:0;
   top:0;
   height:49%;
-  background:linear-gradient(
+  background:
+  linear-gradient(
     #435160,
     #2d3947
   );
@@ -634,7 +694,8 @@ button{
   right:0;
   bottom:0;
   height:55%;
-  background:repeating-linear-gradient(
+  background:
+  repeating-linear-gradient(
     90deg,
     #222c36 0,
     #222c36 52px,
@@ -650,7 +711,8 @@ button{
   transform:translateX(-50%);
   width:125px;
   height:220px;
-  background:linear-gradient(
+  background:
+  linear-gradient(
     #30475a,
     #172837
   );
@@ -688,7 +750,8 @@ button{
   transform:translateX(-50%);
   width:220px;
   height:145px;
-  background:linear-gradient(
+  background:
+  linear-gradient(
     #6f7d8c,
     #424e5b
   );
@@ -770,7 +833,6 @@ button{
   border:6px solid #2c3742;
 }
 
-
 /* PLAYER */
 
 .person{
@@ -815,7 +877,8 @@ button{
   width:38px;
   height:46px;
   border-radius:16px 16px 10px 10px;
-  background:linear-gradient(
+  background:
+  linear-gradient(
     #e8eef5,
     #c8d4df
   );
@@ -839,19 +902,22 @@ button{
 }
 
 .person.walking .leg.a{
-  animation:step .28s infinite alternate;
+  animation:
+  step .28s infinite alternate;
 }
 
 .person.walking .leg.b{
-  animation:step .28s infinite alternate-reverse;
+  animation:
+  step .28s infinite alternate-reverse;
 }
 
 @keyframes step{
   to{
-    transform:translateY(4px) rotate(9deg);
+    transform:
+    translateY(4px)
+    rotate(9deg);
   }
 }
-
 
 /* DOUBT */
 
@@ -859,7 +925,8 @@ button{
   position:absolute;
   z-index:21;
   inset:0;
-  background:radial-gradient(
+  background:
+  radial-gradient(
     circle at 50% 45%,
     transparent 32%,
     #210d2a99 100%
@@ -901,7 +968,6 @@ button{
   margin-bottom:7px;
 }
 
-
 /* DOUBT ECHO */
 
 #echoCue{
@@ -909,7 +975,9 @@ button{
   z-index:43;
   left:50%;
   top:max(198px,calc(env(safe-area-inset-top) + 178px));
-  transform:translateX(-50%) scale(.96);
+  transform:
+  translateX(-50%)
+  scale(.96);
   width:min(84%,330px);
   padding:10px 13px;
   border-radius:15px;
@@ -922,12 +990,16 @@ button{
   line-height:1.3;
   opacity:0;
   pointer-events:none;
-  transition:opacity .18s,transform .18s;
+  transition:
+    opacity .18s,
+    transform .18s;
 }
 
 #echoCue.show{
   opacity:1;
-  transform:translateX(-50%) scale(1);
+  transform:
+  translateX(-50%)
+  scale(1);
 }
 
 #echoCue small{
@@ -937,7 +1009,6 @@ button{
   letter-spacing:.13em;
   margin-bottom:3px;
 }
-
 
 /* ERP CUES */
 
@@ -985,7 +1056,6 @@ button{
   opacity:1;
 }
 
-
 /* VALUES */
 
 #whatMatters{
@@ -1016,7 +1086,6 @@ button{
   line-height:1.25;
   font-weight:850;
 }
-
 
 /* LOOP GRIP */
 
@@ -1073,7 +1142,6 @@ button{
   line-height:1.25;
   color:#aebbd0;
 }
-
 
 /* GAME PANEL */
 
@@ -1174,11 +1242,11 @@ button{
   opacity:.45;
 }
 
-
 /* REWARD */
 
 #reward{
-  background:radial-gradient(
+  background:
+  radial-gradient(
     circle at 50% 38%,
     #35516e,
     #101927 62%,
@@ -1275,9 +1343,6 @@ button{
   border:0;
 }
 
-
-/* SHORT PHONES */
-
 @media(max-height:700px){
 
   .hero{
@@ -1328,9 +1393,6 @@ button{
 
 }
 
-
-/* REDUCED MOTION */
-
 @media(prefers-reduced-motion:reduce){
 
   *{
@@ -1346,10 +1408,7 @@ button{
 
 <div id="app">
 
-
-<section
-  id="start"
-  class="screen active">
+<section id="start" class="screen active">
 
   <div class="logo">
     UNCERTAIN
@@ -1360,31 +1419,18 @@ button{
     THE <span>LOOP.</span>
   </div>
 
-  <p
-    style="
-    font-size:18px;
-    color:#cbd6e3;
-    line-height:1.45">
-
-    Move forward without making certainty
-    the price of admission.
-
+  <p style="font-size:18px;color:#cbd6e3;line-height:1.45">
+    Move forward without making certainty the price of admission.
   </p>
 
   <div class="startCard card">
 
-    <button
-      class="btn"
-      id="enter">
-
+    <button class="btn" id="enter">
       ENTER THE LOOP
-
     </button>
 
     <p class="small">
-      Prototype only. ERP-informed gameplay
-      is not a replacement for professional
-      mental-health care.
+      Prototype only. ERP-informed gameplay is not a replacement for professional mental-health care.
     </p>
 
   </div>
@@ -1392,15 +1438,11 @@ button{
 </section>
 
 
-<section
-  id="map"
-  class="screen">
+<section id="map" class="screen">
 
   <div class="road"></div>
 
-  <button
-    id="checking"
-    class="node">
+  <button id="checking" class="node">
 
     <strong>
       Checking District
@@ -1412,9 +1454,7 @@ button{
 
   </button>
 
-  <button
-    class="node locked"
-    disabled>
+  <button class="node locked" disabled>
 
     <strong>
       Next District
@@ -1447,8 +1487,7 @@ button{
     <br>
 
     <span>
-      Certainty always seems one more
-      check away.
+      Certainty always seems one more check away.
     </span>
 
   </div>
@@ -1456,9 +1495,7 @@ button{
 </section>
 
 
-<section
-  id="missionSelect"
-  class="screen">
+<section id="missionSelect" class="screen">
 
   <div class="hud">
 
@@ -1472,13 +1509,9 @@ button{
 
   </div>
 
-
   <div class="selectWrap">
 
-
-    <button
-      class="missionCard"
-      data-mission="door">
+    <button class="missionCard" data-mission="door">
 
       <span class="tag">
         PHYSICAL CHECKING
@@ -1488,22 +1521,16 @@ button{
         Lock & Leave
       </b>
 
-      <span
-        class="completion"
-        data-completion="door">
-      </span>
+      <span class="completion" data-completion="door"></span>
 
       <span>
-        Lock once, then keep moving while
-        Doubt tries to pull you back.
+        Lock once, then keep moving while Doubt tries to pull you back.
       </span>
 
     </button>
 
 
-    <button
-      class="missionCard"
-      data-mission="car">
+    <button class="missionCard" data-mission="car">
 
       <span class="tag">
         PHYSICAL + MENTAL CHECKING
@@ -1513,22 +1540,16 @@ button{
         Park & Walk
       </b>
 
-      <span
-        class="completion"
-        data-completion="car">
-      </span>
+      <span class="completion" data-completion="car"></span>
 
       <span>
-        Lock the car once. Doubt can come
-        along without another click.
+        Lock the car once. Doubt can come along without another click.
       </span>
 
     </button>
 
 
-    <button
-      class="missionCard"
-      data-mission="stove">
+    <button class="missionCard" data-mission="stove">
 
       <span class="tag">
         APPLIANCE CHECKING
@@ -1538,23 +1559,16 @@ button{
         Off & Out
       </b>
 
-      <span
-        class="completion"
-        data-completion="stove">
-      </span>
+      <span class="completion" data-completion="stove"></span>
 
       <span>
-        Turn the stove off once, then head
-        for the exit without solving every
-        question.
+        Turn the stove off once, then head for the exit without solving every question.
       </span>
 
     </button>
 
 
-    <button
-      class="missionCard"
-      id="backMap">
+    <button class="missionCard" id="backMap">
 
       <span class="tag">
         RETURN
@@ -1566,16 +1580,12 @@ button{
 
     </button>
 
-
   </div>
 
 </section>
 
 
-<section
-  id="mission"
-  class="screen">
-
+<section id="mission" class="screen">
 
   <button
     type="button"
@@ -1586,9 +1596,7 @@ button{
 
   </button>
 
-
   <div class="scene">
-
 
     <div class="skyGlow"></div>
 
@@ -1596,10 +1604,7 @@ button{
 
     <div id="environment"></div>
 
-
-    <div
-      id="person"
-      class="person">
+    <div id="person" class="person">
 
       <i class="shadow"></i>
 
@@ -1613,13 +1618,9 @@ button{
 
     </div>
 
-
     <div id="doubtVignette"></div>
 
-
-    <div
-      id="doubtOverlay"
-      class="doubtText">
+    <div id="doubtOverlay" class="doubtText">
 
       <span class="doubtLabel">
         DOUBT
@@ -1631,21 +1632,17 @@ button{
 
     </div>
 
-
     <div id="carryCue">
       ● UNCERTAINTY CAN COME WITH YOU
     </div>
-
 
     <div id="waveCue">
       URGE WAVE • 0.0s WITHOUT CHECKING
     </div>
 
-
     <div id="recoveryCue">
       RETURN TO YOUR PATH • NO RESET
     </div>
-
 
     <div id="echoCue">
 
@@ -1659,20 +1656,15 @@ button{
 
     </div>
 
-
     <div id="whatMatters">
 
       <span class="wmLabel">
         WHAT MATTERS
       </span>
 
-      <span
-        class="wmText"
-        id="whatMattersText">
-      </span>
+      <span class="wmText" id="whatMattersText"></span>
 
     </div>
-
 
     <div id="loopGripPanel">
 
@@ -1693,24 +1685,17 @@ button{
       </div>
 
       <div class="gripNote">
-        Tracks certainty-seeking,
-        not anxiety.
+        Tracks certainty-seeking, not anxiety.
       </div>
 
     </div>
 
-
   </div>
-
 
   <div class="hud">
 
-    <span
-      class="pill"
-      id="missionName">
-
+    <span class="pill" id="missionName">
       MISSION
-
     </span>
 
     <span class="pill">
@@ -1719,12 +1704,9 @@ button{
 
   </div>
 
-
   <div class="gamePanel">
 
-
     <div class="gameTitle">
-
 
       <div>
 
@@ -1732,30 +1714,19 @@ button{
           One normal action.
         </b>
 
-        <div
-          class="small"
-          id="copy">
-
+        <div class="small" id="copy">
           No extra certainty required.
-
         </div>
 
       </div>
-
 
       <span id="phaseHint">
         READY
       </span>
 
-
     </div>
 
-
-    <div
-      id="meters"
-      class="meters"
-      style="display:none">
-
+    <div id="meters" class="meters" style="display:none">
 
       <div>
 
@@ -1765,15 +1736,11 @@ button{
 
         <div class="meter">
 
-          <i
-            class="fill"
-            id="urge">
-          </i>
+          <i class="fill" id="urge"></i>
 
         </div>
 
       </div>
-
 
       <div>
 
@@ -1783,10 +1750,7 @@ button{
 
         <div class="meter">
 
-          <i
-            class="fill"
-            id="progress">
-          </i>
+          <i class="fill" id="progress"></i>
 
           <i id="recoveryMark"></i>
 
@@ -1794,12 +1758,9 @@ button{
 
       </div>
 
-
     </div>
 
-
     <div class="controls">
-
 
       <button
         type="button"
@@ -1810,7 +1771,6 @@ button{
 
       </button>
 
-
       <button
         type="button"
         class="control primary"
@@ -1820,20 +1780,14 @@ button{
 
       </button>
 
-
     </div>
 
-
   </div>
-
 
 </section>
 
 
-<section
-  id="reward"
-  class="screen">
-
+<section id="reward" class="screen">
 
   <div class="hud">
 
@@ -1847,36 +1801,27 @@ button{
 
   </div>
 
-
   <div class="rewardBox">
 
-
     <div class="card">
-
 
       <div class="small">
         MISSION COMPLETE
       </div>
 
-
       <div class="rewardBig">
         +30 XP
       </div>
 
-
       <p id="result"></p>
 
-
       <div class="practice">
-
 
         <div class="practiceLabel">
           WHAT YOU PRACTICED
         </div>
 
-
         <div class="practiceGrid">
-
 
           <div class="practiceStat">
 
@@ -1890,7 +1835,6 @@ button{
 
           </div>
 
-
           <div class="practiceStat">
 
             <b id="statCarry">
@@ -1902,7 +1846,6 @@ button{
             </span>
 
           </div>
-
 
           <div class="practiceStat">
 
@@ -1916,7 +1859,6 @@ button{
 
           </div>
 
-
           <div class="practiceStat">
 
             <b id="statEchoes">
@@ -1929,58 +1871,31 @@ button{
 
           </div>
 
-
         </div>
 
-
-        <p
-          class="practiceCopy"
-          id="practiceCopy">
-
-          The win is choosing the next meaningful
-          action—not getting a particular feeling.
-
+        <p class="practiceCopy" id="practiceCopy">
+          The win is choosing the next meaningful action—not getting a particular feeling.
         </p>
 
-
       </div>
 
-
-      <button
-        class="btn"
-        id="continueBtn">
-
+      <button class="btn" id="continueBtn">
         BACK TO CHECKING DISTRICT
-
       </button>
 
-
-      <button
-        class="btn secondary"
-        id="doneBtn">
-
+      <button class="btn secondary" id="doneBtn">
         DONE FOR NOW
-
       </button>
-
 
       <div class="sessionNote">
-
-        These are behavior markers, not a score
-        for how anxious you felt. Stopping here
-        is allowed.
-
+        These are behavior markers, not a score for how anxious you felt. Stopping here is allowed.
       </div>
-
 
     </div>
 
-
   </div>
 
-
 </section>
-
 
 <div
   id="liveStatus"
@@ -1989,29 +1904,14 @@ button{
   aria-atomic="true">
 </div>
 
-
 </div>
 
-
 <script>
+const $=s=>document.querySelector(s);
 
+const $$=s=>document.querySelectorAll(s);
 
-const $=
-s=>
-document.querySelector(s);
-
-
-const $$=
-s=>
-document.querySelectorAll(s);
-
-
-const clamp=
-(
-  n,
-  a,
-  b
-)=>
+const clamp=(n,a,b)=>
 Math.max(
   a,
   Math.min(
@@ -2019,8 +1919,6 @@ Math.max(
     n
   )
 );
-
-
 
 const store={
 
@@ -2045,7 +1943,6 @@ const store={
 
   },
 
-
   set(
     key,
     value
@@ -2066,10 +1963,7 @@ const store={
 
 };
 
-
-
 const missions={
-
 
   door:{
 
@@ -2109,7 +2003,6 @@ const missions={
 
   },
 
-
   car:{
 
     name:
@@ -2147,7 +2040,6 @@ const missions={
     ]
 
   },
-
 
   stove:{
 
@@ -2189,8 +2081,6 @@ const missions={
 
 };
 
-
-
 let xp=
 Number(
   store.get(
@@ -2199,94 +2089,71 @@ Number(
   )
 )||0;
 
-
 let current=
 null;
-
 
 let phase=
 "idle";
 
-
 let momentum=
 0;
-
 
 let peakMomentum=
 0;
 
-
 let urge=
 46;
-
 
 let checks=
 0;
 
-
 let thoughtIndex=
 0;
-
 
 let loopGrip=
 24;
 
-
 let hold=
 false;
-
 
 let walkTimer=
 null;
 
-
 let doubtTimer=
 null;
-
 
 let urgeTimer=
 null;
 
-
 let waveTimer=
 null;
-
 
 let carrying=
 false;
 
-
 let recoveryCount=
 0;
-
 
 let recoveryTarget=
 null;
 
-
 let waveStartedAt=
 0;
-
 
 let carryStartedAt=
 0;
 
-
 let carrySeconds=
 0;
-
 
 let echoCount=
 0;
 
-
 let echoStage=
 0;
 
-
 let echoHideTimer=
 null;
-
 
 
 function show(id){
@@ -2307,7 +2174,6 @@ function show(id){
 }
 
 
-
 function announce(text){
 
   $("#liveStatus")
@@ -2315,7 +2181,6 @@ function announce(text){
   text;
 
 }
-
 
 
 function vibrate(pattern){
@@ -2333,7 +2198,6 @@ function vibrate(pattern){
 }
 
 
-
 function updateXP(){
 
   store.set(
@@ -2348,7 +2212,6 @@ function updateXP(){
   );
 
 }
-
 
 
 function completions(){
@@ -2374,7 +2237,6 @@ function completions(){
 }
 
 
-
 function meters(){
 
   $("#progress")
@@ -2386,7 +2248,6 @@ function meters(){
   urge+"%";
 
 }
-
 
 
 function renderGrip(){
@@ -2418,7 +2279,6 @@ function renderGrip(){
 }
 
 
-
 function hideDoubt(){
 
   $("#doubtOverlay")
@@ -2432,7 +2292,6 @@ function hideDoubt(){
   );
 
 }
-
 
 
 function showDoubt(text){
@@ -2466,7 +2325,6 @@ function showDoubt(text){
 }
 
 
-
 function hideEcho(){
 
   clearTimeout(
@@ -2481,7 +2339,6 @@ function hideEcho(){
 }
 
 
-
 function showEcho(){
 
   if(
@@ -2494,11 +2351,9 @@ function showEcho(){
 
   }
 
-
   const list=
   missions[current]
   .echoes;
-
 
   const text=
   list[
@@ -2506,20 +2361,16 @@ function showEcho(){
     list.length
   ];
 
-
   echoCount++;
-
 
   $("#echoMessage")
   .textContent=
   text;
 
-
   $("#echoCue")
   .classList.add(
     "show"
   );
-
 
   announce(
     "Doubt echo: "+
@@ -2527,16 +2378,13 @@ function showEcho(){
     ". Keep moving if you choose."
   );
 
-
   vibrate(
     12
   );
 
-
   clearTimeout(
     echoHideTimer
   );
-
 
   echoHideTimer=
   setTimeout(
@@ -2545,7 +2393,6 @@ function showEcho(){
   );
 
 }
-
 
 
 function maybeEcho(){
@@ -2559,12 +2406,10 @@ function maybeEcho(){
 
   }
 
-
   const thresholds=[
     38,
     68
   ];
-
 
   if(
     echoStage<
@@ -2584,7 +2429,6 @@ function maybeEcho(){
 }
 
 
-
 function setCarrying(on){
 
   if(
@@ -2596,7 +2440,6 @@ function setCarrying(on){
     performance.now();
 
   }
-
 
   if(
     !on &&
@@ -2615,17 +2458,14 @@ function setCarrying(on){
 
   }
 
-
   carrying=
   on;
-
 
   $("#carryCue")
   .classList.toggle(
     "show",
     on
   );
-
 
   if(on){
 
@@ -2636,7 +2476,6 @@ function setCarrying(on){
   }
 
 }
-
 
 
 function currentCarrySeconds(){
@@ -2658,13 +2497,11 @@ function currentCarrySeconds(){
 }
 
 
-
 function nextThought(){
 
   const list=
   missions[current]
   .thoughts;
-
 
   return list[
     thoughtIndex++%
@@ -2674,9 +2511,7 @@ function nextThought(){
 }
 
 
-
 function sceneMarkup(key){
-
 
   if(
     key==="door"
@@ -2702,9 +2537,7 @@ function sceneMarkup(key){
 
 </div>
 
-
 <div class="driveway"></div>
-
 
 <div class="drivewayVehicle">
 
@@ -2716,7 +2549,6 @@ function sceneMarkup(key){
 
   }
 
-
   if(
     key==="car"
   ){
@@ -2725,22 +2557,31 @@ function sceneMarkup(key){
 
 <div class="parkingGround"></div>
 
-
 <div class="store">
 
   <div class="storeDoor"></div>
 
 </div>
 
+<div class="crosswalk"></div>
 
-<div class="parkingLine line1"></div>
+<div class="stopLine"></div>
 
-<div class="parkingLine line2"></div>
+<div class="stallLine s1"></div>
 
-<div class="parkingLine line3"></div>
+<div class="stallLine s2"></div>
 
-<div class="parkingLine line4"></div>
+<div class="stallLine s3"></div>
 
+<div class="stallLine s4"></div>
+
+<div class="stallLine s5"></div>
+
+<div class="stallLine s6"></div>
+
+<div class="parkingLabel">
+  WALK TO STORE
+</div>
 
 <div class="car">
 
@@ -2752,22 +2593,17 @@ function sceneMarkup(key){
 
   }
 
-
   return `
 
 <div class="kitchenWall"></div>
 
 <div class="kitchenFloor"></div>
 
-
 <div class="exitDoor"></div>
-
 
 <div class="counter"></div>
 
-
 <div class="stove">
-
 
   <div class="stoveTop">
 
@@ -2777,9 +2613,7 @@ function sceneMarkup(key){
 
   </div>
 
-
   <div class="stovePanel"></div>
-
 
   <div class="stoveKnob one"></div>
 
@@ -2789,9 +2623,7 @@ function sceneMarkup(key){
 
   <div class="stoveKnob four"></div>
 
-
   <div class="stoveOven"></div>
-
 
 </div>
 
@@ -2800,16 +2632,13 @@ function sceneMarkup(key){
 }
 
 
-
 function setRecoveryTarget(value){
 
   recoveryTarget=
   value;
 
-
   const mark=
   $("#recoveryMark");
-
 
   if(
     value===null
@@ -2827,15 +2656,12 @@ function setRecoveryTarget(value){
 
   }
 
-
   $("#recoveryCue")
   .textContent=
   "RETURN TO YOUR PATH • NO RESET";
 
-
   mark.style.display=
   "block";
-
 
   mark.style.left=
   `calc(${
@@ -2846,14 +2672,12 @@ function setRecoveryTarget(value){
     )
   }% - 1px)`;
 
-
   $("#recoveryCue")
   .classList.add(
     "show"
   );
 
 }
-
 
 
 function scheduleDoubt(
@@ -2863,7 +2687,6 @@ function scheduleDoubt(
   clearTimeout(
     doubtTimer
   );
-
 
   doubtTimer=
   setTimeout(()=>{
@@ -2878,14 +2701,12 @@ function scheduleDoubt(
         nextThought()
       );
 
-
       urge=
       clamp(
         urge+11,
         18,
         96
       );
-
 
       meters();
 
@@ -2894,7 +2715,6 @@ function scheduleDoubt(
   },delay);
 
 }
-
 
 
 function stopWave(){
@@ -2917,21 +2737,17 @@ function stopWave(){
 }
 
 
-
 function startWave(){
 
   stopWave();
 
-
   waveStartedAt=
   performance.now();
-
 
   $("#waveCue")
   .classList.add(
     "show"
   );
-
 
   waveTimer=
   setInterval(()=>{
@@ -2947,20 +2763,17 @@ function startWave(){
 
     }
 
-
     const seconds=
     (
       performance.now()-
       waveStartedAt
     )/1000;
 
-
     $("#waveCue")
     .textContent=
     `URGE WAVE • ${
       seconds.toFixed(1)
     }s WITHOUT CHECKING`;
-
 
     if(
       seconds>=1.3
@@ -2976,7 +2789,6 @@ function startWave(){
         92
       );
 
-
       loopGrip=
       clamp(
         loopGrip-.7,
@@ -2984,11 +2796,9 @@ function startWave(){
         100
       );
 
-
       meters();
 
       renderGrip();
-
 
       $("#copy")
       .textContent=
@@ -3001,60 +2811,47 @@ function startWave(){
 }
 
 
-
 function stopAll(){
 
   clearInterval(
     walkTimer
   );
 
-
   clearInterval(
     urgeTimer
   );
-
 
   clearTimeout(
     doubtTimer
   );
 
-
   clearTimeout(
     echoHideTimer
   );
 
-
   stopWave();
-
 
   walkTimer=
   null;
 
-
   urgeTimer=
   null;
-
 
   doubtTimer=
   null;
 
-
   echoHideTimer=
   null;
 
-
   hold=
   false;
-
 
   $("#person")
   .classList.remove(
     "walking"
   );
 
-
   hideEcho();
-
 
   if(
     navigator.vibrate
@@ -3069,16 +2866,99 @@ function stopAll(){
 }
 
 
-
 function updateScene(){
 
   const t=
   momentum/100;
 
-
   const person=
   $("#person");
 
+  if(
+    current==="car"
+  ){
+
+    person.style.left=
+    (
+      50-
+      2*t
+    )+"%";
+
+    person.style.bottom=
+    (
+      18+
+      36*t
+    )+"%";
+
+    person.style.transform=
+    `translateX(-50%) scale(${
+      1-
+      .24*t
+    })`;
+
+    const car=
+    $(".car");
+
+    const store=
+    $(".store");
+
+    const crosswalk=
+    $(".crosswalk");
+
+    if(car){
+
+      car.style.top=
+      (
+        66+
+        18*t
+      )+"%";
+
+      car.style.transform=
+      `translateX(-50%) scale(${
+        1-
+        .52*t
+      })`;
+
+      car.style.opacity=
+      String(
+        Math.max(
+          .18,
+          1-
+          .74*t
+        )
+      );
+
+    }
+
+    if(store){
+
+      store.style.top=
+      (
+        4-
+        1.5*t
+      )+"%";
+
+      store.style.transform=
+      `translateX(-50%) scale(${
+        1+
+        .28*t
+      })`;
+
+    }
+
+    if(crosswalk){
+
+      crosswalk.style.opacity=
+      String(
+        .72+
+        .20*t
+      );
+
+    }
+
+    return;
+
+  }
 
   person.style.left=
   (
@@ -3086,13 +2966,11 @@ function updateScene(){
     20*t
   )+"%";
 
-
   person.style.bottom=
   (
     24-
     9*t
   )+"%";
-
 
   person.style.transform=
   `translateX(-50%) scale(${
@@ -3100,19 +2978,14 @@ function updateScene(){
     .10*t
   })`;
 
-
   const house=
   $(".houseShell");
 
-
-  const car=
-  $(".drivewayVehicle")||
-  $(".car");
-
+  const drivewayCar=
+  $(".drivewayVehicle");
 
   const stove=
   $(".stove");
-
 
   if(house){
 
@@ -3121,7 +2994,6 @@ function updateScene(){
       1-
       .30*t
     })`;
-
 
     house.style.opacity=
     String(
@@ -3134,22 +3006,15 @@ function updateScene(){
 
   }
 
+  if(drivewayCar){
 
-  if(car){
-
-    car.style.transform=
+    drivewayCar.style.transform=
     `translateX(-50%) scale(${
-      (
-        current==="door"
-        ? .78
-        : 1
-      )
-      -
+      .78-
       .12*t
     })`;
 
   }
-
 
   if(stove){
 
@@ -3158,7 +3023,6 @@ function updateScene(){
       1-
       .28*t
     })`;
-
 
     stove.style.opacity=
     String(
@@ -3174,71 +3038,54 @@ function updateScene(){
 }
 
 
-
 function loadMission(key){
 
   stopAll();
 
-
   current=
   key;
-
 
   phase=
   "lock";
 
-
   momentum=
   0;
-
 
   peakMomentum=
   0;
 
-
   urge=
   46;
-
 
   checks=
   0;
 
-
   thoughtIndex=
   0;
-
 
   echoCount=
   0;
 
-
   echoStage=
   0;
-
 
   loopGrip=
   24;
 
-
   carrying=
   false;
-
 
   recoveryCount=
   0;
 
-
   recoveryTarget=
   null;
-
 
   carryStartedAt=
   0;
 
-
   carrySeconds=
   0;
-
 
   $("#environment")
   .innerHTML=
@@ -3246,41 +3093,33 @@ function loadMission(key){
     key
   );
 
-
   $("#missionName")
   .textContent=
   missions[key].name;
-
 
   $("#title")
   .textContent=
   missions[key].title;
 
-
   $("#copy")
   .textContent=
   missions[key].copy;
-
 
   $("#whatMattersText")
   .textContent=
   missions[key].value;
 
-
   $("#phaseHint")
   .textContent=
   "ACTION";
-
 
   $("#meters")
   .style.display=
   "none";
 
-
   $("#checkBtn")
   .style.display=
   "none";
-
 
   $("#forwardBtn")
   .textContent=
@@ -3295,36 +3134,51 @@ function loadMission(key){
 
   : "TURN OFF ONCE";
 
+  if(
+    key==="car"
+  ){
 
-  $("#person")
-  .style.left=
-  "50%";
+    $("#person")
+    .style.left=
+    "50%";
 
+    $("#person")
+    .style.bottom=
+    "18%";
 
-  $("#person")
-  .style.bottom=
-  "24%";
+    $("#person")
+    .style.transform=
+    "translateX(-50%)";
 
+  }
 
-  $("#person")
-  .style.transform=
-  "translateX(-50%)";
+  else{
 
+    $("#person")
+    .style.left=
+    "50%";
+
+    $("#person")
+    .style.bottom=
+    "24%";
+
+    $("#person")
+    .style.transform=
+    "translateX(-50%)";
+
+  }
 
   hideDoubt();
 
   hideEcho();
 
-
   setCarrying(
     false
   );
 
-
   setRecoveryTarget(
     null
   );
-
 
   meters();
 
@@ -3334,14 +3188,12 @@ function loadMission(key){
     "mission"
   );
 
-
   announce(
     missions[key].name+
     " opened."
   );
 
 }
-
 
 
 function initialAction(){
@@ -3354,30 +3206,24 @@ function initialAction(){
 
   }
 
-
   phase=
   "ready";
-
 
   $("#meters")
   .style.display=
   "grid";
 
-
   $("#checkBtn")
   .style.display=
   "block";
-
 
   $("#forwardBtn")
   .textContent=
   "HOLD TO MOVE";
 
-
   $("#title")
   .textContent=
   "Now move on.";
-
 
   $("#copy")
   .textContent=
@@ -3388,15 +3234,13 @@ function initialAction(){
 
   : current==="car"
 
-  ? "Walk toward your destination."
+  ? "Turn away from the car and walk toward the store entrance."
 
   : "Head for the exit.";
-
 
   $("#phaseHint")
   .textContent=
   "READY";
-
 
   vibrate([
     18,
@@ -3404,11 +3248,9 @@ function initialAction(){
     18
   ]);
 
-
   announce(
     "Normal action complete. Ready to move."
   );
-
 
   urgeTimer=
   setInterval(()=>{
@@ -3419,13 +3261,11 @@ function initialAction(){
       Date.now()/850
     )*28;
 
-
     urge+=
     (
       target-
       urge
     )*.08;
-
 
     urge=
     clamp(
@@ -3434,18 +3274,15 @@ function initialAction(){
       94
     );
 
-
     meters();
 
   },180);
-
 
   scheduleDoubt(
     700
   );
 
 }
-
 
 
 function startWalking(){
@@ -3460,16 +3297,13 @@ function startWalking(){
 
   }
 
-
   clearTimeout(
     doubtTimer
   );
 
-
   stopWave();
 
   hideEcho();
-
 
   if(
     $("#doubtOverlay")
@@ -3486,14 +3320,11 @@ function startWalking(){
 
   }
 
-
   phase=
   "moving";
 
-
   hold=
   true;
-
 
   $("#phaseHint")
   .textContent=
@@ -3504,12 +3335,10 @@ function startWalking(){
 
   : "MOVING";
 
-
   $("#person")
   .classList.add(
     "walking"
   );
-
 
   walkTimer=
   setInterval(()=>{
@@ -3517,13 +3346,11 @@ function startWalking(){
     const before=
     momentum;
 
-
     momentum=
     Math.min(
       100,
       momentum+2.1
     );
-
 
     peakMomentum=
     Math.max(
@@ -3531,10 +3358,8 @@ function startWalking(){
       momentum
     );
 
-
     const moved=
     momentum-before;
-
 
     loopGrip=
     clamp(
@@ -3544,9 +3369,7 @@ function startWalking(){
       100
     );
 
-
     maybeEcho();
-
 
     if(
       recoveryTarget!==null &&
@@ -3555,22 +3378,18 @@ function startWalking(){
 
       recoveryCount++;
 
-
       setRecoveryTarget(
         null
       );
-
 
       $("#recoveryCue")
       .textContent=
       "YOU RETURNED • KEEP GOING";
 
-
       $("#recoveryCue")
       .classList.add(
         "show"
       );
-
 
       setTimeout(()=>{
 
@@ -3581,11 +3400,9 @@ function startWalking(){
 
       },1100);
 
-
       announce(
         "You returned to your path without restarting."
       );
-
 
       vibrate([
         15,
@@ -3595,13 +3412,11 @@ function startWalking(){
 
     }
 
-
     renderGrip();
 
     updateScene();
 
     meters();
-
 
     if(
       momentum>=100
@@ -3613,11 +3428,9 @@ function startWalking(){
 
   },70);
 
-
   return true;
 
 }
-
 
 
 function stopWalking(){
@@ -3630,32 +3443,25 @@ function stopWalking(){
 
   }
 
-
   clearInterval(
     walkTimer
   );
 
-
   walkTimer=
   null;
 
-
   hold=
   false;
-
 
   $("#person")
   .classList.remove(
     "walking"
   );
 
-
   hideEcho();
-
 
   phase=
   "ready";
-
 
   $("#phaseHint")
   .textContent=
@@ -3666,7 +3472,6 @@ function stopWalking(){
 
   : "READY";
 
-
   if(
     carrying
   ){
@@ -3674,7 +3479,6 @@ function stopWalking(){
     startWave();
 
   }
-
 
   else if(
     momentum<100
@@ -3687,7 +3491,6 @@ function stopWalking(){
   }
 
 }
-
 
 
 function recheck(){
@@ -3705,46 +3508,36 @@ function recheck(){
 
   }
 
-
   checks++;
-
 
   clearInterval(
     walkTimer
   );
 
-
   clearTimeout(
     doubtTimer
   );
-
 
   stopWave();
 
   hideEcho();
 
-
   hold=
   false;
 
-
   phase=
   "relief";
-
 
   $("#person")
   .classList.remove(
     "walking"
   );
 
-
   setCarrying(
     false
   );
 
-
   hideDoubt();
-
 
   loopGrip=
   clamp(
@@ -3753,7 +3546,6 @@ function recheck(){
     100
   );
 
-
   urge=
   clamp(
     urge-27,
@@ -3761,31 +3553,30 @@ function recheck(){
     96
   );
 
-
   renderGrip();
-
 
   $("#phaseHint")
   .textContent=
   "RELIEF";
 
-
   $("#title")
   .textContent=
   "Relief landed.";
 
-
   $("#copy")
   .textContent=
-  "For a moment, the question feels answered.";
 
+  current==="car"
+
+  ? "The check pulls your attention back toward the parked car."
+
+  : "For a moment, the question feels answered.";
 
   vibrate([
     30,
     25,
     30
   ]);
-
 
   const loss=
 
@@ -3801,13 +3592,11 @@ function recheck(){
       20
     );
 
-
   momentum=
   Math.max(
     0,
     momentum-loss
   );
-
 
   if(
     peakMomentum>
@@ -3820,17 +3609,14 @@ function recheck(){
 
   }
 
-
   updateScene();
 
   meters();
-
 
   setTimeout(()=>{
 
     phase=
     "ready";
-
 
     showDoubt(
 
@@ -3842,7 +3628,6 @@ function recheck(){
 
     );
 
-
     $("#title")
     .textContent=
 
@@ -3852,20 +3637,22 @@ function recheck(){
 
     : "Same loop. New request.";
 
-
     $("#copy")
     .textContent=
 
     recoveryTarget!==null
 
-    ? "You do not need to restart. Return to what matters from here."
+    ? current==="car"
+
+      ? "You do not need to restart. Turn back toward the store from here."
+
+      : "You do not need to restart. Return to what matters from here."
 
     : "The question changed. What matters didn’t.";
 
   },650);
 
 }
-
 
 
 function completeMission(){
@@ -3875,42 +3662,32 @@ function completeMission(){
     currentCarrySeconds()
   );
 
-
   setCarrying(
     false
   );
 
-
   stopAll();
-
 
   phase=
   "complete";
 
-
   xp+=
   30;
 
-
   updateXP();
-
 
   store.set(
     "completed_"+current,
     "yes"
   );
 
-
   completions();
-
 
   setRecoveryTarget(
     null
   );
 
-
   hideDoubt();
-
 
   $("#result")
   .textContent=
@@ -3921,26 +3698,21 @@ function completeMission(){
 
   : `You resumed forward movement after ${checks} ${checks===1 ? "check" : "checks"}. A lapse did not reset the mission.`;
 
-
   $("#statChecks")
   .textContent=
   checks;
-
 
   $("#statCarry")
   .textContent=
   carried+"s";
 
-
   $("#statRecoveries")
   .textContent=
   recoveryCount;
 
-
   $("#statEchoes")
   .textContent=
   echoCount;
-
 
   $("#practiceCopy")
   .textContent=
@@ -3959,11 +3731,9 @@ function completeMission(){
 
   : "You practiced one normal action and continued without adding an extra certainty step.";
 
-
   show(
     "reward"
   );
-
 
   announce(
     "Mission complete."
@@ -3972,37 +3742,29 @@ function completeMission(){
 }
 
 
-
 function exitMission(){
 
   stopAll();
-
 
   setCarrying(
     false
   );
 
-
   setRecoveryTarget(
     null
   );
-
 
   hideDoubt();
 
   hideEcho();
 
-
   current=
   null;
-
 
   phase=
   "idle";
 
-
   completions();
-
 
   show(
     "missionSelect"
@@ -4011,13 +3773,11 @@ function exitMission(){
 }
 
 
-
 $("#enter")
 .onclick=
 ()=>show(
   "map"
 );
-
 
 
 $("#checking")
@@ -4033,13 +3793,11 @@ $("#checking")
 };
 
 
-
 $("#backMap")
 .onclick=
 ()=>show(
   "map"
 );
-
 
 
 $$(
@@ -4057,17 +3815,14 @@ $$(
 );
 
 
-
 $("#missionExit")
 .onclick=
 exitMission;
 
 
-
 $("#checkBtn")
 .onclick=
 recheck;
-
 
 
 $("#continueBtn")
@@ -4081,7 +3836,6 @@ $("#continueBtn")
   );
 
 };
-
 
 
 $("#doneBtn")
@@ -4103,10 +3857,8 @@ $("#doneBtn")
 };
 
 
-
 const forward=
 $("#forwardBtn");
-
 
 
 [
@@ -4122,7 +3874,6 @@ $("#forwardBtn");
     event.preventDefault()
   )
 );
-
 
 
 forward.addEventListener(
@@ -4150,7 +3901,6 @@ forward.addEventListener(
 );
 
 
-
 [
   "touchend",
   "touchcancel"
@@ -4173,7 +3923,6 @@ forward.addEventListener(
 );
 
 
-
 forward.addEventListener(
   "pointerdown",
   event=>{
@@ -4186,9 +3935,7 @@ forward.addEventListener(
 
     }
 
-
     event.preventDefault();
-
 
     if(
       phase==="lock"
@@ -4200,7 +3947,6 @@ forward.addEventListener(
 
     }
 
-
     try{
 
       forward.setPointerCapture(
@@ -4211,12 +3957,10 @@ forward.addEventListener(
 
     catch{}
 
-
     startWalking();
 
   }
 );
-
 
 
 [
@@ -4238,7 +3982,6 @@ forward.addEventListener(
 
       }
 
-
       event.preventDefault();
 
       stopWalking();
@@ -4248,12 +3991,10 @@ forward.addEventListener(
 );
 
 
-
 window.addEventListener(
   "blur",
   stopWalking
 );
-
 
 
 document.addEventListener(
@@ -4272,7 +4013,6 @@ document.addEventListener(
 );
 
 
-
 document.addEventListener(
   "contextmenu",
   event=>
@@ -4280,13 +4020,11 @@ document.addEventListener(
 );
 
 
-
 updateXP();
 
 completions();
 
 renderGrip();
-
 
 </script>
 
