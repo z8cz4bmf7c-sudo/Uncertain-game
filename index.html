@@ -4,13 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#07101c">
-
-<title>UNCERTAIN — Checking District v10.31</title>
+<title>UNCERTAIN — Checking District v10.32</title>
 
 <style>
-
 :root{
   --bg:#07101c;
+  --panel:#0b1523f2;
   --text:#f7fbff;
   --muted:#aebbd0;
   --accent:#74e7c5;
@@ -35,12 +34,7 @@ body{
   overscroll-behavior:none;
   background:#040912;
   color:var(--text);
-  font-family:
-  system-ui,
-  -apple-system,
-  BlinkMacSystemFont,
-  "Segoe UI",
-  sans-serif;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
 button{
@@ -78,15 +72,7 @@ button{
   top:0;
   left:0;
   right:0;
-
-  padding:
-  max(
-    12px,
-    env(safe-area-inset-top)
-  )
-  12px
-  8px;
-
+  padding:max(12px,env(safe-area-inset-top)) 12px 8px;
   display:flex;
   justify-content:space-between;
   pointer-events:none;
@@ -99,6 +85,14 @@ button{
   background:#07111de8;
   font-size:12px;
   font-weight:900;
+}
+
+.card{
+  background:linear-gradient(180deg,#101d30f5,#0b1625f5);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:16px;
+  box-shadow:0 18px 44px #0009;
 }
 
 .btn{
@@ -126,28 +120,12 @@ button{
   color:var(--muted);
 }
 
-.card{
-  background:
-  linear-gradient(
-    180deg,
-    #101d30f5,
-    #0b1625f5
-  );
-
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:16px;
-  box-shadow:0 18px 44px #0009;
-}
-
 
 /* START */
 
 #start{
   padding:92px 22px 26px;
-
-  background:
-  radial-gradient(
+  background:radial-gradient(
     circle at 50% 25%,
     #355271,
     #111b2a 55%,
@@ -178,19 +156,14 @@ button{
   position:absolute;
   left:16px;
   right:16px;
-
-  bottom:max(
-    22px,
-    env(safe-area-inset-bottom)
-  );
+  bottom:max(22px,env(safe-area-inset-bottom));
 }
 
 
 /* MAP */
 
 #map{
-  background:
-  linear-gradient(
+  background:linear-gradient(
     145deg,
     #29425f,
     #112238 64%,
@@ -255,12 +228,7 @@ button{
   position:absolute;
   left:14px;
   right:14px;
-
-  bottom:max(
-    14px,
-    env(safe-area-inset-bottom)
-  );
-
+  bottom:max(14px,env(safe-area-inset-bottom));
   padding:13px 15px;
   border:1px solid var(--line);
   border-radius:18px;
@@ -271,8 +239,7 @@ button{
 /* MISSION SELECT */
 
 #missionSelect{
-  background:
-  radial-gradient(
+  background:radial-gradient(
     circle at 50% 30%,
     #274762,
     #0b1625 65%
@@ -322,7 +289,7 @@ button{
 .completion{
   min-height:15px;
   font-size:11px!important;
-  color:#74e7c5!important;
+  color:var(--accent)!important;
   font-weight:950!important;
 }
 
@@ -337,14 +304,7 @@ button{
   position:absolute;
   z-index:100;
   left:12px;
-
-  top:max(
-    58px,
-    calc(
-      env(safe-area-inset-top) + 48px
-    )
-  );
-
+  top:max(58px,calc(env(safe-area-inset-top) + 48px));
   min-width:82px;
   min-height:46px;
   padding:8px 13px;
@@ -360,9 +320,7 @@ button{
   position:absolute;
   inset:0;
   overflow:hidden;
-
-  background:
-  linear-gradient(
+  background:linear-gradient(
     #24364b 0 47%,
     #101923 47%
   );
@@ -379,9 +337,7 @@ button{
   right:0;
   top:0;
   height:38%;
-
-  background:
-  radial-gradient(
+  background:radial-gradient(
     circle at 70% 16%,
     #526d8a55,
     transparent 30%
@@ -394,16 +350,14 @@ button{
   right:0;
   bottom:0;
   height:58%;
-
-  background:
-  linear-gradient(
+  background:linear-gradient(
     #1f2b37,
     #111923
   );
 }
 
 
-/* LOCK & LEAVE */
+/* HOUSE */
 
 .houseShell{
   position:absolute;
@@ -420,13 +374,10 @@ button{
   right:16px;
   top:48px;
   bottom:0;
-
-  background:
-  linear-gradient(
+  background:linear-gradient(
     #47576a,
     #303b49
   );
-
   border:6px solid #1b2735;
 }
 
@@ -437,9 +388,7 @@ button{
   top:0;
   height:110px;
   background:#202c3a;
-
-  clip-path:
-  polygon(
+  clip-path:polygon(
     50% 0,
     100% 54%,
     92% 54%,
@@ -474,13 +423,10 @@ button{
   transform:translateX(-50%);
   width:106px;
   height:164px;
-
-  background:
-  linear-gradient(
+  background:linear-gradient(
     #2f4155,
     #1b2a3a
   );
-
   border:7px solid #111a25;
 }
 
@@ -501,22 +447,17 @@ button{
   top:35%;
   width:66%;
   height:72%;
-
-  background:
-  linear-gradient(
+  background:linear-gradient(
     160deg,
     #3b4651,
     #1c252e
   );
-
-  clip-path:
-  polygon(
+  clip-path:polygon(
     24% 0,
     58% 0,
     100% 100%,
     0 100%
   );
-
   z-index:2;
 }
 
@@ -530,29 +471,23 @@ button{
   width:178px;
   height:80px;
   border-radius:36px 40px 18px 18px;
-
-  background:
-  linear-gradient(
+  background:linear-gradient(
     #8093aa,
     #566a83
   );
-
   border:7px solid #101722;
 }
 
 .drivewayVehicle{
   left:72%;
   top:61%;
-  transform:
-  translateX(-50%)
-  scale(.78);
+  transform:translateX(-50%) scale(.78);
 }
 
 .car{
   left:66%;
   top:53%;
-  transform:
-  translateX(-50%);
+  transform:translateX(-50%);
 }
 
 .carWindow{
@@ -562,9 +497,7 @@ button{
   width:96px;
   height:42px;
   background:#21354a;
-
-  clip-path:
-  polygon(
+  clip-path:polygon(
     20% 100%,
     35% 0,
     78% 0,
@@ -602,9 +535,7 @@ button{
 .parkingGround{
   position:absolute;
   inset:34% 0 0;
-
-  background:
-  linear-gradient(
+  background:linear-gradient(
     170deg,
     #303b49,
     #141c26
@@ -618,13 +549,10 @@ button{
   transform:translateX(-50%);
   width:305px;
   height:178px;
-
-  background:
-  linear-gradient(
+  background:linear-gradient(
     #54667a,
     #3b4a5d
   );
-
   border:8px solid #223040;
   z-index:4;
 }
@@ -686,7 +614,7 @@ button{
 }
 
 
-/* OFF & OUT */
+/* KITCHEN */
 
 .kitchenWall{
   position:absolute;
@@ -694,9 +622,7 @@ button{
   right:0;
   top:0;
   height:49%;
-
-  background:
-  linear-gradient(
+  background:linear-gradient(
     #435160,
     #2d3947
   );
@@ -708,9 +634,7 @@ button{
   right:0;
   bottom:0;
   height:55%;
-
-  background:
-  repeating-linear-gradient(
+  background:repeating-linear-gradient(
     90deg,
     #222c36 0,
     #222c36 52px,
@@ -726,13 +650,10 @@ button{
   transform:translateX(-50%);
   width:125px;
   height:220px;
-
-  background:
-  linear-gradient(
+  background:linear-gradient(
     #30475a,
     #172837
   );
-
   border:8px solid #172330;
   z-index:5;
 }
@@ -767,13 +688,10 @@ button{
   transform:translateX(-50%);
   width:220px;
   height:145px;
-
-  background:
-  linear-gradient(
+  background:linear-gradient(
     #6f7d8c,
     #424e5b
   );
-
   border:7px solid #18222c;
   border-radius:8px;
   z-index:8;
@@ -863,11 +781,10 @@ button{
   width:62px;
   height:106px;
   transform:translateX(-50%);
-
   transition:
-  bottom .12s linear,
-  left .12s linear,
-  transform .12s linear;
+    bottom .12s linear,
+    left .12s linear,
+    transform .12s linear;
 }
 
 .shadow{
@@ -898,9 +815,7 @@ button{
   width:38px;
   height:46px;
   border-radius:16px 16px 10px 10px;
-
-  background:
-  linear-gradient(
+  background:linear-gradient(
     #e8eef5,
     #c8d4df
   );
@@ -924,23 +839,17 @@ button{
 }
 
 .person.walking .leg.a{
-  animation:
-  step .28s infinite alternate;
+  animation:step .28s infinite alternate;
 }
 
 .person.walking .leg.b{
-  animation:
-  step .28s infinite alternate-reverse;
+  animation:step .28s infinite alternate-reverse;
 }
 
 @keyframes step{
-
   to{
-    transform:
-    translateY(4px)
-    rotate(9deg);
+    transform:translateY(4px) rotate(9deg);
   }
-
 }
 
 
@@ -950,14 +859,11 @@ button{
   position:absolute;
   z-index:21;
   inset:0;
-
-  background:
-  radial-gradient(
+  background:radial-gradient(
     circle at 50% 45%,
     transparent 32%,
     #210d2a99 100%
   );
-
   opacity:0;
   pointer-events:none;
   transition:.18s;
@@ -996,6 +902,43 @@ button{
 }
 
 
+/* DOUBT ECHO */
+
+#echoCue{
+  position:absolute;
+  z-index:43;
+  left:50%;
+  top:max(198px,calc(env(safe-area-inset-top) + 178px));
+  transform:translateX(-50%) scale(.96);
+  width:min(84%,330px);
+  padding:10px 13px;
+  border-radius:15px;
+  background:#180f20e8;
+  border:1px solid #d8b8e466;
+  color:#f2dff5;
+  text-align:center;
+  font-size:11px;
+  font-weight:900;
+  line-height:1.3;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .18s,transform .18s;
+}
+
+#echoCue.show{
+  opacity:1;
+  transform:translateX(-50%) scale(1);
+}
+
+#echoCue small{
+  display:block;
+  color:#d8b8e4;
+  font-size:8px;
+  letter-spacing:.13em;
+  margin-bottom:3px;
+}
+
+
 /* ERP CUES */
 
 #carryCue,
@@ -1019,37 +962,19 @@ button{
 }
 
 #carryCue{
-  top:max(
-    110px,
-    calc(
-      env(safe-area-inset-top) + 90px
-    )
-  );
-
+  top:max(110px,calc(env(safe-area-inset-top) + 90px));
   border:1px solid #74e7c566;
   color:#bff6e5;
 }
 
 #waveCue{
-  top:max(
-    154px,
-    calc(
-      env(safe-area-inset-top) + 134px
-    )
-  );
-
+  top:max(154px,calc(env(safe-area-inset-top) + 134px));
   border:1px solid #ffffff33;
   color:#e9eef5;
 }
 
 #recoveryCue{
-  top:max(
-    198px,
-    calc(
-      env(safe-area-inset-top) + 178px
-    )
-  );
-
+  top:max(198px,calc(env(safe-area-inset-top) + 178px));
   border:1px solid #74e7c566;
   color:#bff6e5;
 }
@@ -1061,20 +986,13 @@ button{
 }
 
 
-/* WHAT MATTERS */
+/* VALUES */
 
 #whatMatters{
   position:absolute;
   z-index:36;
   left:12px;
-
-  top:max(
-    246px,
-    calc(
-      env(safe-area-inset-top) + 226px
-    )
-  );
-
+  top:max(246px,calc(env(safe-area-inset-top) + 226px));
   max-width:170px;
   padding:9px 11px;
   border:1px solid #74e7c54a;
@@ -1106,14 +1024,7 @@ button{
   position:absolute;
   z-index:35;
   right:10px;
-
-  top:max(
-    246px,
-    calc(
-      env(safe-area-inset-top) + 226px
-    )
-  );
-
+  top:max(246px,calc(env(safe-area-inset-top) + 226px));
   width:126px;
   padding:8px 9px;
   border:1px solid #ffffff28;
@@ -1171,12 +1082,7 @@ button{
   z-index:60;
   left:10px;
   right:10px;
-
-  bottom:max(
-    10px,
-    env(safe-area-inset-bottom)
-  );
-
+  bottom:max(10px,env(safe-area-inset-bottom));
   padding:11px 12px;
   border:1px solid #ffffff24;
   border-radius:20px;
@@ -1272,8 +1178,7 @@ button{
 /* REWARD */
 
 #reward{
-  background:
-  radial-gradient(
+  background:radial-gradient(
     circle at 50% 38%,
     #35516e,
     #101927 62%,
@@ -1314,13 +1219,13 @@ button{
 
 .practiceGrid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:7px;
+  grid-template-columns:repeat(4,1fr);
+  gap:6px;
   margin-top:9px;
 }
 
 .practiceStat{
-  padding:9px 6px;
+  padding:9px 4px;
   border-radius:12px;
   background:#ffffff0b;
   text-align:center;
@@ -1328,17 +1233,17 @@ button{
 
 .practiceStat b{
   display:block;
-  font-size:18px;
+  font-size:17px;
 }
 
 .practiceStat span{
   display:block;
   margin-top:3px;
-  font-size:8px;
+  font-size:7px;
   line-height:1.2;
   color:#b8c4d3;
   font-weight:900;
-  letter-spacing:.04em;
+  letter-spacing:.03em;
 }
 
 .practiceCopy{
@@ -1406,11 +1311,19 @@ button{
 
   .practice{
     margin:8px 0;
-    padding:10px;
+    padding:9px;
+  }
+
+  .practiceStat{
+    padding:7px 3px;
   }
 
   .sessionNote{
     margin-top:8px;
+  }
+
+  #echoCue{
+    top:178px;
   }
 
 }
@@ -1426,18 +1339,13 @@ button{
   }
 
 }
-
 </style>
 </head>
 
-
 <body>
-
 
 <div id="app">
 
-
-<!-- START -->
 
 <section
   id="start"
@@ -1474,19 +1382,15 @@ button{
     </button>
 
     <p class="small">
-
       Prototype only. ERP-informed gameplay
       is not a replacement for professional
       mental-health care.
-
     </p>
 
   </div>
 
 </section>
 
-
-<!-- MAP -->
 
 <section
   id="map"
@@ -1551,8 +1455,6 @@ button{
 
 </section>
 
-
-<!-- MISSION SELECT -->
 
 <section
   id="missionSelect"
@@ -1670,8 +1572,6 @@ button{
 </section>
 
 
-<!-- MISSION -->
-
 <section
   id="mission"
   class="screen">
@@ -1747,6 +1647,19 @@ button{
     </div>
 
 
+    <div id="echoCue">
+
+      <small>
+        DOUBT ECHO
+      </small>
+
+      <span id="echoMessage">
+        Maybe go back.
+      </span>
+
+    </div>
+
+
     <div id="whatMatters">
 
       <span class="wmLabel">
@@ -1763,7 +1676,6 @@ button{
 
     <div id="loopGripPanel">
 
-
       <div class="gripRow">
 
         <span class="gripTitle">
@@ -1776,17 +1688,14 @@ button{
 
       </div>
 
-
       <div class="gripTrack">
         <i></i>
       </div>
-
 
       <div class="gripNote">
         Tracks certainty-seeking,
         not anxiety.
       </div>
-
 
     </div>
 
@@ -1921,8 +1830,6 @@ button{
 </section>
 
 
-<!-- REWARD -->
-
 <section
   id="reward"
   class="screen">
@@ -2010,6 +1917,19 @@ button{
           </div>
 
 
+          <div class="practiceStat">
+
+            <b id="statEchoes">
+              0
+            </b>
+
+            <span>
+              DOUBT ECHOES CARRIED
+            </span>
+
+          </div>
+
+
         </div>
 
 
@@ -2092,7 +2012,6 @@ const clamp=
   a,
   b
 )=>
-
 Math.max(
   a,
   Math.min(
@@ -2105,32 +2024,24 @@ Math.max(
 
 const store={
 
-
   get(
     key,
     fallback=""
   ){
 
-
     try{
-
 
       return localStorage.getItem(
         key
       ) ?? fallback;
 
-
     }
-
 
     catch{
 
-
       return fallback;
 
-
     }
-
 
   },
 
@@ -2140,27 +2051,18 @@ const store={
     value
   ){
 
-
     try{
-
 
       localStorage.setItem(
         key,
         value
       );
 
-
     }
 
-
-    catch{
-
-
-    }
-
+    catch{}
 
   }
-
 
 };
 
@@ -2171,22 +2073,17 @@ const missions={
 
   door:{
 
-
     name:
     "LOCK & LEAVE",
-
 
     title:
     "Lock the door.",
 
-
     copy:
     "Perform one normal lock.",
 
-
     value:
     "Leave home and continue your day.",
-
 
     thoughts:[
 
@@ -2198,30 +2095,34 @@ const missions={
 
       "One more check would feel safer."
 
-    ]
+    ],
 
+    echoes:[
+
+      "Maybe you should turn around.",
+
+      "What if that feeling means something?",
+
+      "You could settle this with one more look."
+
+    ]
 
   },
 
 
   car:{
 
-
     name:
     "PARK & WALK",
-
 
     title:
     "Lock the car.",
 
-
     copy:
     "Press the key fob once.",
 
-
     value:
     "Go where you were headed.",
-
 
     thoughts:[
 
@@ -2233,30 +2134,34 @@ const missions={
 
       "You could press it one more time."
 
-    ]
+    ],
 
+    echoes:[
+
+      "Maybe the beep wasn't yours.",
+
+      "You could press the button from here.",
+
+      "What if a door didn't catch?"
+
+    ]
 
   },
 
 
   stove:{
 
-
     name:
     "OFF & OUT",
-
 
     title:
     "Turn the stove off.",
 
-
     copy:
     "One normal action.",
 
-
     value:
     "Leave the kitchen and continue.",
-
 
     thoughts:[
 
@@ -2268,11 +2173,19 @@ const missions={
 
       "One more look would feel safer."
 
+    ],
+
+    echoes:[
+
+      "Maybe you remember it wrong.",
+
+      "What if you missed one knob?",
+
+      "You could go back just to be sure."
+
     ]
 
-
   }
-
 
 };
 
@@ -2363,9 +2276,20 @@ let carrySeconds=
 0;
 
 
+let echoCount=
+0;
+
+
+let echoStage=
+0;
+
+
+let echoHideTimer=
+null;
+
+
 
 function show(id){
-
 
   $$(".screen")
   .forEach(
@@ -2375,12 +2299,10 @@ function show(id){
     )
   );
 
-
   $("#"+id)
   .classList.add(
     "active"
   );
-
 
 }
 
@@ -2388,11 +2310,9 @@ function show(id){
 
 function announce(text){
 
-
   $("#liveStatus")
   .textContent=
   text;
-
 
 }
 
@@ -2400,19 +2320,15 @@ function announce(text){
 
 function vibrate(pattern){
 
-
   if(
     navigator.vibrate
   ){
-
 
     navigator.vibrate(
       pattern
     );
 
-
   }
-
 
 }
 
@@ -2420,12 +2336,10 @@ function vibrate(pattern){
 
 function updateXP(){
 
-
   store.set(
     "uncertainXP",
     xp
   );
-
 
   $$(".xp")
   .forEach(
@@ -2433,18 +2347,15 @@ function updateXP(){
     element.textContent=xp
   );
 
-
 }
 
 
 
 function completions(){
 
-
   $$(".completion")
   .forEach(
     element=>{
-
 
       element.textContent=
 
@@ -2457,10 +2368,8 @@ function completions(){
 
       : "";
 
-
     }
   );
-
 
 }
 
@@ -2468,23 +2377,19 @@ function completions(){
 
 function meters(){
 
-
   $("#progress")
   .style.width=
   momentum+"%";
 
-
   $("#urge")
   .style.width=
   urge+"%";
-
 
 }
 
 
 
 function renderGrip(){
-
 
   loopGrip=
   clamp(
@@ -2493,11 +2398,9 @@ function renderGrip(){
     100
   );
 
-
   $(".gripTrack i")
   .style.width=
   loopGrip+"%";
-
 
   $(".gripState")
   .textContent=
@@ -2512,25 +2415,21 @@ function renderGrip(){
 
   : "LOW";
 
-
 }
 
 
 
 function hideDoubt(){
 
-
   $("#doubtOverlay")
   .classList.remove(
     "show"
   );
 
-
   $("#doubtVignette")
   .classList.remove(
     "show"
   );
-
 
 }
 
@@ -2538,38 +2437,149 @@ function hideDoubt(){
 
 function showDoubt(text){
 
-
   $("#doubtMessage")
   .textContent=
   text;
-
 
   $("#doubtOverlay")
   .classList.add(
     "show"
   );
 
-
   $("#doubtVignette")
   .classList.add(
     "show"
   );
 
-
   $("#phaseHint")
   .textContent=
   "DOUBT";
-
 
   announce(
     "Doubt: "+text
   );
 
-
   vibrate(
     22
   );
 
+}
+
+
+
+function hideEcho(){
+
+  clearTimeout(
+    echoHideTimer
+  );
+
+  $("#echoCue")
+  .classList.remove(
+    "show"
+  );
+
+}
+
+
+
+function showEcho(){
+
+  if(
+    !current ||
+    phase!=="moving" ||
+    !carrying
+  ){
+
+    return;
+
+  }
+
+
+  const list=
+  missions[current]
+  .echoes;
+
+
+  const text=
+  list[
+    echoCount%
+    list.length
+  ];
+
+
+  echoCount++;
+
+
+  $("#echoMessage")
+  .textContent=
+  text;
+
+
+  $("#echoCue")
+  .classList.add(
+    "show"
+  );
+
+
+  announce(
+    "Doubt echo: "+
+    text+
+    ". Keep moving if you choose."
+  );
+
+
+  vibrate(
+    12
+  );
+
+
+  clearTimeout(
+    echoHideTimer
+  );
+
+
+  echoHideTimer=
+  setTimeout(
+    hideEcho,
+    1050
+  );
+
+}
+
+
+
+function maybeEcho(){
+
+  if(
+    !carrying ||
+    phase!=="moving"
+  ){
+
+    return;
+
+  }
+
+
+  const thresholds=[
+    38,
+    68
+  ];
+
+
+  if(
+    echoStage<
+    thresholds.length &&
+    momentum>=
+    thresholds[
+      echoStage
+    ]
+  ){
+
+    echoStage++;
+
+    showEcho();
+
+  }
 
 }
 
@@ -2577,16 +2587,13 @@ function showDoubt(text){
 
 function setCarrying(on){
 
-
   if(
     on &&
     !carrying
   ){
 
-
     carryStartedAt=
     performance.now();
-
 
   }
 
@@ -2597,17 +2604,14 @@ function setCarrying(on){
     carryStartedAt
   ){
 
-
     carrySeconds+=
     (
       performance.now()-
       carryStartedAt
     )/1000;
 
-
     carryStartedAt=
     0;
-
 
   }
 
@@ -2625,21 +2629,17 @@ function setCarrying(on){
 
   if(on){
 
-
     announce(
       "Uncertainty can come with you."
     );
 
-
   }
-
 
 }
 
 
 
 function currentCarrySeconds(){
-
 
   return carrySeconds+
 
@@ -2655,13 +2655,11 @@ function currentCarrySeconds(){
     : 0
   );
 
-
 }
 
 
 
 function nextThought(){
-
 
   const list=
   missions[current]
@@ -2673,7 +2671,6 @@ function nextThought(){
     list.length
   ];
 
-
 }
 
 
@@ -2684,7 +2681,6 @@ function sceneMarkup(key){
   if(
     key==="door"
   ){
-
 
     return `
 
@@ -2718,14 +2714,12 @@ function sceneMarkup(key){
 
 `;
 
-
   }
 
 
   if(
     key==="car"
   ){
-
 
     return `
 
@@ -2755,7 +2749,6 @@ function sceneMarkup(key){
 </div>
 
 `;
-
 
   }
 
@@ -2804,13 +2797,11 @@ function sceneMarkup(key){
 
 `;
 
-
 }
 
 
 
 function setRecoveryTarget(value){
-
 
   recoveryTarget=
   value;
@@ -2824,19 +2815,15 @@ function setRecoveryTarget(value){
     value===null
   ){
 
-
     mark.style.display=
     "none";
-
 
     $("#recoveryCue")
     .classList.remove(
       "show"
     );
 
-
     return;
-
 
   }
 
@@ -2865,7 +2852,6 @@ function setRecoveryTarget(value){
     "show"
   );
 
-
 }
 
 
@@ -2873,7 +2859,6 @@ function setRecoveryTarget(value){
 function scheduleDoubt(
   delay=850
 ){
-
 
   clearTimeout(
     doubtTimer
@@ -2883,13 +2868,11 @@ function scheduleDoubt(
   doubtTimer=
   setTimeout(()=>{
 
-
     if(
       current &&
       phase==="ready" &&
       !carrying
     ){
-
 
       showDoubt(
         nextThought()
@@ -2906,12 +2889,9 @@ function scheduleDoubt(
 
       meters();
 
-
     }
 
-
   },delay);
-
 
 }
 
@@ -2919,32 +2899,26 @@ function scheduleDoubt(
 
 function stopWave(){
 
-
   clearInterval(
     waveTimer
   );
 
-
   waveTimer=
   null;
 
-
   waveStartedAt=
   0;
-
 
   $("#waveCue")
   .classList.remove(
     "show"
   );
 
-
 }
 
 
 
 function startWave(){
-
 
   stopWave();
 
@@ -2962,18 +2936,14 @@ function startWave(){
   waveTimer=
   setInterval(()=>{
 
-
     if(
       phase!=="ready" ||
       !carrying
     ){
 
-
       stopWave();
 
-
       return;
-
 
     }
 
@@ -2996,7 +2966,6 @@ function startWave(){
       seconds>=1.3
     ){
 
-
       urge=
       clamp(
         urge+
@@ -3018,7 +2987,6 @@ function startWave(){
 
       meters();
 
-
       renderGrip();
 
 
@@ -3026,19 +2994,15 @@ function startWave(){
       .textContent=
       "The urge can change without a check. No need to make it disappear.";
 
-
     }
 
-
   },180);
-
 
 }
 
 
 
 function stopAll(){
-
 
   clearInterval(
     walkTimer
@@ -3052,6 +3016,11 @@ function stopAll(){
 
   clearTimeout(
     doubtTimer
+  );
+
+
+  clearTimeout(
+    echoHideTimer
   );
 
 
@@ -3070,6 +3039,10 @@ function stopAll(){
   null;
 
 
+  echoHideTimer=
+  null;
+
+
   hold=
   false;
 
@@ -3080,25 +3053,24 @@ function stopAll(){
   );
 
 
+  hideEcho();
+
+
   if(
     navigator.vibrate
   ){
-
 
     navigator.vibrate(
       0
     );
 
-
   }
-
 
 }
 
 
 
 function updateScene(){
-
 
   const t=
   momentum/100;
@@ -3144,7 +3116,6 @@ function updateScene(){
 
   if(house){
 
-
     house.style.transform=
     `translateX(-50%) scale(${
       1-
@@ -3161,12 +3132,10 @@ function updateScene(){
       )
     );
 
-
   }
 
 
   if(car){
-
 
     car.style.transform=
     `translateX(-50%) scale(${
@@ -3179,12 +3148,10 @@ function updateScene(){
       .12*t
     })`;
 
-
   }
 
 
   if(stove){
-
 
     stove.style.transform=
     `translateX(-50%) scale(${
@@ -3202,16 +3169,13 @@ function updateScene(){
       )
     );
 
-
   }
-
 
 }
 
 
 
 function loadMission(key){
-
 
   stopAll();
 
@@ -3241,6 +3205,14 @@ function loadMission(key){
 
 
   thoughtIndex=
+  0;
+
+
+  echoCount=
+  0;
+
+
+  echoStage=
   0;
 
 
@@ -3341,6 +3313,8 @@ function loadMission(key){
 
   hideDoubt();
 
+  hideEcho();
+
 
   setCarrying(
     false
@@ -3354,9 +3328,7 @@ function loadMission(key){
 
   meters();
 
-
   renderGrip();
-
 
   show(
     "mission"
@@ -3368,21 +3340,17 @@ function loadMission(key){
     " opened."
   );
 
-
 }
 
 
 
 function initialAction(){
 
-
   if(
     phase!=="lock"
   ){
 
-
     return;
-
 
   }
 
@@ -3445,7 +3413,6 @@ function initialAction(){
   urgeTimer=
   setInterval(()=>{
 
-
     const target=
     54+
     Math.sin(
@@ -3470,7 +3437,6 @@ function initialAction(){
 
     meters();
 
-
   },180);
 
 
@@ -3478,13 +3444,11 @@ function initialAction(){
     700
   );
 
-
 }
 
 
 
 function startWalking(){
-
 
   if(
     phase!=="ready" ||
@@ -3492,9 +3456,7 @@ function startWalking(){
     momentum>=100
   ){
 
-
     return false;
-
 
   }
 
@@ -3506,6 +3468,8 @@ function startWalking(){
 
   stopWave();
 
+  hideEcho();
+
 
   if(
     $("#doubtOverlay")
@@ -3514,14 +3478,11 @@ function startWalking(){
     )
   ){
 
-
     hideDoubt();
-
 
     setCarrying(
       true
     );
-
 
   }
 
@@ -3552,7 +3513,6 @@ function startWalking(){
 
   walkTimer=
   setInterval(()=>{
-
 
     const before=
     momentum;
@@ -3585,11 +3545,13 @@ function startWalking(){
     );
 
 
+    maybeEcho();
+
+
     if(
       recoveryTarget!==null &&
       momentum>=recoveryTarget
     ){
-
 
       recoveryCount++;
 
@@ -3612,12 +3574,10 @@ function startWalking(){
 
       setTimeout(()=>{
 
-
         $("#recoveryCue")
         .classList.remove(
           "show"
         );
-
 
       },1100);
 
@@ -3633,15 +3593,12 @@ function startWalking(){
         15
       ]);
 
-
     }
 
 
     renderGrip();
 
-
     updateScene();
-
 
     meters();
 
@@ -3650,18 +3607,14 @@ function startWalking(){
       momentum>=100
     ){
 
-
       completeMission();
 
-
     }
-
 
   },70);
 
 
   return true;
-
 
 }
 
@@ -3669,14 +3622,11 @@ function startWalking(){
 
 function stopWalking(){
 
-
   if(
     phase!=="moving"
   ){
 
-
     return;
-
 
   }
 
@@ -3700,6 +3650,9 @@ function stopWalking(){
   );
 
 
+  hideEcho();
+
+
   phase=
   "ready";
 
@@ -3718,9 +3671,7 @@ function stopWalking(){
     carrying
   ){
 
-
     startWave();
-
 
   }
 
@@ -3729,21 +3680,17 @@ function stopWalking(){
     momentum<100
   ){
 
-
     scheduleDoubt(
       650
     );
 
-
   }
-
 
 }
 
 
 
 function recheck(){
-
 
   if(
     ![
@@ -3754,9 +3701,7 @@ function recheck(){
     )
   ){
 
-
     return;
-
 
   }
 
@@ -3775,6 +3720,8 @@ function recheck(){
 
 
   stopWave();
+
+  hideEcho();
 
 
   hold=
@@ -3867,23 +3814,19 @@ function recheck(){
     momentum+3
   ){
 
-
     setRecoveryTarget(
       peakMomentum
     );
-
 
   }
 
 
   updateScene();
 
-
   meters();
 
 
   setTimeout(()=>{
-
 
     phase=
     "ready";
@@ -3919,16 +3862,13 @@ function recheck(){
 
     : "The question changed. What matters didn’t.";
 
-
   },650);
-
 
 }
 
 
 
 function completeMission(){
-
 
   const carried=
   Math.round(
@@ -3997,12 +3937,21 @@ function completeMission(){
   recoveryCount;
 
 
+  $("#statEchoes")
+  .textContent=
+  echoCount;
+
+
   $("#practiceCopy")
   .textContent=
 
   recoveryCount>0
 
   ? "You practiced returning to the next meaningful action after getting pulled into the loop."
+
+  : echoCount>0
+
+  ? "Doubt showed up while you were already moving, and you practiced letting it be background noise."
 
   : carried>0
 
@@ -4020,13 +3969,11 @@ function completeMission(){
     "Mission complete."
   );
 
-
 }
 
 
 
 function exitMission(){
-
 
   stopAll();
 
@@ -4042,6 +3989,8 @@ function exitMission(){
 
 
   hideDoubt();
+
+  hideEcho();
 
 
   current=
@@ -4059,7 +4008,6 @@ function exitMission(){
     "missionSelect"
   );
 
-
 }
 
 
@@ -4076,14 +4024,11 @@ $("#checking")
 .onclick=
 ()=>{
 
-
   completions();
-
 
   show(
     "missionSelect"
   );
-
 
 };
 
@@ -4103,12 +4048,10 @@ $$(
 .forEach(
   button=>{
 
-
     button.onclick=
     ()=>loadMission(
       button.dataset.mission
     );
-
 
   }
 );
@@ -4131,14 +4074,11 @@ $("#continueBtn")
 .onclick=
 ()=>{
 
-
   completions();
-
 
   show(
     "missionSelect"
   );
-
 
 };
 
@@ -4148,22 +4088,17 @@ $("#doneBtn")
 .onclick=
 ()=>{
 
-
   stopAll();
-
 
   current=
   null;
 
-
   phase=
   "idle";
-
 
   show(
     "start"
   );
-
 
 };
 
@@ -4194,26 +4129,19 @@ forward.addEventListener(
   "touchstart",
   event=>{
 
-
     event.preventDefault();
-
 
     if(
       phase==="lock"
     ){
 
-
       initialAction();
-
 
       return;
 
-
     }
 
-
     startWalking();
-
 
   },
   {
@@ -4233,12 +4161,9 @@ forward.addEventListener(
     type,
     event=>{
 
-
       event.preventDefault();
 
-
       stopWalking();
-
 
     },
     {
@@ -4253,14 +4178,11 @@ forward.addEventListener(
   "pointerdown",
   event=>{
 
-
     if(
       event.pointerType==="touch"
     ){
 
-
       return;
-
 
     }
 
@@ -4272,35 +4194,25 @@ forward.addEventListener(
       phase==="lock"
     ){
 
-
       initialAction();
 
-
       return;
-
 
     }
 
 
     try{
 
-
       forward.setPointerCapture(
         event.pointerId
       );
 
-
     }
 
-
-    catch{
-
-
-    }
+    catch{}
 
 
     startWalking();
-
 
   }
 );
@@ -4318,23 +4230,18 @@ forward.addEventListener(
     type,
     event=>{
 
-
       if(
         event.pointerType==="touch"
       ){
 
-
         return;
-
 
       }
 
 
       event.preventDefault();
 
-
       stopWalking();
-
 
     }
   )
@@ -4353,17 +4260,13 @@ document.addEventListener(
   "visibilitychange",
   ()=>{
 
-
     if(
       document.hidden
     ){
 
-
       stopWalking();
 
-
     }
-
 
   }
 );
@@ -4386,7 +4289,6 @@ renderGrip();
 
 
 </script>
-
 
 </body>
 </html>
