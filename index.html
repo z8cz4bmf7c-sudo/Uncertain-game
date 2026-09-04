@@ -1179,4 +1179,3214 @@ button{
 
   padding:11px 12px;
   border:1px solid #ffffff24;
-  border-radius:20px
+  border-radius:20px;
+  background:#081321e8;
+  backdrop-filter:blur(12px);
+}
+
+.gameTitle{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.gameTitle b{
+  font-size:15px;
+}
+
+.gameTitle span{
+  font-size:11px;
+  color:#aebbd0;
+}
+
+.meters{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:9px;
+}
+
+.meterLabel{
+  font-size:9px;
+  letter-spacing:.1em;
+  color:#aeb9c7;
+}
+
+.meter{
+  height:9px;
+  background:#29364a;
+  border-radius:999px;
+  overflow:visible;
+  margin-top:4px;
+  position:relative;
+}
+
+.meter i.fill{
+  display:block;
+  height:100%;
+  width:0;
+  border-radius:999px;
+  background:#eef3f8;
+}
+
+#recoveryMark{
+  position:absolute;
+  display:none;
+  top:-4px;
+  width:2px;
+  height:17px;
+  background:var(--accent);
+  box-shadow:0 0 0 2px #07101c;
+}
+
+.controls{
+  display:flex;
+  gap:9px;
+  margin-top:10px;
+}
+
+.control{
+  flex:1;
+  min-height:58px;
+  border:1px solid #ffffff2a;
+  border-radius:15px;
+  background:#152238;
+  font-weight:950;
+  touch-action:manipulation;
+}
+
+.control.primary{
+  background:#eef3f8;
+  color:#101826;
+  touch-action:none;
+  -webkit-user-select:none;
+  user-select:none;
+  -webkit-touch-callout:none;
+}
+
+.control:disabled{
+  opacity:.45;
+}
+
+
+/* REWARD */
+
+#reward{
+  background:
+  radial-gradient(
+    circle at 50% 38%,
+    #35516e,
+    #101927 62%,
+    #060b13
+  );
+}
+
+.rewardBox{
+  position:absolute;
+  left:18px;
+  right:18px;
+  top:50%;
+  transform:translateY(-50%);
+  text-align:center;
+}
+
+.rewardBig{
+  font-size:39px;
+  font-weight:1000;
+  margin:6px 0 4px;
+}
+
+.practice{
+  margin:12px 0;
+  padding:12px;
+  border:1px solid #74e7c540;
+  border-radius:16px;
+  background:#081321aa;
+  text-align:left;
+}
+
+.practiceLabel{
+  font-size:9px;
+  letter-spacing:.14em;
+  color:var(--accent);
+  font-weight:1000;
+}
+
+.practiceGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+  margin-top:9px;
+}
+
+.practiceStat{
+  padding:9px 6px;
+  border-radius:12px;
+  background:#ffffff0b;
+  text-align:center;
+}
+
+.practiceStat b{
+  display:block;
+  font-size:18px;
+}
+
+.practiceStat span{
+  display:block;
+  margin-top:3px;
+  font-size:8px;
+  line-height:1.2;
+  color:#b8c4d3;
+  font-weight:900;
+  letter-spacing:.04em;
+}
+
+.practiceCopy{
+  margin:9px 0 0;
+  font-size:11px;
+  line-height:1.35;
+  color:#c6d1dd;
+}
+
+.sessionNote{
+  margin:12px 0 0;
+  padding:10px 12px;
+  border-radius:14px;
+  background:#08132199;
+  color:#aebbd0;
+  font-size:11px;
+  line-height:1.35;
+}
+
+.srOnly{
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+
+
+/* SHORT PHONES */
+
+@media(max-height:700px){
+
+  .hero{
+    font-size:46px;
+  }
+
+  .gamePanel{
+    padding:9px 10px;
+  }
+
+  .control{
+    min-height:52px;
+  }
+
+  #whatMatters,
+  #loopGripPanel{
+    top:225px;
+  }
+
+  #whatMatters{
+    max-width:150px;
+  }
+
+  #loopGripPanel{
+    width:116px;
+  }
+
+  .rewardBox{
+    top:51%;
+  }
+
+  .practice{
+    margin:8px 0;
+    padding:10px;
+  }
+
+  .sessionNote{
+    margin-top:8px;
+  }
+
+}
+
+
+/* REDUCED MOTION */
+
+@media(prefers-reduced-motion:reduce){
+
+  *{
+    animation:none!important;
+    transition:none!important;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div id="app">
+
+
+<!-- START -->
+
+<section
+  id="start"
+  class="screen active">
+
+  <div class="logo">
+    UNCERTAIN
+  </div>
+
+  <div class="hero">
+    BREAK<br>
+    THE <span>LOOP.</span>
+  </div>
+
+  <p
+    style="
+    font-size:18px;
+    color:#cbd6e3;
+    line-height:1.45">
+
+    Move forward without making certainty
+    the price of admission.
+
+  </p>
+
+  <div class="startCard card">
+
+    <button
+      class="btn"
+      id="enter">
+
+      ENTER THE LOOP
+
+    </button>
+
+    <p class="small">
+
+      Prototype only. ERP-informed gameplay
+      is not a replacement for professional
+      mental-health care.
+
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- MAP -->
+
+<section
+  id="map"
+  class="screen">
+
+  <div class="road"></div>
+
+  <button
+    id="checking"
+    class="node">
+
+    <strong>
+      Checking District
+    </strong>
+
+    <small>
+      3 missions available
+    </small>
+
+  </button>
+
+  <button
+    class="node locked"
+    disabled>
+
+    <strong>
+      Next District
+    </strong>
+
+    <small>
+      Under construction
+    </small>
+
+  </button>
+
+  <div class="hud">
+
+    <span class="pill">
+      THE LOOP
+    </span>
+
+    <span class="pill">
+      XP <b class="xp">0</b>
+    </span>
+
+  </div>
+
+  <div class="mapInfo">
+
+    <b>
+      Checking District
+    </b>
+
+    <br>
+
+    <span>
+      Certainty always seems one more
+      check away.
+    </span>
+
+  </div>
+
+</section>
+
+
+<!-- MISSION SELECT -->
+
+<section
+  id="missionSelect"
+  class="screen">
+
+  <div class="hud">
+
+    <span class="pill">
+      CHECKING DISTRICT
+    </span>
+
+    <span class="pill">
+      XP <b class="xp">0</b>
+    </span>
+
+  </div>
+
+
+  <div class="selectWrap">
+
+
+    <button
+      class="missionCard"
+      data-mission="door">
+
+      <span class="tag">
+        PHYSICAL CHECKING
+      </span>
+
+      <b>
+        Lock & Leave
+      </b>
+
+      <span
+        class="completion"
+        data-completion="door">
+      </span>
+
+      <span>
+        Lock once, then keep moving while
+        Doubt tries to pull you back.
+      </span>
+
+    </button>
+
+
+    <button
+      class="missionCard"
+      data-mission="car">
+
+      <span class="tag">
+        PHYSICAL + MENTAL CHECKING
+      </span>
+
+      <b>
+        Park & Walk
+      </b>
+
+      <span
+        class="completion"
+        data-completion="car">
+      </span>
+
+      <span>
+        Lock the car once. Doubt can come
+        along without another click.
+      </span>
+
+    </button>
+
+
+    <button
+      class="missionCard"
+      data-mission="stove">
+
+      <span class="tag">
+        APPLIANCE CHECKING
+      </span>
+
+      <b>
+        Off & Out
+      </b>
+
+      <span
+        class="completion"
+        data-completion="stove">
+      </span>
+
+      <span>
+        Turn the stove off once, then head
+        for the exit without solving every
+        question.
+      </span>
+
+    </button>
+
+
+    <button
+      class="missionCard"
+      id="backMap">
+
+      <span class="tag">
+        RETURN
+      </span>
+
+      <b>
+        Back to The Loop
+      </b>
+
+    </button>
+
+
+  </div>
+
+</section>
+
+
+<!-- MISSION -->
+
+<section
+  id="mission"
+  class="screen">
+
+
+  <button
+    type="button"
+    id="missionExit"
+    class="missionExit">
+
+    ‹ EXIT
+
+  </button>
+
+
+  <div class="scene">
+
+
+    <div class="skyGlow"></div>
+
+    <div class="ground"></div>
+
+    <div id="environment"></div>
+
+
+    <div
+      id="person"
+      class="person">
+
+      <i class="shadow"></i>
+
+      <i class="head"></i>
+
+      <i class="body"></i>
+
+      <i class="leg a"></i>
+
+      <i class="leg b"></i>
+
+    </div>
+
+
+    <div id="doubtVignette"></div>
+
+
+    <div
+      id="doubtOverlay"
+      class="doubtText">
+
+      <span class="doubtLabel">
+        DOUBT
+      </span>
+
+      <span id="doubtMessage">
+        Are you sure?
+      </span>
+
+    </div>
+
+
+    <div id="carryCue">
+      ● UNCERTAINTY CAN COME WITH YOU
+    </div>
+
+
+    <div id="waveCue">
+      URGE WAVE • 0.0s WITHOUT CHECKING
+    </div>
+
+
+    <div id="recoveryCue">
+      RETURN TO YOUR PATH • NO RESET
+    </div>
+
+
+    <div id="whatMatters">
+
+      <span class="wmLabel">
+        WHAT MATTERS
+      </span>
+
+      <span
+        class="wmText"
+        id="whatMattersText">
+      </span>
+
+    </div>
+
+
+    <div id="loopGripPanel">
+
+
+      <div class="gripRow">
+
+        <span class="gripTitle">
+          LOOP GRIP
+        </span>
+
+        <span class="gripState">
+          LOW
+        </span>
+
+      </div>
+
+
+      <div class="gripTrack">
+        <i></i>
+      </div>
+
+
+      <div class="gripNote">
+        Tracks certainty-seeking,
+        not anxiety.
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+  <div class="hud">
+
+    <span
+      class="pill"
+      id="missionName">
+
+      MISSION
+
+    </span>
+
+    <span class="pill">
+      XP <b class="xp">0</b>
+    </span>
+
+  </div>
+
+
+  <div class="gamePanel">
+
+
+    <div class="gameTitle">
+
+
+      <div>
+
+        <b id="title">
+          One normal action.
+        </b>
+
+        <div
+          class="small"
+          id="copy">
+
+          No extra certainty required.
+
+        </div>
+
+      </div>
+
+
+      <span id="phaseHint">
+        READY
+      </span>
+
+
+    </div>
+
+
+    <div
+      id="meters"
+      class="meters"
+      style="display:none">
+
+
+      <div>
+
+        <span class="meterLabel">
+          URGE WAVE
+        </span>
+
+        <div class="meter">
+
+          <i
+            class="fill"
+            id="urge">
+          </i>
+
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <span class="meterLabel">
+          FORWARD MOMENTUM
+        </span>
+
+        <div class="meter">
+
+          <i
+            class="fill"
+            id="progress">
+          </i>
+
+          <i id="recoveryMark"></i>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="controls">
+
+
+      <button
+        type="button"
+        class="control"
+        id="checkBtn">
+
+        CHECK AGAIN
+
+      </button>
+
+
+      <button
+        type="button"
+        class="control primary"
+        id="forwardBtn">
+
+        START
+
+      </button>
+
+
+    </div>
+
+
+  </div>
+
+
+</section>
+
+
+<!-- REWARD -->
+
+<section
+  id="reward"
+  class="screen">
+
+
+  <div class="hud">
+
+    <span class="pill">
+      MOMENTUM
+    </span>
+
+    <span class="pill">
+      XP <b class="xp">0</b>
+    </span>
+
+  </div>
+
+
+  <div class="rewardBox">
+
+
+    <div class="card">
+
+
+      <div class="small">
+        MISSION COMPLETE
+      </div>
+
+
+      <div class="rewardBig">
+        +30 XP
+      </div>
+
+
+      <p id="result"></p>
+
+
+      <div class="practice">
+
+
+        <div class="practiceLabel">
+          WHAT YOU PRACTICED
+        </div>
+
+
+        <div class="practiceGrid">
+
+
+          <div class="practiceStat">
+
+            <b id="statChecks">
+              0
+            </b>
+
+            <span>
+              CHECKS
+            </span>
+
+          </div>
+
+
+          <div class="practiceStat">
+
+            <b id="statCarry">
+              0s
+            </b>
+
+            <span>
+              UNCERTAINTY CARRIED
+            </span>
+
+          </div>
+
+
+          <div class="practiceStat">
+
+            <b id="statRecoveries">
+              0
+            </b>
+
+            <span>
+              RETURNS TO PATH
+            </span>
+
+          </div>
+
+
+        </div>
+
+
+        <p
+          class="practiceCopy"
+          id="practiceCopy">
+
+          The win is choosing the next meaningful
+          action—not getting a particular feeling.
+
+        </p>
+
+
+      </div>
+
+
+      <button
+        class="btn"
+        id="continueBtn">
+
+        BACK TO CHECKING DISTRICT
+
+      </button>
+
+
+      <button
+        class="btn secondary"
+        id="doneBtn">
+
+        DONE FOR NOW
+
+      </button>
+
+
+      <div class="sessionNote">
+
+        These are behavior markers, not a score
+        for how anxious you felt. Stopping here
+        is allowed.
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+</section>
+
+
+<div
+  id="liveStatus"
+  class="srOnly"
+  aria-live="polite"
+  aria-atomic="true">
+</div>
+
+
+</div>
+
+
+<script>
+
+
+const $=
+s=>
+document.querySelector(s);
+
+
+const $$=
+s=>
+document.querySelectorAll(s);
+
+
+const clamp=
+(
+  n,
+  a,
+  b
+)=>
+
+Math.max(
+  a,
+  Math.min(
+    b,
+    n
+  )
+);
+
+
+
+const store={
+
+
+  get(
+    key,
+    fallback=""
+  ){
+
+
+    try{
+
+
+      return localStorage.getItem(
+        key
+      ) ?? fallback;
+
+
+    }
+
+
+    catch{
+
+
+      return fallback;
+
+
+    }
+
+
+  },
+
+
+  set(
+    key,
+    value
+  ){
+
+
+    try{
+
+
+      localStorage.setItem(
+        key,
+        value
+      );
+
+
+    }
+
+
+    catch{
+
+
+    }
+
+
+  }
+
+
+};
+
+
+
+const missions={
+
+
+  door:{
+
+
+    name:
+    "LOCK & LEAVE",
+
+
+    title:
+    "Lock the door.",
+
+
+    copy:
+    "Perform one normal lock.",
+
+
+    value:
+    "Leave home and continue your day.",
+
+
+    thoughts:[
+
+      "Are you sure it clicked?",
+
+      "Maybe the deadbolt didn't catch.",
+
+      "What if the door opens after you leave?",
+
+      "One more check would feel safer."
+
+    ]
+
+
+  },
+
+
+  car:{
+
+
+    name:
+    "PARK & WALK",
+
+
+    title:
+    "Lock the car.",
+
+
+    copy:
+    "Press the key fob once.",
+
+
+    value:
+    "Go where you were headed.",
+
+
+    thoughts:[
+
+      "Did you hear it lock?",
+
+      "Was that your car that beeped?",
+
+      "Maybe a door is unlocked.",
+
+      "You could press it one more time."
+
+    ]
+
+
+  },
+
+
+  stove:{
+
+
+    name:
+    "OFF & OUT",
+
+
+    title:
+    "Turn the stove off.",
+
+
+    copy:
+    "One normal action.",
+
+
+    value:
+    "Leave the kitchen and continue.",
+
+
+    thoughts:[
+
+      "Was that definitely the right knob?",
+
+      "What if one burner is still on?",
+
+      "Did you actually see it reach OFF?",
+
+      "One more look would feel safer."
+
+    ]
+
+
+  }
+
+
+};
+
+
+
+let xp=
+Number(
+  store.get(
+    "uncertainXP",
+    "0"
+  )
+)||0;
+
+
+let current=
+null;
+
+
+let phase=
+"idle";
+
+
+let momentum=
+0;
+
+
+let peakMomentum=
+0;
+
+
+let urge=
+46;
+
+
+let checks=
+0;
+
+
+let thoughtIndex=
+0;
+
+
+let loopGrip=
+24;
+
+
+let hold=
+false;
+
+
+let walkTimer=
+null;
+
+
+let doubtTimer=
+null;
+
+
+let urgeTimer=
+null;
+
+
+let waveTimer=
+null;
+
+
+let carrying=
+false;
+
+
+let recoveryCount=
+0;
+
+
+let recoveryTarget=
+null;
+
+
+let waveStartedAt=
+0;
+
+
+let carryStartedAt=
+0;
+
+
+let carrySeconds=
+0;
+
+
+
+function show(id){
+
+
+  $$(".screen")
+  .forEach(
+    screen=>
+    screen.classList.remove(
+      "active"
+    )
+  );
+
+
+  $("#"+id)
+  .classList.add(
+    "active"
+  );
+
+
+}
+
+
+
+function announce(text){
+
+
+  $("#liveStatus")
+  .textContent=
+  text;
+
+
+}
+
+
+
+function vibrate(pattern){
+
+
+  if(
+    navigator.vibrate
+  ){
+
+
+    navigator.vibrate(
+      pattern
+    );
+
+
+  }
+
+
+}
+
+
+
+function updateXP(){
+
+
+  store.set(
+    "uncertainXP",
+    xp
+  );
+
+
+  $$(".xp")
+  .forEach(
+    element=>
+    element.textContent=xp
+  );
+
+
+}
+
+
+
+function completions(){
+
+
+  $$(".completion")
+  .forEach(
+    element=>{
+
+
+      element.textContent=
+
+      store.get(
+        "completed_"+
+        element.dataset.completion
+      )==="yes"
+
+      ? "✓ COMPLETED • REPLAY AVAILABLE"
+
+      : "";
+
+
+    }
+  );
+
+
+}
+
+
+
+function meters(){
+
+
+  $("#progress")
+  .style.width=
+  momentum+"%";
+
+
+  $("#urge")
+  .style.width=
+  urge+"%";
+
+
+}
+
+
+
+function renderGrip(){
+
+
+  loopGrip=
+  clamp(
+    loopGrip,
+    8,
+    100
+  );
+
+
+  $(".gripTrack i")
+  .style.width=
+  loopGrip+"%";
+
+
+  $(".gripState")
+  .textContent=
+
+  loopGrip>=72
+
+  ? "STRONG"
+
+  : loopGrip>=42
+
+  ? "ACTIVE"
+
+  : "LOW";
+
+
+}
+
+
+
+function hideDoubt(){
+
+
+  $("#doubtOverlay")
+  .classList.remove(
+    "show"
+  );
+
+
+  $("#doubtVignette")
+  .classList.remove(
+    "show"
+  );
+
+
+}
+
+
+
+function showDoubt(text){
+
+
+  $("#doubtMessage")
+  .textContent=
+  text;
+
+
+  $("#doubtOverlay")
+  .classList.add(
+    "show"
+  );
+
+
+  $("#doubtVignette")
+  .classList.add(
+    "show"
+  );
+
+
+  $("#phaseHint")
+  .textContent=
+  "DOUBT";
+
+
+  announce(
+    "Doubt: "+text
+  );
+
+
+  vibrate(
+    22
+  );
+
+
+}
+
+
+
+function setCarrying(on){
+
+
+  if(
+    on &&
+    !carrying
+  ){
+
+
+    carryStartedAt=
+    performance.now();
+
+
+  }
+
+
+  if(
+    !on &&
+    carrying &&
+    carryStartedAt
+  ){
+
+
+    carrySeconds+=
+    (
+      performance.now()-
+      carryStartedAt
+    )/1000;
+
+
+    carryStartedAt=
+    0;
+
+
+  }
+
+
+  carrying=
+  on;
+
+
+  $("#carryCue")
+  .classList.toggle(
+    "show",
+    on
+  );
+
+
+  if(on){
+
+
+    announce(
+      "Uncertainty can come with you."
+    );
+
+
+  }
+
+
+}
+
+
+
+function currentCarrySeconds(){
+
+
+  return carrySeconds+
+
+  (
+    carrying &&
+    carryStartedAt
+
+    ? (
+        performance.now()-
+        carryStartedAt
+      )/1000
+
+    : 0
+  );
+
+
+}
+
+
+
+function nextThought(){
+
+
+  const list=
+  missions[current]
+  .thoughts;
+
+
+  return list[
+    thoughtIndex++%
+    list.length
+  ];
+
+
+}
+
+
+
+function sceneMarkup(key){
+
+
+  if(
+    key==="door"
+  ){
+
+
+    return `
+
+<div class="houseShell">
+
+  <div class="roof"></div>
+
+  <div class="houseBody">
+
+    <div class="window left"></div>
+
+    <div class="window right"></div>
+
+    <div class="door">
+      <div class="knob"></div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="driveway"></div>
+
+
+<div class="drivewayVehicle">
+
+  <div class="carWindow"></div>
+
+</div>
+
+`;
+
+
+  }
+
+
+  if(
+    key==="car"
+  ){
+
+
+    return `
+
+<div class="parkingGround"></div>
+
+
+<div class="store">
+
+  <div class="storeDoor"></div>
+
+</div>
+
+
+<div class="parkingLine line1"></div>
+
+<div class="parkingLine line2"></div>
+
+<div class="parkingLine line3"></div>
+
+<div class="parkingLine line4"></div>
+
+
+<div class="car">
+
+  <div class="carWindow"></div>
+
+</div>
+
+`;
+
+
+  }
+
+
+  return `
+
+<div class="kitchenWall"></div>
+
+<div class="kitchenFloor"></div>
+
+
+<div class="exitDoor"></div>
+
+
+<div class="counter"></div>
+
+
+<div class="stove">
+
+
+  <div class="stoveTop">
+
+    <div class="burner one"></div>
+
+    <div class="burner two"></div>
+
+  </div>
+
+
+  <div class="stovePanel"></div>
+
+
+  <div class="stoveKnob one"></div>
+
+  <div class="stoveKnob two"></div>
+
+  <div class="stoveKnob three"></div>
+
+  <div class="stoveKnob four"></div>
+
+
+  <div class="stoveOven"></div>
+
+
+</div>
+
+`;
+
+
+}
+
+
+
+function setRecoveryTarget(value){
+
+
+  recoveryTarget=
+  value;
+
+
+  const mark=
+  $("#recoveryMark");
+
+
+  if(
+    value===null
+  ){
+
+
+    mark.style.display=
+    "none";
+
+
+    $("#recoveryCue")
+    .classList.remove(
+      "show"
+    );
+
+
+    return;
+
+
+  }
+
+
+  $("#recoveryCue")
+  .textContent=
+  "RETURN TO YOUR PATH • NO RESET";
+
+
+  mark.style.display=
+  "block";
+
+
+  mark.style.left=
+  `calc(${
+    clamp(
+      value,
+      0,
+      100
+    )
+  }% - 1px)`;
+
+
+  $("#recoveryCue")
+  .classList.add(
+    "show"
+  );
+
+
+}
+
+
+
+function scheduleDoubt(
+  delay=850
+){
+
+
+  clearTimeout(
+    doubtTimer
+  );
+
+
+  doubtTimer=
+  setTimeout(()=>{
+
+
+    if(
+      current &&
+      phase==="ready" &&
+      !carrying
+    ){
+
+
+      showDoubt(
+        nextThought()
+      );
+
+
+      urge=
+      clamp(
+        urge+11,
+        18,
+        96
+      );
+
+
+      meters();
+
+
+    }
+
+
+  },delay);
+
+
+}
+
+
+
+function stopWave(){
+
+
+  clearInterval(
+    waveTimer
+  );
+
+
+  waveTimer=
+  null;
+
+
+  waveStartedAt=
+  0;
+
+
+  $("#waveCue")
+  .classList.remove(
+    "show"
+  );
+
+
+}
+
+
+
+function startWave(){
+
+
+  stopWave();
+
+
+  waveStartedAt=
+  performance.now();
+
+
+  $("#waveCue")
+  .classList.add(
+    "show"
+  );
+
+
+  waveTimer=
+  setInterval(()=>{
+
+
+    if(
+      phase!=="ready" ||
+      !carrying
+    ){
+
+
+      stopWave();
+
+
+      return;
+
+
+    }
+
+
+    const seconds=
+    (
+      performance.now()-
+      waveStartedAt
+    )/1000;
+
+
+    $("#waveCue")
+    .textContent=
+    `URGE WAVE • ${
+      seconds.toFixed(1)
+    }s WITHOUT CHECKING`;
+
+
+    if(
+      seconds>=1.3
+    ){
+
+
+      urge=
+      clamp(
+        urge+
+        (
+          Math.random()-.5
+        )*7,
+        20,
+        92
+      );
+
+
+      loopGrip=
+      clamp(
+        loopGrip-.7,
+        8,
+        100
+      );
+
+
+      meters();
+
+
+      renderGrip();
+
+
+      $("#copy")
+      .textContent=
+      "The urge can change without a check. No need to make it disappear.";
+
+
+    }
+
+
+  },180);
+
+
+}
+
+
+
+function stopAll(){
+
+
+  clearInterval(
+    walkTimer
+  );
+
+
+  clearInterval(
+    urgeTimer
+  );
+
+
+  clearTimeout(
+    doubtTimer
+  );
+
+
+  stopWave();
+
+
+  walkTimer=
+  null;
+
+
+  urgeTimer=
+  null;
+
+
+  doubtTimer=
+  null;
+
+
+  hold=
+  false;
+
+
+  $("#person")
+  .classList.remove(
+    "walking"
+  );
+
+
+  if(
+    navigator.vibrate
+  ){
+
+
+    navigator.vibrate(
+      0
+    );
+
+
+  }
+
+
+}
+
+
+
+function updateScene(){
+
+
+  const t=
+  momentum/100;
+
+
+  const person=
+  $("#person");
+
+
+  person.style.left=
+  (
+    50+
+    20*t
+  )+"%";
+
+
+  person.style.bottom=
+  (
+    24-
+    9*t
+  )+"%";
+
+
+  person.style.transform=
+  `translateX(-50%) scale(${
+    1-
+    .10*t
+  })`;
+
+
+  const house=
+  $(".houseShell");
+
+
+  const car=
+  $(".drivewayVehicle")||
+  $(".car");
+
+
+  const stove=
+  $(".stove");
+
+
+  if(house){
+
+
+    house.style.transform=
+    `translateX(-50%) scale(${
+      1-
+      .30*t
+    })`;
+
+
+    house.style.opacity=
+    String(
+      Math.max(
+        .25,
+        1-
+        .72*t
+      )
+    );
+
+
+  }
+
+
+  if(car){
+
+
+    car.style.transform=
+    `translateX(-50%) scale(${
+      (
+        current==="door"
+        ? .78
+        : 1
+      )
+      -
+      .12*t
+    })`;
+
+
+  }
+
+
+  if(stove){
+
+
+    stove.style.transform=
+    `translateX(-50%) scale(${
+      1-
+      .28*t
+    })`;
+
+
+    stove.style.opacity=
+    String(
+      Math.max(
+        .25,
+        1-
+        .7*t
+      )
+    );
+
+
+  }
+
+
+}
+
+
+
+function loadMission(key){
+
+
+  stopAll();
+
+
+  current=
+  key;
+
+
+  phase=
+  "lock";
+
+
+  momentum=
+  0;
+
+
+  peakMomentum=
+  0;
+
+
+  urge=
+  46;
+
+
+  checks=
+  0;
+
+
+  thoughtIndex=
+  0;
+
+
+  loopGrip=
+  24;
+
+
+  carrying=
+  false;
+
+
+  recoveryCount=
+  0;
+
+
+  recoveryTarget=
+  null;
+
+
+  carryStartedAt=
+  0;
+
+
+  carrySeconds=
+  0;
+
+
+  $("#environment")
+  .innerHTML=
+  sceneMarkup(
+    key
+  );
+
+
+  $("#missionName")
+  .textContent=
+  missions[key].name;
+
+
+  $("#title")
+  .textContent=
+  missions[key].title;
+
+
+  $("#copy")
+  .textContent=
+  missions[key].copy;
+
+
+  $("#whatMattersText")
+  .textContent=
+  missions[key].value;
+
+
+  $("#phaseHint")
+  .textContent=
+  "ACTION";
+
+
+  $("#meters")
+  .style.display=
+  "none";
+
+
+  $("#checkBtn")
+  .style.display=
+  "none";
+
+
+  $("#forwardBtn")
+  .textContent=
+
+  key==="door"
+
+  ? "LOCK ONCE"
+
+  : key==="car"
+
+  ? "LOCK CAR ONCE"
+
+  : "TURN OFF ONCE";
+
+
+  $("#person")
+  .style.left=
+  "50%";
+
+
+  $("#person")
+  .style.bottom=
+  "24%";
+
+
+  $("#person")
+  .style.transform=
+  "translateX(-50%)";
+
+
+  hideDoubt();
+
+
+  setCarrying(
+    false
+  );
+
+
+  setRecoveryTarget(
+    null
+  );
+
+
+  meters();
+
+
+  renderGrip();
+
+
+  show(
+    "mission"
+  );
+
+
+  announce(
+    missions[key].name+
+    " opened."
+  );
+
+
+}
+
+
+
+function initialAction(){
+
+
+  if(
+    phase!=="lock"
+  ){
+
+
+    return;
+
+
+  }
+
+
+  phase=
+  "ready";
+
+
+  $("#meters")
+  .style.display=
+  "grid";
+
+
+  $("#checkBtn")
+  .style.display=
+  "block";
+
+
+  $("#forwardBtn")
+  .textContent=
+  "HOLD TO MOVE";
+
+
+  $("#title")
+  .textContent=
+  "Now move on.";
+
+
+  $("#copy")
+  .textContent=
+
+  current==="door"
+
+  ? "Head down the driveway toward your vehicle. Doubt may follow."
+
+  : current==="car"
+
+  ? "Walk toward your destination."
+
+  : "Head for the exit.";
+
+
+  $("#phaseHint")
+  .textContent=
+  "READY";
+
+
+  vibrate([
+    18,
+    35,
+    18
+  ]);
+
+
+  announce(
+    "Normal action complete. Ready to move."
+  );
+
+
+  urgeTimer=
+  setInterval(()=>{
+
+
+    const target=
+    54+
+    Math.sin(
+      Date.now()/850
+    )*28;
+
+
+    urge+=
+    (
+      target-
+      urge
+    )*.08;
+
+
+    urge=
+    clamp(
+      urge,
+      18,
+      94
+    );
+
+
+    meters();
+
+
+  },180);
+
+
+  scheduleDoubt(
+    700
+  );
+
+
+}
+
+
+
+function startWalking(){
+
+
+  if(
+    phase!=="ready" ||
+    hold ||
+    momentum>=100
+  ){
+
+
+    return false;
+
+
+  }
+
+
+  clearTimeout(
+    doubtTimer
+  );
+
+
+  stopWave();
+
+
+  if(
+    $("#doubtOverlay")
+    .classList.contains(
+      "show"
+    )
+  ){
+
+
+    hideDoubt();
+
+
+    setCarrying(
+      true
+    );
+
+
+  }
+
+
+  phase=
+  "moving";
+
+
+  hold=
+  true;
+
+
+  $("#phaseHint")
+  .textContent=
+
+  recoveryTarget!==null
+
+  ? "RECOVERING"
+
+  : "MOVING";
+
+
+  $("#person")
+  .classList.add(
+    "walking"
+  );
+
+
+  walkTimer=
+  setInterval(()=>{
+
+
+    const before=
+    momentum;
+
+
+    momentum=
+    Math.min(
+      100,
+      momentum+2.1
+    );
+
+
+    peakMomentum=
+    Math.max(
+      peakMomentum,
+      momentum
+    );
+
+
+    const moved=
+    momentum-before;
+
+
+    loopGrip=
+    clamp(
+      loopGrip-
+      moved*.7,
+      8,
+      100
+    );
+
+
+    if(
+      recoveryTarget!==null &&
+      momentum>=recoveryTarget
+    ){
+
+
+      recoveryCount++;
+
+
+      setRecoveryTarget(
+        null
+      );
+
+
+      $("#recoveryCue")
+      .textContent=
+      "YOU RETURNED • KEEP GOING";
+
+
+      $("#recoveryCue")
+      .classList.add(
+        "show"
+      );
+
+
+      setTimeout(()=>{
+
+
+        $("#recoveryCue")
+        .classList.remove(
+          "show"
+        );
+
+
+      },1100);
+
+
+      announce(
+        "You returned to your path without restarting."
+      );
+
+
+      vibrate([
+        15,
+        30,
+        15
+      ]);
+
+
+    }
+
+
+    renderGrip();
+
+
+    updateScene();
+
+
+    meters();
+
+
+    if(
+      momentum>=100
+    ){
+
+
+      completeMission();
+
+
+    }
+
+
+  },70);
+
+
+  return true;
+
+
+}
+
+
+
+function stopWalking(){
+
+
+  if(
+    phase!=="moving"
+  ){
+
+
+    return;
+
+
+  }
+
+
+  clearInterval(
+    walkTimer
+  );
+
+
+  walkTimer=
+  null;
+
+
+  hold=
+  false;
+
+
+  $("#person")
+  .classList.remove(
+    "walking"
+  );
+
+
+  phase=
+  "ready";
+
+
+  $("#phaseHint")
+  .textContent=
+
+  carrying
+
+  ? "CARRYING"
+
+  : "READY";
+
+
+  if(
+    carrying
+  ){
+
+
+    startWave();
+
+
+  }
+
+
+  else if(
+    momentum<100
+  ){
+
+
+    scheduleDoubt(
+      650
+    );
+
+
+  }
+
+
+}
+
+
+
+function recheck(){
+
+
+  if(
+    ![
+      "ready",
+      "moving"
+    ].includes(
+      phase
+    )
+  ){
+
+
+    return;
+
+
+  }
+
+
+  checks++;
+
+
+  clearInterval(
+    walkTimer
+  );
+
+
+  clearTimeout(
+    doubtTimer
+  );
+
+
+  stopWave();
+
+
+  hold=
+  false;
+
+
+  phase=
+  "relief";
+
+
+  $("#person")
+  .classList.remove(
+    "walking"
+  );
+
+
+  setCarrying(
+    false
+  );
+
+
+  hideDoubt();
+
+
+  loopGrip=
+  clamp(
+    loopGrip+24,
+    8,
+    100
+  );
+
+
+  urge=
+  clamp(
+    urge-27,
+    18,
+    96
+  );
+
+
+  renderGrip();
+
+
+  $("#phaseHint")
+  .textContent=
+  "RELIEF";
+
+
+  $("#title")
+  .textContent=
+  "Relief landed.";
+
+
+  $("#copy")
+  .textContent=
+  "For a moment, the question feels answered.";
+
+
+  vibrate([
+    30,
+    25,
+    30
+  ]);
+
+
+  const loss=
+
+  current==="door"
+
+  ? Math.max(
+      10,
+      momentum*.35
+    )
+
+  : Math.min(
+      momentum,
+      20
+    );
+
+
+  momentum=
+  Math.max(
+    0,
+    momentum-loss
+  );
+
+
+  if(
+    peakMomentum>
+    momentum+3
+  ){
+
+
+    setRecoveryTarget(
+      peakMomentum
+    );
+
+
+  }
+
+
+  updateScene();
+
+
+  meters();
+
+
+  setTimeout(()=>{
+
+
+    phase=
+    "ready";
+
+
+    showDoubt(
+
+      checks<3
+
+      ? nextThought()
+
+      : "The loop is asking for certainty again."
+
+    );
+
+
+    $("#title")
+    .textContent=
+
+    checks<3
+
+    ? "Doubt moved the finish line."
+
+    : "Same loop. New request.";
+
+
+    $("#copy")
+    .textContent=
+
+    recoveryTarget!==null
+
+    ? "You do not need to restart. Return to what matters from here."
+
+    : "The question changed. What matters didn’t.";
+
+
+  },650);
+
+
+}
+
+
+
+function completeMission(){
+
+
+  const carried=
+  Math.round(
+    currentCarrySeconds()
+  );
+
+
+  setCarrying(
+    false
+  );
+
+
+  stopAll();
+
+
+  phase=
+  "complete";
+
+
+  xp+=
+  30;
+
+
+  updateXP();
+
+
+  store.set(
+    "completed_"+current,
+    "yes"
+  );
+
+
+  completions();
+
+
+  setRecoveryTarget(
+    null
+  );
+
+
+  hideDoubt();
+
+
+  $("#result")
+  .textContent=
+
+  checks===0
+
+  ? "You kept moving while uncertainty was allowed to exist."
+
+  : `You resumed forward movement after ${checks} ${checks===1 ? "check" : "checks"}. A lapse did not reset the mission.`;
+
+
+  $("#statChecks")
+  .textContent=
+  checks;
+
+
+  $("#statCarry")
+  .textContent=
+  carried+"s";
+
+
+  $("#statRecoveries")
+  .textContent=
+  recoveryCount;
+
+
+  $("#practiceCopy")
+  .textContent=
+
+  recoveryCount>0
+
+  ? "You practiced returning to the next meaningful action after getting pulled into the loop."
+
+  : carried>0
+
+  ? "You practiced letting uncertainty ride along while continuing toward what mattered."
+
+  : "You practiced one normal action and continued without adding an extra certainty step.";
+
+
+  show(
+    "reward"
+  );
+
+
+  announce(
+    "Mission complete."
+  );
+
+
+}
+
+
+
+function exitMission(){
+
+
+  stopAll();
+
+
+  setCarrying(
+    false
+  );
+
+
+  setRecoveryTarget(
+    null
+  );
+
+
+  hideDoubt();
+
+
+  current=
+  null;
+
+
+  phase=
+  "idle";
+
+
+  completions();
+
+
+  show(
+    "missionSelect"
+  );
+
+
+}
+
+
+
+$("#enter")
+.onclick=
+()=>show(
+  "map"
+);
+
+
+
+$("#checking")
+.onclick=
+()=>{
+
+
+  completions();
+
+
+  show(
+    "missionSelect"
+  );
+
+
+};
+
+
+
+$("#backMap")
+.onclick=
+()=>show(
+  "map"
+);
+
+
+
+$$(
+  ".missionCard[data-mission]"
+)
+.forEach(
+  button=>{
+
+
+    button.onclick=
+    ()=>loadMission(
+      button.dataset.mission
+    );
+
+
+  }
+);
+
+
+
+$("#missionExit")
+.onclick=
+exitMission;
+
+
+
+$("#checkBtn")
+.onclick=
+recheck;
+
+
+
+$("#continueBtn")
+.onclick=
+()=>{
+
+
+  completions();
+
+
+  show(
+    "missionSelect"
+  );
+
+
+};
+
+
+
+$("#doneBtn")
+.onclick=
+()=>{
+
+
+  stopAll();
+
+
+  current=
+  null;
+
+
+  phase=
+  "idle";
+
+
+  show(
+    "start"
+  );
+
+
+};
+
+
+
+const forward=
+$("#forwardBtn");
+
+
+
+[
+  "contextmenu",
+  "selectstart",
+  "dragstart"
+]
+.forEach(
+  type=>
+  forward.addEventListener(
+    type,
+    event=>
+    event.preventDefault()
+  )
+);
+
+
+
+forward.addEventListener(
+  "touchstart",
+  event=>{
+
+
+    event.preventDefault();
+
+
+    if(
+      phase==="lock"
+    ){
+
+
+      initialAction();
+
+
+      return;
+
+
+    }
+
+
+    startWalking();
+
+
+  },
+  {
+    passive:false
+  }
+);
+
+
+
+[
+  "touchend",
+  "touchcancel"
+]
+.forEach(
+  type=>
+  forward.addEventListener(
+    type,
+    event=>{
+
+
+      event.preventDefault();
+
+
+      stopWalking();
+
+
+    },
+    {
+      passive:false
+    }
+  )
+);
+
+
+
+forward.addEventListener(
+  "pointerdown",
+  event=>{
+
+
+    if(
+      event.pointerType==="touch"
+    ){
+
+
+      return;
+
+
+    }
+
+
+    event.preventDefault();
+
+
+    if(
+      phase==="lock"
+    ){
+
+
+      initialAction();
+
+
+      return;
+
+
+    }
+
+
+    try{
+
+
+      forward.setPointerCapture(
+        event.pointerId
+      );
+
+
+    }
+
+
+    catch{
+
+
+    }
+
+
+    startWalking();
+
+
+  }
+);
+
+
+
+[
+  "pointerup",
+  "pointercancel",
+  "pointerleave"
+]
+.forEach(
+  type=>
+  forward.addEventListener(
+    type,
+    event=>{
+
+
+      if(
+        event.pointerType==="touch"
+      ){
+
+
+        return;
+
+
+      }
+
+
+      event.preventDefault();
+
+
+      stopWalking();
+
+
+    }
+  )
+);
+
+
+
+window.addEventListener(
+  "blur",
+  stopWalking
+);
+
+
+
+document.addEventListener(
+  "visibilitychange",
+  ()=>{
+
+
+    if(
+      document.hidden
+    ){
+
+
+      stopWalking();
+
+
+    }
+
+
+  }
+);
+
+
+
+document.addEventListener(
+  "contextmenu",
+  event=>
+  event.preventDefault()
+);
+
+
+
+updateXP();
+
+completions();
+
+renderGrip();
+
+
+</script>
+
+
+</body>
+</html>
