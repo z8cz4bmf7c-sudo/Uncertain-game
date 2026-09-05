@@ -4,16 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#07101c">
-<title>UNCERTAIN — Checking District v10.36</title>
+<title>UNCERTAIN — Checking District v10.37</title>
 
 <style>
 :root{
   --bg:#07101c;
+  --panel:#0b1626ed;
   --text:#f7fbff;
   --muted:#aebbd0;
   --accent:#74e7c5;
   --line:#ffffff26;
   --doubt:#d8b8e4;
+  --relief:#b9d4ff;
 }
 
 *{
@@ -235,7 +237,7 @@ button{
 }
 
 
-/* MISSION SELECT */
+/* SELECT */
 
 #missionSelect{
   background:
@@ -483,6 +485,11 @@ button{
     #566a83
   );
   border:7px solid #101722;
+  transition:
+    transform .18s,
+    opacity .18s,
+    top .18s,
+    box-shadow .18s;
 }
 
 .drivewayVehicle{
@@ -539,8 +546,14 @@ button{
   right:18px;
 }
 
+.car.recheckFocus{
+  box-shadow:
+  0 0 0 3px #b9d4ff44,
+  0 0 34px #b9d4ff66;
+}
 
-/* PARK & WALK */
+
+/* PARK */
 
 .parkingGround{
   position:absolute;
@@ -568,6 +581,9 @@ button{
   );
   border:8px solid #223040;
   z-index:4;
+  transition:
+    transform .18s,
+    top .18s;
 }
 
 .store:before{
@@ -595,15 +611,15 @@ button{
 
 .storeDoor.near{
   box-shadow:
-    0 0 0 3px #74e7c555,
-    0 0 28px #74e7c566;
+  0 0 0 3px #74e7c555,
+  0 0 28px #74e7c566;
   background:#1c3c45;
 }
 
 .storeDoor.arrived{
   box-shadow:
-    0 0 0 5px #74e7c577,
-    0 0 40px #74e7c599;
+  0 0 0 5px #74e7c577,
+  0 0 40px #74e7c599;
   background:#24564e;
 }
 
@@ -688,6 +704,29 @@ button{
   letter-spacing:.12em;
   color:#eaf0f6b5;
   font-weight:950;
+}
+
+.pathArrow{
+  position:absolute;
+  z-index:7;
+  left:50%;
+  top:48%;
+  transform:translateX(-50%);
+  font-size:26px;
+  color:#74e7c5aa;
+  text-shadow:0 2px 8px #000;
+  opacity:.75;
+  transition:
+    opacity .2s,
+    transform .2s;
+}
+
+.pathArrow.away{
+  opacity:.18;
+  transform:
+    translateX(-50%)
+    translateY(16px)
+    rotate(180deg);
 }
 
 
@@ -776,6 +815,9 @@ button{
   border:7px solid #18222c;
   border-radius:8px;
   z-index:8;
+  transition:
+    transform .18s,
+    opacity .18s;
 }
 
 .stoveTop{
@@ -865,7 +907,8 @@ button{
   transition:
     bottom .12s linear,
     left .12s linear,
-    transform .12s linear;
+    transform .16s linear,
+    filter .16s;
 }
 
 .shadow{
@@ -903,6 +946,19 @@ button{
   );
 }
 
+.body:after{
+  content:"";
+  position:absolute;
+  right:-9px;
+  top:8px;
+  width:13px;
+  height:33px;
+  border-radius:8px;
+  background:#ccd7e2;
+  transform-origin:top center;
+  transform:rotate(-12deg);
+}
+
 .leg{
   position:absolute;
   top:70px;
@@ -928,6 +984,14 @@ button{
 .person.walking .leg.b{
   animation:
   step .28s infinite alternate-reverse;
+}
+
+.person.turnBack{
+  filter:brightness(1.06);
+}
+
+.person.turnBack .body:after{
+  transform:rotate(42deg);
 }
 
 @keyframes step{
@@ -989,7 +1053,7 @@ button{
 }
 
 
-/* ERP CUE STACK */
+/* CUES */
 
 #carryCue,
 #waveCue,
@@ -1452,15 +1516,8 @@ button{
     THE <span>LOOP.</span>
   </div>
 
-  <p
-    style="
-    font-size:18px;
-    color:#cbd6e3;
-    line-height:1.45">
-
-    Move forward without making certainty
-    the price of admission.
-
+  <p style="font-size:18px;color:#cbd6e3;line-height:1.45">
+    Move forward without making certainty the price of admission.
   </p>
 
   <div class="startCard card">
@@ -1474,9 +1531,7 @@ button{
     </button>
 
     <p class="small">
-      Prototype only. ERP-informed gameplay
-      is not a replacement for professional
-      mental-health care.
+      Prototype only. ERP-informed gameplay is not a replacement for professional mental-health care.
     </p>
 
   </div>
@@ -1583,11 +1638,11 @@ button{
       </span>
 
       <span>
-        Lock once, then keep moving while
-        Doubt tries to pull you back.
+        Lock once, then keep moving while Doubt tries to pull you back.
       </span>
 
     </button>
+
 
     <button
       class="missionCard"
@@ -1607,11 +1662,11 @@ button{
       </span>
 
       <span>
-        Lock the car once. Doubt can come
-        along without another click.
+        Lock the car once. Doubt can come along without another click.
       </span>
 
     </button>
+
 
     <button
       class="missionCard"
@@ -1631,12 +1686,11 @@ button{
       </span>
 
       <span>
-        Turn the stove off once, then head
-        for the exit without solving every
-        question.
+        Turn the stove off once, then head for the exit without solving every question.
       </span>
 
     </button>
+
 
     <button
       class="missionCard"
@@ -1770,13 +1824,13 @@ button{
       </div>
 
       <div class="gripNote">
-        Tracks certainty-seeking,
-        not anxiety.
+        Tracks certainty-seeking, not anxiety.
       </div>
 
     </div>
 
   </div>
+
 
   <div class="hud">
 
@@ -1793,6 +1847,7 @@ button{
     </span>
 
   </div>
+
 
   <div class="gamePanel">
 
@@ -1820,6 +1875,7 @@ button{
 
     </div>
 
+
     <div
       id="meters"
       class="meters"
@@ -1842,6 +1898,7 @@ button{
 
       </div>
 
+
       <div>
 
         <span class="meterLabel">
@@ -1862,6 +1919,7 @@ button{
       </div>
 
     </div>
+
 
     <div class="controls">
 
@@ -1906,6 +1964,7 @@ button{
 
   </div>
 
+
   <div class="rewardBox">
 
     <div class="card">
@@ -1919,6 +1978,7 @@ button{
       </div>
 
       <p id="result"></p>
+
 
       <div class="practice">
 
@@ -1940,6 +2000,7 @@ button{
 
           </div>
 
+
           <div class="practiceStat">
 
             <b id="statCarry">
@@ -1952,6 +2013,7 @@ button{
 
           </div>
 
+
           <div class="practiceStat">
 
             <b id="statRecoveries">
@@ -1963,6 +2025,7 @@ button{
             </span>
 
           </div>
+
 
           <div class="practiceStat">
 
@@ -1982,12 +2045,12 @@ button{
           class="practiceCopy"
           id="practiceCopy">
 
-          The win is choosing the next meaningful
-          action—not getting a particular feeling.
+          The win is choosing the next meaningful action—not getting a particular feeling.
 
         </p>
 
       </div>
+
 
       <button
         class="btn"
@@ -1997,6 +2060,7 @@ button{
 
       </button>
 
+
       <button
         class="btn secondary"
         id="doneBtn">
@@ -2005,12 +2069,9 @@ button{
 
       </button>
 
+
       <div class="sessionNote">
-
-        These are behavior markers, not a score
-        for how anxious you felt. Stopping here
-        is allowed.
-
+        These are behavior markers, not a score for how anxious you felt. Stopping here is allowed.
       </div>
 
     </div>
@@ -2032,7 +2093,6 @@ button{
 
 
 <script>
-
 
 const $=
 s=>
@@ -2332,6 +2392,10 @@ null;
 
 
 let arrivalTimer=
+null;
+
+
+let turnTimer=
 null;
 
 
@@ -2914,6 +2978,7 @@ function sceneMarkup(key){
 
   }
 
+
   if(
     key==="car"
   ){
@@ -2948,6 +3013,10 @@ function sceneMarkup(key){
   WALK TO STORE
 </div>
 
+<div class="pathArrow">
+  ↑
+</div>
+
 <div class="car">
 
   <div class="carWindow"></div>
@@ -2957,6 +3026,7 @@ function sceneMarkup(key){
 `;
 
   }
+
 
   return `
 
@@ -3134,6 +3204,95 @@ function startWave(){
 
 
 
+function clearTurnVisual(){
+
+  clearTimeout(
+    turnTimer
+  );
+
+  turnTimer=
+  null;
+
+  $("#person")
+  .classList.remove(
+    "turnBack"
+  );
+
+  const car=
+  $(".car");
+
+  const arrow=
+  $(".pathArrow");
+
+  if(car){
+
+    car.classList.remove(
+      "recheckFocus"
+    );
+
+  }
+
+  if(arrow){
+
+    arrow.classList.remove(
+      "away"
+    );
+
+  }
+
+}
+
+
+
+function showTurnBack(){
+
+  if(
+    current!=="car"
+  ){
+
+    return;
+
+  }
+
+  clearTurnVisual();
+
+  $("#person")
+  .classList.add(
+    "turnBack"
+  );
+
+  const car=
+  $(".car");
+
+  const arrow=
+  $(".pathArrow");
+
+  if(car){
+
+    car.classList.add(
+      "recheckFocus"
+    );
+
+  }
+
+  if(arrow){
+
+    arrow.classList.add(
+      "away"
+    );
+
+  }
+
+  turnTimer=
+  setTimeout(
+    clearTurnVisual,
+    620
+  );
+
+}
+
+
+
 function clearTransientTimers(){
 
   clearInterval(
@@ -3196,6 +3355,8 @@ function clearTransientTimers(){
   );
 
   hideEcho();
+
+  clearTurnVisual();
 
 }
 
@@ -3345,6 +3506,7 @@ function updateScene(){
   const person=
   $("#person");
 
+
   if(
     current==="car"
   ){
@@ -3367,6 +3529,7 @@ function updateScene(){
       .24*t
     })`;
 
+
     const car=
     $(".car");
 
@@ -3378,6 +3541,7 @@ function updateScene(){
 
     const door=
     $(".storeDoor");
+
 
     if(car){
 
@@ -3404,6 +3568,7 @@ function updateScene(){
 
     }
 
+
     if(storeBuilding){
 
       storeBuilding.style.top=
@@ -3420,6 +3585,7 @@ function updateScene(){
 
     }
 
+
     if(crosswalk){
 
       crosswalk.style.opacity=
@@ -3429,6 +3595,7 @@ function updateScene(){
       );
 
     }
+
 
     if(door){
 
@@ -3445,6 +3612,7 @@ function updateScene(){
 
     }
 
+
     setArrivalCue(
       momentum>=88 &&
       momentum<100
@@ -3454,9 +3622,11 @@ function updateScene(){
 
   }
 
+
   setArrivalCue(
     false
   );
+
 
   person.style.left=
   (
@@ -3476,6 +3646,7 @@ function updateScene(){
     .10*t
   })`;
 
+
   const house=
   $(".houseShell");
 
@@ -3484,6 +3655,7 @@ function updateScene(){
 
   const stove=
   $(".stove");
+
 
   if(house){
 
@@ -3504,6 +3676,7 @@ function updateScene(){
 
   }
 
+
   if(drivewayCar){
 
     drivewayCar.style.transform=
@@ -3513,6 +3686,7 @@ function updateScene(){
     })`;
 
   }
+
 
   if(stove){
 
@@ -3589,39 +3763,48 @@ function loadMission(key){
   appSuspended=
   false;
 
+
   $("#environment")
   .innerHTML=
   sceneMarkup(
     key
   );
 
+
   $("#missionName")
   .textContent=
   missions[key].name;
+
 
   $("#title")
   .textContent=
   missions[key].title;
 
+
   $("#copy")
   .textContent=
   missions[key].copy;
+
 
   $("#whatMattersText")
   .textContent=
   missions[key].value;
 
+
   $("#phaseHint")
   .textContent=
   "ACTION";
+
 
   $("#meters")
   .style.display=
   "none";
 
+
   $("#checkBtn")
   .style.display=
   "none";
+
 
   $("#forwardBtn")
   .textContent=
@@ -3636,9 +3819,11 @@ function loadMission(key){
 
   : "TURN OFF ONCE";
 
+
   $("#person")
   .style.left=
   "50%";
+
 
   $("#person")
   .style.bottom=
@@ -3649,26 +3834,32 @@ function loadMission(key){
 
   : "24%";
 
+
   $("#person")
   .style.transform=
   "translateX(-50%)";
 
+
   hideDoubt();
 
   hideEcho();
+
 
   $("#carryCue")
   .classList.remove(
     "show"
   );
 
+
   setRecoveryTarget(
     null
   );
 
+
   setArrivalCue(
     false
   );
+
 
   meters();
 
@@ -3677,6 +3868,7 @@ function loadMission(key){
   show(
     "mission"
   );
+
 
   announce(
     missions[key].name+
@@ -3697,24 +3889,30 @@ function initialAction(){
 
   }
 
+
   phase=
   "ready";
+
 
   $("#meters")
   .style.display=
   "grid";
 
+
   $("#checkBtn")
   .style.display=
   "block";
+
 
   $("#forwardBtn")
   .textContent=
   "HOLD TO MOVE";
 
+
   $("#title")
   .textContent=
   "Now move on.";
+
 
   $("#copy")
   .textContent=
@@ -3729,9 +3927,11 @@ function initialAction(){
 
   : "Head for the exit.";
 
+
   $("#phaseHint")
   .textContent=
   "READY";
+
 
   vibrate([
     18,
@@ -3739,9 +3939,11 @@ function initialAction(){
     18
   ]);
 
+
   announce(
     "Normal action complete. Ready to move."
   );
+
 
   urgeTimer=
   setInterval(()=>{
@@ -3751,6 +3953,7 @@ function initialAction(){
     Math.sin(
       Date.now()/850
     )*28;
+
 
     urge=
     clamp(
@@ -3763,9 +3966,11 @@ function initialAction(){
       94
     );
 
+
     meters();
 
   },180);
+
 
   scheduleDoubt(
     700
@@ -3778,35 +3983,46 @@ function initialAction(){
 function beginArrival(){
 
   if(
-    phase==="arriving" ||
-    phase==="complete"
+    [
+      "arriving",
+      "complete"
+    ].includes(
+      phase
+    )
   ){
 
     return;
 
   }
 
+
   clearInterval(
     walkTimer
   );
 
+
   walkTimer=
   null;
 
+
   hold=
   false;
+
 
   $("#person")
   .classList.remove(
     "walking"
   );
 
+
   phase=
   "arriving";
+
 
   $("#phaseHint")
   .textContent=
   "ARRIVED";
+
 
   $("#title")
   .textContent=
@@ -3817,11 +4033,14 @@ function beginArrival(){
 
   : "You kept moving.";
 
+
   $("#copy")
   .textContent=
   "The destination—not certainty—ended the loop.";
 
+
   setArrivalCue(
+
     true,
 
     current==="car"
@@ -3829,7 +4048,9 @@ function beginArrival(){
     ? "ARRIVED • YOU KEPT MOVING"
 
     : "PATH COMPLETE"
+
   );
+
 
   vibrate([
     18,
@@ -3838,6 +4059,7 @@ function beginArrival(){
     35,
     35
   ]);
+
 
   arrivalTimer=
   setTimeout(()=>{
@@ -3873,16 +4095,22 @@ function startWalking(){
 
   }
 
+
   clearTimeout(
     doubtTimer
   );
 
+
   doubtTimer=
   null;
+
 
   stopWave();
 
   hideEcho();
+
+  clearTurnVisual();
+
 
   if(
     $("#doubtOverlay")
@@ -3899,11 +4127,14 @@ function startWalking(){
 
   }
 
+
   phase=
   "moving";
 
+
   hold=
   true;
+
 
   $("#phaseHint")
   .textContent=
@@ -3914,10 +4145,12 @@ function startWalking(){
 
   : "MOVING";
 
+
   $("#person")
   .classList.add(
     "walking"
   );
+
 
   walkTimer=
   setInterval(()=>{
@@ -3925,17 +4158,20 @@ function startWalking(){
     const before=
     momentum;
 
+
     momentum=
     Math.min(
       100,
       momentum+2.1
     );
 
+
     peakMomentum=
     Math.max(
       peakMomentum,
       momentum
     );
+
 
     loopGrip=
     clamp(
@@ -3948,7 +4184,9 @@ function startWalking(){
       100
     );
 
+
     maybeEcho();
+
 
     if(
       recoveryTarget!==null &&
@@ -3957,15 +4195,19 @@ function startWalking(){
 
       recoveryCount++;
 
+
       setRecoveryTarget(
         null
       );
 
+
       showRecoverySuccess();
+
 
       announce(
         "You returned to your path without restarting."
       );
+
 
       vibrate([
         15,
@@ -3975,11 +4217,13 @@ function startWalking(){
 
     }
 
+
     renderGrip();
 
     updateScene();
 
     meters();
+
 
     if(
       momentum>=100
@@ -3990,6 +4234,7 @@ function startWalking(){
     }
 
   },70);
+
 
   return true;
 
@@ -4007,25 +4252,32 @@ function stopWalking(){
 
   }
 
+
   clearInterval(
     walkTimer
   );
 
+
   walkTimer=
   null;
 
+
   hold=
   false;
+
 
   $("#person")
   .classList.remove(
     "walking"
   );
 
+
   hideEcho();
+
 
   phase=
   "ready";
+
 
   $("#phaseHint")
   .textContent=
@@ -4035,6 +4287,7 @@ function stopWalking(){
   ? "CARRYING"
 
   : "READY";
+
 
   if(
     carrying
@@ -4074,22 +4327,32 @@ function recheck(){
 
   }
 
+
   checks++;
+
 
   clearTransientTimers();
 
+
   phase=
   "relief";
+
 
   setCarrying(
     false
   );
 
+
   hideDoubt();
+
 
   setArrivalCue(
     false
   );
+
+
+  showTurnBack();
+
 
   loopGrip=
   clamp(
@@ -4098,6 +4361,7 @@ function recheck(){
     100
   );
 
+
   urge=
   clamp(
     urge-27,
@@ -4105,30 +4369,36 @@ function recheck(){
     96
   );
 
+
   renderGrip();
+
 
   $("#phaseHint")
   .textContent=
   "RELIEF";
 
+
   $("#title")
   .textContent=
   "Relief landed.";
+
 
   $("#copy")
   .textContent=
 
   current==="car"
 
-  ? "The check pulls your attention back toward the parked car."
+  ? "You turned back toward the parked car. The store did not move."
 
   : "For a moment, the question feels answered.";
+
 
   vibrate([
     30,
     25,
     30
   ]);
+
 
   const loss=
 
@@ -4144,11 +4414,13 @@ function recheck(){
       20
     );
 
+
   momentum=
   Math.max(
     0,
     momentum-loss
   );
+
 
   if(
     peakMomentum>
@@ -4161,15 +4433,18 @@ function recheck(){
 
   }
 
+
   updateScene();
 
   meters();
+
 
   reliefTimer=
   setTimeout(()=>{
 
     reliefTimer=
     null;
+
 
     if(
       appSuspended ||
@@ -4180,8 +4455,13 @@ function recheck(){
 
     }
 
+
+    clearTurnVisual();
+
+
     phase=
     "ready";
+
 
     showDoubt(
 
@@ -4193,6 +4473,7 @@ function recheck(){
 
     );
 
+
     $("#title")
     .textContent=
 
@@ -4202,6 +4483,7 @@ function recheck(){
 
     : "Same loop. New request.";
 
+
     $("#copy")
     .textContent=
 
@@ -4209,9 +4491,9 @@ function recheck(){
 
     ? current==="car"
 
-      ? "You do not need to restart. Turn back toward the store from here."
+      ? "Turn back toward the store from here. No restart required."
 
-      : "You do not need to restart. Return to what matters from here."
+      : "Return to what matters from here. No restart required."
 
     : "The question changed. What matters didn’t.";
 
@@ -4228,36 +4510,47 @@ function completeMission(){
     currentCarrySeconds()
   );
 
+
   setCarrying(
     false
   );
 
+
   stopAll();
+
 
   phase=
   "complete";
 
+
   xp+=
   30;
 
+
   updateXP();
+
 
   persistence.set(
     "completed_"+current,
     "yes"
   );
 
+
   completions();
+
 
   setRecoveryTarget(
     null
   );
 
+
   setArrivalCue(
     false
   );
 
+
   hideDoubt();
+
 
   $("#result")
   .textContent=
@@ -4268,21 +4561,26 @@ function completeMission(){
 
   : `You resumed forward movement after ${checks} ${checks===1 ? "check" : "checks"}. A lapse did not reset the mission.`;
 
+
   $("#statChecks")
   .textContent=
   checks;
+
 
   $("#statCarry")
   .textContent=
   carried+"s";
 
+
   $("#statRecoveries")
   .textContent=
   recoveryCount;
 
+
   $("#statEchoes")
   .textContent=
   echoCount;
+
 
   $("#practiceCopy")
   .textContent=
@@ -4301,9 +4599,11 @@ function completeMission(){
 
   : "You practiced one normal action and continued without adding an extra certainty step.";
 
+
   show(
     "reward"
   );
+
 
   announce(
     "Mission complete."
@@ -4317,36 +4617,46 @@ function exitMission(){
 
   stopAll();
 
+
   carrying=
   false;
+
 
   $("#carryCue")
   .classList.remove(
     "show"
   );
 
+
   setRecoveryTarget(
     null
   );
+
 
   setArrivalCue(
     false
   );
 
+
   hideDoubt();
 
   hideEcho();
 
+
   current=
   null;
+
 
   phase=
   "idle";
 
+
   appSuspended=
   false;
 
+
   completions();
+
 
   show(
     "missionSelect"
@@ -4363,6 +4673,7 @@ $("#enter")
 );
 
 
+
 $("#checking")
 .onclick=
 ()=>{
@@ -4376,11 +4687,13 @@ $("#checking")
 };
 
 
+
 $("#backMap")
 .onclick=
 ()=>show(
   "map"
 );
+
 
 
 $$(
@@ -4398,14 +4711,17 @@ $$(
 );
 
 
+
 $("#missionExit")
 .onclick=
 exitMission;
 
 
+
 $("#checkBtn")
 .onclick=
 recheck;
+
 
 
 $("#continueBtn")
@@ -4419,6 +4735,7 @@ $("#continueBtn")
   );
 
 };
+
 
 
 $("#doneBtn")
@@ -4440,8 +4757,10 @@ $("#doneBtn")
 };
 
 
+
 const forward=
 $("#forwardBtn");
+
 
 
 [
@@ -4457,6 +4776,7 @@ $("#forwardBtn");
     event.preventDefault()
   )
 );
+
 
 
 forward.addEventListener(
@@ -4484,6 +4804,7 @@ forward.addEventListener(
 );
 
 
+
 [
   "touchend",
   "touchcancel"
@@ -4506,6 +4827,7 @@ forward.addEventListener(
 );
 
 
+
 forward.addEventListener(
   "pointerdown",
   event=>{
@@ -4520,6 +4842,7 @@ forward.addEventListener(
 
     event.preventDefault();
 
+
     if(
       phase==="lock"
     ){
@@ -4529,6 +4852,7 @@ forward.addEventListener(
       return;
 
     }
+
 
     try{
 
@@ -4540,10 +4864,12 @@ forward.addEventListener(
 
     catch{}
 
+
     startWalking();
 
   }
 );
+
 
 
 [
@@ -4574,16 +4900,19 @@ forward.addEventListener(
 );
 
 
+
 window.addEventListener(
   "blur",
   suspendGame
 );
 
 
+
 window.addEventListener(
   "focus",
   resumeGame
 );
+
 
 
 document.addEventListener(
@@ -4608,6 +4937,7 @@ document.addEventListener(
 );
 
 
+
 document.addEventListener(
   "contextmenu",
   event=>
@@ -4615,12 +4945,12 @@ document.addEventListener(
 );
 
 
+
 updateXP();
 
 completions();
 
 renderGrip();
-
 
 </script>
 
