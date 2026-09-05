@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#07101c">
-<title>UNCERTAIN — Checking District v10.37</title>
+<title>UNCERTAIN — Checking District v10.38</title>
 
 <style>
 :root{
   --bg:#07101c;
-  --panel:#0b1626ed;
+  --panel:#0b1626ee;
   --text:#f7fbff;
   --muted:#aebbd0;
   --accent:#74e7c5;
@@ -237,7 +237,7 @@ button{
 }
 
 
-/* SELECT */
+/* MISSION SELECT */
 
 #missionSelect{
   background:
@@ -360,7 +360,7 @@ button{
 }
 
 
-/* HOUSE */
+/* LOCK & LEAVE */
 
 .houseShell{
   position:absolute;
@@ -473,53 +473,28 @@ button{
 /* VEHICLES */
 
 .drivewayVehicle,
-.car{
+.car,
+.parkedCar{
   position:absolute;
   z-index:9;
-  width:178px;
-  height:80px;
-  border-radius:36px 40px 18px 18px;
   background:
   linear-gradient(
     #8093aa,
     #566a83
   );
-  border:7px solid #101722;
-  transition:
-    transform .18s,
-    opacity .18s,
-    top .18s,
-    box-shadow .18s;
+  border:6px solid #101722;
+  box-shadow:0 8px 18px #0007;
 }
 
 .drivewayVehicle{
   left:72%;
   top:61%;
+  width:178px;
+  height:80px;
+  border-radius:36px 40px 18px 18px;
   transform:
   translateX(-50%)
   scale(.78);
-}
-
-.car{
-  left:50%;
-  top:66%;
-  transform:translateX(-50%);
-}
-
-.carWindow{
-  position:absolute;
-  left:39px;
-  top:-8px;
-  width:96px;
-  height:42px;
-  background:#21354a;
-  clip-path:
-  polygon(
-    20% 100%,
-    35% 0,
-    78% 0,
-    100% 100%
-  );
 }
 
 .drivewayVehicle:before,
@@ -546,44 +521,50 @@ button{
   right:18px;
 }
 
-.car.recheckFocus{
-  box-shadow:
-  0 0 0 3px #b9d4ff44,
-  0 0 34px #b9d4ff66;
+.carWindow{
+  position:absolute;
+  left:39px;
+  top:-8px;
+  width:96px;
+  height:42px;
+  background:#21354a;
+  clip-path:
+  polygon(
+    20% 100%,
+    35% 0,
+    78% 0,
+    100% 100%
+  );
 }
 
 
-/* PARK */
+/* PARK & WALK v10.38 */
 
-.parkingGround{
+.parkingScene{
   position:absolute;
-  inset:31% 0 0;
+  inset:0;
   background:
   linear-gradient(
-    180deg,
-    #3a4653 0%,
-    #222b35 72%,
-    #171e27 100%
+    #31475b 0 26%,
+    #2b343e 26% 100%
   );
 }
 
 .store{
   position:absolute;
-  left:50%;
-  top:4%;
-  transform:translateX(-50%);
-  width:310px;
-  height:182px;
+  z-index:5;
+  left:4%;
+  right:4%;
+  top:5%;
+  height:175px;
   background:
   linear-gradient(
-    #596c80,
-    #39495d
+    #60758a,
+    #3b4c60
   );
-  border:8px solid #223040;
-  z-index:4;
-  transition:
-    transform .18s,
-    top .18s;
+  border:7px solid #223040;
+  border-radius:4px 4px 0 0;
+  box-shadow:0 12px 24px #0008;
 }
 
 .store:before{
@@ -591,10 +572,19 @@ button{
   position:absolute;
   left:0;
   right:0;
-  top:24px;
+  top:20px;
   text-align:center;
   font-weight:1000;
-  letter-spacing:.14em;
+  letter-spacing:.16em;
+}
+
+.storeAwning{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:92px;
+  height:15px;
+  background:#28394b;
 }
 
 .storeDoor{
@@ -602,131 +592,234 @@ button{
   left:50%;
   bottom:0;
   transform:translateX(-50%);
-  width:86px;
-  height:100px;
-  background:#142638;
+  width:92px;
+  height:94px;
+  background:
+  linear-gradient(
+    90deg,
+    #183047 0 48%,
+    #71849a 48% 52%,
+    #183047 52%
+  );
   border:5px solid #71849a;
-  transition:.2s;
+  transition:.18s;
 }
 
 .storeDoor.near{
   box-shadow:
   0 0 0 3px #74e7c555,
   0 0 28px #74e7c566;
-  background:#1c3c45;
+  background:
+  linear-gradient(
+    90deg,
+    #1c474b 0 48%,
+    #8fb8b0 48% 52%,
+    #1c474b 52%
+  );
 }
 
 .storeDoor.arrived{
   box-shadow:
   0 0 0 5px #74e7c577,
   0 0 40px #74e7c599;
-  background:#24564e;
+}
+
+.sidewalk{
+  position:absolute;
+  z-index:3;
+  left:0;
+  right:0;
+  top:26%;
+  height:48px;
+  background:#9aa1a6;
+  border-top:4px solid #c8ced2;
+  border-bottom:5px solid #5d666d;
+}
+
+.curbCut{
+  position:absolute;
+  z-index:4;
+  left:50%;
+  top:26%;
+  transform:translateX(-50%);
+  width:110px;
+  height:52px;
+  background:#aeb4b7;
+  clip-path:
+  polygon(
+    8% 0,
+    92% 0,
+    100% 100%,
+    0 100%
+  );
+}
+
+.driveAisle{
+  position:absolute;
+  z-index:1;
+  left:0;
+  right:0;
+  top:32%;
+  bottom:0;
+  background:
+  linear-gradient(
+    #363e46,
+    #222932
+  );
 }
 
 .crosswalk{
   position:absolute;
   z-index:3;
   left:50%;
-  top:39%;
-  width:115px;
-  height:150px;
-  transform:
-  translateX(-50%)
-  perspective(280px)
-  rotateX(58deg);
-  transform-origin:center bottom;
+  top:32%;
+  transform:translateX(-50%);
+  width:112px;
+  height:210px;
   background:
   repeating-linear-gradient(
     0deg,
-    #eef3f8 0 12px,
-    transparent 12px 25px
+    #f0f3f4 0 13px,
+    transparent 13px 30px
   );
-  opacity:.72;
+  opacity:.82;
+  clip-path:
+  polygon(
+    29% 0,
+    71% 0,
+    100% 100%,
+    0 100%
+  );
 }
 
-.stallLine{
+.parkingRow{
   position:absolute;
   z-index:2;
-  top:49%;
-  width:4px;
-  height:43%;
-  background:#f2f5f8aa;
-  transform-origin:top center;
+  bottom:8%;
+  width:42%;
+  height:210px;
 }
 
-.s1{
-  left:12%;
-  transform:rotate(12deg);
+.parkingRow.left{
+  left:3%;
 }
 
-.s2{
-  left:28%;
-  transform:rotate(7deg);
+.parkingRow.right{
+  right:3%;
 }
 
-.s3{
-  left:44%;
-  transform:rotate(2deg);
-}
-
-.s4{
-  left:60%;
-  transform:rotate(-3deg);
-}
-
-.s5{
-  left:76%;
-  transform:rotate(-8deg);
-}
-
-.s6{
-  left:92%;
-  transform:rotate(-13deg);
-}
-
-.stopLine{
+.stall{
   position:absolute;
-  z-index:2;
-  left:7%;
-  right:7%;
-  top:50%;
-  height:4px;
-  background:#f2f5f866;
+  bottom:0;
+  width:31%;
+  height:100%;
+  border-left:4px solid #edf1f2b8;
+  border-right:4px solid #edf1f2b8;
+  border-top:4px solid #edf1f2b8;
+  transform-origin:bottom;
 }
 
-.parkingLabel{
+.stall.a{
+  left:0;
+  transform:skewX(-5deg);
+}
+
+.stall.b{
+  left:34%;
+  transform:skewX(-2deg);
+}
+
+.stall.c{
+  right:0;
+  transform:skewX(3deg);
+}
+
+.parkingRow.right .stall.a{
+  transform:skewX(-3deg);
+}
+
+.parkingRow.right .stall.b{
+  transform:skewX(2deg);
+}
+
+.parkingRow.right .stall.c{
+  transform:skewX(5deg);
+}
+
+.parkedCar{
+  width:78px;
+  height:128px;
+  border-radius:18px;
+  bottom:19px;
+}
+
+.parkedCar:before{
+  content:"";
   position:absolute;
-  z-index:5;
-  left:50%;
-  top:45%;
-  transform:translateX(-50%);
-  font-size:9px;
-  letter-spacing:.12em;
-  color:#eaf0f6b5;
-  font-weight:950;
+  left:14px;
+  right:14px;
+  top:21px;
+  height:38px;
+  border-radius:8px;
+  background:#21354a;
+}
+
+.parkedCar.muted{
+  opacity:.45;
+  transform:scale(.86);
+}
+
+.playerCar{
+  right:14px;
+  bottom:15px;
+  width:86px;
+  height:142px;
+  border-color:#0d1823;
+  transition:
+  box-shadow .18s,
+  transform .18s,
+  opacity .18s;
+}
+
+.playerCar.recheckFocus{
+  box-shadow:
+  0 0 0 4px #b9d4ff66,
+  0 0 34px #b9d4ff99;
+  transform:scale(1.05);
 }
 
 .pathArrow{
   position:absolute;
-  z-index:7;
+  z-index:8;
   left:50%;
-  top:48%;
+  top:54%;
   transform:translateX(-50%);
-  font-size:26px;
-  color:#74e7c5aa;
+  font-size:28px;
+  color:#74e7c5dd;
   text-shadow:0 2px 8px #000;
-  opacity:.75;
-  transition:
-    opacity .2s,
-    transform .2s;
+  transition:.18s;
 }
 
 .pathArrow.away{
-  opacity:.18;
+  color:#b9d4ffdd;
   transform:
-    translateX(-50%)
-    translateY(16px)
-    rotate(180deg);
+  translateX(-50%)
+  rotate(180deg);
+}
+
+.parkingLabel{
+  position:absolute;
+  z-index:6;
+  left:50%;
+  top:36%;
+  transform:translateX(-50%);
+  font-size:9px;
+  letter-spacing:.13em;
+  font-weight:950;
+  color:#eaf0f6c9;
+  background:#17212bcc;
+  padding:5px 8px;
+  border-radius:999px;
 }
 
 
@@ -815,9 +908,7 @@ button{
   border:7px solid #18222c;
   border-radius:8px;
   z-index:8;
-  transition:
-    transform .18s,
-    opacity .18s;
+  transition:.18s;
 }
 
 .stoveTop{
@@ -905,10 +996,10 @@ button{
   height:106px;
   transform:translateX(-50%);
   transition:
-    bottom .12s linear,
-    left .12s linear,
-    transform .16s linear,
-    filter .16s;
+  bottom .12s linear,
+  left .12s linear,
+  transform .16s linear,
+  filter .16s;
 }
 
 .shadow{
@@ -986,10 +1077,6 @@ button{
   step .28s infinite alternate-reverse;
 }
 
-.person.turnBack{
-  filter:brightness(1.06);
-}
-
 .person.turnBack .body:after{
   transform:rotate(42deg);
 }
@@ -1053,7 +1140,7 @@ button{
 }
 
 
-/* CUES */
+/* ERP CUES */
 
 #carryCue,
 #waveCue,
@@ -1132,7 +1219,7 @@ button{
 }
 
 
-/* WHAT MATTERS */
+/* VALUES */
 
 #whatMatters{
   position:absolute;
@@ -1313,10 +1400,6 @@ button{
   touch-action:none;
 }
 
-.control:disabled{
-  opacity:.45;
-}
-
 
 /* REWARD */
 
@@ -1483,6 +1566,41 @@ button{
 
   .sessionNote{
     margin-top:8px;
+  }
+
+  .store{
+    height:150px;
+  }
+
+  .sidewalk{
+    top:25%;
+  }
+
+  .curbCut{
+    top:25%;
+  }
+
+  .driveAisle{
+    top:31%;
+  }
+
+  .crosswalk{
+    top:31%;
+    height:178px;
+  }
+
+  .parkingRow{
+    height:175px;
+  }
+
+  .playerCar{
+    height:122px;
+    width:74px;
+  }
+
+  .parkedCar{
+    height:110px;
+    width:68px;
   }
 
 }
@@ -1724,6 +1842,7 @@ button{
 
   </button>
 
+
   <div class="scene">
 
     <div class="skyGlow"></div>
@@ -1731,6 +1850,7 @@ button{
     <div class="ground"></div>
 
     <div id="environment"></div>
+
 
     <div
       id="person"
@@ -1748,7 +1868,9 @@ button{
 
     </div>
 
+
     <div id="doubtVignette"></div>
+
 
     <div
       id="doubtOverlay"
@@ -1764,13 +1886,16 @@ button{
 
     </div>
 
+
     <div id="carryCue">
       ● UNCERTAINTY CAN COME WITH YOU
     </div>
 
+
     <div id="waveCue">
       URGE WAVE • 0.0s WITHOUT CHECKING
     </div>
+
 
     <div id="echoCue">
 
@@ -1784,13 +1909,16 @@ button{
 
     </div>
 
+
     <div id="recoveryCue">
       RETURN TO YOUR PATH • NO RESET
     </div>
 
+
     <div id="arrivalCue">
       DESTINATION IN REACH • KEEP MOVING
     </div>
+
 
     <div id="whatMatters">
 
@@ -1804,6 +1932,7 @@ button{
       </span>
 
     </div>
+
 
     <div id="loopGripPanel">
 
@@ -2040,6 +2169,7 @@ button{
           </div>
 
         </div>
+
 
         <p
           class="practiceCopy"
@@ -2959,7 +3089,9 @@ function sceneMarkup(key){
     <div class="window right"></div>
 
     <div class="door">
+
       <div class="knob"></div>
+
     </div>
 
   </div>
@@ -2985,41 +3117,72 @@ function sceneMarkup(key){
 
     return `
 
-<div class="parkingGround"></div>
+<div class="parkingScene">
 
-<div class="store">
+  <div class="store">
 
-  <div class="storeDoor"></div>
+    <div class="storeAwning"></div>
 
-</div>
+    <div class="storeDoor"></div>
 
-<div class="crosswalk"></div>
+  </div>
 
-<div class="stopLine"></div>
 
-<div class="stallLine s1"></div>
+  <div class="sidewalk"></div>
 
-<div class="stallLine s2"></div>
+  <div class="curbCut"></div>
 
-<div class="stallLine s3"></div>
+  <div class="driveAisle"></div>
 
-<div class="stallLine s4"></div>
+  <div class="crosswalk"></div>
 
-<div class="stallLine s5"></div>
 
-<div class="stallLine s6"></div>
+  <div class="parkingRow left">
 
-<div class="parkingLabel">
-  WALK TO STORE
-</div>
+    <div class="stall a"></div>
 
-<div class="pathArrow">
-  ↑
-</div>
+    <div class="stall b"></div>
 
-<div class="car">
+    <div class="stall c"></div>
 
-  <div class="carWindow"></div>
+    <div
+      class="parkedCar muted"
+      style="left:7%">
+    </div>
+
+    <div
+      class="parkedCar muted"
+      style="right:8%">
+    </div>
+
+  </div>
+
+
+  <div class="parkingRow right">
+
+    <div class="stall a"></div>
+
+    <div class="stall b"></div>
+
+    <div class="stall c"></div>
+
+    <div
+      class="parkedCar muted"
+      style="left:5%">
+    </div>
+
+    <div class="playerCar parkedCar"></div>
+
+  </div>
+
+
+  <div class="parkingLabel">
+    CROSS TO STORE
+  </div>
+
+  <div class="pathArrow">
+    ↑
+  </div>
 
 </div>
 
@@ -3219,7 +3382,7 @@ function clearTurnVisual(){
   );
 
   const car=
-  $(".car");
+  $(".playerCar");
 
   const arrow=
   $(".pathArrow");
@@ -3262,7 +3425,7 @@ function showTurnBack(){
   );
 
   const car=
-  $(".car");
+  $(".playerCar");
 
   const arrow=
   $(".pathArrow");
@@ -3513,14 +3676,14 @@ function updateScene(){
 
     person.style.left=
     (
-      50-
-      2*t
+      72-
+      22*t
     )+"%";
 
     person.style.bottom=
     (
       18+
-      36*t
+      40*t
     )+"%";
 
     person.style.transform=
@@ -3531,68 +3694,31 @@ function updateScene(){
 
 
     const car=
-    $(".car");
-
-    const storeBuilding=
-    $(".store");
-
-    const crosswalk=
-    $(".crosswalk");
+    $(".playerCar");
 
     const door=
     $(".storeDoor");
 
+    const arrow=
+    $(".pathArrow");
+
 
     if(car){
-
-      car.style.top=
-      (
-        66+
-        18*t
-      )+"%";
-
-      car.style.transform=
-      `translateX(-50%) scale(${
-        1-
-        .52*t
-      })`;
 
       car.style.opacity=
       String(
         Math.max(
-          .18,
+          .22,
           1-
-          .74*t
+          .72*t
         )
       );
 
-    }
-
-
-    if(storeBuilding){
-
-      storeBuilding.style.top=
-      (
-        4-
-        1.5*t
-      )+"%";
-
-      storeBuilding.style.transform=
-      `translateX(-50%) scale(${
-        1+
-        .28*t
+      car.style.transform=
+      `scale(${
+        1-
+        .18*t
       })`;
-
-    }
-
-
-    if(crosswalk){
-
-      crosswalk.style.opacity=
-      String(
-        .72+
-        .20*t
-      );
 
     }
 
@@ -3608,6 +3734,20 @@ function updateScene(){
       door.classList.toggle(
         "arrived",
         momentum>=100
+      );
+
+    }
+
+
+    if(arrow){
+
+      arrow.style.opacity=
+      String(
+        Math.max(
+          .18,
+          1-
+          .65*t
+        )
       );
 
     }
@@ -3822,7 +3962,12 @@ function loadMission(key){
 
   $("#person")
   .style.left=
-  "50%";
+
+  key==="car"
+
+  ? "72%"
+
+  : "50%";
 
 
   $("#person")
@@ -3923,7 +4068,7 @@ function initialAction(){
 
   : current==="car"
 
-  ? "Turn away from the car and walk toward the store entrance."
+  ? "Leave the parked car and cross the aisle toward the store entrance."
 
   : "Head for the exit.";
 
