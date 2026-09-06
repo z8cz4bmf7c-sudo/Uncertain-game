@@ -1,4 +1,6844 @@
-<!doctype html>
+<!doctype html><!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#07101c">
+
+<title>UNCERTAIN — Checking District v10.47</title>
+
+<style>
+:root{
+  --bg:#07101c;
+  --bg2:#101a29;
+  --panel:#091522ed;
+  --text:#f7fbff;
+  --muted:#aebbd0;
+  --accent:#74e7c5;
+  --accent2:#a6f4dc;
+  --doubt:#d8b8e4;
+  --relief:#b9d4ff;
+  --line:#ffffff26;
+  --danger:#f0a9c8;
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+  -webkit-touch-callout:none;
+  -webkit-user-select:none;
+  user-select:none;
+}
+
+html,
+body{
+  width:100%;
+  height:100%;
+  margin:0;
+  overflow:hidden;
+  overscroll-behavior:none;
+  background:#040912;
+  color:var(--text);
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+button{
+  font:inherit;
+  color:inherit;
+  -webkit-appearance:none;
+  appearance:none;
+}
+
+#app{
+  position:relative;
+  width:100%;
+  max-width:520px;
+  height:100vh;
+  height:100dvh;
+  margin:auto;
+  overflow:hidden;
+  background:var(--bg);
+}
+
+.screen{
+  display:none;
+  position:absolute;
+  inset:0;
+}
+
+.screen.active{
+  display:block;
+}
+
+.hud{
+  position:absolute;
+  z-index:100;
+  top:0;
+  left:0;
+  right:0;
+  display:flex;
+  justify-content:space-between;
+  padding:
+    max(12px,env(safe-area-inset-top))
+    12px
+    8px;
+  pointer-events:none;
+}
+
+.pill{
+  min-height:34px;
+  display:flex;
+  align-items:center;
+  padding:7px 11px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:#07111deb;
+  font-size:11px;
+  font-weight:950;
+  letter-spacing:.04em;
+}
+
+.card{
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:
+    linear-gradient(
+      180deg,
+      #101d30f7,
+      #0b1625f7
+    );
+  box-shadow:0 18px 44px #0009;
+}
+
+.btn{
+  width:100%;
+  min-height:58px;
+  border:0;
+  border-radius:17px;
+  background:#eef3f8;
+  color:#0c1420;
+  font-size:17px;
+  font-weight:950;
+  touch-action:manipulation;
+}
+
+.btn.secondary{
+  margin-top:10px;
+  border:1px solid #ffffff2a;
+  background:#152238;
+  color:#f7fbff;
+}
+
+.small{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.4;
+}
+
+
+/* ---------------- START ---------------- */
+
+#start{
+  padding:92px 22px 26px;
+  background:
+    radial-gradient(
+      circle at 50% 24%,
+      #355271,
+      #111b2a 55%,
+      #060b13
+    );
+}
+
+.logo{
+  color:#a9b7ca;
+  font-size:13px;
+  font-weight:950;
+  letter-spacing:.25em;
+}
+
+.hero{
+  margin:24px 0 16px;
+  font-size:53px;
+  font-weight:1000;
+  line-height:.92;
+  letter-spacing:-.055em;
+}
+
+.hero span{
+  color:var(--accent);
+}
+
+.startText{
+  max-width:400px;
+  color:#cbd6e3;
+  font-size:18px;
+  line-height:1.45;
+}
+
+.startCard{
+  position:absolute;
+  left:16px;
+  right:16px;
+  bottom:max(22px,env(safe-area-inset-bottom));
+  padding:16px;
+}
+
+
+/* ---------------- MAP ---------------- */
+
+#map{
+  background:
+    linear-gradient(
+      145deg,
+      #29425f,
+      #112238 64%,
+      #07101c
+    );
+}
+
+.road{
+  position:absolute;
+  left:-30%;
+  top:49%;
+  width:155%;
+  height:100px;
+  transform:rotate(-18deg);
+  background:#46566c;
+  box-shadow:0 0 0 9px #1d2837;
+}
+
+.road:after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:48px;
+  border-top:4px dashed #e8edf566;
+}
+
+.node{
+  position:absolute;
+  padding:15px;
+  border:2px solid #ffffff32;
+  border-radius:23px;
+  background:#0b1729ed;
+  box-shadow:0 16px 36px #0009;
+  text-align:left;
+  touch-action:manipulation;
+}
+
+.node strong{
+  display:block;
+  font-size:18px;
+}
+
+.node small{
+  opacity:.72;
+}
+
+#checking{
+  left:6%;
+  top:21%;
+  width:198px;
+}
+
+.locked{
+  right:5%;
+  bottom:25%;
+  width:170px;
+  opacity:.48;
+}
+
+.mapInfo{
+  position:absolute;
+  left:14px;
+  right:14px;
+  bottom:max(14px,env(safe-area-inset-bottom));
+  padding:13px 15px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#081321dc;
+}
+
+
+/* ---------------- MISSION SELECT ---------------- */
+
+#missionSelect{
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      #274762,
+      #0b1625 65%
+    );
+}
+
+.selectWrap{
+  position:absolute;
+  inset:88px 14px 18px;
+  overflow:auto;
+  padding-bottom:30px;
+  -webkit-overflow-scrolling:touch;
+  touch-action:pan-y;
+}
+
+.missionCard{
+  width:100%;
+  min-height:112px;
+  margin-bottom:12px;
+  padding:17px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:#0d192aef;
+  text-align:left;
+  touch-action:manipulation;
+}
+
+.missionCard b{
+  display:block;
+  font-size:20px;
+}
+
+.missionCard span{
+  display:block;
+  margin-top:7px;
+  color:#b7c5d6;
+  line-height:1.35;
+}
+
+.tag{
+  color:var(--accent)!important;
+  font-size:11px!important;
+  font-weight:950;
+  letter-spacing:.08em;
+}
+
+.completion{
+  min-height:14px;
+  color:var(--accent)!important;
+  font-size:10px!important;
+  font-weight:950!important;
+}
+
+
+/* ---------------- MISSION CORE ---------------- */
+
+#mission{
+  background:#0a111a;
+}
+
+.scene{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  background:
+    linear-gradient(
+      #24364b 0 47%,
+      #101923 47%
+    );
+}
+
+#environment{
+  position:absolute;
+  inset:0;
+}
+
+.skyGlow{
+  position:absolute;
+  inset:0 0 auto;
+  height:38%;
+  background:
+    radial-gradient(
+      circle at 70% 16%,
+      #526d8a55,
+      transparent 30%
+    );
+}
+
+.ground{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:58%;
+  background:
+    linear-gradient(
+      #1f2b37,
+      #111923
+    );
+}
+
+.missionExit{
+  position:absolute;
+  z-index:120;
+  left:12px;
+  top:max(58px,calc(env(safe-area-inset-top) + 48px));
+  min-width:82px;
+  min-height:46px;
+  padding:8px 13px;
+  border:1px solid #ffffff42;
+  border-radius:999px;
+  background:#08111bf2;
+  font-size:12px;
+  font-weight:950;
+  touch-action:manipulation;
+}
+
+
+/* ---------------- PLAYER ---------------- */
+
+.person{
+  position:absolute;
+  z-index:25;
+  left:50%;
+  bottom:24%;
+  width:62px;
+  height:106px;
+  transform:translateX(-50%);
+  transition:
+    left .12s linear,
+    bottom .12s linear,
+    transform .12s linear,
+    filter .15s;
+}
+
+.shadow{
+  position:absolute;
+  left:50%;
+  bottom:-4px;
+  width:54px;
+  height:13px;
+  transform:translateX(-50%);
+  border-radius:50%;
+  background:#0007;
+}
+
+.head{
+  position:absolute;
+  left:17px;
+  top:0;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  background:#eef3f8;
+}
+
+.body{
+  position:absolute;
+  left:12px;
+  top:28px;
+  width:38px;
+  height:46px;
+  border-radius:16px 16px 10px 10px;
+  background:
+    linear-gradient(
+      #e8eef5,
+      #c8d4df
+    );
+}
+
+.body:after{
+  content:"";
+  position:absolute;
+  right:-9px;
+  top:8px;
+  width:13px;
+  height:33px;
+  border-radius:8px;
+  background:#ccd7e2;
+  transform-origin:top center;
+  transform:rotate(-12deg);
+}
+
+.leg{
+  position:absolute;
+  top:70px;
+  width:13px;
+  height:33px;
+  border-radius:9px;
+  background:#bcc9d5;
+}
+
+.leg.a{
+  left:14px;
+}
+
+.leg.b{
+  right:14px;
+}
+
+.person.walking .leg.a{
+  animation:step .28s infinite alternate;
+}
+
+.person.walking .leg.b{
+  animation:step .28s infinite alternate-reverse;
+}
+
+.person.turnBack .body:after{
+  transform:rotate(42deg);
+}
+
+@keyframes step{
+  to{
+    transform:
+      translateY(4px)
+      rotate(9deg);
+  }
+}
+
+
+/* ---------------- GENERIC DESTINATION / SOURCE ---------------- */
+
+.destination{
+  transition:
+    box-shadow .18s,
+    filter .18s,
+    opacity .18s,
+    transform .18s;
+}
+
+.destination.near{
+  box-shadow:
+    0 0 0 3px #74e7c555,
+    0 0 28px #74e7c566;
+}
+
+.destination.arrived{
+  box-shadow:
+    0 0 0 5px #74e7c577,
+    0 0 40px #74e7c599;
+}
+
+.sourceFocus{
+  box-shadow:
+    0 0 0 4px #b9d4ff66,
+    0 0 34px #b9d4ff99!important;
+  filter:brightness(1.12);
+}
+
+.sceneArrow{
+  position:absolute;
+  z-index:12;
+  color:#74e7c5dd;
+  font-size:28px;
+  text-shadow:0 2px 8px #000;
+  transition:.18s;
+}
+
+.sceneArrow.away{
+  color:#b9d4ffdd;
+}
+
+
+/* ---------------- LOCK & LEAVE ---------------- */
+
+.houseShell{
+  position:absolute;
+  left:50%;
+  top:7%;
+  width:300px;
+  height:255px;
+  transform:translateX(-50%);
+  transition:.18s;
+}
+
+.houseBody{
+  position:absolute;
+  left:16px;
+  right:16px;
+  top:48px;
+  bottom:0;
+  border:6px solid #1b2735;
+  background:
+    linear-gradient(
+      #47576a,
+      #303b49
+    );
+}
+
+.roof{
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  height:110px;
+  background:#202c3a;
+  clip-path:
+    polygon(
+      50% 0,
+      100% 54%,
+      92% 54%,
+      92% 100%,
+      8% 100%,
+      8% 54%,
+      0 54%
+    );
+}
+
+.window{
+  position:absolute;
+  top:92px;
+  width:55px;
+  height:70px;
+  border:6px solid #1b2735;
+  background:#d2a55f;
+}
+
+.window.left{
+  left:38px;
+}
+
+.window.right{
+  right:38px;
+}
+
+.door{
+  position:absolute;
+  left:50%;
+  bottom:18px;
+  width:106px;
+  height:164px;
+  transform:translateX(-50%);
+  border:7px solid #111a25;
+  background:
+    linear-gradient(
+      #2f4155,
+      #1b2a3a
+    );
+}
+
+.knob{
+  position:absolute;
+  right:8px;
+  top:72px;
+  width:34px;
+  height:34px;
+  border:6px solid #6a7a8f;
+  border-radius:50%;
+  background:#e8eef5;
+}
+
+.driveway{
+  position:absolute;
+  z-index:2;
+  left:28%;
+  top:34%;
+  width:72%;
+  height:66%;
+  background:
+    linear-gradient(
+      160deg,
+      #3b4651,
+      #1c252e
+    );
+  clip-path:
+    polygon(
+      24% 0,
+      58% 0,
+      100% 100%,
+      0 100%
+    );
+}
+
+.drivewayVehicle{
+  position:absolute;
+  z-index:10;
+  right:4%;
+  bottom:11%;
+  width:154px;
+  height:70px;
+  border:6px solid #101722;
+  border-radius:34px 38px 18px 18px;
+  background:
+    linear-gradient(
+      #8093aa,
+      #566a83
+    );
+  box-shadow:0 8px 18px #0007;
+}
+
+.drivewayVehicle:before,
+.drivewayVehicle:after{
+  content:"";
+  position:absolute;
+  bottom:-16px;
+  width:29px;
+  height:29px;
+  border:5px solid #394554;
+  border-radius:50%;
+  background:#0a0d12;
+}
+
+.drivewayVehicle:before{
+  left:17px;
+}
+
+.drivewayVehicle:after{
+  right:17px;
+}
+
+.carWindow{
+  position:absolute;
+  left:34px;
+  top:-8px;
+  width:82px;
+  height:36px;
+  background:#21354a;
+  clip-path:
+    polygon(
+      20% 100%,
+      35% 0,
+      78% 0,
+      100% 100%
+    );
+}
+
+.doorArrow{
+  right:18%;
+  bottom:28%;
+  transform:rotate(22deg);
+}
+
+
+/* ---------------- PARK & WALK ---------------- */
+
+.parkingScene{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      #31475b 0 25%,
+      #2b343e 25% 100%
+    );
+}
+
+.store{
+  position:absolute;
+  z-index:6;
+  left:3%;
+  right:3%;
+  top:4%;
+  height:174px;
+  border:7px solid #223040;
+  border-radius:4px 4px 0 0;
+  background:
+    linear-gradient(
+      #60758a,
+      #3b4c60
+    );
+  box-shadow:0 12px 24px #0008;
+}
+
+.store:before{
+  content:"STORE";
+  position:absolute;
+  left:0;
+  right:0;
+  top:18px;
+  text-align:center;
+  font-weight:1000;
+  letter-spacing:.16em;
+}
+
+.storeAwning{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:94px;
+  height:15px;
+  background:#28394b;
+}
+
+.storeDoor{
+  position:absolute;
+  left:50%;
+  bottom:0;
+  width:118px;
+  height:96px;
+  transform:translateX(-50%);
+  border:5px solid #71849a;
+  background:
+    linear-gradient(
+      90deg,
+      #183047 0 48%,
+      #71849a 48% 52%,
+      #183047 52%
+    );
+}
+
+.sidewalkShadow{
+  position:absolute;
+  z-index:2;
+  left:0;
+  right:0;
+  top:30.7%;
+  height:18px;
+  background:#171d23aa;
+}
+
+.sidewalk{
+  position:absolute;
+  z-index:3;
+  left:0;
+  right:0;
+  top:25%;
+  height:58px;
+  border-top:5px solid #d6dbde;
+  border-bottom:7px solid #5b6369;
+  background:
+    linear-gradient(
+      #b4babd,
+      #92999d
+    );
+}
+
+.curbCut{
+  position:absolute;
+  z-index:4;
+  left:50%;
+  top:28%;
+  width:138px;
+  height:42px;
+  transform:translateX(-50%);
+  background:#afb5b8;
+  clip-path:
+    polygon(
+      12% 0,
+      88% 0,
+      100% 100%,
+      0 100%
+    );
+}
+
+.driveAisle{
+  position:absolute;
+  z-index:1;
+  left:0;
+  right:0;
+  top:32%;
+  bottom:0;
+  background:
+    linear-gradient(
+      #3b434b,
+      #222932
+    );
+}
+
+.crosswalk{
+  position:absolute;
+  z-index:3;
+  left:50%;
+  top:31.5%;
+  width:164px;
+  height:230px;
+  transform:translateX(-50%);
+  opacity:.8;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      #f0f3f4 0 15px,
+      transparent 15px 32px
+    );
+  clip-path:
+    polygon(
+      30% 0,
+      70% 0,
+      100% 100%,
+      0 100%
+    );
+}
+
+.parkingRow{
+  position:absolute;
+  z-index:2;
+  bottom:5%;
+  width:41%;
+  height:205px;
+}
+
+.parkingRow.left{
+  left:2%;
+}
+
+.parkingRow.right{
+  right:2%;
+}
+
+.stall{
+  position:absolute;
+  bottom:0;
+  width:32%;
+  height:100%;
+  border-left:4px solid #edf1f2b8;
+  border-right:4px solid #edf1f2b8;
+  border-top:4px solid #edf1f2b8;
+}
+
+.stall.a{
+  left:0;
+  transform:skewX(-5deg);
+}
+
+.stall.b{
+  left:34%;
+  transform:skewX(-2deg);
+}
+
+.stall.c{
+  right:0;
+  transform:skewX(3deg);
+}
+
+.parkedCar{
+  position:absolute;
+  z-index:9;
+  bottom:18px;
+  width:72px;
+  height:118px;
+  border:6px solid #101722;
+  border-radius:18px;
+  background:
+    linear-gradient(
+      #8093aa,
+      #566a83
+    );
+  box-shadow:0 8px 18px #0007;
+}
+
+.parkedCar:before{
+  content:"";
+  position:absolute;
+  left:12px;
+  right:12px;
+  top:20px;
+  height:34px;
+  border-radius:8px;
+  background:#21354a;
+}
+
+.parkedCar.muted{
+  opacity:.42;
+  transform:scale(.85);
+}
+
+.playerCar{
+  right:-4px;
+  bottom:48px;
+  width:78px;
+  height:132px;
+  transition:.18s;
+}
+
+.carArrow{
+  left:54%;
+  top:53%;
+  transform:translateX(-50%);
+}
+
+.carArrow.away{
+  transform:
+    translateX(-50%)
+    rotate(180deg);
+}
+
+.parkingLabel{
+  position:absolute;
+  z-index:7;
+  left:50%;
+  top:35%;
+  transform:translateX(-50%);
+  padding:5px 8px;
+  border-radius:999px;
+  background:#17212bcc;
+  color:#eaf0f6c9;
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:.13em;
+}
+
+
+/* ---------------- OFF & OUT ---------------- */
+
+.kitchenWall{
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  height:49%;
+  background:
+    linear-gradient(
+      #435160,
+      #2d3947
+    );
+}
+
+.kitchenFloor{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:55%;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #222c36 0,
+      #222c36 52px,
+      #2d3944 53px,
+      #2d3944 56px
+    );
+}
+
+.exitDoor{
+  position:absolute;
+  z-index:6;
+  left:50%;
+  top:6%;
+  width:132px;
+  height:220px;
+  transform:translateX(-50%);
+  border:8px solid #172330;
+  background:
+    linear-gradient(
+      #30475a,
+      #172837
+    );
+}
+
+.exitDoor:before{
+  content:"EXIT";
+  position:absolute;
+  left:0;
+  right:0;
+  top:18px;
+  color:#99edcf;
+  text-align:center;
+  font-size:12px;
+  font-weight:1000;
+  letter-spacing:.15em;
+}
+
+.counter{
+  position:absolute;
+  left:0;
+  right:0;
+  top:48%;
+  height:72px;
+  border-top:10px solid #586574;
+  background:#252f39;
+}
+
+.stove{
+  position:absolute;
+  z-index:9;
+  left:69%;
+  top:47%;
+  width:210px;
+  height:140px;
+  transform:translateX(-50%);
+  border:7px solid #18222c;
+  border-radius:8px;
+  background:
+    linear-gradient(
+      #6f7d8c,
+      #424e5b
+    );
+  transition:.18s;
+}
+
+.stoveTop{
+  position:absolute;
+  left:-7px;
+  top:-42px;
+  width:210px;
+  height:52px;
+  border:7px solid #111820;
+  background:#1a222b;
+}
+
+.burner{
+  position:absolute;
+  top:-27px;
+  width:47px;
+  height:22px;
+  border:5px solid #55616d;
+  border-radius:50%;
+  background:#0c1117;
+}
+
+.burner.one{
+  left:20px;
+}
+
+.burner.two{
+  right:20px;
+}
+
+.stovePanel{
+  position:absolute;
+  left:15px;
+  right:15px;
+  top:16px;
+  height:49px;
+  background:#27313b;
+}
+
+.stoveKnob{
+  position:absolute;
+  top:26px;
+  width:31px;
+  height:31px;
+  border:6px solid #697887;
+  border-radius:50%;
+  background:#d9e1e8;
+}
+
+.stoveKnob.one{
+  left:24px;
+}
+
+.stoveKnob.two{
+  left:68px;
+}
+
+.stoveKnob.three{
+  right:68px;
+}
+
+.stoveKnob.four{
+  right:24px;
+}
+
+.stoveOven{
+  position:absolute;
+  left:27px;
+  right:27px;
+  bottom:15px;
+  height:56px;
+  border:6px solid #2c3742;
+  background:#101820;
+}
+
+.stoveArrow{
+  left:53%;
+  top:43%;
+  transform:rotate(-10deg);
+}
+
+
+/* ---------------- SENT & DONE ---------------- */
+
+.messageScene{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(
+      circle at 68% 18%,
+      #425d7940,
+      transparent 30%
+    ),
+    linear-gradient(
+      #26384c 0 42%,
+      #121b25 42%
+    );
+}
+
+.desk{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:45%;
+  background:
+    linear-gradient(
+      #473b34,
+      #28211e
+    );
+}
+
+.phone{
+  position:absolute;
+  z-index:10;
+  left:62%;
+  top:38%;
+  width:112px;
+  height:210px;
+  transform:
+    translateX(-50%)
+    rotate(5deg);
+  border:8px solid #101722;
+  border-radius:24px;
+  background:#101826;
+  box-shadow:0 16px 28px #0008;
+  transition:.18s;
+}
+
+.phoneScreen{
+  position:absolute;
+  inset:8px;
+  overflow:hidden;
+  border-radius:14px;
+  background:
+    linear-gradient(
+      #eaf2f7,
+      #c9d7e3
+    );
+}
+
+.messageHeader{
+  height:26px;
+  background:#34506d;
+}
+
+.messageBubble{
+  position:absolute;
+  right:8px;
+  top:50px;
+  width:70px;
+  min-height:42px;
+  padding:8px;
+  border-radius:14px 14px 3px 14px;
+  background:#4ab598;
+  color:#082119;
+  font-size:7px;
+  font-weight:900;
+}
+
+.sentLabel{
+  position:absolute;
+  right:11px;
+  top:98px;
+  color:#445363;
+  font-size:6px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+
+.nextTask{
+  position:absolute;
+  z-index:6;
+  left:9%;
+  top:25%;
+  width:152px;
+  min-height:112px;
+  padding:15px;
+  border:1px solid #74e7c54d;
+  border-radius:18px;
+  background:#0c1b27e8;
+  box-shadow:0 12px 30px #0007;
+}
+
+.nextTask small{
+  display:block;
+  color:var(--accent);
+  font-size:9px;
+  font-weight:1000;
+  letter-spacing:.12em;
+}
+
+.nextTask b{
+  display:block;
+  margin-top:7px;
+  font-size:17px;
+}
+
+.nextTask p{
+  margin:6px 0 0;
+  color:#bdc9d5;
+  font-size:10px;
+  line-height:1.35;
+}
+
+.messageArrow{
+  left:42%;
+  top:43%;
+  transform:rotate(-28deg);
+}
+
+
+/* ---------------- DOUBT ---------------- */
+
+#doubtVignette{
+  position:absolute;
+  z-index:31;
+  inset:0;
+  opacity:0;
+  pointer-events:none;
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      transparent 32%,
+      #210d2a99 100%
+    );
+  transition:.18s;
+}
+
+#doubtVignette.show{
+  opacity:1;
+}
+
+.doubtText{
+  position:absolute;
+  z-index:34;
+  left:8%;
+  right:8%;
+  top:15%;
+  opacity:0;
+  pointer-events:none;
+  color:white;
+  text-align:center;
+  font-size:23px;
+  font-weight:1000;
+  line-height:1.06;
+  text-shadow:0 4px 16px #000;
+  transition:.18s;
+}
+
+.doubtText.show{
+  opacity:1;
+}
+
+.doubtLabel{
+  display:block;
+  margin-bottom:7px;
+  color:#d2a3cf;
+  font-size:10px;
+  font-weight:1000;
+  letter-spacing:.16em;
+}
+
+
+/* ---------------- DYNAMIC CUE STACK ---------------- */
+
+#cueStack{
+  position:absolute;
+  z-index:50;
+  left:8%;
+  right:8%;
+  top:max(108px,calc(env(safe-area-inset-top) + 88px));
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:7px;
+  pointer-events:none;
+}
+
+#cueStack > div{
+  position:absolute;
+  max-width:100%;
+  padding:8px 12px;
+  opacity:0;
+  transform:translateY(-4px);
+  border-radius:999px;
+  background:#07141ef2;
+  text-align:center;
+  font-size:10px;
+  font-weight:1000;
+  letter-spacing:.055em;
+  transition:.18s;
+}
+
+#cueStack > div.show{
+  position:relative;
+  opacity:1;
+  transform:none;
+}
+
+#carryCue{
+  border:1px solid #74e7c566;
+  color:#bff6e5;
+}
+
+#waveCue{
+  border:1px solid #ffffff33;
+  color:#e9eef5;
+}
+
+#echoCue{
+  border:1px solid #d8b8e466;
+  border-radius:15px!important;
+  background:#180f20e8!important;
+  color:#f2dff5;
+  line-height:1.3;
+}
+
+#echoCue small{
+  display:block;
+  margin-bottom:3px;
+  color:#d8b8e4;
+  font-size:8px;
+  letter-spacing:.13em;
+}
+
+#checkpointCue{
+  border:1px solid #74e7c566;
+  color:#bff6e5;
+}
+
+#recoveryCue{
+  border:1px solid #74e7c566;
+  color:#bff6e5;
+}
+
+#arrivalCue{
+  border:1px solid #74e7c588;
+  background:#0b211ce8!important;
+  color:#d8fff3;
+}
+
+#driftCue{
+  border:1px solid #d8b8e466;
+  border-radius:15px!important;
+  background:#17111ee8!important;
+  color:#ead8f0;
+}
+
+
+/* ---------------- WHAT MATTERS / LOOP GRIP ---------------- */
+
+#whatMatters{
+  position:absolute;
+  z-index:40;
+  left:12px;
+  top:max(318px,calc(env(safe-area-inset-top) + 298px));
+  max-width:170px;
+  padding:9px 11px;
+  border:1px solid #74e7c54a;
+  border-radius:15px;
+  background:#07141ee8;
+  pointer-events:none;
+}
+
+.wmLabel{
+  display:block;
+  margin-bottom:4px;
+  color:var(--accent);
+  font-size:9px;
+  font-weight:1000;
+  letter-spacing:.13em;
+}
+
+.wmText{
+  display:block;
+  font-size:11px;
+  font-weight:850;
+  line-height:1.25;
+}
+
+#loopGripPanel{
+  position:absolute;
+  z-index:39;
+  right:10px;
+  top:max(318px,calc(env(safe-area-inset-top) + 298px));
+  width:126px;
+  padding:8px 9px;
+  border:1px solid #ffffff28;
+  border-radius:14px;
+  background:#081321e8;
+  pointer-events:none;
+}
+
+.gripRow{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  margin-bottom:5px;
+}
+
+.gripTitle,
+.gripState{
+  font-size:9px;
+  font-weight:1000;
+  letter-spacing:.08em;
+}
+
+.gripTitle{
+  color:#dac5e3;
+}
+
+.gripTrack{
+  height:7px;
+  overflow:hidden;
+  border-radius:999px;
+  background:#ffffff20;
+}
+
+.gripTrack i{
+  display:block;
+  width:24%;
+  height:100%;
+  border-radius:999px;
+  background:var(--doubt);
+  transition:width .22s ease;
+}
+
+.gripNote{
+  margin-top:6px;
+  color:#aebbd0;
+  font-size:8px;
+  line-height:1.25;
+}
+
+
+/* ---------------- GAME PANEL ---------------- */
+
+.gamePanel{
+  position:absolute;
+  z-index:80;
+  left:10px;
+  right:10px;
+  bottom:max(10px,env(safe-area-inset-bottom));
+  padding:11px 12px;
+  border:1px solid #ffffff24;
+  border-radius:20px;
+  background:#081321e8;
+  backdrop-filter:blur(12px);
+}
+
+.gameTitle{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.gameTitle b{
+  font-size:15px;
+}
+
+#phaseHint{
+  flex:none;
+  color:#aebbd0;
+  font-size:10px;
+  font-weight:950;
+  letter-spacing:.06em;
+}
+
+.meters{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:9px;
+}
+
+.meterLabel{
+  color:#aeb9c7;
+  font-size:9px;
+  font-weight:850;
+  letter-spacing:.1em;
+}
+
+.meter{
+  position:relative;
+  height:9px;
+  margin-top:4px;
+  overflow:visible;
+  border-radius:999px;
+  background:#29364a;
+}
+
+.meter i.fill{
+  display:block;
+  width:0;
+  height:100%;
+  border-radius:999px;
+  background:#eef3f8;
+}
+
+#recoveryMark{
+  position:absolute;
+  display:none;
+  top:-4px;
+  width:2px;
+  height:17px;
+  background:var(--accent);
+  box-shadow:0 0 0 2px #07101c;
+}
+
+.controls{
+  display:flex;
+  gap:9px;
+  margin-top:10px;
+}
+
+.control{
+  position:relative;
+  flex:1;
+  min-height:60px;
+  overflow:hidden;
+  border:1px solid #ffffff2a;
+  border-radius:15px;
+  background:#152238;
+  font-weight:950;
+  touch-action:manipulation;
+}
+
+.control.primary{
+  background:#eef3f8;
+  color:#101826;
+  touch-action:none;
+}
+
+.control:disabled{
+  opacity:.45;
+}
+
+#holdFill{
+  position:absolute;
+  z-index:0;
+  left:0;
+  bottom:0;
+  width:0;
+  height:5px;
+  background:#4ca98f;
+  transition:width .05s linear;
+  pointer-events:none;
+}
+
+#forwardLabel{
+  position:relative;
+  z-index:1;
+}
+
+#inputHint{
+  min-height:13px;
+  margin-top:6px;
+  color:#9fabbb;
+  text-align:center;
+  font-size:9px;
+  font-weight:800;
+}
+
+#inputHint.cancel{
+  color:#c6b5d1;
+}
+
+
+/* ---------------- REWARD ---------------- */
+
+#reward{
+  background:
+    radial-gradient(
+      circle at 50% 38%,
+      #35516e,
+      #101927 62%,
+      #060b13
+    );
+}
+
+.rewardBox{
+  position:absolute;
+  left:18px;
+  right:18px;
+  top:50%;
+  transform:translateY(-50%);
+  text-align:center;
+}
+
+.rewardCard{
+  padding:16px;
+}
+
+.rewardBig{
+  margin:6px 0 4px;
+  font-size:39px;
+  font-weight:1000;
+}
+
+.practice{
+  margin:12px 0;
+  padding:12px;
+  border:1px solid #74e7c540;
+  border-radius:16px;
+  background:#081321aa;
+  text-align:left;
+}
+
+.practiceLabel{
+  color:var(--accent);
+  font-size:9px;
+  font-weight:1000;
+  letter-spacing:.14em;
+}
+
+.practiceGrid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:6px;
+  margin-top:9px;
+}
+
+.practiceStat{
+  padding:9px 4px;
+  border-radius:12px;
+  background:#ffffff0b;
+  text-align:center;
+}
+
+.practiceStat b{
+  display:block;
+  font-size:17px;
+}
+
+.practiceStat span{
+  display:block;
+  margin-top:3px;
+  color:#b8c4d3;
+  font-size:7px;
+  font-weight:900;
+  line-height:1.2;
+}
+
+.practiceCopy{
+  margin:9px 0 0;
+  color:#c6d1dd;
+  font-size:11px;
+  line-height:1.35;
+}
+
+.sessionNote{
+  margin-top:12px;
+  padding:10px 12px;
+  border-radius:14px;
+  background:#08132199;
+  color:#aebbd0;
+  font-size:11px;
+  line-height:1.35;
+}
+
+.srOnly{
+  position:absolute;
+  width:1px;
+  height:1px;
+  margin:-1px;
+  padding:0;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+
+
+/* ---------------- SHORT PHONES ---------------- */
+
+@media(max-height:700px){
+
+  .hero{
+    font-size:45px;
+  }
+
+  #cueStack{
+    top:80px;
+    gap:5px;
+  }
+
+  #cueStack > div{
+    padding:6px 10px;
+    font-size:9px;
+  }
+
+  #whatMatters,
+  #loopGripPanel{
+    top:286px;
+  }
+
+  #whatMatters{
+    max-width:145px;
+  }
+
+  #loopGripPanel{
+    width:112px;
+  }
+
+  .gamePanel{
+    padding:9px 10px;
+  }
+
+  .control{
+    min-height:54px;
+  }
+
+  .store{
+    height:146px;
+  }
+
+  .sidewalk{
+    top:24%;
+    height:52px;
+  }
+
+  .sidewalkShadow{
+    top:30%;
+    height:14px;
+  }
+
+  .curbCut{
+    top:27%;
+    height:36px;
+  }
+
+  .driveAisle{
+    top:31%;
+  }
+
+  .crosswalk{
+    top:30.5%;
+    width:150px;
+    height:182px;
+  }
+
+  .parkingRow{
+    bottom:7%;
+    height:166px;
+  }
+
+  .playerCar{
+    right:-6px;
+    bottom:34px;
+    width:68px;
+    height:108px;
+  }
+
+  .parkedCar{
+    width:62px;
+    height:98px;
+  }
+
+  .houseShell{
+    top:5%;
+    transform:
+      translateX(-50%)
+      scale(.86);
+  }
+
+  .drivewayVehicle{
+    bottom:13%;
+    width:132px;
+    height:60px;
+  }
+
+  .stove{
+    top:44%;
+    transform:
+      translateX(-50%)
+      scale(.84);
+  }
+
+  .exitDoor{
+    height:180px;
+  }
+
+  .phone{
+    top:36%;
+    width:94px;
+    height:174px;
+  }
+
+  .nextTask{
+    top:23%;
+    width:135px;
+  }
+
+  .practice{
+    margin:8px 0;
+    padding:9px;
+  }
+
+  .practiceStat{
+    padding:7px 3px;
+  }
+
+  .sessionNote{
+    margin-top:8px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+
+  *{
+    animation:none!important;
+    transition:none!important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="app">
+
+
+<!-- =========================================================
+START
+========================================================= -->
+
+<section id="start" class="screen active">
+
+  <div class="logo">
+    UNCERTAIN
+  </div>
+
+  <div class="hero">
+    BREAK<br>
+    THE <span>LOOP.</span>
+  </div>
+
+  <p class="startText">
+    Move forward without making certainty the price of admission.
+  </p>
+
+  <div class="startCard card">
+
+    <button class="btn" id="enter">
+      ENTER THE LOOP
+    </button>
+
+    <p class="small">
+      ERP-informed prototype. This game is not a replacement for professional mental-health care.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+MAP
+========================================================= -->
+
+<section id="map" class="screen">
+
+  <div class="road"></div>
+
+  <button id="checking" class="node">
+
+    <strong>
+      Checking District
+    </strong>
+
+    <small>
+      4 missions available
+    </small>
+
+  </button>
+
+  <button class="node locked" disabled>
+
+    <strong>
+      Next District
+    </strong>
+
+    <small>
+      Under construction
+    </small>
+
+  </button>
+
+  <div class="hud">
+
+    <span class="pill">
+      THE LOOP
+    </span>
+
+    <span class="pill">
+      XP&nbsp;<b class="xp">0</b>
+    </span>
+
+  </div>
+
+  <div class="mapInfo">
+
+    <b>
+      Checking District
+    </b>
+
+    <br>
+
+    <span>
+      Certainty always seems one more check away.
+    </span>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+MISSION SELECT
+========================================================= -->
+
+<section id="missionSelect" class="screen">
+
+  <div class="hud">
+
+    <span class="pill">
+      CHECKING DISTRICT
+    </span>
+
+    <span class="pill">
+      XP&nbsp;<b class="xp">0</b>
+    </span>
+
+  </div>
+
+  <div class="selectWrap">
+
+
+    <button
+      class="missionCard"
+      data-mission="door">
+
+      <span class="tag">
+        PHYSICAL CHECKING
+      </span>
+
+      <b>
+        Lock & Leave
+      </b>
+
+      <span
+        class="completion"
+        data-completion="door">
+      </span>
+
+      <span>
+        Lock once, leave the door behind, and continue toward the vehicle.
+      </span>
+
+    </button>
+
+
+    <button
+      class="missionCard"
+      data-mission="car">
+
+      <span class="tag">
+        PHYSICAL + MENTAL CHECKING
+      </span>
+
+      <b>
+        Park & Walk
+      </b>
+
+      <span
+        class="completion"
+        data-completion="car">
+      </span>
+
+      <span>
+        Lock the car once. Doubt can come along while you walk to the store.
+      </span>
+
+    </button>
+
+
+    <button
+      class="missionCard"
+      data-mission="stove">
+
+      <span class="tag">
+        APPLIANCE CHECKING
+      </span>
+
+      <b>
+        Off & Out
+      </b>
+
+      <span
+        class="completion"
+        data-completion="stove">
+      </span>
+
+      <span>
+        Turn the stove off once, leave it behind, and head for the exit.
+      </span>
+
+    </button>
+
+
+    <button
+      class="missionCard"
+      data-mission="message">
+
+      <span class="tag">
+        MENTAL / COVERT CHECKING
+      </span>
+
+      <b>
+        Sent & Done
+      </b>
+
+      <span
+        class="completion"
+        data-completion="message">
+      </span>
+
+      <span>
+        Send one normal message, put the phone down, and return attention to the next task.
+      </span>
+
+    </button>
+
+
+    <button
+      class="missionCard"
+      id="backMap">
+
+      <span class="tag">
+        RETURN
+      </span>
+
+      <b>
+        Back to The Loop
+      </b>
+
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+MISSION
+========================================================= -->
+
+<section id="mission" class="screen">
+
+  <button
+    type="button"
+    id="missionExit"
+    class="missionExit">
+
+    ‹ EXIT
+
+  </button>
+
+
+  <div class="scene">
+
+    <div class="skyGlow"></div>
+
+    <div class="ground"></div>
+
+    <div id="environment"></div>
+
+
+    <div
+      id="person"
+      class="person">
+
+      <i class="shadow"></i>
+      <i class="head"></i>
+      <i class="body"></i>
+      <i class="leg a"></i>
+      <i class="leg b"></i>
+
+    </div>
+
+
+    <div id="doubtVignette"></div>
+
+
+    <div
+      id="doubtOverlay"
+      class="doubtText">
+
+      <span class="doubtLabel">
+        DOUBT
+      </span>
+
+      <span id="doubtMessage">
+        Are you sure?
+      </span>
+
+    </div>
+
+
+    <div id="cueStack">
+
+      <div id="carryCue">
+        ● UNCERTAINTY CAN COME WITH YOU
+      </div>
+
+      <div id="waveCue">
+        URGE WAVE • 0.0s WITHOUT CHECKING
+      </div>
+
+      <div id="echoCue">
+
+        <small>
+          DOUBT ECHO
+        </small>
+
+        <span id="echoMessage">
+          Maybe go back.
+        </span>
+
+      </div>
+
+      <div id="driftCue">
+        ATTENTION DRIFT • NOTICE IT, KEEP GOING
+      </div>
+
+      <div id="checkpointCue">
+        FORWARD ACTION
+      </div>
+
+      <div id="recoveryCue">
+        RETURN TO YOUR PATH • NO RESET
+      </div>
+
+      <div id="arrivalCue">
+        DESTINATION IN REACH • KEEP MOVING
+      </div>
+
+    </div>
+
+
+    <div id="whatMatters">
+
+      <span class="wmLabel">
+        WHAT MATTERS
+      </span>
+
+      <span
+        class="wmText"
+        id="whatMattersText">
+      </span>
+
+    </div>
+
+
+    <div id="loopGripPanel">
+
+      <div class="gripRow">
+
+        <span class="gripTitle">
+          LOOP GRIP
+        </span>
+
+        <span class="gripState">
+          LOW
+        </span>
+
+      </div>
+
+      <div class="gripTrack">
+        <i></i>
+      </div>
+
+      <div class="gripNote">
+        Tracks certainty-seeking, not anxiety.
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="hud">
+
+    <span
+      class="pill"
+      id="missionName">
+
+      MISSION
+
+    </span>
+
+    <span class="pill">
+      XP&nbsp;<b class="xp">0</b>
+    </span>
+
+  </div>
+
+
+  <div class="gamePanel">
+
+    <div class="gameTitle">
+
+      <div>
+
+        <b id="title">
+          One normal action.
+        </b>
+
+        <div
+          class="small"
+          id="copy">
+
+          No extra certainty required.
+
+        </div>
+
+      </div>
+
+      <span id="phaseHint">
+        READY
+      </span>
+
+    </div>
+
+
+    <div
+      id="meters"
+      class="meters"
+      style="display:none">
+
+      <div>
+
+        <span class="meterLabel">
+          URGE WAVE
+        </span>
+
+        <div class="meter">
+          <i class="fill" id="urge"></i>
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <span class="meterLabel">
+          FORWARD MOMENTUM
+        </span>
+
+        <div class="meter">
+
+          <i
+            class="fill"
+            id="progress">
+          </i>
+
+          <i id="recoveryMark"></i>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="controls">
+
+      <button
+        type="button"
+        class="control"
+        id="checkBtn">
+
+        CHECK AGAIN
+
+      </button>
+
+
+      <button
+        type="button"
+        class="control primary"
+        id="forwardBtn">
+
+        <span id="forwardLabel">
+          START
+        </span>
+
+        <i id="holdFill"></i>
+
+      </button>
+
+    </div>
+
+    <div id="inputHint">
+      &nbsp;
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+REWARD
+========================================================= -->
+
+<section id="reward" class="screen">
+
+  <div class="hud">
+
+    <span class="pill">
+      MOMENTUM
+    </span>
+
+    <span class="pill">
+      XP&nbsp;<b class="xp">0</b>
+    </span>
+
+  </div>
+
+
+  <div class="rewardBox">
+
+    <div class="rewardCard card">
+
+      <div class="small">
+        MISSION COMPLETE
+      </div>
+
+      <div class="rewardBig">
+        +30 XP
+      </div>
+
+      <p id="result"></p>
+
+
+      <div class="practice">
+
+        <div class="practiceLabel">
+          WHAT YOU PRACTICED
+        </div>
+
+
+        <div class="practiceGrid">
+
+          <div class="practiceStat">
+
+            <b id="statChecks">
+              0
+            </b>
+
+            <span>
+              CHECKS
+            </span>
+
+          </div>
+
+
+          <div class="practiceStat">
+
+            <b id="statCarry">
+              0s
+            </b>
+
+            <span>
+              UNCERTAINTY CARRIED
+            </span>
+
+          </div>
+
+
+          <div class="practiceStat">
+
+            <b id="statRecoveries">
+              0
+            </b>
+
+            <span>
+              RETURNS TO PATH
+            </span>
+
+          </div>
+
+
+          <div class="practiceStat">
+
+            <b id="statEchoes">
+              0
+            </b>
+
+            <span>
+              DOUBT ECHOES
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <p
+          class="practiceCopy"
+          id="practiceCopy">
+
+          The win is choosing the next meaningful action—not getting a particular feeling.
+
+        </p>
+
+      </div>
+
+
+      <button
+        class="btn"
+        id="continueBtn">
+
+        BACK TO CHECKING DISTRICT
+
+      </button>
+
+
+      <button
+        class="btn secondary"
+        id="doneBtn">
+
+        DONE FOR NOW
+
+      </button>
+
+
+      <div class="sessionNote">
+
+        These are behavior markers, not a score for how anxious you felt. Stopping here is allowed.
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<div
+  id="liveStatus"
+  class="srOnly"
+  aria-live="polite"
+  aria-atomic="true">
+</div>
+
+
+</div>
+
+
+<script>
+"use strict";
+
+
+/* ============================================================
+HELPERS
+============================================================ */
+
+const $=
+selector=>
+document.querySelector(selector);
+
+
+const $$=
+selector=>
+document.querySelectorAll(selector);
+
+
+const clamp=
+(
+  value,
+  min,
+  max
+)=>
+Math.max(
+  min,
+  Math.min(
+    max,
+    value
+  )
+);
+
+
+const persistence={
+
+  get(
+    key,
+    fallback=""
+  ){
+
+    try{
+
+      return localStorage.getItem(
+        key
+      ) ?? fallback;
+
+    }
+
+    catch{
+
+      return fallback;
+
+    }
+
+  },
+
+
+  set(
+    key,
+    value
+  ){
+
+    try{
+
+      localStorage.setItem(
+        key,
+        String(value)
+      );
+
+    }
+
+    catch{}
+
+  }
+
+};
+
+
+/* ============================================================
+MISSION DATA
+============================================================ */
+
+const missions={
+
+
+  door:{
+
+    name:
+    "LOCK & LEAVE",
+
+    action:
+    "LOCK ONCE",
+
+    title:
+    "Lock the door.",
+
+    copy:
+    "Perform one normal lock.",
+
+    value:
+    "Leave home and continue your day.",
+
+    checkLabel:
+    "CHECK AGAIN",
+
+    arrival:
+    "You reached the vehicle.",
+
+    arrivalCue:
+    "ARRIVED • THE DOOR STAYED BEHIND",
+
+    checkpoints:[
+
+      {
+        at:30,
+        text:
+        "THRESHOLD CROSSED • KEEP GOING"
+      },
+
+      {
+        at:66,
+        text:
+        "HALFWAY TO THE VEHICLE"
+      }
+
+    ],
+
+    thoughts:[
+
+      "Are you sure it clicked?",
+
+      "Maybe the deadbolt didn't catch.",
+
+      "What if the door opens after you leave?",
+
+      "One more check would feel safer."
+
+    ],
+
+    echoes:[
+
+      "Maybe you should turn around.",
+
+      "What if that feeling means something?",
+
+      "You could settle this with one more look."
+
+    ]
+
+  },
+
+
+  car:{
+
+    name:
+    "PARK & WALK",
+
+    action:
+    "LOCK CAR ONCE",
+
+    title:
+    "Lock the car.",
+
+    copy:
+    "Press the key fob once.",
+
+    value:
+    "Go where you were headed.",
+
+    checkLabel:
+    "CHECK AGAIN",
+
+    arrival:
+    "You reached the store.",
+
+    arrivalCue:
+    "ARRIVED • YOU KEPT MOVING",
+
+    checkpoints:[
+
+      {
+        at:30,
+        text:
+        "CAR BEHIND YOU • KEEP GOING"
+      },
+
+      {
+        at:66,
+        text:
+        "CROSSWALK COMMITTED • KEEP GOING"
+      }
+
+    ],
+
+    thoughts:[
+
+      "Did you hear it lock?",
+
+      "Was that your car that beeped?",
+
+      "Maybe a door is unlocked.",
+
+      "You could press it one more time."
+
+    ],
+
+    echoes:[
+
+      "Maybe the beep wasn't yours.",
+
+      "You could press the button from here.",
+
+      "What if a door didn't catch?"
+
+    ]
+
+  },
+
+
+  stove:{
+
+    name:
+    "OFF & OUT",
+
+    action:
+    "TURN OFF ONCE",
+
+    title:
+    "Turn the stove off.",
+
+    copy:
+    "One normal action.",
+
+    value:
+    "Leave the kitchen and continue.",
+
+    checkLabel:
+    "CHECK AGAIN",
+
+    arrival:
+    "You reached the exit.",
+
+    arrivalCue:
+    "ARRIVED • THE STOVE STAYED BEHIND",
+
+    checkpoints:[
+
+      {
+        at:30,
+        text:
+        "YOU STEPPED AWAY • KEEP GOING"
+      },
+
+      {
+        at:66,
+        text:
+        "EXIT IN SIGHT • KEEP GOING"
+      }
+
+    ],
+
+    thoughts:[
+
+      "Was that definitely the right knob?",
+
+      "What if one burner is still on?",
+
+      "Did you actually see it reach OFF?",
+
+      "One more look would feel safer."
+
+    ],
+
+    echoes:[
+
+      "Maybe you remember it wrong.",
+
+      "What if you missed one knob?",
+
+      "You could go back just to be sure."
+
+    ]
+
+  },
+
+
+  message:{
+
+    name:
+    "SENT & DONE",
+
+    action:
+    "SEND ONCE",
+
+    title:
+    "Send the message.",
+
+    copy:
+    "One normal send.",
+
+    value:
+    "Return attention to the next task.",
+
+    checkLabel:
+    "REVIEW AGAIN",
+
+    arrival:
+    "Your attention returned to the next task.",
+
+    arrivalCue:
+    "ARRIVED • THE MESSAGE STAYED SENT",
+
+    checkpoints:[
+
+      {
+        at:30,
+        text:
+        "PHONE DOWN • KEEP GOING"
+      },
+
+      {
+        at:66,
+        text:
+        "ATTENTION ON THE NEXT TASK"
+      }
+
+    ],
+
+    thoughts:[
+
+      "Did that sound rude?",
+
+      "Maybe you used the wrong wording.",
+
+      "What if they misunderstand your tone?",
+
+      "You could reread it just to be sure."
+
+    ],
+
+    echoes:[
+
+      "Maybe you should read it again.",
+
+      "What if that sentence sounded weird?",
+
+      "You could mentally replay what you wrote."
+
+    ]
+
+  }
+
+};
+
+
+/* ============================================================
+STATE
+============================================================ */
+
+let xp=
+Number(
+  persistence.get(
+    "uncertainXP",
+    "0"
+  )
+)||0;
+
+
+let current=
+null;
+
+
+let phase=
+"idle";
+
+
+let momentum=
+0;
+
+
+let peakMomentum=
+0;
+
+
+let urge=
+46;
+
+
+let loopGrip=
+24;
+
+
+let checks=
+0;
+
+
+let recoveryCount=
+0;
+
+
+let recoveryTarget=
+null;
+
+
+let thoughtIndex=
+0;
+
+
+let carrying=
+false;
+
+
+let carryStartedAt=
+0;
+
+
+let carrySeconds=
+0;
+
+
+let carryStartMomentum=
+0;
+
+
+let echoCount=
+0;
+
+
+let echoStage=
+0;
+
+
+let appSuspended=
+false;
+
+
+let holdArmed=
+false;
+
+
+let moving=
+false;
+
+
+let holdStart=
+0;
+
+
+let holdGateTimer=
+null;
+
+
+let holdProgressTimer=
+null;
+
+
+let walkTimer=
+null;
+
+
+let doubtTimer=
+null;
+
+
+let urgeTimer=
+null;
+
+
+let waveTimer=
+null;
+
+
+let echoHideTimer=
+null;
+
+
+let checkpointHideTimer=
+null;
+
+
+let driftHideTimer=
+null;
+
+
+let reliefTimer=
+null;
+
+
+let recoveryHideTimer=
+null;
+
+
+let arrivalTimer=
+null;
+
+
+let turnTimer=
+null;
+
+
+let lastCheckAt=
+0;
+
+
+const HOLD_GATE_MS=
+220;
+
+
+const RECHECK_DEBOUNCE_MS=
+800;
+
+
+/* ============================================================
+CHECKPOINT STATE
+============================================================ */
+
+let earnedCheckpoints=
+new Set();
+
+
+let driftEarned=
+false;
+
+
+/* ============================================================
+SCREEN HELPERS
+============================================================ */
+
+function show(id){
+
+  $$(".screen")
+  .forEach(
+    screen=>
+    screen.classList.remove(
+      "active"
+    )
+  );
+
+
+  $("#"+id)
+  .classList.add(
+    "active"
+  );
+
+}
+
+
+function announce(text){
+
+  $("#liveStatus")
+  .textContent=
+  "";
+
+  requestAnimationFrame(()=>{
+
+    $("#liveStatus")
+    .textContent=
+    text;
+
+  });
+
+}
+
+
+function vibrate(pattern){
+
+  try{
+
+    if(
+      "vibrate" in navigator
+    ){
+
+      navigator.vibrate(
+        pattern
+      );
+
+    }
+
+  }
+
+  catch{}
+
+}
+
+
+function updateXP(){
+
+  persistence.set(
+    "uncertainXP",
+    xp
+  );
+
+
+  $$(".xp")
+  .forEach(
+    item=>
+    item.textContent=xp
+  );
+
+}
+
+
+function completions(){
+
+  $$(".completion")
+  .forEach(
+    item=>{
+
+      const key=
+      item.dataset.completion;
+
+
+      item.textContent=
+
+      persistence.get(
+        "completed_"+key
+      )==="yes"
+
+      ? "✓ COMPLETED • REPLAY AVAILABLE"
+
+      : "";
+
+    }
+  );
+
+}
+
+
+/* ============================================================
+METERS
+============================================================ */
+
+function meters(){
+
+  $("#progress")
+  .style.width=
+  momentum+"%";
+
+
+  $("#urge")
+  .style.width=
+  urge+"%";
+
+}
+
+
+function renderGrip(){
+
+  loopGrip=
+  clamp(
+    loopGrip,
+    8,
+    100
+  );
+
+
+  $(".gripTrack i")
+  .style.width=
+  loopGrip+"%";
+
+
+  $(".gripState")
+  .textContent=
+
+  loopGrip>=72
+
+  ? "STRONG"
+
+  : loopGrip>=42
+
+  ? "ACTIVE"
+
+  : "LOW";
+
+}
+
+
+/* ============================================================
+DOUBT
+============================================================ */
+
+function hideDoubt(){
+
+  $("#doubtOverlay")
+  .classList.remove(
+    "show"
+  );
+
+
+  $("#doubtVignette")
+  .classList.remove(
+    "show"
+  );
+
+}
+
+
+function showDoubt(text){
+
+  if(
+    !current
+  ){
+
+    return;
+
+  }
+
+
+  $("#doubtMessage")
+  .textContent=
+  text;
+
+
+  $("#doubtOverlay")
+  .classList.add(
+    "show"
+  );
+
+
+  $("#doubtVignette")
+  .classList.add(
+    "show"
+  );
+
+
+  $("#phaseHint")
+  .textContent=
+  "DOUBT";
+
+
+  announce(
+    "Doubt: "+text
+  );
+
+
+  vibrate(
+    20
+  );
+
+}
+
+
+function nextThought(){
+
+  const list=
+  missions[current]
+  .thoughts;
+
+
+  const text=
+  list[
+    thoughtIndex %
+    list.length
+  ];
+
+
+  thoughtIndex++;
+
+
+  return text;
+
+}
+
+
+function scheduleDoubt(
+  delay=800
+){
+
+  clearTimeout(
+    doubtTimer
+  );
+
+
+  doubtTimer=
+  setTimeout(()=>{
+
+    doubtTimer=
+    null;
+
+
+    if(
+      current &&
+      phase==="ready" &&
+      !carrying &&
+      !appSuspended
+    ){
+
+      showDoubt(
+        nextThought()
+      );
+
+
+      urge=
+      clamp(
+        urge+10,
+        18,
+        96
+      );
+
+
+      meters();
+
+    }
+
+  },delay);
+
+}
+
+
+/* ============================================================
+CARRY CLOCK
+============================================================ */
+
+function pauseCarryClock(){
+
+  if(
+    carrying &&
+    carryStartedAt
+  ){
+
+    carrySeconds+=
+    (
+      performance.now()-
+      carryStartedAt
+    )/1000;
+
+
+    carryStartedAt=
+    0;
+
+  }
+
+}
+
+
+function resumeCarryClock(){
+
+  if(
+    carrying &&
+    !carryStartedAt
+  ){
+
+    carryStartedAt=
+    performance.now();
+
+  }
+
+}
+
+
+function currentCarrySeconds(){
+
+  return carrySeconds+
+
+  (
+    carrying &&
+    carryStartedAt
+
+    ? (
+        performance.now()-
+        carryStartedAt
+      )/1000
+
+    : 0
+  );
+
+}
+
+
+function setCarrying(on){
+
+  if(
+    on &&
+    !carrying
+  ){
+
+    echoStage=
+    0;
+
+
+    carryStartMomentum=
+    momentum;
+
+
+    carryStartedAt=
+    performance.now();
+
+  }
+
+
+  if(
+    !on &&
+    carrying
+  ){
+
+    pauseCarryClock();
+
+  }
+
+
+  carrying=
+  on;
+
+
+  $("#carryCue")
+  .classList.toggle(
+    "show",
+    on
+  );
+
+
+  if(on){
+
+    announce(
+      "Uncertainty can come with you."
+    );
+
+  }
+
+}
+
+
+/* ============================================================
+DOUBT ECHO
+============================================================ */
+
+function hideEcho(){
+
+  clearTimeout(
+    echoHideTimer
+  );
+
+
+  echoHideTimer=
+  null;
+
+
+  $("#echoCue")
+  .classList.remove(
+    "show"
+  );
+
+}
+
+
+function showEcho(){
+
+  if(
+    !current ||
+    !carrying ||
+    phase!=="moving"
+  ){
+
+    return;
+
+  }
+
+
+  const list=
+  missions[current]
+  .echoes;
+
+
+  const text=
+  list[
+    echoCount %
+    list.length
+  ];
+
+
+  echoCount++;
+
+
+  $("#echoMessage")
+  .textContent=
+  text;
+
+
+  $("#echoCue")
+  .classList.add(
+    "show"
+  );
+
+
+  announce(
+    "Doubt echo: "+
+    text+
+    ". Keep moving if you choose."
+  );
+
+
+  vibrate(
+    12
+  );
+
+
+  clearTimeout(
+    echoHideTimer
+  );
+
+
+  echoHideTimer=
+  setTimeout(
+    hideEcho,
+    1000
+  );
+
+}
+
+
+function maybeEcho(){
+
+  if(
+    !carrying ||
+    phase!=="moving"
+  ){
+
+    return;
+
+  }
+
+
+  const distance=
+  momentum-
+  carryStartMomentum;
+
+
+  const thresholds=[
+    16,
+    38
+  ];
+
+
+  if(
+    echoStage<
+    thresholds.length &&
+    distance>=
+    thresholds[
+      echoStage
+    ]
+  ){
+
+    echoStage++;
+
+
+    showEcho();
+
+  }
+
+}
+
+
+/* ============================================================
+ATTENTION DRIFT
+============================================================ */
+
+function hideDrift(){
+
+  clearTimeout(
+    driftHideTimer
+  );
+
+
+  driftHideTimer=
+  null;
+
+
+  $("#driftCue")
+  .classList.remove(
+    "show"
+  );
+
+}
+
+
+function maybeAttentionDrift(){
+
+  if(
+    current!=="message" ||
+    driftEarned ||
+    !carrying ||
+    phase!=="moving" ||
+    momentum<48
+  ){
+
+    return;
+
+  }
+
+
+  driftEarned=
+  true;
+
+
+  $("#driftCue")
+  .classList.add(
+    "show"
+  );
+
+
+  announce(
+    "Attention drift. Notice it and keep going."
+  );
+
+
+  vibrate(
+    10
+  );
+
+
+  clearTimeout(
+    driftHideTimer
+  );
+
+
+  driftHideTimer=
+  setTimeout(
+    hideDrift,
+    1300
+  );
+
+}
+
+
+/* ============================================================
+CHECKPOINTS
+============================================================ */
+
+function hideCheckpoint(){
+
+  clearTimeout(
+    checkpointHideTimer
+  );
+
+
+  checkpointHideTimer=
+  null;
+
+
+  $("#checkpointCue")
+  .classList.remove(
+    "show"
+  );
+
+}
+
+
+function showCheckpoint(text){
+
+  $("#checkpointCue")
+  .textContent=
+  text;
+
+
+  $("#checkpointCue")
+  .classList.add(
+    "show"
+  );
+
+
+  announce(
+    text
+  );
+
+
+  vibrate([
+    12,
+    30,
+    12
+  ]);
+
+
+  clearTimeout(
+    checkpointHideTimer
+  );
+
+
+  checkpointHideTimer=
+  setTimeout(
+    hideCheckpoint,
+    1150
+  );
+
+}
+
+
+function checkRouteCheckpoints(){
+
+  if(
+    !current
+  ){
+
+    return;
+
+  }
+
+
+  missions[current]
+  .checkpoints
+  .forEach(
+    (
+      checkpoint,
+      index
+    )=>{
+
+      if(
+        momentum>=checkpoint.at &&
+        !earnedCheckpoints.has(
+          index
+        )
+      ){
+
+        earnedCheckpoints.add(
+          index
+        );
+
+
+        showCheckpoint(
+          checkpoint.text
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
+/* ============================================================
+RECOVERY
+============================================================ */
+
+function renderRecoveryCue(){
+
+  clearTimeout(
+    recoveryHideTimer
+  );
+
+
+  recoveryHideTimer=
+  null;
+
+
+  if(
+    recoveryTarget!==null
+  ){
+
+    $("#recoveryCue")
+    .textContent=
+    "RETURN TO YOUR PATH • NO RESET";
+
+
+    $("#recoveryCue")
+    .classList.add(
+      "show"
+    );
+
+  }
+
+  else{
+
+    $("#recoveryCue")
+    .classList.remove(
+      "show"
+    );
+
+  }
+
+}
+
+
+function setRecoveryTarget(value){
+
+  recoveryTarget=
+  value;
+
+
+  const mark=
+  $("#recoveryMark");
+
+
+  if(
+    value===null
+  ){
+
+    mark.style.display=
+    "none";
+
+  }
+
+  else{
+
+    mark.style.display=
+    "block";
+
+
+    mark.style.left=
+    `calc(${
+      clamp(
+        value,
+        0,
+        100
+      )
+    }% - 1px)`;
+
+  }
+
+
+  renderRecoveryCue();
+
+}
+
+
+function recoverySuccess(){
+
+  recoveryCount++;
+
+
+  setRecoveryTarget(
+    null
+  );
+
+
+  $("#recoveryCue")
+  .textContent=
+  "YOU RETURNED • KEEP GOING";
+
+
+  $("#recoveryCue")
+  .classList.add(
+    "show"
+  );
+
+
+  announce(
+    "You returned to your path without restarting."
+  );
+
+
+  vibrate([
+    14,
+    28,
+    14
+  ]);
+
+
+  clearTimeout(
+    recoveryHideTimer
+  );
+
+
+  recoveryHideTimer=
+  setTimeout(()=>{
+
+    recoveryHideTimer=
+    null;
+
+
+    if(
+      recoveryTarget===null
+    ){
+
+      $("#recoveryCue")
+      .classList.remove(
+        "show"
+      );
+
+    }
+
+  },1000);
+
+}
+
+
+/* ============================================================
+URGE ENGINE
+============================================================ */
+
+function stopUrgeEngine(){
+
+  clearInterval(
+    urgeTimer
+  );
+
+
+  urgeTimer=
+  null;
+
+}
+
+
+function startUrgeEngine(){
+
+  if(
+    urgeTimer ||
+    appSuspended ||
+    !current
+  ){
+
+    return;
+
+  }
+
+
+  urgeTimer=
+  setInterval(()=>{
+
+    if(
+      appSuspended ||
+      ![
+        "ready",
+        "moving"
+      ].includes(
+        phase
+      )
+    ){
+
+      return;
+
+    }
+
+
+    const target=
+    54+
+    Math.sin(
+      Date.now()/850
+    )*28;
+
+
+    urge=
+    clamp(
+      urge+
+      (
+        target-
+        urge
+      )*.08,
+      18,
+      94
+    );
+
+
+    meters();
+
+  },180);
+
+}
+
+
+/* ============================================================
+URGE WAVE
+============================================================ */
+
+function stopWave(){
+
+  clearInterval(
+    waveTimer
+  );
+
+
+  waveTimer=
+  null;
+
+
+  $("#waveCue")
+  .classList.remove(
+    "show"
+  );
+
+}
+
+
+function startWave(){
+
+  stopWave();
+
+
+  const started=
+  performance.now();
+
+
+  $("#waveCue")
+  .classList.add(
+    "show"
+  );
+
+
+  waveTimer=
+  setInterval(()=>{
+
+    if(
+      phase!=="ready" ||
+      !carrying ||
+      appSuspended
+    ){
+
+      stopWave();
+
+      return;
+
+    }
+
+
+    const seconds=
+    (
+      performance.now()-
+      started
+    )/1000;
+
+
+    $("#waveCue")
+    .textContent=
+    `URGE WAVE • ${
+      seconds.toFixed(1)
+    }s WITHOUT CHECKING`;
+
+
+    if(
+      seconds>=1.2
+    ){
+
+      loopGrip=
+      clamp(
+        loopGrip-.7,
+        8,
+        100
+      );
+
+
+      renderGrip();
+
+    }
+
+  },180);
+
+}
+
+
+/* ============================================================
+SCENES
+============================================================ */
+
+function sceneMarkup(key){
+
+  if(
+    key==="door"
+  ){
+
+    return `
+
+<div class="houseShell">
+
+  <div class="roof"></div>
+
+  <div class="houseBody">
+
+    <div class="window left"></div>
+
+    <div class="window right"></div>
+
+    <div class="door">
+      <div class="knob"></div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="driveway"></div>
+
+<div class="drivewayVehicle destination">
+
+  <div class="carWindow"></div>
+
+</div>
+
+<div class="sceneArrow doorArrow">
+  ↘
+</div>
+
+`;
+
+  }
+
+
+  if(
+    key==="car"
+  ){
+
+    return `
+
+<div class="parkingScene">
+
+  <div class="store">
+
+    <div class="storeAwning"></div>
+
+    <div class="storeDoor destination"></div>
+
+  </div>
+
+
+  <div class="sidewalkShadow"></div>
+
+  <div class="sidewalk"></div>
+
+  <div class="curbCut"></div>
+
+  <div class="driveAisle"></div>
+
+  <div class="crosswalk"></div>
+
+
+  <div class="parkingRow left">
+
+    <div class="stall a"></div>
+
+    <div class="stall b"></div>
+
+    <div class="stall c"></div>
+
+    <div
+      class="parkedCar muted"
+      style="left:6%">
+    </div>
+
+    <div
+      class="parkedCar muted"
+      style="right:7%">
+    </div>
+
+  </div>
+
+
+  <div class="parkingRow right">
+
+    <div class="stall a"></div>
+
+    <div class="stall b"></div>
+
+    <div class="stall c"></div>
+
+    <div
+      class="parkedCar muted"
+      style="left:2%">
+    </div>
+
+    <div class="playerCar parkedCar"></div>
+
+  </div>
+
+
+  <div class="parkingLabel">
+    CROSS TO STORE
+  </div>
+
+  <div class="sceneArrow carArrow">
+    ↑
+  </div>
+
+</div>
+
+`;
+
+  }
+
+
+  if(
+    key==="stove"
+  ){
+
+    return `
+
+<div class="kitchenWall"></div>
+
+<div class="kitchenFloor"></div>
+
+<div class="exitDoor destination"></div>
+
+<div class="counter"></div>
+
+<div class="stove">
+
+  <div class="stoveTop">
+
+    <div class="burner one"></div>
+
+    <div class="burner two"></div>
+
+  </div>
+
+  <div class="stovePanel"></div>
+
+  <div class="stoveKnob one"></div>
+
+  <div class="stoveKnob two"></div>
+
+  <div class="stoveKnob three"></div>
+
+  <div class="stoveKnob four"></div>
+
+  <div class="stoveOven"></div>
+
+</div>
+
+<div class="sceneArrow stoveArrow">
+  ↖
+</div>
+
+`;
+
+  }
+
+
+  return `
+
+<div class="messageScene">
+
+  <div class="nextTask destination">
+
+    <small>
+      NEXT TASK
+    </small>
+
+    <b>
+      Return to your day
+    </b>
+
+    <p>
+      No verdict on the message is required first.
+    </p>
+
+  </div>
+
+
+  <div class="desk"></div>
+
+
+  <div class="phone">
+
+    <div class="phoneScreen">
+
+      <div class="messageHeader"></div>
+
+      <div class="messageBubble">
+        Sounds good. See you then!
+      </div>
+
+      <div class="sentLabel">
+        SENT
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="sceneArrow messageArrow">
+    ↖
+  </div>
+
+</div>
+
+`;
+
+}
+
+
+/* ============================================================
+SCENE ELEMENTS
+============================================================ */
+
+function sourceElement(){
+
+  if(
+    current==="door"
+  ){
+
+    return $(".door");
+
+  }
+
+
+  if(
+    current==="car"
+  ){
+
+    return $(".playerCar");
+
+  }
+
+
+  if(
+    current==="stove"
+  ){
+
+    return $(".stove");
+
+  }
+
+
+  return $(".phone");
+
+}
+
+
+function destinationElement(){
+
+  return $(".destination");
+
+}
+
+
+function arrowElement(){
+
+  return $(".sceneArrow");
+
+}
+
+
+/* ============================================================
+TURN-BACK VISUAL
+============================================================ */
+
+function clearTurnVisual(){
+
+  clearTimeout(
+    turnTimer
+  );
+
+
+  turnTimer=
+  null;
+
+
+  $("#person")
+  .classList.remove(
+    "turnBack"
+  );
+
+
+  const source=
+  sourceElement();
+
+
+  const arrow=
+  arrowElement();
+
+
+  if(source){
+
+    source.classList.remove(
+      "sourceFocus"
+    );
+
+  }
+
+
+  if(arrow){
+
+    arrow.classList.remove(
+      "away"
+    );
+
+  }
+
+}
+
+
+function showTurnBack(){
+
+  clearTurnVisual();
+
+
+  $("#person")
+  .classList.add(
+    "turnBack"
+  );
+
+
+  const source=
+  sourceElement();
+
+
+  const arrow=
+  arrowElement();
+
+
+  if(source){
+
+    source.classList.add(
+      "sourceFocus"
+    );
+
+  }
+
+
+  if(arrow){
+
+    arrow.classList.add(
+      "away"
+    );
+
+  }
+
+
+  turnTimer=
+  setTimeout(
+    clearTurnVisual,
+    620
+  );
+
+}
+
+
+/* ============================================================
+DESTINATION
+============================================================ */
+
+function setArrivalCue(
+  showIt,
+  text="DESTINATION IN REACH • KEEP MOVING"
+){
+
+  $("#arrivalCue")
+  .textContent=
+  text;
+
+
+  $("#arrivalCue")
+  .classList.toggle(
+    "show",
+    showIt
+  );
+
+}
+
+
+function updateDestination(){
+
+  const destination=
+  destinationElement();
+
+
+  if(
+    !destination
+  ){
+
+    return;
+
+  }
+
+
+  destination.classList.toggle(
+    "near",
+    momentum>=88 &&
+    momentum<100
+  );
+
+
+  destination.classList.toggle(
+    "arrived",
+    momentum>=100
+  );
+
+
+  setArrivalCue(
+    momentum>=88 &&
+    momentum<100
+  );
+
+}
+
+
+/* ============================================================
+UPDATE SCENE
+============================================================ */
+
+function updateScene(){
+
+  const t=
+  momentum/100;
+
+
+  const person=
+  $("#person");
+
+
+  if(
+    current==="car"
+  ){
+
+    person.style.left=
+    (
+      60-
+      10*t
+    )+"%";
+
+
+    person.style.bottom=
+    (
+      17+
+      43*t
+    )+"%";
+
+
+    person.style.transform=
+    `translateX(-50%) scale(${
+      1-
+      .25*t
+    })`;
+
+
+    const car=
+    $(".playerCar");
+
+
+    if(car){
+
+      car.style.opacity=
+      String(
+        Math.max(
+          .25,
+          1-
+          .7*t
+        )
+      );
+
+    }
+
+  }
+
+
+  else if(
+    current==="door"
+  ){
+
+    person.style.left=
+    (
+      50+
+      20*t
+    )+"%";
+
+
+    person.style.bottom=
+    (
+      43-
+      27*t
+    )+"%";
+
+
+    person.style.transform=
+    `translateX(-50%) scale(${
+      1-
+      .08*t
+    })`;
+
+
+    const house=
+    $(".houseShell");
+
+
+    if(house){
+
+      house.style.opacity=
+      String(
+        Math.max(
+          .28,
+          1-
+          .68*t
+        )
+      );
+
+    }
+
+  }
+
+
+  else if(
+    current==="stove"
+  ){
+
+    person.style.left=
+    (
+      67-
+      17*t
+    )+"%";
+
+
+    person.style.bottom=
+    (
+      24+
+      36*t
+    )+"%";
+
+
+    person.style.transform=
+    `translateX(-50%) scale(${
+      1-
+      .2*t
+    })`;
+
+
+    const stove=
+    $(".stove");
+
+
+    if(stove){
+
+      stove.style.opacity=
+      String(
+        Math.max(
+          .25,
+          1-
+          .72*t
+        )
+      );
+
+    }
+
+  }
+
+
+  else if(
+    current==="message"
+  ){
+
+    person.style.left=
+    (
+      68-
+      26*t
+    )+"%";
+
+
+    person.style.bottom=
+    (
+      18+
+      29*t
+    )+"%";
+
+
+    person.style.transform=
+    `translateX(-50%) scale(${
+      1-
+      .13*t
+    })`;
+
+
+    const phone=
+    $(".phone");
+
+
+    if(phone){
+
+      phone.style.opacity=
+      String(
+        Math.max(
+          .22,
+          1-
+          .74*t
+        )
+      );
+
+    }
+
+  }
+
+
+  const arrow=
+  arrowElement();
+
+
+  if(arrow){
+
+    arrow.style.opacity=
+    String(
+      Math.max(
+        .16,
+        1-
+        .72*t
+      )
+    );
+
+  }
+
+
+  updateDestination();
+
+}
+
+
+/* ============================================================
+LOAD MISSION
+============================================================ */
+
+function loadMission(key){
+
+  stopAll();
+
+
+  current=
+  key;
+
+
+  phase=
+  "action";
+
+
+  momentum=
+  0;
+
+
+  peakMomentum=
+  0;
+
+
+  urge=
+  46;
+
+
+  loopGrip=
+  24;
+
+
+  checks=
+  0;
+
+
+  recoveryCount=
+  0;
+
+
+  recoveryTarget=
+  null;
+
+
+  thoughtIndex=
+  0;
+
+
+  carrying=
+  false;
+
+
+  carrySeconds=
+  0;
+
+
+  carryStartedAt=
+  0;
+
+
+  carryStartMomentum=
+  0;
+
+
+  echoCount=
+  0;
+
+
+  echoStage=
+  0;
+
+
+  appSuspended=
+  false;
+
+
+  holdArmed=
+  false;
+
+
+  moving=
+  false;
+
+
+  earnedCheckpoints=
+  new Set();
+
+
+  driftEarned=
+  false;
+
+
+  lastCheckAt=
+  0;
+
+
+  $("#environment")
+  .innerHTML=
+  sceneMarkup(
+    key
+  );
+
+
+  $("#missionName")
+  .textContent=
+  missions[key].name;
+
+
+  $("#title")
+  .textContent=
+  missions[key].title;
+
+
+  $("#copy")
+  .textContent=
+  missions[key].copy;
+
+
+  $("#whatMattersText")
+  .textContent=
+  missions[key].value;
+
+
+  $("#phaseHint")
+  .textContent=
+  "ACTION";
+
+
+  $("#meters")
+  .style.display=
+  "none";
+
+
+  $("#checkBtn")
+  .style.display=
+  "none";
+
+
+  $("#checkBtn")
+  .disabled=
+  false;
+
+
+  $("#checkBtn")
+  .textContent=
+  missions[key].checkLabel;
+
+
+  $("#forwardLabel")
+  .textContent=
+  missions[key].action;
+
+
+  resetHoldUI();
+
+
+  const person=
+  $("#person");
+
+
+  person.style.left=
+
+  key==="door"
+
+  ? "50%"
+
+  : key==="car"
+
+  ? "60%"
+
+  : key==="stove"
+
+  ? "67%"
+
+  : "68%";
+
+
+  person.style.bottom=
+
+  key==="door"
+
+  ? "43%"
+
+  : key==="car"
+
+  ? "17%"
+
+  : key==="stove"
+
+  ? "24%"
+
+  : "18%";
+
+
+  person.style.transform=
+  "translateX(-50%)";
+
+
+  hideDoubt();
+
+  hideEcho();
+
+  hideDrift();
+
+  hideCheckpoint();
+
+
+  $("#carryCue")
+  .classList.remove(
+    "show"
+  );
+
+
+  $("#waveCue")
+  .classList.remove(
+    "show"
+  );
+
+
+  setRecoveryTarget(
+    null
+  );
+
+
+  setArrivalCue(
+    false
+  );
+
+
+  meters();
+
+  renderGrip();
+
+  updateScene();
+
+
+  show(
+    "mission"
+  );
+
+
+  announce(
+    missions[key].name+
+    " opened."
+  );
+
+}
+
+
+/* ============================================================
+INITIAL ACTION
+============================================================ */
+
+function initialAction(){
+
+  if(
+    phase!=="action"
+  ){
+
+    return;
+
+  }
+
+
+  phase=
+  "ready";
+
+
+  $("#meters")
+  .style.display=
+  "grid";
+
+
+  $("#checkBtn")
+  .style.display=
+  "block";
+
+
+  $("#checkBtn")
+  .disabled=
+  false;
+
+
+  $("#forwardLabel")
+  .textContent=
+  "HOLD TO MOVE";
+
+
+  $("#phaseHint")
+  .textContent=
+  "READY";
+
+
+  $("#title")
+  .textContent=
+  "Now move on.";
+
+
+  $("#copy")
+  .textContent=
+
+  current==="door"
+
+  ? "Leave the door behind and head to the vehicle."
+
+  : current==="car"
+
+  ? "Step away from the parked car and head to the store."
+
+  : current==="stove"
+
+  ? "Leave the stove behind and head to the exit."
+
+  : "Put the phone down and return attention to the next task.";
+
+
+  resetHoldUI();
+
+
+  startUrgeEngine();
+
+
+  scheduleDoubt(
+    700
+  );
+
+
+  vibrate([
+    16,
+    30,
+    16
+  ]);
+
+
+  announce(
+    "Normal action complete. Ready to move."
+  );
+
+}
+
+
+/* ============================================================
+HOLD GATE
+============================================================ */
+
+function resetHoldUI(){
+
+  clearTimeout(
+    holdGateTimer
+  );
+
+
+  clearInterval(
+    holdProgressTimer
+  );
+
+
+  holdGateTimer=
+  null;
+
+
+  holdProgressTimer=
+  null;
+
+
+  holdArmed=
+  false;
+
+
+  $("#holdFill")
+  .style.width=
+  "0%";
+
+
+  $("#inputHint")
+  .classList.remove(
+    "cancel"
+  );
+
+
+  $("#inputHint")
+  .innerHTML=
+  "&nbsp;";
+
+}
+
+
+function cancelHold(
+  showFeedback=true
+){
+
+  const wasPending=
+  holdArmed &&
+  !moving;
+
+
+  clearTimeout(
+    holdGateTimer
+  );
+
+
+  clearInterval(
+    holdProgressTimer
+  );
+
+
+  holdGateTimer=
+  null;
+
+
+  holdProgressTimer=
+  null;
+
+
+  holdArmed=
+  false;
+
+
+  $("#holdFill")
+  .style.width=
+  "0%";
+
+
+  if(
+    moving
+  ){
+
+    stopWalking();
+
+  }
+
+
+  if(
+    wasPending &&
+    showFeedback
+  ){
+
+    $("#inputHint")
+    .textContent=
+    "Quick tap canceled • hold to move";
+
+
+    $("#inputHint")
+    .classList.add(
+      "cancel"
+    );
+
+
+    setTimeout(()=>{
+
+      if(
+        !holdArmed &&
+        !moving
+      ){
+
+        $("#inputHint")
+        .innerHTML=
+        "&nbsp;";
+
+
+        $("#inputHint")
+        .classList.remove(
+          "cancel"
+        );
+
+      }
+
+    },900);
+
+  }
+
+}
+
+
+function armHold(){
+
+  if(
+    phase==="action"
+  ){
+
+    initialAction();
+
+    return;
+
+  }
+
+
+  if(
+    phase!=="ready" ||
+    appSuspended ||
+    holdArmed ||
+    moving ||
+    momentum>=100
+  ){
+
+    return;
+
+  }
+
+
+  holdArmed=
+  true;
+
+
+  holdStart=
+  performance.now();
+
+
+  $("#inputHint")
+  .textContent=
+  "Hold…";
+
+
+  $("#inputHint")
+  .classList.remove(
+    "cancel"
+  );
+
+
+  holdProgressTimer=
+  setInterval(()=>{
+
+    if(
+      !holdArmed
+    ){
+
+      return;
+
+    }
+
+
+    const elapsed=
+    performance.now()-
+    holdStart;
+
+
+    const percent=
+    clamp(
+      elapsed/
+      HOLD_GATE_MS*
+      100,
+      0,
+      100
+    );
+
+
+    $("#holdFill")
+    .style.width=
+    percent+"%";
+
+  },20);
+
+
+  holdGateTimer=
+  setTimeout(()=>{
+
+    if(
+      !holdArmed ||
+      appSuspended ||
+      phase!=="ready"
+    ){
+
+      return;
+
+    }
+
+
+    clearInterval(
+      holdProgressTimer
+    );
+
+
+    holdProgressTimer=
+    null;
+
+
+    $("#holdFill")
+    .style.width=
+    "100%";
+
+
+    $("#inputHint")
+    .textContent=
+    "Moving";
+
+
+    startWalking();
+
+  },HOLD_GATE_MS);
+
+}
+
+
+/* ============================================================
+WALKING
+============================================================ */
+
+function startWalking(){
+
+  if(
+    phase!=="ready" ||
+    appSuspended ||
+    momentum>=100
+  ){
+
+    return false;
+
+  }
+
+
+  clearTimeout(
+    doubtTimer
+  );
+
+
+  doubtTimer=
+  null;
+
+
+  stopWave();
+
+  hideEcho();
+
+  clearTurnVisual();
+
+
+  if(
+    $("#doubtOverlay")
+    .classList.contains(
+      "show"
+    )
+  ){
+
+    hideDoubt();
+
+
+    setCarrying(
+      true
+    );
+
+  }
+
+
+  phase=
+  "moving";
+
+
+  moving=
+  true;
+
+
+  startUrgeEngine();
+
+
+  $("#phaseHint")
+  .textContent=
+
+  recoveryTarget!==null
+
+  ? "RECOVERING"
+
+  : "MOVING";
+
+
+  $("#person")
+  .classList.add(
+    "walking"
+  );
+
+
+  walkTimer=
+  setInterval(()=>{
+
+    const before=
+    momentum;
+
+
+    momentum=
+    Math.min(
+      100,
+      momentum+2.1
+    );
+
+
+    peakMomentum=
+    Math.max(
+      peakMomentum,
+      momentum
+    );
+
+
+    loopGrip=
+    clamp(
+      loopGrip-
+      (
+        momentum-
+        before
+      )*.7,
+      8,
+      100
+    );
+
+
+    maybeEcho();
+
+
+    maybeAttentionDrift();
+
+
+    checkRouteCheckpoints();
+
+
+    if(
+      recoveryTarget!==null &&
+      momentum>=recoveryTarget
+    ){
+
+      recoverySuccess();
+
+    }
+
+
+    renderGrip();
+
+    updateScene();
+
+    meters();
+
+
+    if(
+      momentum>=100
+    ){
+
+      beginArrival();
+
+    }
+
+  },70);
+
+
+  return true;
+
+}
+
+
+function stopWalking(){
+
+  if(
+    !moving &&
+    phase!=="moving"
+  ){
+
+    return;
+
+  }
+
+
+  clearInterval(
+    walkTimer
+  );
+
+
+  walkTimer=
+  null;
+
+
+  moving=
+  false;
+
+
+  holdArmed=
+  false;
+
+
+  clearTimeout(
+    holdGateTimer
+  );
+
+
+  clearInterval(
+    holdProgressTimer
+  );
+
+
+  holdGateTimer=
+  null;
+
+
+  holdProgressTimer=
+  null;
+
+
+  $("#holdFill")
+  .style.width=
+  "0%";
+
+
+  $("#inputHint")
+  .innerHTML=
+  "&nbsp;";
+
+
+  $("#person")
+  .classList.remove(
+    "walking"
+  );
+
+
+  hideEcho();
+
+
+  if(
+    phase==="arriving" ||
+    phase==="complete"
+  ){
+
+    return;
+
+  }
+
+
+  phase=
+  "ready";
+
+
+  $("#phaseHint")
+  .textContent=
+
+  carrying
+
+  ? "CARRYING"
+
+  : "READY";
+
+
+  startUrgeEngine();
+
+
+  if(
+    carrying
+  ){
+
+    startWave();
+
+  }
+
+  else if(
+    momentum<100
+  ){
+
+    scheduleDoubt(
+      650
+    );
+
+  }
+
+}
+
+
+/* ============================================================
+RECHECK
+============================================================ */
+
+function recheck(){
+
+  const now=
+  performance.now();
+
+
+  if(
+    now-
+    lastCheckAt<
+    RECHECK_DEBOUNCE_MS
+  ){
+
+    return;
+
+  }
+
+
+  if(
+    ![
+      "ready",
+      "moving"
+    ].includes(
+      phase
+    ) ||
+    appSuspended
+  ){
+
+    return;
+
+  }
+
+
+  lastCheckAt=
+  now;
+
+
+  checks++;
+
+
+  cancelHold(
+    false
+  );
+
+
+  clearInterval(
+    walkTimer
+  );
+
+
+  walkTimer=
+  null;
+
+
+  moving=
+  false;
+
+
+  stopWave();
+
+  stopUrgeEngine();
+
+  hideEcho();
+
+  hideDrift();
+
+
+  clearTimeout(
+    doubtTimer
+  );
+
+
+  doubtTimer=
+  null;
+
+
+  $("#person")
+  .classList.remove(
+    "walking"
+  );
+
+
+  phase=
+  "relief";
+
+
+  $("#checkBtn")
+  .disabled=
+  true;
+
+
+  setCarrying(
+    false
+  );
+
+
+  hideDoubt();
+
+
+  setArrivalCue(
+    false
+  );
+
+
+  showTurnBack();
+
+
+  loopGrip=
+  clamp(
+    loopGrip+24,
+    8,
+    100
+  );
+
+
+  urge=
+  clamp(
+    urge-27,
+    18,
+    96
+  );
+
+
+  renderGrip();
+
+
+  $("#phaseHint")
+  .textContent=
+  "RELIEF";
+
+
+  $("#title")
+  .textContent=
+  "Relief landed.";
+
+
+  $("#copy")
+  .textContent=
+
+  current==="door"
+
+  ? "Attention turns back toward the door. The vehicle is still ahead."
+
+  : current==="car"
+
+  ? "Attention turns back toward the parked car. The store is still ahead."
+
+  : current==="stove"
+
+  ? "Attention turns back toward the stove. The exit is still ahead."
+
+  : "Attention returns to the sent message. The next task is still waiting.";
+
+
+  vibrate([
+    28,
+    25,
+    28
+  ]);
+
+
+  const loss=
+
+  current==="door"
+
+  ? Math.max(
+      10,
+      momentum*.35
+    )
+
+  : Math.min(
+      momentum,
+      20
+    );
+
+
+  momentum=
+  Math.max(
+    0,
+    momentum-loss
+  );
+
+
+  if(
+    peakMomentum>
+    momentum+3
+  ){
+
+    setRecoveryTarget(
+      peakMomentum
+    );
+
+  }
+
+
+  updateScene();
+
+  meters();
+
+
+  reliefTimer=
+  setTimeout(()=>{
+
+    reliefTimer=
+    null;
+
+
+    if(
+      appSuspended ||
+      phase!=="relief"
+    ){
+
+      return;
+
+    }
+
+
+    clearTurnVisual();
+
+
+    phase=
+    "ready";
+
+
+    $("#checkBtn")
+    .disabled=
+    false;
+
+
+    startUrgeEngine();
+
+
+    showDoubt(
+
+      checks<3
+
+      ? nextThought()
+
+      : "The loop is asking for certainty again."
+
+    );
+
+
+    $("#title")
+    .textContent=
+
+    checks<3
+
+    ? "Doubt moved the finish line."
+
+    : "Same loop. New request.";
+
+
+    $("#copy")
+    .textContent=
+
+    recoveryTarget!==null
+
+    ? "Return to your path from here. No restart required."
+
+    : "The question changed. What matters didn’t.";
+
+  },650);
+
+}
+
+
+/* ============================================================
+ARRIVAL
+============================================================ */
+
+function beginArrival(){
+
+  if(
+    [
+      "arriving",
+      "complete"
+    ].includes(
+      phase
+    )
+  ){
+
+    return;
+
+  }
+
+
+  clearInterval(
+    walkTimer
+  );
+
+
+  walkTimer=
+  null;
+
+
+  moving=
+  false;
+
+
+  holdArmed=
+  false;
+
+
+  clearTimeout(
+    holdGateTimer
+  );
+
+
+  clearInterval(
+    holdProgressTimer
+  );
+
+
+  holdGateTimer=
+  null;
+
+
+  holdProgressTimer=
+  null;
+
+
+  $("#holdFill")
+  .style.width=
+  "0%";
+
+
+  $("#person")
+  .classList.remove(
+    "walking"
+  );
+
+
+  stopWave();
+
+  stopUrgeEngine();
+
+
+  phase=
+  "arriving";
+
+
+  $("#phaseHint")
+  .textContent=
+  "ARRIVED";
+
+
+  $("#title")
+  .textContent=
+  missions[current]
+  .arrival;
+
+
+  $("#copy")
+  .textContent=
+  "The destination—not certainty—ended the loop.";
+
+
+  setArrivalCue(
+    true,
+    missions[current]
+    .arrivalCue
+  );
+
+
+  vibrate([
+    16,
+    30,
+    16,
+    30,
+    34
+  ]);
+
+
+  arrivalTimer=
+  setTimeout(()=>{
+
+    arrivalTimer=
+    null;
+
+
+    if(
+      !appSuspended &&
+      phase==="arriving"
+    ){
+
+      completeMission();
+
+    }
+
+  },560);
+
+}
+
+
+/* ============================================================
+COMPLETE
+============================================================ */
+
+function completeMission(){
+
+  const carried=
+  Math.round(
+    currentCarrySeconds()
+  );
+
+
+  setCarrying(
+    false
+  );
+
+
+  stopAll();
+
+
+  phase=
+  "complete";
+
+
+  xp+=
+  30;
+
+
+  updateXP();
+
+
+  persistence.set(
+    "completed_"+current,
+    "yes"
+  );
+
+
+  completions();
+
+
+  setRecoveryTarget(
+    null
+  );
+
+
+  setArrivalCue(
+    false
+  );
+
+
+  hideDoubt();
+
+
+  $("#result")
+  .textContent=
+
+  checks===0
+
+  ? "You kept moving while uncertainty was allowed to exist."
+
+  : `You resumed forward movement after ${checks} ${checks===1 ? "check" : "checks"}. A lapse did not reset the mission.`;
+
+
+  $("#statChecks")
+  .textContent=
+  checks;
+
+
+  $("#statCarry")
+  .textContent=
+  carried+"s";
+
+
+  $("#statRecoveries")
+  .textContent=
+  recoveryCount;
+
+
+  $("#statEchoes")
+  .textContent=
+  echoCount;
+
+
+  $("#practiceCopy")
+  .textContent=
+
+  recoveryCount>0
+
+  ? "You practiced returning to the next meaningful action after being pulled back into the loop."
+
+  : current==="message" &&
+    driftEarned
+
+  ? "Your attention drifted back toward the message, and you practiced noticing that without turning it into another review."
+
+  : echoCount>0
+
+  ? "Doubt showed up while you were already moving, and you practiced letting it remain background noise."
+
+  : carried>0
+
+  ? "You practiced letting uncertainty ride along while continuing toward what mattered."
+
+  : "You practiced one normal action and continued without adding another certainty step.";
+
+
+  show(
+    "reward"
+  );
+
+
+  announce(
+    "Mission complete."
+  );
+
+}
+
+
+/* ============================================================
+SUSPEND / RESUME
+============================================================ */
+
+function suspendGame(){
+
+  if(
+    !current ||
+    appSuspended ||
+    [
+      "idle",
+      "complete"
+    ].includes(
+      phase
+    )
+  ){
+
+    return;
+
+  }
+
+
+  appSuspended=
+  true;
+
+
+  cancelHold(
+    false
+  );
+
+
+  clearInterval(
+    walkTimer
+  );
+
+
+  walkTimer=
+  null;
+
+
+  moving=
+  false;
+
+
+  stopWave();
+
+  stopUrgeEngine();
+
+
+  clearTimeout(
+    doubtTimer
+  );
+
+
+  doubtTimer=
+  null;
+
+
+  clearTimeout(
+    reliefTimer
+  );
+
+
+  reliefTimer=
+  null;
+
+
+  clearTimeout(
+    arrivalTimer
+  );
+
+
+  arrivalTimer=
+  null;
+
+
+  pauseCarryClock();
+
+
+  $("#person")
+  .classList.remove(
+    "walking"
+  );
+
+
+  hideDoubt();
+
+  hideEcho();
+
+  hideDrift();
+
+  clearTurnVisual();
+
+
+  setArrivalCue(
+    false
+  );
+
+
+  if(
+    [
+      "moving",
+      "relief",
+      "arriving"
+    ].includes(
+      phase
+    )
+  ){
+
+    phase=
+    "ready";
+
+  }
+
+
+  $("#checkBtn")
+  .disabled=
+  false;
+
+
+  $("#phaseHint")
+  .textContent=
+  "PAUSED";
+
+
+  $("#title")
+  .textContent=
+  "Paused safely.";
+
+
+  $("#copy")
+  .textContent=
+  "No delayed prompt will fire while the app is away. Continue when you are ready.";
+
+
+  renderRecoveryCue();
+
+}
+
+
+function resumeGame(){
+
+  if(
+    !appSuspended ||
+    document.hidden ||
+    !current
+  ){
+
+    return;
+
+  }
+
+
+  appSuspended=
+  false;
+
+
+  resumeCarryClock();
+
+
+  if(
+    phase!=="action"
+  ){
+
+    phase=
+    "ready";
+
+  }
+
+
+  $("#checkBtn")
+  .disabled=
+  false;
+
+
+  $("#phaseHint")
+  .textContent=
+
+  carrying
+
+  ? "CARRYING"
+
+  : phase==="action"
+
+  ? "ACTION"
+
+  : "READY";
+
+
+  $("#title")
+  .textContent=
+  "Continue when ready.";
+
+
+  $("#copy")
+  .textContent=
+
+  recoveryTarget!==null
+
+  ? "Your path is still here. Resume from where you are."
+
+  : "No need to catch up or restart.";
+
+
+  renderRecoveryCue();
+
+
+  if(
+    phase==="ready"
+  ){
+
+    startUrgeEngine();
+
+
+    if(carrying){
+
+      startWave();
+
+    }
+
+  }
+
+}
+
+
+/* ============================================================
+STOP ALL
+============================================================ */
+
+function stopAll(){
+
+  clearTimeout(
+    holdGateTimer
+  );
+
+
+  clearInterval(
+    holdProgressTimer
+  );
+
+
+  clearInterval(
+    walkTimer
+  );
+
+
+  clearTimeout(
+    doubtTimer
+  );
+
+
+  clearTimeout(
+    echoHideTimer
+  );
+
+
+  clearTimeout(
+    checkpointHideTimer
+  );
+
+
+  clearTimeout(
+    driftHideTimer
+  );
+
+
+  clearTimeout(
+    reliefTimer
+  );
+
+
+  clearTimeout(
+    recoveryHideTimer
+  );
+
+
+  clearTimeout(
+    arrivalTimer
+  );
+
+
+  clearTimeout(
+    turnTimer
+  );
+
+
+  holdGateTimer=
+  null;
+
+
+  holdProgressTimer=
+  null;
+
+
+  walkTimer=
+  null;
+
+
+  doubtTimer=
+  null;
+
+
+  echoHideTimer=
+  null;
+
+
+  checkpointHideTimer=
+  null;
+
+
+  driftHideTimer=
+  null;
+
+
+  reliefTimer=
+  null;
+
+
+  recoveryHideTimer=
+  null;
+
+
+  arrivalTimer=
+  null;
+
+
+  turnTimer=
+  null;
+
+
+  stopUrgeEngine();
+
+  stopWave();
+
+
+  holdArmed=
+  false;
+
+
+  moving=
+  false;
+
+
+  pauseCarryClock();
+
+
+  $("#person")
+  ?.classList.remove(
+    "walking"
+  );
+
+
+  hideEcho();
+
+  hideDrift();
+
+  hideCheckpoint();
+
+  clearTurnVisual();
+
+  resetHoldUI();
+
+
+  try{
+
+    navigator.vibrate?.(
+      0
+    );
+
+  }
+
+  catch{}
+
+}
+
+
+/* ============================================================
+EXIT MISSION
+============================================================ */
+
+function exitMission(){
+
+  stopAll();
+
+
+  carrying=
+  false;
+
+
+  $("#carryCue")
+  .classList.remove(
+    "show"
+  );
+
+
+  setRecoveryTarget(
+    null
+  );
+
+
+  setArrivalCue(
+    false
+  );
+
+
+  hideDoubt();
+
+
+  current=
+  null;
+
+
+  phase=
+  "idle";
+
+
+  appSuspended=
+  false;
+
+
+  completions();
+
+
+  show(
+    "missionSelect"
+  );
+
+}
+
+
+/* ============================================================
+NAVIGATION EVENTS
+============================================================ */
+
+$("#enter")
+.addEventListener(
+  "click",
+  ()=>{
+
+    show(
+      "map"
+    );
+
+  }
+);
+
+
+$("#checking")
+.addEventListener(
+  "click",
+  ()=>{
+
+    completions();
+
+
+    show(
+      "missionSelect"
+    );
+
+  }
+);
+
+
+$("#backMap")
+.addEventListener(
+  "click",
+  ()=>{
+
+    show(
+      "map"
+    );
+
+  }
+);
+
+
+$$(
+  ".missionCard[data-mission]"
+)
+.forEach(
+  button=>{
+
+    button.addEventListener(
+      "click",
+      ()=>{
+
+        loadMission(
+          button.dataset.mission
+        );
+
+      }
+    );
+
+  }
+);
+
+
+$("#missionExit")
+.addEventListener(
+  "click",
+  exitMission
+);
+
+
+$("#checkBtn")
+.addEventListener(
+  "click",
+  recheck
+);
+
+
+$("#continueBtn")
+.addEventListener(
+  "click",
+  ()=>{
+
+    completions();
+
+
+    current=
+    null;
+
+
+    phase=
+    "idle";
+
+
+    show(
+      "missionSelect"
+    );
+
+  }
+);
+
+
+$("#doneBtn")
+.addEventListener(
+  "click",
+  ()=>{
+
+    stopAll();
+
+
+    current=
+    null;
+
+
+    phase=
+    "idle";
+
+
+    show(
+      "start"
+    );
+
+  }
+);
+
+
+/* ============================================================
+FORWARD CONTROL
+============================================================ */
+
+const forward=
+$("#forwardBtn");
+
+
+[
+  "contextmenu",
+  "selectstart",
+  "dragstart"
+]
+.forEach(
+  eventType=>{
+
+    forward.addEventListener(
+      eventType,
+      event=>
+      event.preventDefault()
+    );
+
+  }
+);
+
+
+/* Touch path */
+
+forward.addEventListener(
+  "touchstart",
+  event=>{
+
+    event.preventDefault();
+
+
+    armHold();
+
+  },
+  {
+    passive:false
+  }
+);
+
+
+[
+  "touchend",
+  "touchcancel"
+]
+.forEach(
+  eventType=>{
+
+    forward.addEventListener(
+      eventType,
+      event=>{
+
+        event.preventDefault();
+
+
+        cancelHold(
+          true
+        );
+
+      },
+      {
+        passive:false
+      }
+    );
+
+  }
+);
+
+
+/* Mouse / stylus path */
+
+forward.addEventListener(
+  "pointerdown",
+  event=>{
+
+    if(
+      event.pointerType==="touch"
+    ){
+
+      return;
+
+    }
+
+
+    event.preventDefault();
+
+
+    try{
+
+      forward.setPointerCapture(
+        event.pointerId
+      );
+
+    }
+
+    catch{}
+
+
+    armHold();
+
+  }
+);
+
+
+[
+  "pointerup",
+  "pointercancel",
+  "pointerleave"
+]
+.forEach(
+  eventType=>{
+
+    forward.addEventListener(
+      eventType,
+      event=>{
+
+        if(
+          event.pointerType==="touch"
+        ){
+
+          return;
+
+        }
+
+
+        event.preventDefault();
+
+
+        cancelHold(
+          true
+        );
+
+      }
+    );
+
+  }
+);
+
+
+/* ============================================================
+BACKGROUND SAFETY
+============================================================ */
+
+window.addEventListener(
+  "blur",
+  suspendGame
+);
+
+
+window.addEventListener(
+  "focus",
+  resumeGame
+);
+
+
+document.addEventListener(
+  "visibilitychange",
+  ()=>{
+
+    if(
+      document.hidden
+    ){
+
+      suspendGame();
+
+    }
+
+    else{
+
+      resumeGame();
+
+    }
+
+  }
+);
+
+
+/* Prevent browser callout during game */
+
+document.addEventListener(
+  "contextmenu",
+  event=>
+  event.preventDefault()
+);
+
+
+/* ============================================================
+BOOT
+============================================================ */
+
+updateXP();
+
+completions();
+
+renderGrip();
+
+</script>
+
+</body>
+</html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
