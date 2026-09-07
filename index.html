@@ -4,22 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#07101c">
-
-<title>UNCERTAIN — Checking District v10.47</title>
+<title>UNCERTAIN — Checking District v10.50</title>
 
 <style>
 :root{
   --bg:#07101c;
-  --bg2:#101a29;
-  --panel:#091522ed;
+  --panel:#0b1626ee;
   --text:#f7fbff;
   --muted:#aebbd0;
   --accent:#74e7c5;
-  --accent2:#a6f4dc;
-  --doubt:#d8b8e4;
-  --relief:#b9d4ff;
   --line:#ffffff26;
-  --danger:#f0a9c8;
+  --doubt:#d8b8e4;
 }
 
 *{
@@ -30,21 +25,15 @@
   user-select:none;
 }
 
-html,
-body{
+html,body{
+  margin:0;
   width:100%;
   height:100%;
-  margin:0;
   overflow:hidden;
   overscroll-behavior:none;
   background:#040912;
   color:var(--text);
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
 button{
@@ -55,12 +44,11 @@ button{
 }
 
 #app{
-  position:relative;
-  width:100%;
-  max-width:520px;
   height:100vh;
   height:100dvh;
+  max-width:520px;
   margin:auto;
+  position:relative;
   overflow:hidden;
   background:var(--bg);
 }
@@ -71,47 +59,35 @@ button{
   inset:0;
 }
 
-.screen.active{
-  display:block;
-}
+.screen.active{display:block}
 
 .hud{
   position:absolute;
-  z-index:100;
+  z-index:90;
   top:0;
   left:0;
   right:0;
+  padding:max(12px,env(safe-area-inset-top)) 12px 8px;
   display:flex;
   justify-content:space-between;
-  padding:
-    max(12px,env(safe-area-inset-top))
-    12px
-    8px;
   pointer-events:none;
 }
 
 .pill{
-  min-height:34px;
-  display:flex;
-  align-items:center;
-  padding:7px 11px;
+  padding:8px 11px;
   border:1px solid var(--line);
   border-radius:999px;
-  background:#07111deb;
+  background:#07111de8;
   font-size:11px;
   font-weight:950;
   letter-spacing:.04em;
 }
 
 .card{
+  background:linear-gradient(180deg,#101d30f5,#0b1625f5);
   border:1px solid var(--line);
   border-radius:22px;
-  background:
-    linear-gradient(
-      180deg,
-      #101d30f7,
-      #0b1625f7
-    );
+  padding:16px;
   box-shadow:0 18px 44px #0009;
 }
 
@@ -122,91 +98,67 @@ button{
   border-radius:17px;
   background:#eef3f8;
   color:#0c1420;
-  font-size:17px;
   font-weight:950;
+  font-size:17px;
   touch-action:manipulation;
 }
 
 .btn.secondary{
   margin-top:10px;
-  border:1px solid #ffffff2a;
   background:#152238;
   color:#f7fbff;
+  border:1px solid #ffffff2a;
 }
 
 .small{
-  color:var(--muted);
   font-size:12px;
   line-height:1.4;
+  color:var(--muted);
 }
 
-
-/* ---------------- START ---------------- */
+/* START */
 
 #start{
   padding:92px 22px 26px;
-  background:
-    radial-gradient(
-      circle at 50% 24%,
-      #355271,
-      #111b2a 55%,
-      #060b13
-    );
+  background:radial-gradient(circle at 50% 25%,#355271,#111b2a 55%,#060b13);
 }
 
 .logo{
-  color:#a9b7ca;
   font-size:13px;
-  font-weight:950;
   letter-spacing:.25em;
+  font-weight:950;
+  color:#a9b7ca;
 }
 
 .hero{
-  margin:24px 0 16px;
   font-size:53px;
-  font-weight:1000;
   line-height:.92;
+  margin:24px 0 16px;
+  font-weight:1000;
   letter-spacing:-.055em;
 }
 
-.hero span{
-  color:var(--accent);
-}
-
-.startText{
-  max-width:400px;
-  color:#cbd6e3;
-  font-size:18px;
-  line-height:1.45;
-}
+.hero span{color:var(--accent)}
 
 .startCard{
   position:absolute;
   left:16px;
   right:16px;
   bottom:max(22px,env(safe-area-inset-bottom));
-  padding:16px;
 }
 
-
-/* ---------------- MAP ---------------- */
+/* MAP */
 
 #map{
-  background:
-    linear-gradient(
-      145deg,
-      #29425f,
-      #112238 64%,
-      #07101c
-    );
+  background:linear-gradient(145deg,#29425f,#112238 64%,#07101c);
 }
 
 .road{
   position:absolute;
-  left:-30%;
-  top:49%;
   width:155%;
   height:100px;
+  left:-30%;
+  top:49%;
   transform:rotate(-18deg);
   background:#46566c;
   box-shadow:0 0 0 9px #1d2837;
@@ -223,12 +175,12 @@ button{
 
 .node{
   position:absolute;
-  padding:15px;
   border:2px solid #ffffff32;
-  border-radius:23px;
   background:#0b1729ed;
-  box-shadow:0 16px 36px #0009;
+  border-radius:23px;
+  padding:15px;
   text-align:left;
+  box-shadow:0 16px 36px #0009;
   touch-action:manipulation;
 }
 
@@ -237,9 +189,7 @@ button{
   font-size:18px;
 }
 
-.node small{
-  opacity:.72;
-}
+.node small{opacity:.72}
 
 #checking{
   left:6%;
@@ -262,39 +212,33 @@ button{
   padding:13px 15px;
   border:1px solid var(--line);
   border-radius:18px;
-  background:#081321dc;
+  background:#081321d9;
 }
 
-
-/* ---------------- MISSION SELECT ---------------- */
+/* MISSION SELECT */
 
 #missionSelect{
-  background:
-    radial-gradient(
-      circle at 50% 30%,
-      #274762,
-      #0b1625 65%
-    );
+  background:radial-gradient(circle at 50% 30%,#274762,#0b1625 65%);
 }
 
 .selectWrap{
   position:absolute;
   inset:88px 14px 18px;
   overflow:auto;
-  padding-bottom:30px;
   -webkit-overflow-scrolling:touch;
   touch-action:pan-y;
+  padding-bottom:30px;
 }
 
 .missionCard{
   width:100%;
-  min-height:112px;
-  margin-bottom:12px;
-  padding:17px;
   border:1px solid var(--line);
   border-radius:22px;
   background:#0d192aef;
+  padding:17px;
   text-align:left;
+  margin-bottom:12px;
+  min-height:112px;
   touch-action:manipulation;
 }
 
@@ -305,76 +249,32 @@ button{
 
 .missionCard span{
   display:block;
-  margin-top:7px;
   color:#b7c5d6;
+  margin-top:7px;
   line-height:1.35;
 }
 
 .tag{
-  color:var(--accent)!important;
   font-size:11px!important;
-  font-weight:950;
+  color:var(--accent)!important;
+  font-weight:900;
   letter-spacing:.08em;
 }
 
 .completion{
-  min-height:14px;
-  color:var(--accent)!important;
+  min-height:15px;
   font-size:10px!important;
+  color:var(--accent)!important;
   font-weight:950!important;
 }
 
+/* MISSION */
 
-/* ---------------- MISSION CORE ---------------- */
-
-#mission{
-  background:#0a111a;
-}
-
-.scene{
-  position:absolute;
-  inset:0;
-  overflow:hidden;
-  background:
-    linear-gradient(
-      #24364b 0 47%,
-      #101923 47%
-    );
-}
-
-#environment{
-  position:absolute;
-  inset:0;
-}
-
-.skyGlow{
-  position:absolute;
-  inset:0 0 auto;
-  height:38%;
-  background:
-    radial-gradient(
-      circle at 70% 16%,
-      #526d8a55,
-      transparent 30%
-    );
-}
-
-.ground{
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  height:58%;
-  background:
-    linear-gradient(
-      #1f2b37,
-      #111923
-    );
-}
+#mission{background:#0a111a}
 
 .missionExit{
   position:absolute;
-  z-index:120;
+  z-index:100;
   left:12px;
   top:max(58px,calc(env(safe-area-inset-top) + 48px));
   min-width:82px;
@@ -388,88 +288,69 @@ button{
   touch-action:manipulation;
 }
 
+.scene{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  background:linear-gradient(#24364b 0 47%,#101923 47%);
+}
 
-/* ---------------- PLAYER ---------------- */
+#environment{
+  position:absolute;
+  inset:0;
+}
+
+.ground{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:58%;
+  background:linear-gradient(#1f2b37,#111923);
+}
+
+/* CHARACTER */
 
 .person{
   position:absolute;
   z-index:25;
-  left:50%;
-  bottom:24%;
-  width:62px;
-  height:106px;
+  width:58px;
+  height:100px;
   transform:translateX(-50%);
-  transition:
-    left .12s linear,
-    bottom .12s linear,
-    transform .12s linear,
-    filter .15s;
-}
-
-.shadow{
-  position:absolute;
-  left:50%;
-  bottom:-4px;
-  width:54px;
-  height:13px;
-  transform:translateX(-50%);
-  border-radius:50%;
-  background:#0007;
+  transition:left .12s linear,bottom .12s linear,transform .12s linear;
 }
 
 .head{
   position:absolute;
-  left:17px;
+  left:16px;
   top:0;
-  width:28px;
-  height:28px;
+  width:26px;
+  height:26px;
   border-radius:50%;
   background:#eef3f8;
 }
 
 .body{
   position:absolute;
-  left:12px;
-  top:28px;
-  width:38px;
-  height:46px;
-  border-radius:16px 16px 10px 10px;
-  background:
-    linear-gradient(
-      #e8eef5,
-      #c8d4df
-    );
-}
-
-.body:after{
-  content:"";
-  position:absolute;
-  right:-9px;
-  top:8px;
-  width:13px;
-  height:33px;
-  border-radius:8px;
-  background:#ccd7e2;
-  transform-origin:top center;
-  transform:rotate(-12deg);
+  left:11px;
+  top:26px;
+  width:36px;
+  height:43px;
+  border-radius:15px 15px 10px 10px;
+  background:#d7e1ea;
 }
 
 .leg{
   position:absolute;
-  top:70px;
-  width:13px;
-  height:33px;
-  border-radius:9px;
+  top:66px;
+  width:12px;
+  height:31px;
+  border-radius:8px;
   background:#bcc9d5;
 }
 
-.leg.a{
-  left:14px;
-}
-
-.leg.b{
-  right:14px;
-}
+.leg.a{left:13px}
+.leg.b{right:13px}
 
 .person.walking .leg.a{
   animation:step .28s infinite alternate;
@@ -479,27 +360,14 @@ button{
   animation:step .28s infinite alternate-reverse;
 }
 
-.person.turnBack .body:after{
-  transform:rotate(42deg);
-}
-
 @keyframes step{
-  to{
-    transform:
-      translateY(4px)
-      rotate(9deg);
-  }
+  to{transform:translateY(4px) rotate(9deg)}
 }
 
-
-/* ---------------- GENERIC DESTINATION / SOURCE ---------------- */
+/* DESTINATION FEEDBACK */
 
 .destination{
-  transition:
-    box-shadow .18s,
-    filter .18s,
-    opacity .18s,
-    transform .18s;
+  transition:.18s;
 }
 
 .destination.near{
@@ -521,217 +389,92 @@ button{
   filter:brightness(1.12);
 }
 
-.sceneArrow{
-  position:absolute;
-  z-index:12;
-  color:#74e7c5dd;
-  font-size:28px;
-  text-shadow:0 2px 8px #000;
-  transition:.18s;
-}
+/* LOCK & LEAVE */
 
-.sceneArrow.away{
-  color:#b9d4ffdd;
-}
-
-
-/* ---------------- LOCK & LEAVE ---------------- */
-
-.houseShell{
+.house{
   position:absolute;
   left:50%;
-  top:7%;
-  width:300px;
-  height:255px;
+  top:8%;
+  width:270px;
+  height:220px;
   transform:translateX(-50%);
-  transition:.18s;
-}
-
-.houseBody{
-  position:absolute;
-  left:16px;
-  right:16px;
-  top:48px;
-  bottom:0;
-  border:6px solid #1b2735;
-  background:
-    linear-gradient(
-      #47576a,
-      #303b49
-    );
-}
-
-.roof{
-  position:absolute;
-  left:0;
-  right:0;
-  top:0;
-  height:110px;
-  background:#202c3a;
-  clip-path:
-    polygon(
-      50% 0,
-      100% 54%,
-      92% 54%,
-      92% 100%,
-      8% 100%,
-      8% 54%,
-      0 54%
-    );
-}
-
-.window{
-  position:absolute;
-  top:92px;
-  width:55px;
-  height:70px;
-  border:6px solid #1b2735;
-  background:#d2a55f;
-}
-
-.window.left{
-  left:38px;
-}
-
-.window.right{
-  right:38px;
+  background:#3a4858;
+  border:7px solid #1a2634;
+  clip-path:polygon(
+    50% 0,
+    100% 30%,
+    94% 30%,
+    94% 100%,
+    6% 100%,
+    6% 30%,
+    0 30%
+  );
 }
 
 .door{
   position:absolute;
   left:50%;
   bottom:18px;
-  width:106px;
-  height:164px;
+  width:92px;
+  height:140px;
   transform:translateX(-50%);
-  border:7px solid #111a25;
-  background:
-    linear-gradient(
-      #2f4155,
-      #1b2a3a
-    );
+  background:#22364a;
+  border:6px solid #111a25;
 }
 
-.knob{
+.door:after{
+  content:"";
   position:absolute;
   right:8px;
-  top:72px;
-  width:34px;
-  height:34px;
-  border:6px solid #6a7a8f;
+  top:62px;
+  width:24px;
+  height:24px;
   border-radius:50%;
-  background:#e8eef5;
+  background:#e7edf3;
+  border:5px solid #6b7989;
+}
+
+.car{
+  position:absolute;
+  z-index:8;
+  width:132px;
+  height:62px;
+  border:6px solid #101722;
+  border-radius:28px;
+  background:linear-gradient(#8093aa,#566a83);
+}
+
+.drivewayCar{
+  right:6%;
+  bottom:18%;
 }
 
 .driveway{
   position:absolute;
-  z-index:2;
-  left:28%;
-  top:34%;
-  width:72%;
-  height:66%;
-  background:
-    linear-gradient(
-      160deg,
-      #3b4651,
-      #1c252e
-    );
-  clip-path:
-    polygon(
-      24% 0,
-      58% 0,
-      100% 100%,
-      0 100%
-    );
+  left:25%;
+  top:35%;
+  width:75%;
+  height:65%;
+  background:linear-gradient(160deg,#3b4651,#1c252e);
+  clip-path:polygon(24% 0,58% 0,100% 100%,0 100%);
 }
 
-.drivewayVehicle{
-  position:absolute;
-  z-index:10;
-  right:4%;
-  bottom:11%;
-  width:154px;
-  height:70px;
-  border:6px solid #101722;
-  border-radius:34px 38px 18px 18px;
-  background:
-    linear-gradient(
-      #8093aa,
-      #566a83
-    );
-  box-shadow:0 8px 18px #0007;
-}
+/* PARK & WALK */
 
-.drivewayVehicle:before,
-.drivewayVehicle:after{
-  content:"";
-  position:absolute;
-  bottom:-16px;
-  width:29px;
-  height:29px;
-  border:5px solid #394554;
-  border-radius:50%;
-  background:#0a0d12;
-}
-
-.drivewayVehicle:before{
-  left:17px;
-}
-
-.drivewayVehicle:after{
-  right:17px;
-}
-
-.carWindow{
-  position:absolute;
-  left:34px;
-  top:-8px;
-  width:82px;
-  height:36px;
-  background:#21354a;
-  clip-path:
-    polygon(
-      20% 100%,
-      35% 0,
-      78% 0,
-      100% 100%
-    );
-}
-
-.doorArrow{
-  right:18%;
-  bottom:28%;
-  transform:rotate(22deg);
-}
-
-
-/* ---------------- PARK & WALK ---------------- */
-
-.parkingScene{
+.parking{
   position:absolute;
   inset:0;
-  background:
-    linear-gradient(
-      #31475b 0 25%,
-      #2b343e 25% 100%
-    );
+  background:linear-gradient(#31475b 0 25%,#2b343e 25% 100%);
 }
 
 .store{
   position:absolute;
-  z-index:6;
-  left:3%;
-  right:3%;
-  top:4%;
-  height:174px;
+  left:4%;
+  right:4%;
+  top:5%;
+  height:165px;
+  background:#4b6075;
   border:7px solid #223040;
-  border-radius:4px 4px 0 0;
-  background:
-    linear-gradient(
-      #60758a,
-      #3b4c60
-    );
-  box-shadow:0 12px 24px #0008;
 }
 
 .store:before{
@@ -745,406 +488,90 @@ button{
   letter-spacing:.16em;
 }
 
-.storeAwning{
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:94px;
-  height:15px;
-  background:#28394b;
-}
-
 .storeDoor{
   position:absolute;
   left:50%;
   bottom:0;
-  width:118px;
-  height:96px;
   transform:translateX(-50%);
+  width:108px;
+  height:90px;
+  background:#183047;
   border:5px solid #71849a;
-  background:
-    linear-gradient(
-      90deg,
-      #183047 0 48%,
-      #71849a 48% 52%,
-      #183047 52%
-    );
-}
-
-.sidewalkShadow{
-  position:absolute;
-  z-index:2;
-  left:0;
-  right:0;
-  top:30.7%;
-  height:18px;
-  background:#171d23aa;
-}
-
-.sidewalk{
-  position:absolute;
-  z-index:3;
-  left:0;
-  right:0;
-  top:25%;
-  height:58px;
-  border-top:5px solid #d6dbde;
-  border-bottom:7px solid #5b6369;
-  background:
-    linear-gradient(
-      #b4babd,
-      #92999d
-    );
-}
-
-.curbCut{
-  position:absolute;
-  z-index:4;
-  left:50%;
-  top:28%;
-  width:138px;
-  height:42px;
-  transform:translateX(-50%);
-  background:#afb5b8;
-  clip-path:
-    polygon(
-      12% 0,
-      88% 0,
-      100% 100%,
-      0 100%
-    );
-}
-
-.driveAisle{
-  position:absolute;
-  z-index:1;
-  left:0;
-  right:0;
-  top:32%;
-  bottom:0;
-  background:
-    linear-gradient(
-      #3b434b,
-      #222932
-    );
 }
 
 .crosswalk{
   position:absolute;
-  z-index:3;
   left:50%;
-  top:31.5%;
-  width:164px;
-  height:230px;
+  top:31%;
+  width:160px;
+  height:250px;
   transform:translateX(-50%);
-  opacity:.8;
   background:
     repeating-linear-gradient(
       0deg,
-      #f0f3f4 0 15px,
-      transparent 15px 32px
+      #f0f3f4 0 14px,
+      transparent 14px 31px
     );
-  clip-path:
-    polygon(
-      30% 0,
-      70% 0,
-      100% 100%,
-      0 100%
-    );
-}
-
-.parkingRow{
-  position:absolute;
-  z-index:2;
-  bottom:5%;
-  width:41%;
-  height:205px;
-}
-
-.parkingRow.left{
-  left:2%;
-}
-
-.parkingRow.right{
-  right:2%;
-}
-
-.stall{
-  position:absolute;
-  bottom:0;
-  width:32%;
-  height:100%;
-  border-left:4px solid #edf1f2b8;
-  border-right:4px solid #edf1f2b8;
-  border-top:4px solid #edf1f2b8;
-}
-
-.stall.a{
-  left:0;
-  transform:skewX(-5deg);
-}
-
-.stall.b{
-  left:34%;
-  transform:skewX(-2deg);
-}
-
-.stall.c{
-  right:0;
-  transform:skewX(3deg);
-}
-
-.parkedCar{
-  position:absolute;
-  z-index:9;
-  bottom:18px;
-  width:72px;
-  height:118px;
-  border:6px solid #101722;
-  border-radius:18px;
-  background:
-    linear-gradient(
-      #8093aa,
-      #566a83
-    );
-  box-shadow:0 8px 18px #0007;
-}
-
-.parkedCar:before{
-  content:"";
-  position:absolute;
-  left:12px;
-  right:12px;
-  top:20px;
-  height:34px;
-  border-radius:8px;
-  background:#21354a;
-}
-
-.parkedCar.muted{
-  opacity:.42;
-  transform:scale(.85);
+  clip-path:polygon(31% 0,69% 0,100% 100%,0 100%);
+  opacity:.8;
 }
 
 .playerCar{
-  right:-4px;
-  bottom:48px;
-  width:78px;
-  height:132px;
-  transition:.18s;
+  right:4%;
+  bottom:12%;
+  height:100px;
+  width:72px;
+  border-radius:18px;
 }
 
-.carArrow{
-  left:54%;
-  top:53%;
-  transform:translateX(-50%);
-}
+/* OFF & OUT */
 
-.carArrow.away{
-  transform:
-    translateX(-50%)
-    rotate(180deg);
-}
-
-.parkingLabel{
+.kitchen{
   position:absolute;
-  z-index:7;
-  left:50%;
-  top:35%;
-  transform:translateX(-50%);
-  padding:5px 8px;
-  border-radius:999px;
-  background:#17212bcc;
-  color:#eaf0f6c9;
-  font-size:9px;
-  font-weight:950;
-  letter-spacing:.13em;
-}
-
-
-/* ---------------- OFF & OUT ---------------- */
-
-.kitchenWall{
-  position:absolute;
-  left:0;
-  right:0;
-  top:0;
-  height:49%;
-  background:
-    linear-gradient(
-      #435160,
-      #2d3947
-    );
-}
-
-.kitchenFloor{
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  height:55%;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #222c36 0,
-      #222c36 52px,
-      #2d3944 53px,
-      #2d3944 56px
-    );
+  inset:0;
+  background:linear-gradient(#40505f 0 48%,#222b34 48%);
 }
 
 .exitDoor{
   position:absolute;
-  z-index:6;
   left:50%;
   top:6%;
-  width:132px;
-  height:220px;
+  width:126px;
+  height:205px;
   transform:translateX(-50%);
-  border:8px solid #172330;
-  background:
-    linear-gradient(
-      #30475a,
-      #172837
-    );
-}
-
-.exitDoor:before{
-  content:"EXIT";
-  position:absolute;
-  left:0;
-  right:0;
-  top:18px;
-  color:#99edcf;
-  text-align:center;
-  font-size:12px;
-  font-weight:1000;
-  letter-spacing:.15em;
-}
-
-.counter{
-  position:absolute;
-  left:0;
-  right:0;
-  top:48%;
-  height:72px;
-  border-top:10px solid #586574;
-  background:#252f39;
+  background:#223849;
+  border:7px solid #172330;
 }
 
 .stove{
   position:absolute;
-  z-index:9;
   left:69%;
-  top:47%;
-  width:210px;
-  height:140px;
+  top:48%;
+  width:185px;
+  height:125px;
   transform:translateX(-50%);
+  background:#586675;
   border:7px solid #18222c;
-  border-radius:8px;
-  background:
-    linear-gradient(
-      #6f7d8c,
-      #424e5b
-    );
-  transition:.18s;
 }
 
-.stoveTop{
+.stove:before{
+  content:"OFF";
   position:absolute;
-  left:-7px;
-  top:-42px;
-  width:210px;
-  height:52px;
-  border:7px solid #111820;
-  background:#1a222b;
+  left:0;
+  right:0;
+  top:18px;
+  text-align:center;
+  font-size:12px;
+  font-weight:950;
+  letter-spacing:.14em;
 }
 
-.burner{
-  position:absolute;
-  top:-27px;
-  width:47px;
-  height:22px;
-  border:5px solid #55616d;
-  border-radius:50%;
-  background:#0c1117;
-}
-
-.burner.one{
-  left:20px;
-}
-
-.burner.two{
-  right:20px;
-}
-
-.stovePanel{
-  position:absolute;
-  left:15px;
-  right:15px;
-  top:16px;
-  height:49px;
-  background:#27313b;
-}
-
-.stoveKnob{
-  position:absolute;
-  top:26px;
-  width:31px;
-  height:31px;
-  border:6px solid #697887;
-  border-radius:50%;
-  background:#d9e1e8;
-}
-
-.stoveKnob.one{
-  left:24px;
-}
-
-.stoveKnob.two{
-  left:68px;
-}
-
-.stoveKnob.three{
-  right:68px;
-}
-
-.stoveKnob.four{
-  right:24px;
-}
-
-.stoveOven{
-  position:absolute;
-  left:27px;
-  right:27px;
-  bottom:15px;
-  height:56px;
-  border:6px solid #2c3742;
-  background:#101820;
-}
-
-.stoveArrow{
-  left:53%;
-  top:43%;
-  transform:rotate(-10deg);
-}
-
-
-/* ---------------- SENT & DONE ---------------- */
+/* SENT & DONE */
 
 .messageScene{
   position:absolute;
   inset:0;
-  background:
-    radial-gradient(
-      circle at 68% 18%,
-      #425d7940,
-      transparent 30%
-    ),
-    linear-gradient(
-      #26384c 0 42%,
-      #121b25 42%
-    );
+  background:linear-gradient(#26384c 0 42%,#121b25 42%);
 }
 
 .desk{
@@ -1153,87 +580,47 @@ button{
   right:0;
   bottom:0;
   height:45%;
-  background:
-    linear-gradient(
-      #473b34,
-      #28211e
-    );
+  background:#3d332e;
 }
 
 .phone{
   position:absolute;
-  z-index:10;
-  left:62%;
+  left:66%;
   top:38%;
-  width:112px;
-  height:210px;
-  transform:
-    translateX(-50%)
-    rotate(5deg);
+  width:105px;
+  height:190px;
+  transform:translateX(-50%) rotate(5deg);
   border:8px solid #101722;
-  border-radius:24px;
-  background:#101826;
+  border-radius:22px;
+  background:#dce6ed;
   box-shadow:0 16px 28px #0008;
-  transition:.18s;
 }
 
-.phoneScreen{
+.phone:before{
+  content:"SENT";
   position:absolute;
-  inset:8px;
-  overflow:hidden;
-  border-radius:14px;
-  background:
-    linear-gradient(
-      #eaf2f7,
-      #c9d7e3
-    );
-}
-
-.messageHeader{
-  height:26px;
-  background:#34506d;
-}
-
-.messageBubble{
-  position:absolute;
-  right:8px;
-  top:50px;
-  width:70px;
-  min-height:42px;
+  right:12px;
+  top:78px;
   padding:8px;
-  border-radius:14px 14px 3px 14px;
+  border-radius:13px;
   background:#4ab598;
   color:#082119;
-  font-size:7px;
+  font-size:8px;
   font-weight:900;
-}
-
-.sentLabel{
-  position:absolute;
-  right:11px;
-  top:98px;
-  color:#445363;
-  font-size:6px;
-  font-weight:900;
-  letter-spacing:.08em;
 }
 
 .nextTask{
   position:absolute;
-  z-index:6;
-  left:9%;
+  left:8%;
   top:25%;
-  width:152px;
-  min-height:112px;
-  padding:15px;
+  width:150px;
+  padding:14px;
   border:1px solid #74e7c54d;
   border-radius:18px;
   background:#0c1b27e8;
-  box-shadow:0 12px 30px #0007;
 }
 
 .nextTask small{
-  display:block;
   color:var(--accent);
   font-size:9px;
   font-weight:1000;
@@ -1246,21 +633,7 @@ button{
   font-size:17px;
 }
 
-.nextTask p{
-  margin:6px 0 0;
-  color:#bdc9d5;
-  font-size:10px;
-  line-height:1.35;
-}
-
-.messageArrow{
-  left:42%;
-  top:43%;
-  transform:rotate(-28deg);
-}
-
-
-/* ---------------- DOUBT ---------------- */
+/* DOUBT */
 
 #doubtVignette{
   position:absolute;
@@ -1269,17 +642,11 @@ button{
   opacity:0;
   pointer-events:none;
   background:
-    radial-gradient(
-      circle at 50% 45%,
-      transparent 32%,
-      #210d2a99 100%
-    );
+    radial-gradient(circle at 50% 45%,transparent 32%,#210d2a99 100%);
   transition:.18s;
 }
 
-#doubtVignette.show{
-  opacity:1;
-}
+#doubtVignette.show{opacity:1}
 
 .doubtText{
   position:absolute;
@@ -1291,200 +658,107 @@ button{
   pointer-events:none;
   color:white;
   text-align:center;
-  font-size:23px;
+  font-size:22px;
   font-weight:1000;
   line-height:1.06;
   text-shadow:0 4px 16px #000;
   transition:.18s;
 }
 
-.doubtText.show{
-  opacity:1;
-}
+.doubtText.show{opacity:1}
 
 .doubtLabel{
   display:block;
   margin-bottom:7px;
   color:#d2a3cf;
   font-size:10px;
-  font-weight:1000;
   letter-spacing:.16em;
 }
 
+/* SINGLE PRIMARY CUE DIRECTOR */
 
-/* ---------------- DYNAMIC CUE STACK ---------------- */
-
-#cueStack{
+#cueDirector{
   position:absolute;
   z-index:50;
   left:8%;
   right:8%;
-  top:max(108px,calc(env(safe-area-inset-top) + 88px));
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:7px;
+  top:max(112px,calc(env(safe-area-inset-top) + 92px));
+  min-height:38px;
   pointer-events:none;
+  text-align:center;
 }
 
-#cueStack > div{
-  position:absolute;
+#primaryCue{
+  display:inline-block;
   max-width:100%;
   padding:8px 12px;
-  opacity:0;
-  transform:translateY(-4px);
+  border:1px solid #ffffff33;
   border-radius:999px;
   background:#07141ef2;
-  text-align:center;
   font-size:10px;
   font-weight:1000;
   letter-spacing:.055em;
+  opacity:0;
+  transform:translateY(-4px);
   transition:.18s;
 }
 
-#cueStack > div.show{
-  position:relative;
+#primaryCue.show{
   opacity:1;
   transform:none;
 }
 
-#carryCue{
-  border:1px solid #74e7c566;
-  color:#bff6e5;
-}
-
-#waveCue{
-  border:1px solid #ffffff33;
-  color:#e9eef5;
-}
-
-#echoCue{
-  border:1px solid #d8b8e466;
-  border-radius:15px!important;
-  background:#180f20e8!important;
+#primaryCue.doubt{
+  border-color:#d8b8e466;
   color:#f2dff5;
-  line-height:1.3;
+  background:#180f20e8;
 }
 
-#echoCue small{
-  display:block;
-  margin-bottom:3px;
-  color:#d8b8e4;
-  font-size:8px;
-  letter-spacing:.13em;
+#primaryCue.progress{
+  border-color:#74e7c566;
+  color:#caffef;
 }
 
-#checkpointCue{
-  border:1px solid #74e7c566;
-  color:#bff6e5;
-}
-
-#recoveryCue{
-  border:1px solid #74e7c566;
-  color:#bff6e5;
-}
-
-#arrivalCue{
-  border:1px solid #74e7c588;
-  background:#0b211ce8!important;
+#primaryCue.arrival{
+  border-color:#74e7c588;
   color:#d8fff3;
+  background:#0b211ce8;
 }
 
-#driftCue{
-  border:1px solid #d8b8e466;
-  border-radius:15px!important;
-  background:#17111ee8!important;
-  color:#ead8f0;
-}
+/* PERSISTENT STATUS */
 
-
-/* ---------------- WHAT MATTERS / LOOP GRIP ---------------- */
-
-#whatMatters{
+#statusRow{
   position:absolute;
-  z-index:40;
-  left:12px;
-  top:max(318px,calc(env(safe-area-inset-top) + 298px));
-  max-width:170px;
-  padding:9px 11px;
-  border:1px solid #74e7c54a;
-  border-radius:15px;
-  background:#07141ee8;
-  pointer-events:none;
-}
-
-.wmLabel{
-  display:block;
-  margin-bottom:4px;
-  color:var(--accent);
-  font-size:9px;
-  font-weight:1000;
-  letter-spacing:.13em;
-}
-
-.wmText{
-  display:block;
-  font-size:11px;
-  font-weight:850;
-  line-height:1.25;
-}
-
-#loopGripPanel{
-  position:absolute;
-  z-index:39;
+  z-index:48;
+  left:10px;
   right:10px;
-  top:max(318px,calc(env(safe-area-inset-top) + 298px));
-  width:126px;
-  padding:8px 9px;
-  border:1px solid #ffffff28;
-  border-radius:14px;
-  background:#081321e8;
-  pointer-events:none;
-}
-
-.gripRow{
+  top:max(312px,calc(env(safe-area-inset-top) + 292px));
   display:flex;
   justify-content:space-between;
   gap:8px;
-  margin-bottom:5px;
+  pointer-events:none;
 }
 
-.gripTitle,
-.gripState{
+.statusCard{
+  max-width:48%;
+  padding:8px 10px;
+  border:1px solid #ffffff28;
+  border-radius:14px;
+  background:#081321e8;
   font-size:9px;
-  font-weight:1000;
-  letter-spacing:.08em;
-}
-
-.gripTitle{
-  color:#dac5e3;
-}
-
-.gripTrack{
-  height:7px;
-  overflow:hidden;
-  border-radius:999px;
-  background:#ffffff20;
-}
-
-.gripTrack i{
-  display:block;
-  width:24%;
-  height:100%;
-  border-radius:999px;
-  background:var(--doubt);
-  transition:width .22s ease;
-}
-
-.gripNote{
-  margin-top:6px;
-  color:#aebbd0;
-  font-size:8px;
   line-height:1.25;
 }
 
+.statusCard b{
+  display:block;
+  color:var(--accent);
+  letter-spacing:.1em;
+  margin-bottom:3px;
+}
 
-/* ---------------- GAME PANEL ---------------- */
+.statusCard.dim{opacity:.4}
+
+/* GAME PANEL */
 
 .gamePanel{
   position:absolute;
@@ -1495,25 +769,22 @@ button{
   padding:11px 12px;
   border:1px solid #ffffff24;
   border-radius:20px;
-  background:#081321e8;
+  background:#081321ed;
   backdrop-filter:blur(12px);
 }
 
 .gameTitle{
   display:flex;
   justify-content:space-between;
-  gap:12px;
+  gap:10px;
 }
 
-.gameTitle b{
-  font-size:15px;
-}
+.gameTitle b{font-size:15px}
 
 #phaseHint{
-  flex:none;
-  color:#aebbd0;
   font-size:10px;
   font-weight:950;
+  color:#aebbd0;
   letter-spacing:.06em;
 }
 
@@ -1525,8 +796,8 @@ button{
 }
 
 .meterLabel{
-  color:#aeb9c7;
   font-size:9px;
+  color:#aeb9c7;
   font-weight:850;
   letter-spacing:.1em;
 }
@@ -1535,7 +806,6 @@ button{
   position:relative;
   height:9px;
   margin-top:4px;
-  overflow:visible;
   border-radius:999px;
   background:#29364a;
 }
@@ -1566,35 +836,36 @@ button{
 
 .control{
   position:relative;
-  flex:1;
   min-height:60px;
-  overflow:hidden;
   border:1px solid #ffffff2a;
   border-radius:15px;
-  background:#152238;
   font-weight:950;
   touch-action:manipulation;
 }
 
+.control.check{
+  flex:.68;
+  background:#101a2a;
+  color:#cbd5e0;
+  font-size:13px;
+}
+
 .control.primary{
+  flex:1.32;
   background:#eef3f8;
   color:#101826;
   touch-action:none;
 }
 
-.control:disabled{
-  opacity:.45;
-}
+.control:disabled{opacity:.42}
 
 #holdFill{
   position:absolute;
-  z-index:0;
   left:0;
   bottom:0;
   width:0;
   height:5px;
   background:#4ca98f;
-  transition:width .05s linear;
   pointer-events:none;
 }
 
@@ -1606,27 +877,19 @@ button{
 #inputHint{
   min-height:13px;
   margin-top:6px;
-  color:#9fabbb;
   text-align:center;
+  color:#9fabbb;
   font-size:9px;
   font-weight:800;
 }
 
-#inputHint.cancel{
-  color:#c6b5d1;
-}
+.cancel{color:#c6b5d1!important}
 
-
-/* ---------------- REWARD ---------------- */
+/* REWARD */
 
 #reward{
   background:
-    radial-gradient(
-      circle at 50% 38%,
-      #35516e,
-      #101927 62%,
-      #060b13
-    );
+    radial-gradient(circle at 50% 38%,#35516e,#101927 62%,#060b13);
 }
 
 .rewardBox{
@@ -1638,14 +901,10 @@ button{
   text-align:center;
 }
 
-.rewardCard{
-  padding:16px;
-}
-
 .rewardBig{
-  margin:6px 0 4px;
   font-size:39px;
   font-weight:1000;
+  margin:6px 0 4px;
 }
 
 .practice{
@@ -1655,13 +914,6 @@ button{
   border-radius:16px;
   background:#081321aa;
   text-align:left;
-}
-
-.practiceLabel{
-  color:var(--accent);
-  font-size:9px;
-  font-weight:1000;
-  letter-spacing:.14em;
 }
 
 .practiceGrid{
@@ -1692,172 +944,41 @@ button{
   line-height:1.2;
 }
 
-.practiceCopy{
-  margin:9px 0 0;
-  color:#c6d1dd;
-  font-size:11px;
-  line-height:1.35;
-}
-
-.sessionNote{
-  margin-top:12px;
-  padding:10px 12px;
-  border-radius:14px;
-  background:#08132199;
-  color:#aebbd0;
-  font-size:11px;
-  line-height:1.35;
-}
-
-.srOnly{
-  position:absolute;
-  width:1px;
-  height:1px;
-  margin:-1px;
-  padding:0;
-  overflow:hidden;
-  clip:rect(0,0,0,0);
-  white-space:nowrap;
-  border:0;
-}
-
-
-/* ---------------- SHORT PHONES ---------------- */
+/* SHORT PHONES */
 
 @media(max-height:700px){
+  .hero{font-size:45px}
 
-  .hero{
-    font-size:45px;
-  }
+  #cueDirector{top:82px}
 
-  #cueStack{
-    top:80px;
-    gap:5px;
-  }
+  #statusRow{top:274px}
 
-  #cueStack > div{
-    padding:6px 10px;
-    font-size:9px;
-  }
+  .gamePanel{padding:9px 10px}
 
-  #whatMatters,
-  #loopGripPanel{
-    top:286px;
-  }
+  .control{min-height:54px}
 
-  #whatMatters{
-    max-width:145px;
-  }
+  .store{height:142px}
 
-  #loopGripPanel{
-    width:112px;
-  }
-
-  .gamePanel{
-    padding:9px 10px;
-  }
-
-  .control{
-    min-height:54px;
-  }
-
-  .store{
-    height:146px;
-  }
-
-  .sidewalk{
-    top:24%;
-    height:52px;
-  }
-
-  .sidewalkShadow{
-    top:30%;
-    height:14px;
-  }
-
-  .curbCut{
-    top:27%;
-    height:36px;
-  }
-
-  .driveAisle{
-    top:31%;
-  }
-
-  .crosswalk{
-    top:30.5%;
-    width:150px;
-    height:182px;
-  }
-
-  .parkingRow{
-    bottom:7%;
-    height:166px;
-  }
-
-  .playerCar{
-    right:-6px;
-    bottom:34px;
-    width:68px;
-    height:108px;
-  }
-
-  .parkedCar{
-    width:62px;
-    height:98px;
-  }
-
-  .houseShell{
-    top:5%;
-    transform:
-      translateX(-50%)
-      scale(.86);
-  }
-
-  .drivewayVehicle{
-    bottom:13%;
-    width:132px;
-    height:60px;
-  }
-
-  .stove{
-    top:44%;
-    transform:
-      translateX(-50%)
-      scale(.84);
-  }
-
-  .exitDoor{
-    height:180px;
-  }
+  .crosswalk{height:190px}
 
   .phone{
-    top:36%;
-    width:94px;
-    height:174px;
+    top:34%;
+    width:92px;
+    height:160px;
   }
 
   .nextTask{
-    top:23%;
-    width:135px;
+    top:21%;
+    width:136px;
   }
 
   .practice{
     margin:8px 0;
     padding:9px;
   }
-
-  .practiceStat{
-    padding:7px 3px;
-  }
-
-  .sessionNote{
-    margin-top:8px;
-  }
 }
 
 @media(prefers-reduced-motion:reduce){
-
   *{
     animation:none!important;
     transition:none!important;
@@ -1870,23 +991,16 @@ button{
 
 <div id="app">
 
-
-<!-- =========================================================
-START
-========================================================= -->
-
 <section id="start" class="screen active">
 
-  <div class="logo">
-    UNCERTAIN
-  </div>
+  <div class="logo">UNCERTAIN</div>
 
   <div class="hero">
     BREAK<br>
     THE <span>LOOP.</span>
   </div>
 
-  <p class="startText">
+  <p style="max-width:390px;color:#cbd6e3;font-size:18px;line-height:1.45">
     Move forward without making certainty the price of admission.
   </p>
 
@@ -1897,7 +1011,7 @@ START
     </button>
 
     <p class="small">
-      ERP-informed prototype. This game is not a replacement for professional mental-health care.
+      ERP-informed prototype. Not a replacement for professional mental-health care.
     </p>
 
   </div>
@@ -1905,99 +1019,51 @@ START
 </section>
 
 
-<!-- =========================================================
-MAP
-========================================================= -->
-
 <section id="map" class="screen">
 
   <div class="road"></div>
 
   <button id="checking" class="node">
-
-    <strong>
-      Checking District
-    </strong>
-
-    <small>
-      4 missions available
-    </small>
-
+    <strong>Checking District</strong>
+    <small>4 missions available</small>
   </button>
 
   <button class="node locked" disabled>
-
-    <strong>
-      Next District
-    </strong>
-
-    <small>
-      Under construction
-    </small>
-
+    <strong>Next District</strong>
+    <small>Under construction</small>
   </button>
 
   <div class="hud">
-
-    <span class="pill">
-      THE LOOP
-    </span>
-
-    <span class="pill">
-      XP&nbsp;<b class="xp">0</b>
-    </span>
-
+    <span class="pill">THE LOOP</span>
+    <span class="pill">XP <b class="xp">0</b></span>
   </div>
 
   <div class="mapInfo">
-
-    <b>
-      Checking District
-    </b>
-
-    <br>
-
+    <b>Checking District</b><br>
     <span>
       Certainty always seems one more check away.
     </span>
-
   </div>
 
 </section>
 
 
-<!-- =========================================================
-MISSION SELECT
-========================================================= -->
-
 <section id="missionSelect" class="screen">
 
   <div class="hud">
-
-    <span class="pill">
-      CHECKING DISTRICT
-    </span>
-
-    <span class="pill">
-      XP&nbsp;<b class="xp">0</b>
-    </span>
-
+    <span class="pill">CHECKING DISTRICT</span>
+    <span class="pill">XP <b class="xp">0</b></span>
   </div>
 
   <div class="selectWrap">
 
-
-    <button
-      class="missionCard"
-      data-mission="door">
+    <button class="missionCard" data-mission="door">
 
       <span class="tag">
         PHYSICAL CHECKING
       </span>
 
-      <b>
-        Lock & Leave
-      </b>
+      <b>Lock & Leave</b>
 
       <span
         class="completion"
@@ -2011,17 +1077,13 @@ MISSION SELECT
     </button>
 
 
-    <button
-      class="missionCard"
-      data-mission="car">
+    <button class="missionCard" data-mission="car">
 
       <span class="tag">
         PHYSICAL + MENTAL CHECKING
       </span>
 
-      <b>
-        Park & Walk
-      </b>
+      <b>Park & Walk</b>
 
       <span
         class="completion"
@@ -2029,23 +1091,19 @@ MISSION SELECT
       </span>
 
       <span>
-        Lock the car once. Doubt can come along while you walk to the store.
+        Lock once, leave the car, center on the crosswalk, and continue to the store.
       </span>
 
     </button>
 
 
-    <button
-      class="missionCard"
-      data-mission="stove">
+    <button class="missionCard" data-mission="stove">
 
       <span class="tag">
         APPLIANCE CHECKING
       </span>
 
-      <b>
-        Off & Out
-      </b>
+      <b>Off & Out</b>
 
       <span
         class="completion"
@@ -2059,17 +1117,13 @@ MISSION SELECT
     </button>
 
 
-    <button
-      class="missionCard"
-      data-mission="message">
+    <button class="missionCard" data-mission="message">
 
       <span class="tag">
         MENTAL / COVERT CHECKING
       </span>
 
-      <b>
-        Sent & Done
-      </b>
+      <b>Sent & Done</b>
 
       <span
         class="completion"
@@ -2083,17 +1137,13 @@ MISSION SELECT
     </button>
 
 
-    <button
-      class="missionCard"
-      id="backMap">
+    <button class="missionCard" id="backMap">
 
       <span class="tag">
         RETURN
       </span>
 
-      <b>
-        Back to The Loop
-      </b>
+      <b>Back to The Loop</b>
 
     </button>
 
@@ -2102,36 +1152,21 @@ MISSION SELECT
 </section>
 
 
-<!-- =========================================================
-MISSION
-========================================================= -->
-
 <section id="mission" class="screen">
 
-  <button
-    type="button"
-    id="missionExit"
-    class="missionExit">
-
+  <button id="missionExit" class="missionExit">
     ‹ EXIT
-
   </button>
 
-
   <div class="scene">
-
-    <div class="skyGlow"></div>
 
     <div class="ground"></div>
 
     <div id="environment"></div>
 
 
-    <div
-      id="person"
-      class="person">
+    <div id="person" class="person">
 
-      <i class="shadow"></i>
       <i class="head"></i>
       <i class="body"></i>
       <i class="leg a"></i>
@@ -2143,9 +1178,7 @@ MISSION
     <div id="doubtVignette"></div>
 
 
-    <div
-      id="doubtOverlay"
-      class="doubtText">
+    <div id="doubtOverlay" class="doubtText">
 
       <span class="doubtLabel">
         DOUBT
@@ -2158,81 +1191,32 @@ MISSION
     </div>
 
 
-    <div id="cueStack">
+    <div id="cueDirector">
 
-      <div id="carryCue">
-        ● UNCERTAINTY CAN COME WITH YOU
-      </div>
-
-      <div id="waveCue">
-        URGE WAVE • 0.0s WITHOUT CHECKING
-      </div>
-
-      <div id="echoCue">
-
-        <small>
-          DOUBT ECHO
-        </small>
-
-        <span id="echoMessage">
-          Maybe go back.
-        </span>
-
-      </div>
-
-      <div id="driftCue">
-        ATTENTION DRIFT • NOTICE IT, KEEP GOING
-      </div>
-
-      <div id="checkpointCue">
-        FORWARD ACTION
-      </div>
-
-      <div id="recoveryCue">
-        RETURN TO YOUR PATH • NO RESET
-      </div>
-
-      <div id="arrivalCue">
-        DESTINATION IN REACH • KEEP MOVING
-      </div>
+      <div id="primaryCue"></div>
 
     </div>
 
 
-    <div id="whatMatters">
+    <div id="statusRow">
 
-      <span class="wmLabel">
-        WHAT MATTERS
-      </span>
+      <div id="valueCard" class="statusCard">
 
-      <span
-        class="wmText"
-        id="whatMattersText">
-      </span>
+        <b>WHAT MATTERS</b>
 
-    </div>
-
-
-    <div id="loopGripPanel">
-
-      <div class="gripRow">
-
-        <span class="gripTitle">
-          LOOP GRIP
-        </span>
-
-        <span class="gripState">
-          LOW
-        </span>
+        <span id="valueText"></span>
 
       </div>
 
-      <div class="gripTrack">
-        <i></i>
-      </div>
 
-      <div class="gripNote">
-        Tracks certainty-seeking, not anxiety.
+      <div id="recoveryCard" class="statusCard">
+
+        <b>PATH STATUS</b>
+
+        <span id="recoveryText">
+          Move from where you are.
+        </span>
+
       </div>
 
     </div>
@@ -2242,16 +1226,12 @@ MISSION
 
   <div class="hud">
 
-    <span
-      class="pill"
-      id="missionName">
-
+    <span class="pill" id="missionName">
       MISSION
-
     </span>
 
     <span class="pill">
-      XP&nbsp;<b class="xp">0</b>
+      XP <b class="xp">0</b>
     </span>
 
   </div>
@@ -2267,12 +1247,8 @@ MISSION
           One normal action.
         </b>
 
-        <div
-          class="small"
-          id="copy">
-
+        <div class="small" id="copy">
           No extra certainty required.
-
         </div>
 
       </div>
@@ -2310,10 +1286,7 @@ MISSION
 
         <div class="meter">
 
-          <i
-            class="fill"
-            id="progress">
-          </i>
+          <i class="fill" id="progress"></i>
 
           <i id="recoveryMark"></i>
 
@@ -2327,8 +1300,7 @@ MISSION
     <div class="controls">
 
       <button
-        type="button"
-        class="control"
+        class="control check"
         id="checkBtn">
 
         CHECK AGAIN
@@ -2337,7 +1309,6 @@ MISSION
 
 
       <button
-        type="button"
         class="control primary"
         id="forwardBtn">
 
@@ -2351,6 +1322,7 @@ MISSION
 
     </div>
 
+
     <div id="inputHint">
       &nbsp;
     </div>
@@ -2359,10 +1331,6 @@ MISSION
 
 </section>
 
-
-<!-- =========================================================
-REWARD
-========================================================= -->
 
 <section id="reward" class="screen">
 
@@ -2373,7 +1341,7 @@ REWARD
     </span>
 
     <span class="pill">
-      XP&nbsp;<b class="xp">0</b>
+      XP <b class="xp">0</b>
     </span>
 
   </div>
@@ -2381,7 +1349,7 @@ REWARD
 
   <div class="rewardBox">
 
-    <div class="rewardCard card">
+    <div class="card">
 
       <div class="small">
         MISSION COMPLETE
@@ -2396,7 +1364,7 @@ REWARD
 
       <div class="practice">
 
-        <div class="practiceLabel">
+        <div class="tag">
           WHAT YOU PRACTICED
         </div>
 
@@ -2405,22 +1373,16 @@ REWARD
 
           <div class="practiceStat">
 
-            <b id="statChecks">
-              0
-            </b>
+            <b id="statChecks">0</b>
 
-            <span>
-              CHECKS
-            </span>
+            <span>CHECKS</span>
 
           </div>
 
 
           <div class="practiceStat">
 
-            <b id="statCarry">
-              0s
-            </b>
+            <b id="statCarry">0s</b>
 
             <span>
               UNCERTAINTY CARRIED
@@ -2431,9 +1393,7 @@ REWARD
 
           <div class="practiceStat">
 
-            <b id="statRecoveries">
-              0
-            </b>
+            <b id="statRecoveries">0</b>
 
             <span>
               RETURNS TO PATH
@@ -2444,9 +1404,7 @@ REWARD
 
           <div class="practiceStat">
 
-            <b id="statEchoes">
-              0
-            </b>
+            <b id="statEchoes">0</b>
 
             <span>
               DOUBT ECHOES
@@ -2458,11 +1416,8 @@ REWARD
 
 
         <p
-          class="practiceCopy"
+          class="small"
           id="practiceCopy">
-
-          The win is choosing the next meaningful action—not getting a particular feeling.
-
         </p>
 
       </div>
@@ -2485,13 +1440,6 @@ REWARD
 
       </button>
 
-
-      <div class="sessionNote">
-
-        These are behavior markers, not a score for how anxious you felt. Stopping here is allowed.
-
-      </div>
-
     </div>
 
   </div>
@@ -2501,11 +1449,15 @@ REWARD
 
 <div
   id="liveStatus"
-  class="srOnly"
   aria-live="polite"
-  aria-atomic="true">
+  style="
+    position:absolute;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0)
+  ">
 </div>
-
 
 </div>
 
@@ -2514,63 +1466,46 @@ REWARD
 "use strict";
 
 
-/* ============================================================
-HELPERS
-============================================================ */
-
-const $=
-selector=>
-document.querySelector(selector);
+const $ =
+  selector =>
+    document.querySelector(selector);
 
 
-const $$=
-selector=>
-document.querySelectorAll(selector);
+const $$ =
+  selector =>
+    document.querySelectorAll(selector);
 
 
-const clamp=
-(
-  value,
-  min,
-  max
-)=>
-Math.max(
-  min,
-  Math.min(
-    max,
-    value
-  )
-);
+const clamp =
+  (value,min,max) =>
+    Math.max(
+      min,
+      Math.min(max,value)
+    );
 
 
-const persistence={
+const persist = {
 
-  get(
-    key,
-    fallback=""
-  ){
+  get:(key,defaultValue="")=>{
 
     try{
 
-      return localStorage.getItem(
-        key
-      ) ?? fallback;
+      return (
+        localStorage.getItem(key)
+        ??
+        defaultValue
+      );
 
-    }
+    }catch{
 
-    catch{
-
-      return fallback;
+      return defaultValue;
 
     }
 
   },
 
 
-  set(
-    key,
-    value
-  ){
+  set:(key,value)=>{
 
     try{
 
@@ -2579,63 +1514,29 @@ const persistence={
         String(value)
       );
 
-    }
-
-    catch{}
+    }catch{}
 
   }
 
 };
 
 
-/* ============================================================
-MISSION DATA
-============================================================ */
-
-const missions={
-
+const missions = {
 
   door:{
 
-    name:
-    "LOCK & LEAVE",
+    name:"LOCK & LEAVE",
 
-    action:
-    "LOCK ONCE",
-
-    title:
-    "Lock the door.",
-
-    copy:
-    "Perform one normal lock.",
+    action:"LOCK ONCE",
 
     value:
-    "Leave home and continue your day.",
+      "Leave home and continue your day.",
 
-    checkLabel:
-    "CHECK AGAIN",
+    check:
+      "CHECK AGAIN",
 
     arrival:
-    "You reached the vehicle.",
-
-    arrivalCue:
-    "ARRIVED • THE DOOR STAYED BEHIND",
-
-    checkpoints:[
-
-      {
-        at:30,
-        text:
-        "THRESHOLD CROSSED • KEEP GOING"
-      },
-
-      {
-        at:66,
-        text:
-        "HALFWAY TO THE VEHICLE"
-      }
-
-    ],
+      "You reached the vehicle.",
 
     thoughts:[
 
@@ -2651,11 +1552,9 @@ const missions={
 
     echoes:[
 
-      "Maybe you should turn around.",
+      "Maybe turn around.",
 
-      "What if that feeling means something?",
-
-      "You could settle this with one more look."
+      "What if that feeling means something?"
 
     ]
 
@@ -2664,45 +1563,18 @@ const missions={
 
   car:{
 
-    name:
-    "PARK & WALK",
+    name:"PARK & WALK",
 
-    action:
-    "LOCK CAR ONCE",
-
-    title:
-    "Lock the car.",
-
-    copy:
-    "Press the key fob once.",
+    action:"LOCK CAR ONCE",
 
     value:
-    "Go where you were headed.",
+      "Go where you were headed.",
 
-    checkLabel:
-    "CHECK AGAIN",
+    check:
+      "CHECK AGAIN",
 
     arrival:
-    "You reached the store.",
-
-    arrivalCue:
-    "ARRIVED • YOU KEPT MOVING",
-
-    checkpoints:[
-
-      {
-        at:30,
-        text:
-        "CAR BEHIND YOU • KEEP GOING"
-      },
-
-      {
-        at:66,
-        text:
-        "CROSSWALK COMMITTED • KEEP GOING"
-      }
-
-    ],
+      "You reached the store.",
 
     thoughts:[
 
@@ -2720,8 +1592,6 @@ const missions={
 
       "Maybe the beep wasn't yours.",
 
-      "You could press the button from here.",
-
       "What if a door didn't catch?"
 
     ]
@@ -2731,45 +1601,18 @@ const missions={
 
   stove:{
 
-    name:
-    "OFF & OUT",
+    name:"OFF & OUT",
 
-    action:
-    "TURN OFF ONCE",
-
-    title:
-    "Turn the stove off.",
-
-    copy:
-    "One normal action.",
+    action:"TURN OFF ONCE",
 
     value:
-    "Leave the kitchen and continue.",
+      "Leave the kitchen and continue.",
 
-    checkLabel:
-    "CHECK AGAIN",
+    check:
+      "CHECK AGAIN",
 
     arrival:
-    "You reached the exit.",
-
-    arrivalCue:
-    "ARRIVED • THE STOVE STAYED BEHIND",
-
-    checkpoints:[
-
-      {
-        at:30,
-        text:
-        "YOU STEPPED AWAY • KEEP GOING"
-      },
-
-      {
-        at:66,
-        text:
-        "EXIT IN SIGHT • KEEP GOING"
-      }
-
-    ],
+      "You reached the exit.",
 
     thoughts:[
 
@@ -2787,9 +1630,7 @@ const missions={
 
       "Maybe you remember it wrong.",
 
-      "What if you missed one knob?",
-
-      "You could go back just to be sure."
+      "What if you missed one knob?"
 
     ]
 
@@ -2798,45 +1639,18 @@ const missions={
 
   message:{
 
-    name:
-    "SENT & DONE",
+    name:"SENT & DONE",
 
-    action:
-    "SEND ONCE",
-
-    title:
-    "Send the message.",
-
-    copy:
-    "One normal send.",
+    action:"SEND ONCE",
 
     value:
-    "Return attention to the next task.",
+      "Return attention to the next task.",
 
-    checkLabel:
-    "REVIEW AGAIN",
+    check:
+      "REVIEW AGAIN",
 
     arrival:
-    "Your attention returned to the next task.",
-
-    arrivalCue:
-    "ARRIVED • THE MESSAGE STAYED SENT",
-
-    checkpoints:[
-
-      {
-        at:30,
-        text:
-        "PHONE DOWN • KEEP GOING"
-      },
-
-      {
-        at:66,
-        text:
-        "ATTENTION ON THE NEXT TASK"
-      }
-
-    ],
+      "Your attention returned to the next task.",
 
     thoughts:[
 
@@ -2852,11 +1666,9 @@ const missions={
 
     echoes:[
 
-      "Maybe you should read it again.",
+      "Maybe read it again.",
 
-      "What if that sentence sounded weird?",
-
-      "You could mentally replay what you wrote."
+      "What if that sentence sounded weird?"
 
     ]
 
@@ -2865,248 +1677,138 @@ const missions={
 };
 
 
-/* ============================================================
-STATE
-============================================================ */
+let xp =
+  Number(
+    persist.get(
+      "uncertainXP",
+      "0"
+    )
+  ) || 0;
 
-let xp=
-Number(
-  persistence.get(
-    "uncertainXP",
-    "0"
-  )
-)||0;
 
+let current = null;
 
-let current=
-null;
+let phase = "idle";
 
+let momentum = 0;
 
-let phase=
-"idle";
+let peak = 0;
 
+let urge = 46;
 
-let momentum=
-0;
+let checks = 0;
 
+let recoveries = 0;
 
-let peakMomentum=
-0;
+let recoveryTarget = null;
 
+let thoughtIndex = 0;
 
-let urge=
-46;
+let carrying = false;
 
+let carryStart = 0;
 
-let loopGrip=
-24;
+let carrySeconds = 0;
 
+let echoCount = 0;
 
-let checks=
-0;
+let echoThisCarry = 0;
 
+let driftShown = false;
 
-let recoveryCount=
-0;
+let holdArmed = false;
 
+let moving = false;
 
-let recoveryTarget=
-null;
+let appSuspended = false;
 
+let lastCheckAt = 0;
 
-let thoughtIndex=
-0;
 
+let walkTimer;
 
-let carrying=
-false;
+let holdGateTimer;
 
+let holdProgressTimer;
 
-let carryStartedAt=
-0;
+let doubtTimer;
 
+let reliefTimer;
 
-let carrySeconds=
-0;
+let cueTimer;
 
+let urgeTimer;
 
-let carryStartMomentum=
-0;
 
+const HOLD_GATE_MS = 220;
 
-let echoCount=
-0;
+const RECHECK_DEBOUNCE_MS = 800;
 
+const ECHO_PER_CARRY = 2;
 
-let echoStage=
-0;
+const ECHO_PER_MISSION = 4;
 
 
-let appSuspended=
-false;
+const postCheckLines = [
 
+  "The loop moved the finish line.",
 
-let holdArmed=
-false;
+  "Relief was brief. Your path is still here.",
 
+  "Same pattern, different wording.",
 
-let moving=
-false;
+  "Certainty asked for another round."
 
+];
 
-let holdStart=
-0;
-
-
-let holdGateTimer=
-null;
-
-
-let holdProgressTimer=
-null;
-
-
-let walkTimer=
-null;
-
-
-let doubtTimer=
-null;
-
-
-let urgeTimer=
-null;
-
-
-let waveTimer=
-null;
-
-
-let echoHideTimer=
-null;
-
-
-let checkpointHideTimer=
-null;
-
-
-let driftHideTimer=
-null;
-
-
-let reliefTimer=
-null;
-
-
-let recoveryHideTimer=
-null;
-
-
-let arrivalTimer=
-null;
-
-
-let turnTimer=
-null;
-
-
-let lastCheckAt=
-0;
-
-
-const HOLD_GATE_MS=
-220;
-
-
-const RECHECK_DEBOUNCE_MS=
-800;
-
-
-/* ============================================================
-CHECKPOINT STATE
-============================================================ */
-
-let earnedCheckpoints=
-new Set();
-
-
-let driftEarned=
-false;
-
-
-/* ============================================================
-SCREEN HELPERS
-============================================================ */
 
 function show(id){
 
-  $$(".screen")
-  .forEach(
-    screen=>
-    screen.classList.remove(
-      "active"
-    )
+  $$(".screen").forEach(
+    screen =>
+      screen.classList.remove("active")
   );
 
-
-  $("#"+id)
-  .classList.add(
-    "active"
-  );
+  $("#" + id)
+    .classList
+    .add("active");
 
 }
 
 
 function announce(text){
 
-  $("#liveStatus")
-  .textContent=
-  "";
+  $("#liveStatus").textContent = "";
 
-  requestAnimationFrame(()=>{
-
-    $("#liveStatus")
-    .textContent=
-    text;
-
-  });
+  requestAnimationFrame(
+    () =>
+      $("#liveStatus").textContent = text
+  );
 
 }
 
 
-function vibrate(pattern){
+function buzz(pattern){
 
   try{
 
-    if(
-      "vibrate" in navigator
-    ){
+    navigator.vibrate?.(pattern);
 
-      navigator.vibrate(
-        pattern
-      );
-
-    }
-
-  }
-
-  catch{}
+  }catch{}
 
 }
 
 
 function updateXP(){
 
-  persistence.set(
+  persist.set(
     "uncertainXP",
     xp
   );
 
-
-  $$(".xp")
-  .forEach(
-    item=>
-    item.textContent=xp
+  $$(".xp").forEach(
+    element =>
+      element.textContent = xp
   );
 
 }
@@ -3114,23 +1816,18 @@ function updateXP(){
 
 function completions(){
 
-  $$(".completion")
-  .forEach(
-    item=>{
+  $$(".completion").forEach(
+    element => {
 
-      const key=
-      item.dataset.completion;
+      element.textContent =
+        persist.get(
+          "completed_" +
+          element.dataset.completion
+        ) === "yes"
 
+        ? "✓ COMPLETED • REPLAY AVAILABLE"
 
-      item.textContent=
-
-      persistence.get(
-        "completed_"+key
-      )==="yes"
-
-      ? "✓ COMPLETED • REPLAY AVAILABLE"
-
-      : "";
+        : "";
 
     }
   );
@@ -3138,2040 +1835,740 @@ function completions(){
 }
 
 
-/* ============================================================
-METERS
-============================================================ */
-
 function meters(){
 
-  $("#progress")
-  .style.width=
-  momentum+"%";
+  $("#progress").style.width =
+    momentum + "%";
 
-
-  $("#urge")
-  .style.width=
-  urge+"%";
+  $("#urge").style.width =
+    urge + "%";
 
 }
 
 
-function renderGrip(){
+function cue(
+  text,
+  type="progress",
+  duration=1050
+){
 
-  loopGrip=
-  clamp(
-    loopGrip,
-    8,
-    100
+  clearTimeout(cueTimer);
+
+  const element =
+    $("#primaryCue");
+
+  element.className = "";
+
+  element.textContent = text;
+
+  element.classList.add(
+    "show",
+    type
   );
 
-
-  $(".gripTrack i")
-  .style.width=
-  loopGrip+"%";
-
-
-  $(".gripState")
-  .textContent=
-
-  loopGrip>=72
-
-  ? "STRONG"
-
-  : loopGrip>=42
-
-  ? "ACTIVE"
-
-  : "LOW";
-
-}
-
-
-/* ============================================================
-DOUBT
-============================================================ */
-
-function hideDoubt(){
-
-  $("#doubtOverlay")
-  .classList.remove(
-    "show"
-  );
-
-
-  $("#doubtVignette")
-  .classList.remove(
-    "show"
-  );
+  cueTimer =
+    setTimeout(
+      () =>
+        element.classList.remove("show"),
+      duration
+    );
 
 }
 
 
 function showDoubt(text){
 
-  if(
-    !current
-  ){
-
-    return;
-
-  }
-
-
   $("#doubtMessage")
-  .textContent=
-  text;
-
+    .textContent = text;
 
   $("#doubtOverlay")
-  .classList.add(
-    "show"
-  );
-
+    .classList
+    .add("show");
 
   $("#doubtVignette")
-  .classList.add(
-    "show"
-  );
+    .classList
+    .add("show");
 
-
-  $("#phaseHint")
-  .textContent=
-  "DOUBT";
-
+  $("#valueCard")
+    .classList
+    .add("dim");
 
   announce(
-    "Doubt: "+text
+    "Doubt: " + text
   );
 
-
-  vibrate(
-    20
-  );
+  buzz(15);
 
 }
 
 
-function nextThought(){
+function hideDoubt(){
 
-  const list=
-  missions[current]
-  .thoughts;
+  $("#doubtOverlay")
+    .classList
+    .remove("show");
+
+  $("#doubtVignette")
+    .classList
+    .remove("show");
+
+  $("#valueCard")
+    .classList
+    .remove("dim");
+
+}
 
 
-  const text=
-  list[
-    thoughtIndex %
+function thought(){
+
+  const list =
+    missions[current].thoughts;
+
+  return list[
+    (thoughtIndex++)
+    %
     list.length
   ];
-
-
-  thoughtIndex++;
-
-
-  return text;
 
 }
 
 
 function scheduleDoubt(
-  delay=800
+  delay=650
 ){
 
-  clearTimeout(
-    doubtTimer
-  );
+  clearTimeout(doubtTimer);
 
+  doubtTimer =
+    setTimeout(
+      () => {
 
-  doubtTimer=
-  setTimeout(()=>{
+        if(
+          current
+          &&
+          phase === "ready"
+          &&
+          !carrying
+          &&
+          !appSuspended
+        ){
 
-    doubtTimer=
-    null;
+          showDoubt(
+            thought()
+          );
 
+          urge =
+            clamp(
+              urge + 10,
+              18,
+              96
+            );
 
-    if(
-      current &&
-      phase==="ready" &&
-      !carrying &&
-      !appSuspended
-    ){
+          meters();
 
-      showDoubt(
-        nextThought()
-      );
+        }
 
-
-      urge=
-      clamp(
-        urge+10,
-        18,
-        96
-      );
-
-
-      meters();
-
-    }
-
-  },delay);
-
-}
-
-
-/* ============================================================
-CARRY CLOCK
-============================================================ */
-
-function pauseCarryClock(){
-
-  if(
-    carrying &&
-    carryStartedAt
-  ){
-
-    carrySeconds+=
-    (
-      performance.now()-
-      carryStartedAt
-    )/1000;
-
-
-    carryStartedAt=
-    0;
-
-  }
-
-}
-
-
-function resumeCarryClock(){
-
-  if(
-    carrying &&
-    !carryStartedAt
-  ){
-
-    carryStartedAt=
-    performance.now();
-
-  }
-
-}
-
-
-function currentCarrySeconds(){
-
-  return carrySeconds+
-
-  (
-    carrying &&
-    carryStartedAt
-
-    ? (
-        performance.now()-
-        carryStartedAt
-      )/1000
-
-    : 0
-  );
-
-}
-
-
-function setCarrying(on){
-
-  if(
-    on &&
-    !carrying
-  ){
-
-    echoStage=
-    0;
-
-
-    carryStartMomentum=
-    momentum;
-
-
-    carryStartedAt=
-    performance.now();
-
-  }
-
-
-  if(
-    !on &&
-    carrying
-  ){
-
-    pauseCarryClock();
-
-  }
-
-
-  carrying=
-  on;
-
-
-  $("#carryCue")
-  .classList.toggle(
-    "show",
-    on
-  );
-
-
-  if(on){
-
-    announce(
-      "Uncertainty can come with you."
+      },
+      delay
     );
 
-  }
-
 }
 
 
-/* ============================================================
-DOUBT ECHO
-============================================================ */
+function setRecovery(value){
 
-function hideEcho(){
+  recoveryTarget = value;
 
-  clearTimeout(
-    echoHideTimer
-  );
+  const marker =
+    $("#recoveryMark");
 
 
-  echoHideTimer=
-  null;
+  if(value == null){
 
+    marker.style.display =
+      "none";
 
-  $("#echoCue")
-  .classList.remove(
-    "show"
-  );
-
-}
-
-
-function showEcho(){
-
-  if(
-    !current ||
-    !carrying ||
-    phase!=="moving"
-  ){
-
-    return;
-
-  }
-
-
-  const list=
-  missions[current]
-  .echoes;
-
-
-  const text=
-  list[
-    echoCount %
-    list.length
-  ];
-
-
-  echoCount++;
-
-
-  $("#echoMessage")
-  .textContent=
-  text;
-
-
-  $("#echoCue")
-  .classList.add(
-    "show"
-  );
-
-
-  announce(
-    "Doubt echo: "+
-    text+
-    ". Keep moving if you choose."
-  );
-
-
-  vibrate(
-    12
-  );
-
-
-  clearTimeout(
-    echoHideTimer
-  );
-
-
-  echoHideTimer=
-  setTimeout(
-    hideEcho,
-    1000
-  );
-
-}
-
-
-function maybeEcho(){
-
-  if(
-    !carrying ||
-    phase!=="moving"
-  ){
-
-    return;
-
-  }
-
-
-  const distance=
-  momentum-
-  carryStartMomentum;
-
-
-  const thresholds=[
-    16,
-    38
-  ];
-
-
-  if(
-    echoStage<
-    thresholds.length &&
-    distance>=
-    thresholds[
-      echoStage
-    ]
-  ){
-
-    echoStage++;
-
-
-    showEcho();
-
-  }
-
-}
-
-
-/* ============================================================
-ATTENTION DRIFT
-============================================================ */
-
-function hideDrift(){
-
-  clearTimeout(
-    driftHideTimer
-  );
-
-
-  driftHideTimer=
-  null;
-
-
-  $("#driftCue")
-  .classList.remove(
-    "show"
-  );
-
-}
-
-
-function maybeAttentionDrift(){
-
-  if(
-    current!=="message" ||
-    driftEarned ||
-    !carrying ||
-    phase!=="moving" ||
-    momentum<48
-  ){
-
-    return;
-
-  }
-
-
-  driftEarned=
-  true;
-
-
-  $("#driftCue")
-  .classList.add(
-    "show"
-  );
-
-
-  announce(
-    "Attention drift. Notice it and keep going."
-  );
-
-
-  vibrate(
-    10
-  );
-
-
-  clearTimeout(
-    driftHideTimer
-  );
-
-
-  driftHideTimer=
-  setTimeout(
-    hideDrift,
-    1300
-  );
-
-}
-
-
-/* ============================================================
-CHECKPOINTS
-============================================================ */
-
-function hideCheckpoint(){
-
-  clearTimeout(
-    checkpointHideTimer
-  );
-
-
-  checkpointHideTimer=
-  null;
-
-
-  $("#checkpointCue")
-  .classList.remove(
-    "show"
-  );
-
-}
-
-
-function showCheckpoint(text){
-
-  $("#checkpointCue")
-  .textContent=
-  text;
-
-
-  $("#checkpointCue")
-  .classList.add(
-    "show"
-  );
-
-
-  announce(
-    text
-  );
-
-
-  vibrate([
-    12,
-    30,
-    12
-  ]);
-
-
-  clearTimeout(
-    checkpointHideTimer
-  );
-
-
-  checkpointHideTimer=
-  setTimeout(
-    hideCheckpoint,
-    1150
-  );
-
-}
-
-
-function checkRouteCheckpoints(){
-
-  if(
-    !current
-  ){
-
-    return;
-
-  }
-
-
-  missions[current]
-  .checkpoints
-  .forEach(
-    (
-      checkpoint,
-      index
-    )=>{
-
-      if(
-        momentum>=checkpoint.at &&
-        !earnedCheckpoints.has(
-          index
-        )
-      ){
-
-        earnedCheckpoints.add(
-          index
-        );
-
-
-        showCheckpoint(
-          checkpoint.text
-        );
-
-      }
-
-    }
-  );
-
-}
-
-
-/* ============================================================
-RECOVERY
-============================================================ */
-
-function renderRecoveryCue(){
-
-  clearTimeout(
-    recoveryHideTimer
-  );
-
-
-  recoveryHideTimer=
-  null;
-
-
-  if(
-    recoveryTarget!==null
-  ){
-
-    $("#recoveryCue")
-    .textContent=
-    "RETURN TO YOUR PATH • NO RESET";
-
-
-    $("#recoveryCue")
-    .classList.add(
-      "show"
-    );
+    $("#recoveryText")
+      .textContent =
+      "Move from where you are.";
 
   }
 
   else{
 
-    $("#recoveryCue")
-    .classList.remove(
-      "show"
-    );
+    marker.style.display =
+      "block";
+
+    marker.style.left =
+      `calc(${clamp(value,0,100)}% - 1px)`;
+
+    $("#recoveryText")
+      .textContent =
+      "Return to your previous path point — no reset.";
 
   }
 
 }
 
 
-function setRecoveryTarget(value){
-
-  recoveryTarget=
-  value;
-
-
-  const mark=
-  $("#recoveryMark");
-
+function startUrge(){
 
   if(
-    value===null
-  ){
-
-    mark.style.display=
-    "none";
-
-  }
-
-  else{
-
-    mark.style.display=
-    "block";
+    urgeTimer
+    ||
+    appSuspended
+  ) return;
 
 
-    mark.style.left=
-    `calc(${
-      clamp(
-        value,
-        0,
-        100
-      )
-    }% - 1px)`;
+  urgeTimer =
+    setInterval(
+      () => {
 
-  }
-
-
-  renderRecoveryCue();
-
-}
+        if(
+          ![
+            "ready",
+            "moving"
+          ].includes(phase)
+        ) return;
 
 
-function recoverySuccess(){
-
-  recoveryCount++;
-
-
-  setRecoveryTarget(
-    null
-  );
-
-
-  $("#recoveryCue")
-  .textContent=
-  "YOU RETURNED • KEEP GOING";
+        const target =
+          54
+          +
+          Math.sin(
+            Date.now()/850
+          )
+          *
+          26;
 
 
-  $("#recoveryCue")
-  .classList.add(
-    "show"
-  );
+        urge =
+          clamp(
+            urge
+            +
+            (target-urge)
+            *
+            .08,
+            18,
+            94
+          );
 
 
-  announce(
-    "You returned to your path without restarting."
-  );
+        meters();
 
-
-  vibrate([
-    14,
-    28,
-    14
-  ]);
-
-
-  clearTimeout(
-    recoveryHideTimer
-  );
-
-
-  recoveryHideTimer=
-  setTimeout(()=>{
-
-    recoveryHideTimer=
-    null;
-
-
-    if(
-      recoveryTarget===null
-    ){
-
-      $("#recoveryCue")
-      .classList.remove(
-        "show"
-      );
-
-    }
-
-  },1000);
+      },
+      180
+    );
 
 }
 
 
-/* ============================================================
-URGE ENGINE
-============================================================ */
-
-function stopUrgeEngine(){
+function stopUrge(){
 
   clearInterval(
     urgeTimer
   );
 
-
-  urgeTimer=
-  null;
+  urgeTimer = null;
 
 }
 
 
-function startUrgeEngine(){
+function scene(key){
 
-  if(
-    urgeTimer ||
-    appSuspended ||
-    !current
-  ){
+  if(key === "door"){
 
-    return;
+    return `
+      <div class="house">
+        <div class="door"></div>
+      </div>
+
+      <div class="driveway"></div>
+
+      <div
+        class="car drivewayCar destination">
+      </div>
+    `;
 
   }
 
 
-  urgeTimer=
-  setInterval(()=>{
-
-    if(
-      appSuspended ||
-      ![
-        "ready",
-        "moving"
-      ].includes(
-        phase
-      )
-    ){
-
-      return;
-
-    }
-
-
-    const target=
-    54+
-    Math.sin(
-      Date.now()/850
-    )*28;
-
-
-    urge=
-    clamp(
-      urge+
-      (
-        target-
-        urge
-      )*.08,
-      18,
-      94
-    );
-
-
-    meters();
-
-  },180);
-
-}
-
-
-/* ============================================================
-URGE WAVE
-============================================================ */
-
-function stopWave(){
-
-  clearInterval(
-    waveTimer
-  );
-
-
-  waveTimer=
-  null;
-
-
-  $("#waveCue")
-  .classList.remove(
-    "show"
-  );
-
-}
-
-
-function startWave(){
-
-  stopWave();
-
-
-  const started=
-  performance.now();
-
-
-  $("#waveCue")
-  .classList.add(
-    "show"
-  );
-
-
-  waveTimer=
-  setInterval(()=>{
-
-    if(
-      phase!=="ready" ||
-      !carrying ||
-      appSuspended
-    ){
-
-      stopWave();
-
-      return;
-
-    }
-
-
-    const seconds=
-    (
-      performance.now()-
-      started
-    )/1000;
-
-
-    $("#waveCue")
-    .textContent=
-    `URGE WAVE • ${
-      seconds.toFixed(1)
-    }s WITHOUT CHECKING`;
-
-
-    if(
-      seconds>=1.2
-    ){
-
-      loopGrip=
-      clamp(
-        loopGrip-.7,
-        8,
-        100
-      );
-
-
-      renderGrip();
-
-    }
-
-  },180);
-
-}
-
-
-/* ============================================================
-SCENES
-============================================================ */
-
-function sceneMarkup(key){
-
-  if(
-    key==="door"
-  ){
+  if(key === "car"){
 
     return `
+      <div class="parking">
 
-<div class="houseShell">
+        <div class="store">
 
-  <div class="roof"></div>
+          <div
+            class="storeDoor destination">
+          </div>
 
-  <div class="houseBody">
+        </div>
 
-    <div class="window left"></div>
+        <div class="crosswalk"></div>
 
-    <div class="window right"></div>
+        <div
+          class="car playerCar">
+        </div>
 
-    <div class="door">
-      <div class="knob"></div>
-    </div>
-
-  </div>
-
-</div>
-
-<div class="driveway"></div>
-
-<div class="drivewayVehicle destination">
-
-  <div class="carWindow"></div>
-
-</div>
-
-<div class="sceneArrow doorArrow">
-  ↘
-</div>
-
-`;
+      </div>
+    `;
 
   }
 
 
-  if(
-    key==="car"
-  ){
+  if(key === "stove"){
 
     return `
+      <div class="kitchen">
 
-<div class="parkingScene">
+        <div
+          class="exitDoor destination">
+        </div>
 
-  <div class="store">
+        <div class="stove"></div>
 
-    <div class="storeAwning"></div>
-
-    <div class="storeDoor destination"></div>
-
-  </div>
-
-
-  <div class="sidewalkShadow"></div>
-
-  <div class="sidewalk"></div>
-
-  <div class="curbCut"></div>
-
-  <div class="driveAisle"></div>
-
-  <div class="crosswalk"></div>
-
-
-  <div class="parkingRow left">
-
-    <div class="stall a"></div>
-
-    <div class="stall b"></div>
-
-    <div class="stall c"></div>
-
-    <div
-      class="parkedCar muted"
-      style="left:6%">
-    </div>
-
-    <div
-      class="parkedCar muted"
-      style="right:7%">
-    </div>
-
-  </div>
-
-
-  <div class="parkingRow right">
-
-    <div class="stall a"></div>
-
-    <div class="stall b"></div>
-
-    <div class="stall c"></div>
-
-    <div
-      class="parkedCar muted"
-      style="left:2%">
-    </div>
-
-    <div class="playerCar parkedCar"></div>
-
-  </div>
-
-
-  <div class="parkingLabel">
-    CROSS TO STORE
-  </div>
-
-  <div class="sceneArrow carArrow">
-    ↑
-  </div>
-
-</div>
-
-`;
-
-  }
-
-
-  if(
-    key==="stove"
-  ){
-
-    return `
-
-<div class="kitchenWall"></div>
-
-<div class="kitchenFloor"></div>
-
-<div class="exitDoor destination"></div>
-
-<div class="counter"></div>
-
-<div class="stove">
-
-  <div class="stoveTop">
-
-    <div class="burner one"></div>
-
-    <div class="burner two"></div>
-
-  </div>
-
-  <div class="stovePanel"></div>
-
-  <div class="stoveKnob one"></div>
-
-  <div class="stoveKnob two"></div>
-
-  <div class="stoveKnob three"></div>
-
-  <div class="stoveKnob four"></div>
-
-  <div class="stoveOven"></div>
-
-</div>
-
-<div class="sceneArrow stoveArrow">
-  ↖
-</div>
-
-`;
+      </div>
+    `;
 
   }
 
 
   return `
+    <div class="messageScene">
 
-<div class="messageScene">
+      <div
+        class="nextTask destination">
 
-  <div class="nextTask destination">
+        <small>
+          NEXT TASK
+        </small>
 
-    <small>
-      NEXT TASK
-    </small>
+        <b>
+          Return to your day
+        </b>
 
-    <b>
-      Return to your day
-    </b>
-
-    <p>
-      No verdict on the message is required first.
-    </p>
-
-  </div>
-
-
-  <div class="desk"></div>
-
-
-  <div class="phone">
-
-    <div class="phoneScreen">
-
-      <div class="messageHeader"></div>
-
-      <div class="messageBubble">
-        Sounds good. See you then!
       </div>
 
-      <div class="sentLabel">
-        SENT
-      </div>
+      <div class="desk"></div>
+
+      <div class="phone"></div>
 
     </div>
-
-  </div>
-
-
-  <div class="sceneArrow messageArrow">
-    ↖
-  </div>
-
-</div>
-
-`;
+  `;
 
 }
 
 
-/* ============================================================
-SCENE ELEMENTS
-============================================================ */
+function sourceEl(){
 
-function sourceElement(){
-
-  if(
-    current==="door"
-  ){
-
+  if(current === "door")
     return $(".door");
 
-  }
-
-
-  if(
-    current==="car"
-  ){
-
+  if(current === "car")
     return $(".playerCar");
 
-  }
-
-
-  if(
-    current==="stove"
-  ){
-
+  if(current === "stove")
     return $(".stove");
-
-  }
-
 
   return $(".phone");
 
 }
 
 
-function destinationElement(){
+function destEl(){
 
   return $(".destination");
 
 }
 
 
-function arrowElement(){
-
-  return $(".sceneArrow");
-
-}
-
-
-/* ============================================================
-TURN-BACK VISUAL
-============================================================ */
-
-function clearTurnVisual(){
-
-  clearTimeout(
-    turnTimer
-  );
-
-
-  turnTimer=
-  null;
-
-
-  $("#person")
-  .classList.remove(
-    "turnBack"
-  );
-
-
-  const source=
-  sourceElement();
-
-
-  const arrow=
-  arrowElement();
-
-
-  if(source){
-
-    source.classList.remove(
-      "sourceFocus"
-    );
-
-  }
-
-
-  if(arrow){
-
-    arrow.classList.remove(
-      "away"
-    );
-
-  }
-
-}
-
-
-function showTurnBack(){
-
-  clearTurnVisual();
-
-
-  $("#person")
-  .classList.add(
-    "turnBack"
-  );
-
-
-  const source=
-  sourceElement();
-
-
-  const arrow=
-  arrowElement();
-
-
-  if(source){
-
-    source.classList.add(
-      "sourceFocus"
-    );
-
-  }
-
-
-  if(arrow){
-
-    arrow.classList.add(
-      "away"
-    );
-
-  }
-
-
-  turnTimer=
-  setTimeout(
-    clearTurnVisual,
-    620
-  );
-
-}
-
-
-/* ============================================================
-DESTINATION
-============================================================ */
-
-function setArrivalCue(
-  showIt,
-  text="DESTINATION IN REACH • KEEP MOVING"
-){
-
-  $("#arrivalCue")
-  .textContent=
-  text;
-
-
-  $("#arrivalCue")
-  .classList.toggle(
-    "show",
-    showIt
-  );
-
-}
-
-
-function updateDestination(){
-
-  const destination=
-  destinationElement();
-
-
-  if(
-    !destination
-  ){
-
-    return;
-
-  }
-
-
-  destination.classList.toggle(
-    "near",
-    momentum>=88 &&
-    momentum<100
-  );
-
-
-  destination.classList.toggle(
-    "arrived",
-    momentum>=100
-  );
-
-
-  setArrivalCue(
-    momentum>=88 &&
-    momentum<100
-  );
-
-}
-
-
-/* ============================================================
-UPDATE SCENE
-============================================================ */
+/*
+  PARK & WALK PATH:
+
+  Stage 1:
+  Character leaves the car.
+
+  Stage 2:
+  Character centers onto the crosswalk.
+
+  Stage 3:
+  Character moves vertically toward
+  the store entrance.
+*/
 
 function updateScene(){
 
-  const t=
-  momentum/100;
+  const t =
+    momentum / 100;
+
+  const player =
+    $("#person");
 
 
-  const person=
-  $("#person");
+  if(current === "car"){
+
+    let left;
+
+    let bottom;
+
+    let scale;
 
 
-  if(
-    current==="car"
-  ){
+    if(t < .34){
 
-    person.style.left=
-    (
-      60-
-      10*t
-    )+"%";
+      const q =
+        t / .34;
 
+      left =
+        78
+        -
+        (28*q);
 
-    person.style.bottom=
-    (
-      17+
-      43*t
-    )+"%";
+      bottom =
+        16
+        +
+        (6*q);
 
-
-    person.style.transform=
-    `translateX(-50%) scale(${
-      1-
-      .25*t
-    })`;
-
-
-    const car=
-    $(".playerCar");
-
-
-    if(car){
-
-      car.style.opacity=
-      String(
-        Math.max(
-          .25,
-          1-
-          .7*t
-        )
-      );
+      scale =
+        1
+        -
+        .04*q;
 
     }
+
+
+    else if(t < .68){
+
+      const q =
+        (t-.34)
+        /
+        .34;
+
+      left = 50;
+
+      bottom =
+        22
+        +
+        (24*q);
+
+      scale =
+        .96
+        -
+        .10*q;
+
+    }
+
+
+    else{
+
+      const q =
+        (t-.68)
+        /
+        .32;
+
+      left = 50;
+
+      bottom =
+        46
+        +
+        (18*q);
+
+      scale =
+        .86
+        -
+        .10*q;
+
+    }
+
+
+    player.style.left =
+      left + "%";
+
+    player.style.bottom =
+      bottom + "%";
+
+    player.style.transform =
+      `translateX(-50%) scale(${scale})`;
 
   }
 
 
-  else if(
-    current==="door"
-  ){
+  else if(current === "door"){
 
-    person.style.left=
-    (
-      50+
-      20*t
-    )+"%";
+    player.style.left =
+      (50 + 20*t)
+      +
+      "%";
 
+    player.style.bottom =
+      (42 - 25*t)
+      +
+      "%";
 
-    person.style.bottom=
-    (
-      43-
-      27*t
-    )+"%";
-
-
-    person.style.transform=
-    `translateX(-50%) scale(${
-      1-
-      .08*t
-    })`;
-
-
-    const house=
-    $(".houseShell");
-
-
-    if(house){
-
-      house.style.opacity=
-      String(
-        Math.max(
-          .28,
-          1-
-          .68*t
-        )
-      );
-
-    }
+    player.style.transform =
+      `translateX(-50%) scale(${1-.08*t})`;
 
   }
 
 
-  else if(
-    current==="stove"
-  ){
+  else if(current === "stove"){
 
-    person.style.left=
-    (
-      67-
-      17*t
-    )+"%";
+    player.style.left =
+      (68 - 18*t)
+      +
+      "%";
 
+    player.style.bottom =
+      (24 + 37*t)
+      +
+      "%";
 
-    person.style.bottom=
-    (
-      24+
-      36*t
-    )+"%";
-
-
-    person.style.transform=
-    `translateX(-50%) scale(${
-      1-
-      .2*t
-    })`;
-
-
-    const stove=
-    $(".stove");
-
-
-    if(stove){
-
-      stove.style.opacity=
-      String(
-        Math.max(
-          .25,
-          1-
-          .72*t
-        )
-      );
-
-    }
+    player.style.transform =
+      `translateX(-50%) scale(${1-.18*t})`;
 
   }
 
 
-  else if(
-    current==="message"
-  ){
+  else{
 
-    person.style.left=
-    (
-      68-
-      26*t
-    )+"%";
+    player.style.left =
+      (68 - 25*t)
+      +
+      "%";
 
+    player.style.bottom =
+      (18 + 30*t)
+      +
+      "%";
 
-    person.style.bottom=
-    (
-      18+
-      29*t
-    )+"%";
-
-
-    person.style.transform=
-    `translateX(-50%) scale(${
-      1-
-      .13*t
-    })`;
-
-
-    const phone=
-    $(".phone");
-
-
-    if(phone){
-
-      phone.style.opacity=
-      String(
-        Math.max(
-          .22,
-          1-
-          .74*t
-        )
-      );
-
-    }
+    player.style.transform =
+      `translateX(-50%) scale(${1-.12*t})`;
 
   }
 
 
-  const arrow=
-  arrowElement();
+  const destination =
+    destEl();
 
 
-  if(arrow){
+  if(destination){
 
-    arrow.style.opacity=
-    String(
-      Math.max(
-        .16,
-        1-
-        .72*t
-      )
+    destination.classList.toggle(
+      "near",
+      momentum >= 88
+      &&
+      momentum < 100
+    );
+
+
+    destination.classList.toggle(
+      "arrived",
+      momentum >= 100
     );
 
   }
 
-
-  updateDestination();
-
 }
 
-
-/* ============================================================
-LOAD MISSION
-============================================================ */
 
 function loadMission(key){
 
   stopAll();
 
+  current = key;
 
-  current=
-  key;
+  phase = "action";
 
+  momentum = 0;
 
-  phase=
-  "action";
+  peak = 0;
 
+  urge = 46;
 
-  momentum=
-  0;
+  checks = 0;
 
+  recoveries = 0;
 
-  peakMomentum=
-  0;
+  recoveryTarget = null;
 
+  thoughtIndex = 0;
 
-  urge=
-  46;
+  carrying = false;
 
+  carrySeconds = 0;
 
-  loopGrip=
-  24;
+  carryStart = 0;
 
+  echoCount = 0;
 
-  checks=
-  0;
+  echoThisCarry = 0;
 
+  driftShown = false;
 
-  recoveryCount=
-  0;
+  appSuspended = false;
 
-
-  recoveryTarget=
-  null;
-
-
-  thoughtIndex=
-  0;
-
-
-  carrying=
-  false;
-
-
-  carrySeconds=
-  0;
-
-
-  carryStartedAt=
-  0;
-
-
-  carryStartMomentum=
-  0;
-
-
-  echoCount=
-  0;
-
-
-  echoStage=
-  0;
-
-
-  appSuspended=
-  false;
-
-
-  holdArmed=
-  false;
-
-
-  moving=
-  false;
-
-
-  earnedCheckpoints=
-  new Set();
-
-
-  driftEarned=
-  false;
-
-
-  lastCheckAt=
-  0;
+  lastCheckAt = 0;
 
 
   $("#environment")
-  .innerHTML=
-  sceneMarkup(
-    key
-  );
+    .innerHTML =
+    scene(key);
 
 
   $("#missionName")
-  .textContent=
-  missions[key].name;
+    .textContent =
+    missions[key].name;
 
 
   $("#title")
-  .textContent=
-  missions[key].title;
+    .textContent =
+    "One normal action.";
 
 
   $("#copy")
-  .textContent=
-  missions[key].copy;
+    .textContent =
+    "No extra certainty required.";
 
 
-  $("#whatMattersText")
-  .textContent=
-  missions[key].value;
+  $("#valueText")
+    .textContent =
+    missions[key].value;
 
 
   $("#phaseHint")
-  .textContent=
-  "ACTION";
+    .textContent =
+    "ACTION";
 
 
   $("#meters")
-  .style.display=
-  "none";
+    .style
+    .display =
+    "none";
 
 
   $("#checkBtn")
-  .style.display=
-  "none";
+    .style
+    .display =
+    "none";
 
 
   $("#checkBtn")
-  .disabled=
-  false;
+    .disabled =
+    false;
 
 
   $("#checkBtn")
-  .textContent=
-  missions[key].checkLabel;
+    .textContent =
+    missions[key].check;
 
 
   $("#forwardLabel")
-  .textContent=
-  missions[key].action;
+    .textContent =
+    missions[key].action;
 
 
-  resetHoldUI();
+  setRecovery(null);
 
-
-  const person=
-  $("#person");
-
-
-  person.style.left=
-
-  key==="door"
-
-  ? "50%"
-
-  : key==="car"
-
-  ? "60%"
-
-  : key==="stove"
-
-  ? "67%"
-
-  : "68%";
-
-
-  person.style.bottom=
-
-  key==="door"
-
-  ? "43%"
-
-  : key==="car"
-
-  ? "17%"
-
-  : key==="stove"
-
-  ? "24%"
-
-  : "18%";
-
-
-  person.style.transform=
-  "translateX(-50%)";
-
+  resetHold();
 
   hideDoubt();
 
-  hideEcho();
-
-  hideDrift();
-
-  hideCheckpoint();
-
-
-  $("#carryCue")
-  .classList.remove(
-    "show"
-  );
-
-
-  $("#waveCue")
-  .classList.remove(
-    "show"
-  );
-
-
-  setRecoveryTarget(
-    null
-  );
-
-
-  setArrivalCue(
-    false
-  );
-
-
   meters();
-
-  renderGrip();
 
   updateScene();
 
-
-  show(
-    "mission"
-  );
-
-
-  announce(
-    missions[key].name+
-    " opened."
-  );
+  show("mission");
 
 }
 
-
-/* ============================================================
-INITIAL ACTION
-============================================================ */
 
 function initialAction(){
 
   if(
-    phase!=="action"
-  ){
-
-    return;
-
-  }
+    phase !== "action"
+  ) return;
 
 
-  phase=
-  "ready";
+  phase =
+    "ready";
 
 
   $("#meters")
-  .style.display=
-  "grid";
+    .style
+    .display =
+    "grid";
 
 
   $("#checkBtn")
-  .style.display=
-  "block";
-
-
-  $("#checkBtn")
-  .disabled=
-  false;
+    .style
+    .display =
+    "block";
 
 
   $("#forwardLabel")
-  .textContent=
-  "HOLD TO MOVE";
+    .textContent =
+    "HOLD TO MOVE";
 
 
   $("#phaseHint")
-  .textContent=
-  "READY";
+    .textContent =
+    "READY";
 
 
   $("#title")
-  .textContent=
-  "Now move on.";
+    .textContent =
+    "Now move on.";
 
 
   $("#copy")
-  .textContent=
-
-  current==="door"
-
-  ? "Leave the door behind and head to the vehicle."
-
-  : current==="car"
-
-  ? "Step away from the parked car and head to the store."
-
-  : current==="stove"
-
-  ? "Leave the stove behind and head to the exit."
-
-  : "Put the phone down and return attention to the next task.";
+    .textContent =
+    "Let uncertainty come along without answering it.";
 
 
-  resetHoldUI();
+  startUrge();
 
+  scheduleDoubt(650);
 
-  startUrgeEngine();
-
-
-  scheduleDoubt(
-    700
-  );
-
-
-  vibrate([
-    16,
-    30,
-    16
+  buzz([
+    14,
+    28,
+    14
   ]);
 
-
-  announce(
-    "Normal action complete. Ready to move."
-  );
-
 }
 
 
-/* ============================================================
-HOLD GATE
-============================================================ */
-
-function resetHoldUI(){
+function resetHold(){
 
   clearTimeout(
     holdGateTimer
   );
-
 
   clearInterval(
     holdProgressTimer
   );
 
 
-  holdGateTimer=
-  null;
-
-
-  holdProgressTimer=
-  null;
-
-
-  holdArmed=
-  false;
+  holdArmed =
+    false;
 
 
   $("#holdFill")
-  .style.width=
-  "0%";
+    .style
+    .width =
+    "0%";
 
 
   $("#inputHint")
-  .classList.remove(
-    "cancel"
-  );
+    .innerHTML =
+    "&nbsp;";
 
 
   $("#inputHint")
-  .innerHTML=
-  "&nbsp;";
-
-}
-
-
-function cancelHold(
-  showFeedback=true
-){
-
-  const wasPending=
-  holdArmed &&
-  !moving;
-
-
-  clearTimeout(
-    holdGateTimer
-  );
-
-
-  clearInterval(
-    holdProgressTimer
-  );
-
-
-  holdGateTimer=
-  null;
-
-
-  holdProgressTimer=
-  null;
-
-
-  holdArmed=
-  false;
-
-
-  $("#holdFill")
-  .style.width=
-  "0%";
-
-
-  if(
-    moving
-  ){
-
-    stopWalking();
-
-  }
-
-
-  if(
-    wasPending &&
-    showFeedback
-  ){
-
-    $("#inputHint")
-    .textContent=
-    "Quick tap canceled • hold to move";
-
-
-    $("#inputHint")
-    .classList.add(
-      "cancel"
-    );
-
-
-    setTimeout(()=>{
-
-      if(
-        !holdArmed &&
-        !moving
-      ){
-
-        $("#inputHint")
-        .innerHTML=
-        "&nbsp;";
-
-
-        $("#inputHint")
-        .classList.remove(
-          "cancel"
-        );
-
-      }
-
-    },900);
-
-  }
+    .classList
+    .remove("cancel");
 
 }
 
@@ -5179,7 +2576,7 @@ function cancelHold(
 function armHold(){
 
   if(
-    phase==="action"
+    phase === "action"
   ){
 
     initialAction();
@@ -5190,423 +2587,506 @@ function armHold(){
 
 
   if(
-    phase!=="ready" ||
-    appSuspended ||
-    holdArmed ||
-    moving ||
-    momentum>=100
-  ){
-
-    return;
-
-  }
+    phase !== "ready"
+    ||
+    holdArmed
+    ||
+    moving
+    ||
+    appSuspended
+  ) return;
 
 
-  holdArmed=
-  true;
+  holdArmed = true;
 
 
-  holdStart=
-  performance.now();
+  const started =
+    performance.now();
 
 
   $("#inputHint")
-  .textContent=
-  "Hold…";
+    .textContent =
+    "Hold…";
 
 
-  $("#inputHint")
-  .classList.remove(
-    "cancel"
-  );
+  holdProgressTimer =
+    setInterval(
+      () => {
 
+        $("#holdFill")
+          .style
+          .width =
+          clamp(
+            (
+              performance.now()
+              -
+              started
+            )
+            /
+            HOLD_GATE_MS
+            *
+            100,
+            0,
+            100
+          )
+          +
+          "%";
 
-  holdProgressTimer=
-  setInterval(()=>{
-
-    if(
-      !holdArmed
-    ){
-
-      return;
-
-    }
-
-
-    const elapsed=
-    performance.now()-
-    holdStart;
-
-
-    const percent=
-    clamp(
-      elapsed/
-      HOLD_GATE_MS*
-      100,
-      0,
-      100
+      },
+      20
     );
 
 
-    $("#holdFill")
-    .style.width=
-    percent+"%";
+  holdGateTimer =
+    setTimeout(
+      () => {
 
-  },20);
-
-
-  holdGateTimer=
-  setTimeout(()=>{
-
-    if(
-      !holdArmed ||
-      appSuspended ||
-      phase!=="ready"
-    ){
-
-      return;
-
-    }
+        if(
+          !holdArmed
+          ||
+          phase !== "ready"
+          ||
+          appSuspended
+        ) return;
 
 
-    clearInterval(
-      holdProgressTimer
+        clearInterval(
+          holdProgressTimer
+        );
+
+
+        $("#holdFill")
+          .style
+          .width =
+          "100%";
+
+
+        $("#inputHint")
+          .textContent =
+          "Moving";
+
+
+        startWalking();
+
+      },
+      HOLD_GATE_MS
     );
-
-
-    holdProgressTimer=
-    null;
-
-
-    $("#holdFill")
-    .style.width=
-    "100%";
-
-
-    $("#inputHint")
-    .textContent=
-    "Moving";
-
-
-    startWalking();
-
-  },HOLD_GATE_MS);
 
 }
 
 
-/* ============================================================
-WALKING
-============================================================ */
+function cancelHold(
+  feedback=true
+){
+
+  const pending =
+    holdArmed
+    &&
+    !moving;
+
+
+  clearTimeout(
+    holdGateTimer
+  );
+
+
+  clearInterval(
+    holdProgressTimer
+  );
+
+
+  holdArmed =
+    false;
+
+
+  $("#holdFill")
+    .style
+    .width =
+    "0%";
+
+
+  if(moving){
+
+    stopWalking();
+
+  }
+
+
+  if(
+    pending
+    &&
+    feedback
+  ){
+
+    $("#inputHint")
+      .textContent =
+      "Quick tap canceled • hold to move";
+
+
+    $("#inputHint")
+      .classList
+      .add("cancel");
+
+
+    setTimeout(
+      () => {
+
+        if(
+          !holdArmed
+          &&
+          !moving
+        ){
+
+          $("#inputHint")
+            .innerHTML =
+            "&nbsp;";
+
+
+          $("#inputHint")
+            .classList
+            .remove("cancel");
+
+        }
+
+      },
+      850
+    );
+
+  }
+
+}
+
+
+function maybeEcho(){
+
+  if(
+    !carrying
+    ||
+    phase !== "moving"
+    ||
+    echoThisCarry >= ECHO_PER_CARRY
+    ||
+    echoCount >= ECHO_PER_MISSION
+  ) return;
+
+
+  const thresholds =
+    [
+      18,
+      46
+    ];
+
+
+  if(
+    momentum
+    >=
+    thresholds[echoThisCarry]
+  ){
+
+    const text =
+      missions[current]
+        .echoes[
+          echoThisCarry
+          %
+          missions[current]
+            .echoes
+            .length
+        ];
+
+
+    echoThisCarry++;
+
+    echoCount++;
+
+
+    cue(
+      "DOUBT ECHO • "
+      +
+      text,
+      "doubt",
+      900
+    );
+
+
+    buzz(10);
+
+  }
+
+}
+
+
+function maybeDrift(){
+
+  if(
+    current === "message"
+    &&
+    !driftShown
+    &&
+    carrying
+    &&
+    momentum >= 50
+  ){
+
+    driftShown = true;
+
+
+    cue(
+      "ATTENTION DRIFT • NOTICE IT, KEEP GOING",
+      "doubt",
+      1200
+    );
+
+  }
+
+}
+
+
+function checkpoint(){
+
+  if(
+    momentum >= 30
+    &&
+    momentum < 32
+  ){
+
+    cue(
+      current === "car"
+
+      ? "CAR BEHIND YOU • ENTER THE CROSSWALK"
+
+      : "FORWARD ACTION • KEEP GOING",
+
+      "progress"
+    );
+
+  }
+
+
+  if(
+    momentum >= 66
+    &&
+    momentum < 68
+  ){
+
+    cue(
+      current === "car"
+
+      ? "CROSSWALK COMMITTED • APPROACH THE STORE"
+
+      : "KEEP GOING • NO VERDICT NEEDED",
+
+      "progress"
+    );
+
+  }
+
+}
+
 
 function startWalking(){
 
   if(
-    phase!=="ready" ||
-    appSuspended ||
-    momentum>=100
-  ){
-
-    return false;
-
-  }
+    phase !== "ready"
+    ||
+    appSuspended
+  ) return;
 
 
-  clearTimeout(
-    doubtTimer
-  );
+  hideDoubt();
 
 
-  doubtTimer=
-  null;
+  if(!carrying){
 
+    carrying = true;
 
-  stopWave();
+    carryStart =
+      performance.now();
 
-  hideEcho();
+    /*
+      Every new carrying period gets
+      its own echo pacing.
+    */
 
-  clearTurnVisual();
-
-
-  if(
-    $("#doubtOverlay")
-    .classList.contains(
-      "show"
-    )
-  ){
-
-    hideDoubt();
-
-
-    setCarrying(
-      true
-    );
+    echoThisCarry = 0;
 
   }
 
 
-  phase=
-  "moving";
+  phase =
+    "moving";
 
 
-  moving=
-  true;
-
-
-  startUrgeEngine();
+  moving =
+    true;
 
 
   $("#phaseHint")
-  .textContent=
+    .textContent =
+    recoveryTarget != null
 
-  recoveryTarget!==null
+    ? "RECOVERING"
 
-  ? "RECOVERING"
-
-  : "MOVING";
+    : "MOVING";
 
 
   $("#person")
-  .classList.add(
-    "walking"
-  );
+    .classList
+    .add("walking");
 
 
-  walkTimer=
-  setInterval(()=>{
+  walkTimer =
+    setInterval(
+      () => {
 
-    const before=
-    momentum;
+        momentum =
+          Math.min(
+            100,
+            momentum + 2.1
+          );
 
 
-    momentum=
-    Math.min(
-      100,
-      momentum+2.1
+        /*
+          Peak is the real mission
+          high-water mark.
+        */
+
+        peak =
+          Math.max(
+            peak,
+            momentum
+          );
+
+
+        checkpoint();
+
+        maybeEcho();
+
+        maybeDrift();
+
+
+        if(
+          recoveryTarget != null
+          &&
+          momentum >= recoveryTarget
+        ){
+
+          recoveries++;
+
+          setRecovery(null);
+
+
+          cue(
+            "YOU RETURNED • KEEP GOING",
+            "progress",
+            1000
+          );
+
+        }
+
+
+        updateScene();
+
+        meters();
+
+
+        if(
+          momentum >= 100
+        ){
+
+          completeMission();
+
+        }
+
+      },
+      70
     );
-
-
-    peakMomentum=
-    Math.max(
-      peakMomentum,
-      momentum
-    );
-
-
-    loopGrip=
-    clamp(
-      loopGrip-
-      (
-        momentum-
-        before
-      )*.7,
-      8,
-      100
-    );
-
-
-    maybeEcho();
-
-
-    maybeAttentionDrift();
-
-
-    checkRouteCheckpoints();
-
-
-    if(
-      recoveryTarget!==null &&
-      momentum>=recoveryTarget
-    ){
-
-      recoverySuccess();
-
-    }
-
-
-    renderGrip();
-
-    updateScene();
-
-    meters();
-
-
-    if(
-      momentum>=100
-    ){
-
-      beginArrival();
-
-    }
-
-  },70);
-
-
-  return true;
 
 }
 
 
 function stopWalking(){
 
-  if(
-    !moving &&
-    phase!=="moving"
-  ){
-
-    return;
-
-  }
-
-
   clearInterval(
     walkTimer
   );
 
 
-  walkTimer=
-  null;
+  walkTimer = null;
 
+  moving = false;
 
-  moving=
-  false;
-
-
-  holdArmed=
-  false;
-
-
-  clearTimeout(
-    holdGateTimer
-  );
-
-
-  clearInterval(
-    holdProgressTimer
-  );
-
-
-  holdGateTimer=
-  null;
-
-
-  holdProgressTimer=
-  null;
-
-
-  $("#holdFill")
-  .style.width=
-  "0%";
-
-
-  $("#inputHint")
-  .innerHTML=
-  "&nbsp;";
+  holdArmed = false;
 
 
   $("#person")
-  .classList.remove(
-    "walking"
-  );
-
-
-  hideEcho();
+    .classList
+    .remove("walking");
 
 
   if(
-    phase==="arriving" ||
-    phase==="complete"
-  ){
-
-    return;
-
-  }
+    phase === "complete"
+  ) return;
 
 
-  phase=
-  "ready";
+  phase =
+    "ready";
 
 
   $("#phaseHint")
-  .textContent=
-
-  carrying
-
-  ? "CARRYING"
-
-  : "READY";
-
-
-  startUrgeEngine();
-
-
-  if(
+    .textContent =
     carrying
-  ){
 
-    startWave();
+    ? "CARRYING"
 
-  }
+    : "READY";
 
-  else if(
-    momentum<100
-  ){
 
-    scheduleDoubt(
-      650
-    );
+  startUrge();
+
+
+  /*
+    No pointless doubt timer is
+    scheduled while carrying.
+  */
+
+  if(!carrying){
+
+    scheduleDoubt(650);
 
   }
 
 }
 
 
-/* ============================================================
-RECHECK
-============================================================ */
-
 function recheck(){
 
-  const now=
-  performance.now();
+  const now =
+    performance.now();
 
 
   if(
-    now-
-    lastCheckAt<
-    RECHECK_DEBOUNCE_MS
-  ){
+    now - lastCheckAt
+      <
+      RECHECK_DEBOUNCE_MS
 
-    return;
-
-  }
-
-
-  if(
+    ||
     ![
       "ready",
       "moving"
-    ].includes(
-      phase
-    ) ||
+    ].includes(phase)
+
+    ||
     appSuspended
-  ){
-
-    return;
-
-  }
+  ) return;
 
 
-  lastCheckAt=
-  now;
+  lastCheckAt = now;
 
 
   checks++;
 
 
-  cancelHold(
-    false
-  );
+  cancelHold(false);
 
 
   clearInterval(
@@ -5614,384 +3094,236 @@ function recheck(){
   );
 
 
-  walkTimer=
-  null;
+  walkTimer = null;
 
-
-  moving=
-  false;
-
-
-  stopWave();
-
-  stopUrgeEngine();
-
-  hideEcho();
-
-  hideDrift();
-
-
-  clearTimeout(
-    doubtTimer
-  );
-
-
-  doubtTimer=
-  null;
+  moving = false;
 
 
   $("#person")
-  .classList.remove(
-    "walking"
-  );
+    .classList
+    .remove("walking");
 
 
-  phase=
-  "relief";
+  phase =
+    "relief";
 
 
   $("#checkBtn")
-  .disabled=
-  true;
-
-
-  setCarrying(
-    false
-  );
+    .disabled =
+    true;
 
 
   hideDoubt();
 
 
-  setArrivalCue(
-    false
+  const source =
+    sourceEl();
+
+
+  source?.classList.add(
+    "sourceFocus"
   );
 
 
-  showTurnBack();
+  if(carrying){
+
+    carrySeconds +=
+      (
+        performance.now()
+        -
+        carryStart
+      )
+      /
+      1000;
 
 
-  loopGrip=
-  clamp(
-    loopGrip+24,
-    8,
-    100
-  );
+    carrying =
+      false;
+
+  }
 
 
-  urge=
-  clamp(
-    urge-27,
-    18,
-    96
-  );
-
-
-  renderGrip();
-
-
-  $("#phaseHint")
-  .textContent=
-  "RELIEF";
-
-
-  $("#title")
-  .textContent=
-  "Relief landed.";
-
-
-  $("#copy")
-  .textContent=
-
-  current==="door"
-
-  ? "Attention turns back toward the door. The vehicle is still ahead."
-
-  : current==="car"
-
-  ? "Attention turns back toward the parked car. The store is still ahead."
-
-  : current==="stove"
-
-  ? "Attention turns back toward the stove. The exit is still ahead."
-
-  : "Attention returns to the sent message. The next task is still waiting.";
-
-
-  vibrate([
-    28,
-    25,
-    28
-  ]);
-
-
-  const loss=
-
-  current==="door"
-
-  ? Math.max(
-      10,
-      momentum*.35
-    )
-
-  : Math.min(
-      momentum,
-      20
+  urge =
+    clamp(
+      urge - 26,
+      18,
+      96
     );
 
 
-  momentum=
-  Math.max(
-    0,
-    momentum-loss
-  );
+  /*
+    Preserve the highest point
+    reached anywhere in the mission.
+  */
+
+  const previousPeak =
+    peak;
+
+
+  momentum =
+    Math.max(
+      0,
+      momentum
+      -
+      Math.min(
+        momentum,
+        20
+      )
+    );
 
 
   if(
-    peakMomentum>
-    momentum+3
+    previousPeak
+    >
+    momentum + 3
   ){
 
-    setRecoveryTarget(
-      peakMomentum
+    setRecovery(
+      previousPeak
     );
 
   }
 
 
-  updateScene();
-
   meters();
 
-
-  reliefTimer=
-  setTimeout(()=>{
-
-    reliefTimer=
-    null;
+  updateScene();
 
 
-    if(
-      appSuspended ||
-      phase!=="relief"
-    ){
-
-      return;
-
-    }
+  $("#phaseHint")
+    .textContent =
+    "RELIEF";
 
 
-    clearTurnVisual();
+  $("#title")
+    .textContent =
+    "Relief landed.";
 
 
-    phase=
-    "ready";
+  $("#copy")
+    .textContent =
+    "Attention turned back. Your next action is still ahead.";
 
 
-    $("#checkBtn")
-    .disabled=
-    false;
+  buzz([
+    24,
+    22,
+    24
+  ]);
 
 
-    startUrgeEngine();
+  clearTimeout(
+    reliefTimer
+  );
 
 
-    showDoubt(
+  reliefTimer =
+    setTimeout(
+      () => {
 
-      checks<3
+        source?.classList.remove(
+          "sourceFocus"
+        );
 
-      ? nextThought()
 
-      : "The loop is asking for certainty again."
+        /*
+          Prevent backgrounded relief
+          callbacks from firing prompts.
+        */
 
+        if(
+          appSuspended
+          ||
+          document.hidden
+        ) return;
+
+
+        phase =
+          "ready";
+
+
+        $("#checkBtn")
+          .disabled =
+          false;
+
+
+        $("#title")
+          .textContent =
+          postCheckLines[
+            (checks-1)
+            %
+            postCheckLines.length
+          ];
+
+
+        $("#copy")
+          .textContent =
+          "Resume from here. No restart required.";
+
+
+        showDoubt(
+          thought()
+        );
+
+
+        startUrge();
+
+      },
+      650
     );
-
-
-    $("#title")
-    .textContent=
-
-    checks<3
-
-    ? "Doubt moved the finish line."
-
-    : "Same loop. New request.";
-
-
-    $("#copy")
-    .textContent=
-
-    recoveryTarget!==null
-
-    ? "Return to your path from here. No restart required."
-
-    : "The question changed. What matters didn’t.";
-
-  },650);
 
 }
 
 
-/* ============================================================
-ARRIVAL
-============================================================ */
-
-function beginArrival(){
-
-  if(
-    [
-      "arriving",
-      "complete"
-    ].includes(
-      phase
-    )
-  ){
-
-    return;
-
-  }
-
+function completeMission(){
 
   clearInterval(
     walkTimer
   );
 
 
-  walkTimer=
-  null;
+  moving =
+    false;
 
 
-  moving=
-  false;
-
-
-  holdArmed=
-  false;
-
-
-  clearTimeout(
-    holdGateTimer
-  );
-
-
-  clearInterval(
-    holdProgressTimer
-  );
-
-
-  holdGateTimer=
-  null;
-
-
-  holdProgressTimer=
-  null;
-
-
-  $("#holdFill")
-  .style.width=
-  "0%";
+  phase =
+    "complete";
 
 
   $("#person")
-  .classList.remove(
-    "walking"
-  );
+    .classList
+    .remove("walking");
 
 
-  stopWave();
+  if(carrying){
 
-  stopUrgeEngine();
-
-
-  phase=
-  "arriving";
-
-
-  $("#phaseHint")
-  .textContent=
-  "ARRIVED";
+    carrySeconds +=
+      (
+        performance.now()
+        -
+        carryStart
+      )
+      /
+      1000;
 
 
-  $("#title")
-  .textContent=
-  missions[current]
-  .arrival;
+    carrying =
+      false;
+
+  }
 
 
-  $("#copy")
-  .textContent=
-  "The destination—not certainty—ended the loop.";
+  stopUrge();
 
 
-  setArrivalCue(
-    true,
-    missions[current]
-    .arrivalCue
-  );
-
-
-  vibrate([
-    16,
-    30,
-    16,
-    30,
-    34
-  ]);
-
-
-  arrivalTimer=
-  setTimeout(()=>{
-
-    arrivalTimer=
-    null;
-
-
-    if(
-      !appSuspended &&
-      phase==="arriving"
-    ){
-
-      completeMission();
-
-    }
-
-  },560);
-
-}
-
-
-/* ============================================================
-COMPLETE
-============================================================ */
-
-function completeMission(){
-
-  const carried=
-  Math.round(
-    currentCarrySeconds()
-  );
-
-
-  setCarrying(
-    false
-  );
-
-
-  stopAll();
-
-
-  phase=
-  "complete";
-
-
-  xp+=
-  30;
+  xp += 30;
 
 
   updateXP();
 
 
-  persistence.set(
-    "completed_"+current,
+  persist.set(
+    "completed_" + current,
     "yes"
   );
 
@@ -5999,314 +3331,70 @@ function completeMission(){
   completions();
 
 
-  setRecoveryTarget(
-    null
-  );
-
-
-  setArrivalCue(
-    false
-  );
-
-
-  hideDoubt();
-
-
   $("#result")
-  .textContent=
+    .textContent =
 
-  checks===0
+    checks === 0
 
-  ? "You kept moving while uncertainty was allowed to exist."
+    ? "You kept moving while uncertainty was allowed to exist."
 
-  : `You resumed forward movement after ${checks} ${checks===1 ? "check" : "checks"}. A lapse did not reset the mission.`;
+    :
+    `You resumed after ${checks} ${
+      checks === 1
+      ? "check"
+      : "checks"
+    }. A lapse did not reset the mission.`;
 
 
   $("#statChecks")
-  .textContent=
-  checks;
+    .textContent =
+    checks;
 
 
   $("#statCarry")
-  .textContent=
-  carried+"s";
+    .textContent =
+    Math.round(
+      carrySeconds
+    )
+    +
+    "s";
 
 
   $("#statRecoveries")
-  .textContent=
-  recoveryCount;
+    .textContent =
+    recoveries;
 
 
   $("#statEchoes")
-  .textContent=
-  echoCount;
+    .textContent =
+    echoCount;
 
 
   $("#practiceCopy")
-  .textContent=
-
-  recoveryCount>0
-
-  ? "You practiced returning to the next meaningful action after being pulled back into the loop."
-
-  : current==="message" &&
-    driftEarned
-
-  ? "Your attention drifted back toward the message, and you practiced noticing that without turning it into another review."
-
-  : echoCount>0
-
-  ? "Doubt showed up while you were already moving, and you practiced letting it remain background noise."
-
-  : carried>0
-
-  ? "You practiced letting uncertainty ride along while continuing toward what mattered."
-
-  : "You practiced one normal action and continued without adding another certainty step.";
+    .textContent =
+    "The win was choosing the next meaningful action—not achieving a particular feeling.";
 
 
-  show(
-    "reward"
-  );
+  buzz([
+    15,
+    28,
+    15,
+    28,
+    30
+  ]);
 
 
-  announce(
-    "Mission complete."
-  );
+  show("reward");
 
 }
 
 
-/* ============================================================
-SUSPEND / RESUME
-============================================================ */
-
-function suspendGame(){
-
-  if(
-    !current ||
-    appSuspended ||
-    [
-      "idle",
-      "complete"
-    ].includes(
-      phase
-    )
-  ){
-
-    return;
-
-  }
-
-
-  appSuspended=
-  true;
-
-
-  cancelHold(
-    false
-  );
-
+function stopAll(){
 
   clearInterval(
     walkTimer
   );
 
-
-  walkTimer=
-  null;
-
-
-  moving=
-  false;
-
-
-  stopWave();
-
-  stopUrgeEngine();
-
-
-  clearTimeout(
-    doubtTimer
-  );
-
-
-  doubtTimer=
-  null;
-
-
-  clearTimeout(
-    reliefTimer
-  );
-
-
-  reliefTimer=
-  null;
-
-
-  clearTimeout(
-    arrivalTimer
-  );
-
-
-  arrivalTimer=
-  null;
-
-
-  pauseCarryClock();
-
-
-  $("#person")
-  .classList.remove(
-    "walking"
-  );
-
-
-  hideDoubt();
-
-  hideEcho();
-
-  hideDrift();
-
-  clearTurnVisual();
-
-
-  setArrivalCue(
-    false
-  );
-
-
-  if(
-    [
-      "moving",
-      "relief",
-      "arriving"
-    ].includes(
-      phase
-    )
-  ){
-
-    phase=
-    "ready";
-
-  }
-
-
-  $("#checkBtn")
-  .disabled=
-  false;
-
-
-  $("#phaseHint")
-  .textContent=
-  "PAUSED";
-
-
-  $("#title")
-  .textContent=
-  "Paused safely.";
-
-
-  $("#copy")
-  .textContent=
-  "No delayed prompt will fire while the app is away. Continue when you are ready.";
-
-
-  renderRecoveryCue();
-
-}
-
-
-function resumeGame(){
-
-  if(
-    !appSuspended ||
-    document.hidden ||
-    !current
-  ){
-
-    return;
-
-  }
-
-
-  appSuspended=
-  false;
-
-
-  resumeCarryClock();
-
-
-  if(
-    phase!=="action"
-  ){
-
-    phase=
-    "ready";
-
-  }
-
-
-  $("#checkBtn")
-  .disabled=
-  false;
-
-
-  $("#phaseHint")
-  .textContent=
-
-  carrying
-
-  ? "CARRYING"
-
-  : phase==="action"
-
-  ? "ACTION"
-
-  : "READY";
-
-
-  $("#title")
-  .textContent=
-  "Continue when ready.";
-
-
-  $("#copy")
-  .textContent=
-
-  recoveryTarget!==null
-
-  ? "Your path is still here. Resume from where you are."
-
-  : "No need to catch up or restart.";
-
-
-  renderRecoveryCue();
-
-
-  if(
-    phase==="ready"
-  ){
-
-    startUrgeEngine();
-
-
-    if(carrying){
-
-      startWave();
-
-    }
-
-  }
-
-}
-
-
-/* ============================================================
-STOP ALL
-============================================================ */
-
-function stopAll(){
 
   clearTimeout(
     holdGateTimer
@@ -6318,28 +3406,8 @@ function stopAll(){
   );
 
 
-  clearInterval(
-    walkTimer
-  );
-
-
   clearTimeout(
     doubtTimer
-  );
-
-
-  clearTimeout(
-    echoHideTimer
-  );
-
-
-  clearTimeout(
-    checkpointHideTimer
-  );
-
-
-  clearTimeout(
-    driftHideTimer
   );
 
 
@@ -6349,327 +3417,272 @@ function stopAll(){
 
 
   clearTimeout(
-    recoveryHideTimer
+    cueTimer
   );
 
 
-  clearTimeout(
-    arrivalTimer
-  );
+  stopUrge();
 
 
-  clearTimeout(
-    turnTimer
-  );
+  walkTimer = null;
 
+  holdArmed = false;
 
-  holdGateTimer=
-  null;
-
-
-  holdProgressTimer=
-  null;
-
-
-  walkTimer=
-  null;
-
-
-  doubtTimer=
-  null;
-
-
-  echoHideTimer=
-  null;
-
-
-  checkpointHideTimer=
-  null;
-
-
-  driftHideTimer=
-  null;
-
-
-  reliefTimer=
-  null;
-
-
-  recoveryHideTimer=
-  null;
-
-
-  arrivalTimer=
-  null;
-
-
-  turnTimer=
-  null;
-
-
-  stopUrgeEngine();
-
-  stopWave();
-
-
-  holdArmed=
-  false;
-
-
-  moving=
-  false;
-
-
-  pauseCarryClock();
-
-
-  $("#person")
-  ?.classList.remove(
-    "walking"
-  );
-
-
-  hideEcho();
-
-  hideDrift();
-
-  hideCheckpoint();
-
-  clearTurnVisual();
-
-  resetHoldUI();
+  moving = false;
 
 
   try{
 
-    navigator.vibrate?.(
-      0
-    );
+    navigator.vibrate?.(0);
 
-  }
-
-  catch{}
+  }catch{}
 
 }
 
 
-/* ============================================================
-EXIT MISSION
-============================================================ */
+function suspend(){
 
-function exitMission(){
-
-  stopAll();
-
-
-  carrying=
-  false;
+  if(
+    !current
+    ||
+    appSuspended
+    ||
+    phase === "complete"
+  ) return;
 
 
-  $("#carryCue")
-  .classList.remove(
-    "show"
+  appSuspended =
+    true;
+
+
+  cancelHold(false);
+
+
+  clearInterval(
+    walkTimer
   );
 
 
-  setRecoveryTarget(
-    null
+  walkTimer = null;
+
+  moving = false;
+
+
+  stopUrge();
+
+
+  clearTimeout(
+    doubtTimer
   );
 
 
-  setArrivalCue(
-    false
+  /*
+    Important:
+    relief callbacks are canceled
+    while backgrounded.
+  */
+
+  clearTimeout(
+    reliefTimer
   );
+
+
+  $("#person")
+    .classList
+    .remove("walking");
 
 
   hideDoubt();
 
 
-  current=
-  null;
+  if(
+    [
+      "moving",
+      "relief"
+    ].includes(phase)
+  ){
+
+    phase =
+      "ready";
+
+  }
 
 
-  phase=
-  "idle";
+  $("#checkBtn")
+    .disabled =
+    false;
 
 
-  appSuspended=
-  false;
+  $("#phaseHint")
+    .textContent =
+    "PAUSED";
 
 
-  completions();
+  $("#title")
+    .textContent =
+    "Paused safely.";
 
 
-  show(
-    "missionSelect"
-  );
+  $("#copy")
+    .textContent =
+    "No prompt will fire while the app is away.";
 
 }
 
 
-/* ============================================================
-NAVIGATION EVENTS
-============================================================ */
+function resume(){
 
-$("#enter")
-.addEventListener(
-  "click",
-  ()=>{
+  if(
+    !appSuspended
+    ||
+    document.hidden
+    ||
+    !current
+  ) return;
 
-    show(
-      "map"
-    );
+
+  appSuspended =
+    false;
+
+
+  if(
+    phase !== "action"
+  ){
+
+    phase =
+      "ready";
 
   }
-);
 
 
-$("#checking")
-.addEventListener(
-  "click",
-  ()=>{
+  $("#checkBtn")
+    .disabled =
+    false;
+
+
+  $("#phaseHint")
+    .textContent =
+
+    phase === "action"
+
+    ? "ACTION"
+
+    : "READY";
+
+
+  $("#title")
+    .textContent =
+    "Continue when ready.";
+
+
+  $("#copy")
+    .textContent =
+    "No catch-up and no restart.";
+
+
+  if(
+    phase === "ready"
+  ){
+
+    startUrge();
+
+  }
+
+}
+
+
+/* NAVIGATION */
+
+$("#enter").onclick =
+  () =>
+    show("map");
+
+
+$("#checking").onclick =
+  () => {
 
     completions();
-
 
     show(
       "missionSelect"
     );
 
-  }
-);
+  };
 
 
-$("#backMap")
-.addEventListener(
-  "click",
-  ()=>{
-
-    show(
-      "map"
-    );
-
-  }
-);
+$("#backMap").onclick =
+  () =>
+    show("map");
 
 
 $$(
   ".missionCard[data-mission]"
-)
-.forEach(
-  button=>{
+).forEach(
+  button => {
 
-    button.addEventListener(
-      "click",
-      ()=>{
-
+    button.onclick =
+      () =>
         loadMission(
           button.dataset.mission
         );
-
-      }
-    );
 
   }
 );
 
 
-$("#missionExit")
-.addEventListener(
-  "click",
-  exitMission
-);
+$("#missionExit").onclick =
+  () => {
 
+    stopAll();
 
-$("#checkBtn")
-.addEventListener(
-  "click",
-  recheck
-);
-
-
-$("#continueBtn")
-.addEventListener(
-  "click",
-  ()=>{
-
-    completions();
-
-
-    current=
-    null;
-
-
-    phase=
-    "idle";
-
+    current = null;
 
     show(
       "missionSelect"
     );
 
-  }
-);
+  };
 
 
-$("#doneBtn")
-.addEventListener(
-  "click",
-  ()=>{
+$("#checkBtn").onclick =
+  recheck;
+
+
+$("#continueBtn").onclick =
+  () => {
+
+    current = null;
+
+    show(
+      "missionSelect"
+    );
+
+  };
+
+
+$("#doneBtn").onclick =
+  () => {
 
     stopAll();
 
+    current = null;
 
-    current=
-    null;
+    show("start");
 
-
-    phase=
-    "idle";
+  };
 
 
-    show(
-      "start"
-    );
+/* HOLD CONTROL */
 
-  }
-);
+const forwardButton =
+  $("#forwardBtn");
 
 
-/* ============================================================
-FORWARD CONTROL
-============================================================ */
-
-const forward=
-$("#forwardBtn");
-
-
-[
-  "contextmenu",
-  "selectstart",
-  "dragstart"
-]
-.forEach(
-  eventType=>{
-
-    forward.addEventListener(
-      eventType,
-      event=>
-      event.preventDefault()
-    );
-
-  }
-);
-
-
-/* Touch path */
-
-forward.addEventListener(
+forwardButton.addEventListener(
   "touchstart",
-  event=>{
+  event => {
 
     event.preventDefault();
-
 
     armHold();
 
@@ -6683,20 +3696,16 @@ forward.addEventListener(
 [
   "touchend",
   "touchcancel"
-]
-.forEach(
-  eventType=>{
+].forEach(
+  eventName => {
 
-    forward.addEventListener(
-      eventType,
-      event=>{
+    forwardButton.addEventListener(
+      eventName,
+      event => {
 
         event.preventDefault();
 
-
-        cancelHold(
-          true
-        );
+        cancelHold(true);
 
       },
       {
@@ -6708,34 +3717,18 @@ forward.addEventListener(
 );
 
 
-/* Mouse / stylus path */
-
-forward.addEventListener(
+forwardButton.addEventListener(
   "pointerdown",
-  event=>{
+  event => {
 
     if(
-      event.pointerType==="touch"
-    ){
-
-      return;
-
-    }
+      event.pointerType
+      ===
+      "touch"
+    ) return;
 
 
     event.preventDefault();
-
-
-    try{
-
-      forward.setPointerCapture(
-        event.pointerId
-      );
-
-    }
-
-    catch{}
-
 
     armHold();
 
@@ -6747,29 +3740,23 @@ forward.addEventListener(
   "pointerup",
   "pointercancel",
   "pointerleave"
-]
-.forEach(
-  eventType=>{
+].forEach(
+  eventName => {
 
-    forward.addEventListener(
-      eventType,
-      event=>{
+    forwardButton.addEventListener(
+      eventName,
+      event => {
 
         if(
-          event.pointerType==="touch"
-        ){
-
-          return;
-
-        }
+          event.pointerType
+          ===
+          "touch"
+        ) return;
 
 
         event.preventDefault();
 
-
-        cancelHold(
-          true
-        );
+        cancelHold(true);
 
       }
     );
@@ -6778,37 +3765,23 @@ forward.addEventListener(
 );
 
 
-/* ============================================================
-BACKGROUND SAFETY
-============================================================ */
-
-window.addEventListener(
-  "blur",
-  suspendGame
-);
-
-
-window.addEventListener(
-  "focus",
-  resumeGame
-);
-
+/* APP BACKGROUND SAFETY */
 
 document.addEventListener(
   "visibilitychange",
-  ()=>{
+  () => {
 
     if(
       document.hidden
     ){
 
-      suspendGame();
+      suspend();
 
     }
 
     else{
 
-      resumeGame();
+      resume();
 
     }
 
@@ -6816,24 +3789,30 @@ document.addEventListener(
 );
 
 
-/* Prevent browser callout during game */
-
-document.addEventListener(
-  "contextmenu",
-  event=>
-  event.preventDefault()
+window.addEventListener(
+  "blur",
+  suspend
 );
 
 
-/* ============================================================
-BOOT
-============================================================ */
+window.addEventListener(
+  "focus",
+  resume
+);
+
+
+document.addEventListener(
+  "contextmenu",
+  event =>
+    event.preventDefault()
+);
+
+
+/* INITIALIZE */
 
 updateXP();
 
 completions();
-
-renderGrip();
 
 </script>
 
