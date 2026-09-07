@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#07101c">
-<title>UNCERTAIN — Checking District v10.50</title>
+
+<title>UNCERTAIN — Checking District v10.51</title>
 
 <style>
 :root{
@@ -25,7 +26,8 @@
   user-select:none;
 }
 
-html,body{
+html,
+body{
   margin:0;
   width:100%;
   height:100%;
@@ -33,7 +35,12 @@ html,body{
   overscroll-behavior:none;
   background:#040912;
   color:var(--text);
-  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
 }
 
 button{
@@ -44,11 +51,12 @@ button{
 }
 
 #app{
+  position:relative;
+  width:100%;
+  max-width:520px;
   height:100vh;
   height:100dvh;
-  max-width:520px;
   margin:auto;
-  position:relative;
   overflow:hidden;
   background:var(--bg);
 }
@@ -59,7 +67,9 @@ button{
   inset:0;
 }
 
-.screen.active{display:block}
+.screen.active{
+  display:block;
+}
 
 .hud{
   position:absolute;
@@ -67,9 +77,12 @@ button{
   top:0;
   left:0;
   right:0;
-  padding:max(12px,env(safe-area-inset-top)) 12px 8px;
   display:flex;
   justify-content:space-between;
+  padding:
+    max(12px,env(safe-area-inset-top))
+    12px
+    8px;
   pointer-events:none;
 }
 
@@ -84,10 +97,15 @@ button{
 }
 
 .card{
-  background:linear-gradient(180deg,#101d30f5,#0b1625f5);
+  padding:16px;
   border:1px solid var(--line);
   border-radius:22px;
-  padding:16px;
+  background:
+    linear-gradient(
+      180deg,
+      #101d30f5,
+      #0b1625f5
+    );
   box-shadow:0 18px 44px #0009;
 }
 
@@ -98,47 +116,57 @@ button{
   border-radius:17px;
   background:#eef3f8;
   color:#0c1420;
-  font-weight:950;
   font-size:17px;
+  font-weight:950;
   touch-action:manipulation;
 }
 
 .btn.secondary{
   margin-top:10px;
+  border:1px solid #ffffff2a;
   background:#152238;
   color:#f7fbff;
-  border:1px solid #ffffff2a;
 }
 
 .small{
+  color:var(--muted);
   font-size:12px;
   line-height:1.4;
-  color:var(--muted);
 }
 
-/* START */
+/* ============================================================
+START
+============================================================ */
 
 #start{
   padding:92px 22px 26px;
-  background:radial-gradient(circle at 50% 25%,#355271,#111b2a 55%,#060b13);
+  background:
+    radial-gradient(
+      circle at 50% 25%,
+      #355271,
+      #111b2a 55%,
+      #060b13
+    );
 }
 
 .logo{
-  font-size:13px;
-  letter-spacing:.25em;
-  font-weight:950;
   color:#a9b7ca;
+  font-size:13px;
+  font-weight:950;
+  letter-spacing:.25em;
 }
 
 .hero{
-  font-size:53px;
-  line-height:.92;
   margin:24px 0 16px;
+  font-size:53px;
   font-weight:1000;
+  line-height:.92;
   letter-spacing:-.055em;
 }
 
-.hero span{color:var(--accent)}
+.hero span{
+  color:var(--accent);
+}
 
 .startCard{
   position:absolute;
@@ -147,18 +175,26 @@ button{
   bottom:max(22px,env(safe-area-inset-bottom));
 }
 
-/* MAP */
+/* ============================================================
+MAP
+============================================================ */
 
 #map{
-  background:linear-gradient(145deg,#29425f,#112238 64%,#07101c);
+  background:
+    linear-gradient(
+      145deg,
+      #29425f,
+      #112238 64%,
+      #07101c
+    );
 }
 
 .road{
   position:absolute;
-  width:155%;
-  height:100px;
   left:-30%;
   top:49%;
+  width:155%;
+  height:100px;
   transform:rotate(-18deg);
   background:#46566c;
   box-shadow:0 0 0 9px #1d2837;
@@ -175,12 +211,12 @@ button{
 
 .node{
   position:absolute;
-  border:2px solid #ffffff32;
-  background:#0b1729ed;
-  border-radius:23px;
   padding:15px;
-  text-align:left;
+  border:2px solid #ffffff32;
+  border-radius:23px;
+  background:#0b1729ed;
   box-shadow:0 16px 36px #0009;
+  text-align:left;
   touch-action:manipulation;
 }
 
@@ -189,7 +225,9 @@ button{
   font-size:18px;
 }
 
-.node small{opacity:.72}
+.node small{
+  opacity:.72;
+}
 
 #checking{
   left:6%;
@@ -215,30 +253,37 @@ button{
   background:#081321d9;
 }
 
-/* MISSION SELECT */
+/* ============================================================
+MISSION SELECT
+============================================================ */
 
 #missionSelect{
-  background:radial-gradient(circle at 50% 30%,#274762,#0b1625 65%);
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      #274762,
+      #0b1625 65%
+    );
 }
 
 .selectWrap{
   position:absolute;
   inset:88px 14px 18px;
   overflow:auto;
+  padding-bottom:30px;
   -webkit-overflow-scrolling:touch;
   touch-action:pan-y;
-  padding-bottom:30px;
 }
 
 .missionCard{
   width:100%;
+  min-height:112px;
+  margin-bottom:12px;
+  padding:17px;
   border:1px solid var(--line);
   border-radius:22px;
   background:#0d192aef;
-  padding:17px;
   text-align:left;
-  margin-bottom:12px;
-  min-height:112px;
   touch-action:manipulation;
 }
 
@@ -249,28 +294,32 @@ button{
 
 .missionCard span{
   display:block;
-  color:#b7c5d6;
   margin-top:7px;
+  color:#b7c5d6;
   line-height:1.35;
 }
 
 .tag{
-  font-size:11px!important;
   color:var(--accent)!important;
+  font-size:11px!important;
   font-weight:900;
   letter-spacing:.08em;
 }
 
 .completion{
   min-height:15px;
-  font-size:10px!important;
   color:var(--accent)!important;
+  font-size:10px!important;
   font-weight:950!important;
 }
 
-/* MISSION */
+/* ============================================================
+MISSION
+============================================================ */
 
-#mission{background:#0a111a}
+#mission{
+  background:#0a111a;
+}
 
 .missionExit{
   position:absolute;
@@ -292,7 +341,11 @@ button{
   position:absolute;
   inset:0;
   overflow:hidden;
-  background:linear-gradient(#24364b 0 47%,#101923 47%);
+  background:
+    linear-gradient(
+      #24364b 0 47%,
+      #101923 47%
+    );
 }
 
 #environment{
@@ -306,10 +359,16 @@ button{
   right:0;
   bottom:0;
   height:58%;
-  background:linear-gradient(#1f2b37,#111923);
+  background:
+    linear-gradient(
+      #1f2b37,
+      #111923
+    );
 }
 
-/* CHARACTER */
+/* ============================================================
+CHARACTER
+============================================================ */
 
 .person{
   position:absolute;
@@ -317,7 +376,10 @@ button{
   width:58px;
   height:100px;
   transform:translateX(-50%);
-  transition:left .12s linear,bottom .12s linear,transform .12s linear;
+  transition:
+    left .12s linear,
+    bottom .12s linear,
+    transform .12s linear;
 }
 
 .head{
@@ -349,24 +411,39 @@ button{
   background:#bcc9d5;
 }
 
-.leg.a{left:13px}
-.leg.b{right:13px}
+.leg.a{
+  left:13px;
+}
+
+.leg.b{
+  right:13px;
+}
 
 .person.walking .leg.a{
-  animation:step .28s infinite alternate;
+  animation:
+    step .28s infinite alternate;
 }
 
 .person.walking .leg.b{
-  animation:step .28s infinite alternate-reverse;
+  animation:
+    step .28s infinite alternate-reverse;
 }
 
 @keyframes step{
-  to{transform:translateY(4px) rotate(9deg)}
+  to{
+    transform:
+      translateY(4px)
+      rotate(9deg);
+  }
 }
 
-/* DESTINATION FEEDBACK */
+/* ============================================================
+DESTINATION / SOURCE
+============================================================ */
 
 .destination{
+  position:relative;
+  z-index:22;
   transition:.18s;
 }
 
@@ -389,7 +466,9 @@ button{
   filter:brightness(1.12);
 }
 
-/* LOCK & LEAVE */
+/* ============================================================
+LOCK & LEAVE
+============================================================ */
 
 .house{
   position:absolute;
@@ -398,17 +477,18 @@ button{
   width:270px;
   height:220px;
   transform:translateX(-50%);
-  background:#3a4858;
   border:7px solid #1a2634;
-  clip-path:polygon(
-    50% 0,
-    100% 30%,
-    94% 30%,
-    94% 100%,
-    6% 100%,
-    6% 30%,
-    0 30%
-  );
+  background:#3a4858;
+  clip-path:
+    polygon(
+      50% 0,
+      100% 30%,
+      94% 30%,
+      94% 100%,
+      6% 100%,
+      6% 30%,
+      0 30%
+    );
 }
 
 .door{
@@ -418,8 +498,8 @@ button{
   width:92px;
   height:140px;
   transform:translateX(-50%);
-  background:#22364a;
   border:6px solid #111a25;
+  background:#22364a;
 }
 
 .door:after{
@@ -429,9 +509,9 @@ button{
   top:62px;
   width:24px;
   height:24px;
+  border:5px solid #6b7989;
   border-radius:50%;
   background:#e7edf3;
-  border:5px solid #6b7989;
 }
 
 .car{
@@ -441,7 +521,11 @@ button{
   height:62px;
   border:6px solid #101722;
   border-radius:28px;
-  background:linear-gradient(#8093aa,#566a83);
+  background:
+    linear-gradient(
+      #8093aa,
+      #566a83
+    );
 }
 
 .drivewayCar{
@@ -455,16 +539,33 @@ button{
   top:35%;
   width:75%;
   height:65%;
-  background:linear-gradient(160deg,#3b4651,#1c252e);
-  clip-path:polygon(24% 0,58% 0,100% 100%,0 100%);
+  background:
+    linear-gradient(
+      160deg,
+      #3b4651,
+      #1c252e
+    );
+  clip-path:
+    polygon(
+      24% 0,
+      58% 0,
+      100% 100%,
+      0 100%
+    );
 }
 
-/* PARK & WALK */
+/* ============================================================
+PARK & WALK
+============================================================ */
 
 .parking{
   position:absolute;
   inset:0;
-  background:linear-gradient(#31475b 0 25%,#2b343e 25% 100%);
+  background:
+    linear-gradient(
+      #31475b 0 25%,
+      #2b343e 25% 100%
+    );
 }
 
 .store{
@@ -473,8 +574,8 @@ button{
   right:4%;
   top:5%;
   height:165px;
-  background:#4b6075;
   border:7px solid #223040;
+  background:#4b6075;
 }
 
 .store:before{
@@ -492,11 +593,11 @@ button{
   position:absolute;
   left:50%;
   bottom:0;
-  transform:translateX(-50%);
   width:108px;
   height:90px;
-  background:#183047;
+  transform:translateX(-50%);
   border:5px solid #71849a;
+  background:#183047;
 }
 
 .crosswalk{
@@ -506,30 +607,42 @@ button{
   width:160px;
   height:250px;
   transform:translateX(-50%);
+  opacity:.8;
   background:
     repeating-linear-gradient(
       0deg,
       #f0f3f4 0 14px,
       transparent 14px 31px
     );
-  clip-path:polygon(31% 0,69% 0,100% 100%,0 100%);
-  opacity:.8;
+  clip-path:
+    polygon(
+      31% 0,
+      69% 0,
+      100% 100%,
+      0 100%
+    );
 }
 
 .playerCar{
   right:4%;
   bottom:12%;
-  height:100px;
   width:72px;
+  height:100px;
   border-radius:18px;
 }
 
-/* OFF & OUT */
+/* ============================================================
+OFF & OUT
+============================================================ */
 
 .kitchen{
   position:absolute;
   inset:0;
-  background:linear-gradient(#40505f 0 48%,#222b34 48%);
+  background:
+    linear-gradient(
+      #40505f 0 48%,
+      #222b34 48%
+    );
 }
 
 .exitDoor{
@@ -539,8 +652,8 @@ button{
   width:126px;
   height:205px;
   transform:translateX(-50%);
-  background:#223849;
   border:7px solid #172330;
+  background:#223849;
 }
 
 .stove{
@@ -550,8 +663,8 @@ button{
   width:185px;
   height:125px;
   transform:translateX(-50%);
-  background:#586675;
   border:7px solid #18222c;
+  background:#586675;
 }
 
 .stove:before{
@@ -566,12 +679,18 @@ button{
   letter-spacing:.14em;
 }
 
-/* SENT & DONE */
+/* ============================================================
+SENT & DONE
+============================================================ */
 
 .messageScene{
   position:absolute;
   inset:0;
-  background:linear-gradient(#26384c 0 42%,#121b25 42%);
+  background:
+    linear-gradient(
+      #26384c 0 42%,
+      #121b25 42%
+    );
 }
 
 .desk{
@@ -589,7 +708,9 @@ button{
   top:38%;
   width:105px;
   height:190px;
-  transform:translateX(-50%) rotate(5deg);
+  transform:
+    translateX(-50%)
+    rotate(5deg);
   border:8px solid #101722;
   border-radius:22px;
   background:#dce6ed;
@@ -633,39 +754,49 @@ button{
   font-size:17px;
 }
 
-/* DOUBT */
+/* ============================================================
+DOUBT
+============================================================ */
 
 #doubtVignette{
   position:absolute;
-  z-index:31;
+  z-index:20;
   inset:0;
   opacity:0;
   pointer-events:none;
   background:
-    radial-gradient(circle at 50% 45%,transparent 32%,#210d2a99 100%);
+    radial-gradient(
+      circle at 50% 42%,
+      transparent 35%,
+      #210d2a88 100%
+    );
   transition:.18s;
 }
 
-#doubtVignette.show{opacity:1}
+#doubtVignette.show{
+  opacity:1;
+}
 
 .doubtText{
   position:absolute;
   z-index:34;
   left:8%;
   right:8%;
-  top:15%;
+  top:12%;
   opacity:0;
   pointer-events:none;
   color:white;
   text-align:center;
-  font-size:22px;
+  font-size:20px;
   font-weight:1000;
   line-height:1.06;
   text-shadow:0 4px 16px #000;
   transition:.18s;
 }
 
-.doubtText.show{opacity:1}
+.doubtText.show{
+  opacity:1;
+}
 
 .doubtLabel{
   display:block;
@@ -675,7 +806,9 @@ button{
   letter-spacing:.16em;
 }
 
-/* SINGLE PRIMARY CUE DIRECTOR */
+/* ============================================================
+PRIMARY CUE DIRECTOR
+============================================================ */
 
 #cueDirector{
   position:absolute;
@@ -695,11 +828,11 @@ button{
   border:1px solid #ffffff33;
   border-radius:999px;
   background:#07141ef2;
+  opacity:0;
+  transform:translateY(-4px);
   font-size:10px;
   font-weight:1000;
   letter-spacing:.055em;
-  opacity:0;
-  transform:translateY(-4px);
   transition:.18s;
 }
 
@@ -710,8 +843,8 @@ button{
 
 #primaryCue.doubt{
   border-color:#d8b8e466;
-  color:#f2dff5;
   background:#180f20e8;
+  color:#f2dff5;
 }
 
 #primaryCue.progress{
@@ -721,18 +854,20 @@ button{
 
 #primaryCue.arrival{
   border-color:#74e7c588;
-  color:#d8fff3;
   background:#0b211ce8;
+  color:#d8fff3;
 }
 
-/* PERSISTENT STATUS */
+/* ============================================================
+STATUS
+============================================================ */
 
 #statusRow{
   position:absolute;
   z-index:48;
   left:10px;
   right:10px;
-  top:max(312px,calc(env(safe-area-inset-top) + 292px));
+  top:max(302px,calc(env(safe-area-inset-top) + 282px));
   display:flex;
   justify-content:space-between;
   gap:8px;
@@ -751,14 +886,18 @@ button{
 
 .statusCard b{
   display:block;
+  margin-bottom:3px;
   color:var(--accent);
   letter-spacing:.1em;
-  margin-bottom:3px;
 }
 
-.statusCard.dim{opacity:.4}
+.statusCard.dim{
+  opacity:.4;
+}
 
-/* GAME PANEL */
+/* ============================================================
+GAME PANEL
+============================================================ */
 
 .gamePanel{
   position:absolute;
@@ -779,12 +918,14 @@ button{
   gap:10px;
 }
 
-.gameTitle b{font-size:15px}
+.gameTitle b{
+  font-size:15px;
+}
 
 #phaseHint{
+  color:#aebbd0;
   font-size:10px;
   font-weight:950;
-  color:#aebbd0;
   letter-spacing:.06em;
 }
 
@@ -796,8 +937,8 @@ button{
 }
 
 .meterLabel{
-  font-size:9px;
   color:#aeb9c7;
+  font-size:9px;
   font-weight:850;
   letter-spacing:.1em;
 }
@@ -857,7 +998,9 @@ button{
   touch-action:none;
 }
 
-.control:disabled{opacity:.42}
+.control:disabled{
+  opacity:.42;
+}
 
 #holdFill{
   position:absolute;
@@ -877,19 +1020,28 @@ button{
 #inputHint{
   min-height:13px;
   margin-top:6px;
-  text-align:center;
   color:#9fabbb;
+  text-align:center;
   font-size:9px;
   font-weight:800;
 }
 
-.cancel{color:#c6b5d1!important}
+.cancel{
+  color:#c6b5d1!important;
+}
 
-/* REWARD */
+/* ============================================================
+REWARD
+============================================================ */
 
 #reward{
   background:
-    radial-gradient(circle at 50% 38%,#35516e,#101927 62%,#060b13);
+    radial-gradient(
+      circle at 50% 38%,
+      #35516e,
+      #101927 62%,
+      #060b13
+    );
 }
 
 .rewardBox{
@@ -902,9 +1054,9 @@ button{
 }
 
 .rewardBig{
+  margin:6px 0 4px;
   font-size:39px;
   font-weight:1000;
-  margin:6px 0 4px;
 }
 
 .practice{
@@ -944,22 +1096,39 @@ button{
   line-height:1.2;
 }
 
-/* SHORT PHONES */
+/* ============================================================
+SHORT PHONE
+============================================================ */
 
 @media(max-height:700px){
-  .hero{font-size:45px}
 
-  #cueDirector{top:82px}
+  .hero{
+    font-size:45px;
+  }
 
-  #statusRow{top:274px}
+  #cueDirector{
+    top:82px;
+  }
 
-  .gamePanel{padding:9px 10px}
+  #statusRow{
+    top:266px;
+  }
 
-  .control{min-height:54px}
+  .gamePanel{
+    padding:9px 10px;
+  }
 
-  .store{height:142px}
+  .control{
+    min-height:54px;
+  }
 
-  .crosswalk{height:190px}
+  .store{
+    height:142px;
+  }
+
+  .crosswalk{
+    height:190px;
+  }
 
   .phone{
     top:34%;
@@ -976,13 +1145,20 @@ button{
     margin:8px 0;
     padding:9px;
   }
+
 }
 
+/* ============================================================
+REDUCED MOTION
+============================================================ */
+
 @media(prefers-reduced-motion:reduce){
+
   *{
     animation:none!important;
     transition:none!important;
   }
+
 }
 </style>
 </head>
@@ -991,9 +1167,13 @@ button{
 
 <div id="app">
 
+<!-- START -->
+
 <section id="start" class="screen active">
 
-  <div class="logo">UNCERTAIN</div>
+  <div class="logo">
+    UNCERTAIN
+  </div>
 
   <div class="hero">
     BREAK<br>
@@ -1018,52 +1198,93 @@ button{
 
 </section>
 
+<!-- MAP -->
 
 <section id="map" class="screen">
 
   <div class="road"></div>
 
   <button id="checking" class="node">
-    <strong>Checking District</strong>
-    <small>4 missions available</small>
+
+    <strong>
+      Checking District
+    </strong>
+
+    <small>
+      4 missions available
+    </small>
+
   </button>
 
   <button class="node locked" disabled>
-    <strong>Next District</strong>
-    <small>Under construction</small>
+
+    <strong>
+      Next District
+    </strong>
+
+    <small>
+      Under construction
+    </small>
+
   </button>
 
   <div class="hud">
-    <span class="pill">THE LOOP</span>
-    <span class="pill">XP <b class="xp">0</b></span>
+
+    <span class="pill">
+      THE LOOP
+    </span>
+
+    <span class="pill">
+      XP <b class="xp">0</b>
+    </span>
+
   </div>
 
   <div class="mapInfo">
-    <b>Checking District</b><br>
+
+    <b>
+      Checking District
+    </b>
+
+    <br>
+
     <span>
       Certainty always seems one more check away.
     </span>
+
   </div>
 
 </section>
 
+<!-- SELECT -->
 
 <section id="missionSelect" class="screen">
 
   <div class="hud">
-    <span class="pill">CHECKING DISTRICT</span>
-    <span class="pill">XP <b class="xp">0</b></span>
+
+    <span class="pill">
+      CHECKING DISTRICT
+    </span>
+
+    <span class="pill">
+      XP <b class="xp">0</b>
+    </span>
+
   </div>
 
   <div class="selectWrap">
 
-    <button class="missionCard" data-mission="door">
+    <button
+      class="missionCard"
+      data-mission="door">
 
       <span class="tag">
         PHYSICAL CHECKING
       </span>
 
-      <b>Lock & Leave</b>
+      <b>
+        Lock & Leave
+      </b>
 
       <span
         class="completion"
@@ -1077,13 +1298,17 @@ button{
     </button>
 
 
-    <button class="missionCard" data-mission="car">
+    <button
+      class="missionCard"
+      data-mission="car">
 
       <span class="tag">
         PHYSICAL + MENTAL CHECKING
       </span>
 
-      <b>Park & Walk</b>
+      <b>
+        Park & Walk
+      </b>
 
       <span
         class="completion"
@@ -1097,13 +1322,17 @@ button{
     </button>
 
 
-    <button class="missionCard" data-mission="stove">
+    <button
+      class="missionCard"
+      data-mission="stove">
 
       <span class="tag">
         APPLIANCE CHECKING
       </span>
 
-      <b>Off & Out</b>
+      <b>
+        Off & Out
+      </b>
 
       <span
         class="completion"
@@ -1117,13 +1346,17 @@ button{
     </button>
 
 
-    <button class="missionCard" data-mission="message">
+    <button
+      class="missionCard"
+      data-mission="message">
 
       <span class="tag">
         MENTAL / COVERT CHECKING
       </span>
 
-      <b>Sent & Done</b>
+      <b>
+        Sent & Done
+      </b>
 
       <span
         class="completion"
@@ -1137,13 +1370,17 @@ button{
     </button>
 
 
-    <button class="missionCard" id="backMap">
+    <button
+      class="missionCard"
+      id="backMap">
 
       <span class="tag">
         RETURN
       </span>
 
-      <b>Back to The Loop</b>
+      <b>
+        Back to The Loop
+      </b>
 
     </button>
 
@@ -1151,12 +1388,18 @@ button{
 
 </section>
 
+<!-- MISSION -->
 
 <section id="mission" class="screen">
 
-  <button id="missionExit" class="missionExit">
+  <button
+    id="missionExit"
+    class="missionExit">
+
     ‹ EXIT
+
   </button>
+
 
   <div class="scene">
 
@@ -1165,7 +1408,9 @@ button{
     <div id="environment"></div>
 
 
-    <div id="person" class="person">
+    <div
+      id="person"
+      class="person">
 
       <i class="head"></i>
       <i class="body"></i>
@@ -1178,7 +1423,9 @@ button{
     <div id="doubtVignette"></div>
 
 
-    <div id="doubtOverlay" class="doubtText">
+    <div
+      id="doubtOverlay"
+      class="doubtText">
 
       <span class="doubtLabel">
         DOUBT
@@ -1200,18 +1447,26 @@ button{
 
     <div id="statusRow">
 
-      <div id="valueCard" class="statusCard">
+      <div
+        id="valueCard"
+        class="statusCard">
 
-        <b>WHAT MATTERS</b>
+        <b>
+          WHAT MATTERS
+        </b>
 
         <span id="valueText"></span>
 
       </div>
 
 
-      <div id="recoveryCard" class="statusCard">
+      <div
+        id="recoveryCard"
+        class="statusCard">
 
-        <b>PATH STATUS</b>
+        <b>
+          PATH STATUS
+        </b>
 
         <span id="recoveryText">
           Move from where you are.
@@ -1226,8 +1481,12 @@ button{
 
   <div class="hud">
 
-    <span class="pill" id="missionName">
+    <span
+      class="pill"
+      id="missionName">
+
       MISSION
+
     </span>
 
     <span class="pill">
@@ -1247,8 +1506,12 @@ button{
           One normal action.
         </b>
 
-        <div class="small" id="copy">
+        <div
+          class="small"
+          id="copy">
+
           No extra certainty required.
+
         </div>
 
       </div>
@@ -1272,7 +1535,10 @@ button{
         </span>
 
         <div class="meter">
-          <i class="fill" id="urge"></i>
+          <i
+            class="fill"
+            id="urge">
+          </i>
         </div>
 
       </div>
@@ -1286,7 +1552,10 @@ button{
 
         <div class="meter">
 
-          <i class="fill" id="progress"></i>
+          <i
+            class="fill"
+            id="progress">
+          </i>
 
           <i id="recoveryMark"></i>
 
@@ -1331,6 +1600,7 @@ button{
 
 </section>
 
+<!-- REWARD -->
 
 <section id="reward" class="screen">
 
@@ -1373,16 +1643,22 @@ button{
 
           <div class="practiceStat">
 
-            <b id="statChecks">0</b>
+            <b id="statChecks">
+              0
+            </b>
 
-            <span>CHECKS</span>
+            <span>
+              CHECKS
+            </span>
 
           </div>
 
 
           <div class="practiceStat">
 
-            <b id="statCarry">0s</b>
+            <b id="statCarry">
+              0s
+            </b>
 
             <span>
               UNCERTAINTY CARRIED
@@ -1393,7 +1669,9 @@ button{
 
           <div class="practiceStat">
 
-            <b id="statRecoveries">0</b>
+            <b id="statRecoveries">
+              0
+            </b>
 
             <span>
               RETURNS TO PATH
@@ -1404,7 +1682,9 @@ button{
 
           <div class="practiceStat">
 
-            <b id="statEchoes">0</b>
+            <b id="statEchoes">
+              0
+            </b>
 
             <span>
               DOUBT ECHOES
@@ -1467,36 +1747,54 @@ button{
 
 
 const $ =
-  selector =>
-    document.querySelector(selector);
+selector =>
+document.querySelector(
+  selector
+);
 
 
 const $$ =
-  selector =>
-    document.querySelectorAll(selector);
+selector =>
+document.querySelectorAll(
+  selector
+);
 
 
 const clamp =
-  (value,min,max) =>
-    Math.max(
-      min,
-      Math.min(max,value)
-    );
+(
+  value,
+  min,
+  max
+) =>
+Math.max(
+  min,
+  Math.min(
+    max,
+    value
+  )
+);
 
 
 const persist = {
 
-  get:(key,defaultValue="")=>{
+  get(
+    key,
+    defaultValue=""
+  ){
 
     try{
 
       return (
-        localStorage.getItem(key)
+        localStorage.getItem(
+          key
+        )
         ??
         defaultValue
       );
 
-    }catch{
+    }
+
+    catch{
 
       return defaultValue;
 
@@ -1505,7 +1803,10 @@ const persist = {
   },
 
 
-  set:(key,value)=>{
+  set(
+    key,
+    value
+  ){
 
     try{
 
@@ -1514,29 +1815,38 @@ const persist = {
         String(value)
       );
 
-    }catch{}
+    }
+
+    catch{}
 
   }
 
 };
 
 
+/* ============================================================
+MISSION DATA
+============================================================ */
+
 const missions = {
+
 
   door:{
 
-    name:"LOCK & LEAVE",
+    name:
+    "LOCK & LEAVE",
 
-    action:"LOCK ONCE",
+    action:
+    "LOCK ONCE",
 
     value:
-      "Leave home and continue your day.",
+    "Leave home and continue your day.",
 
     check:
-      "CHECK AGAIN",
+    "CHECK AGAIN",
 
     arrival:
-      "You reached the vehicle.",
+    "You reached the vehicle.",
 
     thoughts:[
 
@@ -1563,18 +1873,20 @@ const missions = {
 
   car:{
 
-    name:"PARK & WALK",
+    name:
+    "PARK & WALK",
 
-    action:"LOCK CAR ONCE",
+    action:
+    "LOCK CAR ONCE",
 
     value:
-      "Go where you were headed.",
+    "Go where you were headed.",
 
     check:
-      "CHECK AGAIN",
+    "CHECK AGAIN",
 
     arrival:
-      "You reached the store.",
+    "You reached the store.",
 
     thoughts:[
 
@@ -1601,18 +1913,20 @@ const missions = {
 
   stove:{
 
-    name:"OFF & OUT",
+    name:
+    "OFF & OUT",
 
-    action:"TURN OFF ONCE",
+    action:
+    "TURN OFF ONCE",
 
     value:
-      "Leave the kitchen and continue.",
+    "Leave the kitchen and continue.",
 
     check:
-      "CHECK AGAIN",
+    "CHECK AGAIN",
 
     arrival:
-      "You reached the exit.",
+    "You reached the exit.",
 
     thoughts:[
 
@@ -1639,18 +1953,20 @@ const missions = {
 
   message:{
 
-    name:"SENT & DONE",
+    name:
+    "SENT & DONE",
 
-    action:"SEND ONCE",
+    action:
+    "SEND ONCE",
 
     value:
-      "Return attention to the next task.",
+    "Return attention to the next task.",
 
     check:
-      "REVIEW AGAIN",
+    "REVIEW AGAIN",
 
     arrival:
-      "Your attention returned to the next task.",
+    "Your attention returned to the next task.",
 
     thoughts:[
 
@@ -1677,52 +1993,93 @@ const missions = {
 };
 
 
+/* ============================================================
+STATE
+============================================================ */
+
 let xp =
-  Number(
-    persist.get(
-      "uncertainXP",
-      "0"
-    )
-  ) || 0;
+Number(
+  persist.get(
+    "uncertainXP",
+    "0"
+  )
+) || 0;
 
 
-let current = null;
+let current =
+null;
 
-let phase = "idle";
 
-let momentum = 0;
+let phase =
+"idle";
 
-let peak = 0;
 
-let urge = 46;
+let momentum =
+0;
 
-let checks = 0;
 
-let recoveries = 0;
+let peak =
+0;
 
-let recoveryTarget = null;
 
-let thoughtIndex = 0;
+let urge =
+46;
 
-let carrying = false;
 
-let carryStart = 0;
+let checks =
+0;
 
-let carrySeconds = 0;
 
-let echoCount = 0;
+let recoveries =
+0;
 
-let echoThisCarry = 0;
 
-let driftShown = false;
+let recoveryTarget =
+null;
 
-let holdArmed = false;
 
-let moving = false;
+let thoughtIndex =
+0;
 
-let appSuspended = false;
 
-let lastCheckAt = 0;
+let carrying =
+false;
+
+
+let carryStart =
+0;
+
+
+let carrySeconds =
+0;
+
+
+let echoCount =
+0;
+
+
+let echoThisCarry =
+0;
+
+
+let driftShown =
+false;
+
+
+let holdArmed =
+false;
+
+
+let moving =
+false;
+
+
+let appSuspended =
+false;
+
+
+let lastCheckAt =
+0;
 
 
 let walkTimer;
@@ -1740,13 +2097,20 @@ let cueTimer;
 let urgeTimer;
 
 
-const HOLD_GATE_MS = 220;
+const HOLD_GATE_MS =
+220;
 
-const RECHECK_DEBOUNCE_MS = 800;
 
-const ECHO_PER_CARRY = 2;
+const RECHECK_DEBOUNCE_MS =
+800;
 
-const ECHO_PER_MISSION = 4;
+
+const ECHO_PER_CARRY =
+2;
+
+
+const ECHO_PER_MISSION =
+4;
 
 
 const postCheckLines = [
@@ -1762,27 +2126,47 @@ const postCheckLines = [
 ];
 
 
+/* ============================================================
+BASIC UI
+============================================================ */
+
 function show(id){
 
-  $$(".screen").forEach(
-    screen =>
-      screen.classList.remove("active")
+  $$(".screen")
+  .forEach(
+    screen => {
+
+      screen.classList.remove(
+        "active"
+      );
+
+    }
   );
 
+
   $("#" + id)
-    .classList
-    .add("active");
+  .classList.add(
+    "active"
+  );
 
 }
 
 
 function announce(text){
 
-  $("#liveStatus").textContent = "";
+  $("#liveStatus")
+  .textContent =
+  "";
+
 
   requestAnimationFrame(
-    () =>
-      $("#liveStatus").textContent = text
+    () => {
+
+      $("#liveStatus")
+      .textContent =
+      text;
+
+    }
   );
 
 }
@@ -1792,9 +2176,13 @@ function buzz(pattern){
 
   try{
 
-    navigator.vibrate?.(pattern);
+    navigator.vibrate?.(
+      pattern
+    );
 
-  }catch{}
+  }
+
+  catch{}
 
 }
 
@@ -1806,9 +2194,15 @@ function updateXP(){
     xp
   );
 
-  $$(".xp").forEach(
-    element =>
-      element.textContent = xp
+
+  $$(".xp")
+  .forEach(
+    element => {
+
+      element.textContent =
+      xp;
+
+    }
   );
 
 }
@@ -1816,18 +2210,20 @@ function updateXP(){
 
 function completions(){
 
-  $$(".completion").forEach(
+  $$(".completion")
+  .forEach(
     element => {
 
       element.textContent =
-        persist.get(
-          "completed_" +
-          element.dataset.completion
-        ) === "yes"
 
-        ? "✓ COMPLETED • REPLAY AVAILABLE"
+      persist.get(
+        "completed_" +
+        element.dataset.completion
+      ) === "yes"
 
-        : "";
+      ? "✓ COMPLETED • REPLAY AVAILABLE"
+
+      : "";
 
     }
   );
@@ -1837,14 +2233,21 @@ function completions(){
 
 function meters(){
 
-  $("#progress").style.width =
-    momentum + "%";
+  $("#progress")
+  .style.width =
+  momentum + "%";
 
-  $("#urge").style.width =
-    urge + "%";
+
+  $("#urge")
+  .style.width =
+  urge + "%";
 
 }
 
+
+/* ============================================================
+CUE DIRECTOR
+============================================================ */
 
 function cue(
   text,
@@ -1852,52 +2255,82 @@ function cue(
   duration=1050
 ){
 
-  clearTimeout(cueTimer);
+  clearTimeout(
+    cueTimer
+  );
+
 
   const element =
-    $("#primaryCue");
+  $("#primaryCue");
 
-  element.className = "";
 
-  element.textContent = text;
+  element.className =
+  "";
+
+
+  element.textContent =
+  text;
+
 
   element.classList.add(
     "show",
     type
   );
 
+
   cueTimer =
-    setTimeout(
-      () =>
-        element.classList.remove("show"),
-      duration
-    );
+  setTimeout(
+    () => {
+
+      element.classList.remove(
+        "show"
+      );
+
+    },
+    duration
+  );
 
 }
 
 
+/* ============================================================
+DOUBT
+============================================================ */
+
 function showDoubt(text){
 
   $("#doubtMessage")
-    .textContent = text;
+  .textContent =
+  text;
+
 
   $("#doubtOverlay")
-    .classList
-    .add("show");
-
-  $("#doubtVignette")
-    .classList
-    .add("show");
-
-  $("#valueCard")
-    .classList
-    .add("dim");
-
-  announce(
-    "Doubt: " + text
+  .classList.add(
+    "show"
   );
 
-  buzz(15);
+
+  $("#doubtVignette")
+  .classList.add(
+    "show"
+  );
+
+
+  $("#valueCard")
+  .classList.add(
+    "dim"
+  );
+
+
+  announce(
+    "Doubt: " +
+    text
+  );
+
+
+  buzz(
+    15
+  );
 
 }
 
@@ -1905,16 +2338,21 @@ function showDoubt(text){
 function hideDoubt(){
 
   $("#doubtOverlay")
-    .classList
-    .remove("show");
+  .classList.remove(
+    "show"
+  );
+
 
   $("#doubtVignette")
-    .classList
-    .remove("show");
+  .classList.remove(
+    "show"
+  );
+
 
   $("#valueCard")
-    .classList
-    .remove("dim");
+  .classList.remove(
+    "dim"
+  );
 
 }
 
@@ -1922,10 +2360,14 @@ function hideDoubt(){
 function thought(){
 
   const list =
-    missions[current].thoughts;
+  missions[current]
+  .thoughts;
+
 
   return list[
-    (thoughtIndex++)
+    (
+      thoughtIndex++
+    )
     %
     list.length
   ];
@@ -1937,79 +2379,102 @@ function scheduleDoubt(
   delay=650
 ){
 
-  clearTimeout(doubtTimer);
+  clearTimeout(
+    doubtTimer
+  );
+
 
   doubtTimer =
-    setTimeout(
-      () => {
+  setTimeout(
+    () => {
 
-        if(
-          current
-          &&
-          phase === "ready"
-          &&
-          !carrying
-          &&
-          !appSuspended
-        ){
+      if(
+        current
+        &&
+        phase === "ready"
+        &&
+        !carrying
+        &&
+        !appSuspended
+      ){
 
-          showDoubt(
-            thought()
-          );
+        showDoubt(
+          thought()
+        );
 
-          urge =
-            clamp(
-              urge + 10,
-              18,
-              96
-            );
 
-          meters();
+        urge =
+        clamp(
+          urge + 10,
+          18,
+          96
+        );
 
-        }
 
-      },
-      delay
-    );
+        meters();
+
+      }
+
+    },
+    delay
+  );
 
 }
 
 
-function setRecovery(value){
+/* ============================================================
+RECOVERY
+============================================================ */
 
-  recoveryTarget = value;
+function setRecovery(
+  value
+){
+
+  recoveryTarget =
+  value;
+
 
   const marker =
-    $("#recoveryMark");
+  $("#recoveryMark");
 
 
-  if(value == null){
+  if(
+    value == null
+  ){
 
     marker.style.display =
-      "none";
+    "none";
+
 
     $("#recoveryText")
-      .textContent =
-      "Move from where you are.";
+    .textContent =
+    "Move from where you are.";
 
   }
+
 
   else{
 
     marker.style.display =
-      "block";
+    "block";
+
 
     marker.style.left =
-      `calc(${clamp(value,0,100)}% - 1px)`;
+    `calc(${clamp(value,0,100)}% - 1px)`;
+
 
     $("#recoveryText")
-      .textContent =
-      "Return to your previous path point — no reset.";
+    .textContent =
+    "Prior path point ahead • no reset.";
 
   }
 
 }
 
+
+/* ============================================================
+URGE
+============================================================ */
 
 function startUrge(){
 
@@ -2017,48 +2482,62 @@ function startUrge(){
     urgeTimer
     ||
     appSuspended
-  ) return;
+  ){
+
+    return;
+
+  }
 
 
   urgeTimer =
-    setInterval(
-      () => {
+  setInterval(
+    () => {
 
-        if(
-          ![
-            "ready",
-            "moving"
-          ].includes(phase)
-        ) return;
+      if(
+        ![
+          "ready",
+          "moving"
+        ].includes(
+          phase
+        )
+      ){
 
+        return;
 
-        const target =
-          54
-          +
-          Math.sin(
-            Date.now()/850
-          )
-          *
-          26;
+      }
 
 
-        urge =
-          clamp(
-            urge
-            +
-            (target-urge)
-            *
-            .08,
-            18,
-            94
-          );
+      const target =
+      54
+      +
+      Math.sin(
+        Date.now()/850
+      )
+      *
+      26;
 
 
-        meters();
+      urge =
+      clamp(
+        urge
+        +
+        (
+          target
+          -
+          urge
+        )
+        *
+        .08,
+        18,
+        94
+      );
 
-      },
-      180
-    );
+
+      meters();
+
+    },
+    180
+  );
 
 }
 
@@ -2069,108 +2548,137 @@ function stopUrge(){
     urgeTimer
   );
 
-  urgeTimer = null;
+
+  urgeTimer =
+  null;
 
 }
 
 
+/* ============================================================
+SCENES
+============================================================ */
+
 function scene(key){
 
-  if(key === "door"){
+  if(
+    key === "door"
+  ){
 
     return `
-      <div class="house">
-        <div class="door"></div>
-      </div>
 
-      <div class="driveway"></div>
+<div class="house">
+  <div class="door"></div>
+</div>
 
-      <div
-        class="car drivewayCar destination">
-      </div>
-    `;
+<div class="driveway"></div>
+
+<div class="car drivewayCar destination"></div>
+
+`;
 
   }
 
 
-  if(key === "car"){
+  if(
+    key === "car"
+  ){
 
     return `
-      <div class="parking">
 
-        <div class="store">
+<div class="parking">
 
-          <div
-            class="storeDoor destination">
-          </div>
+  <div class="store">
 
-        </div>
+    <div class="storeDoor destination"></div>
 
-        <div class="crosswalk"></div>
+  </div>
 
-        <div
-          class="car playerCar">
-        </div>
+  <div class="crosswalk"></div>
 
-      </div>
-    `;
+  <div class="car playerCar"></div>
+
+</div>
+
+`;
 
   }
 
 
-  if(key === "stove"){
+  if(
+    key === "stove"
+  ){
 
     return `
-      <div class="kitchen">
 
-        <div
-          class="exitDoor destination">
-        </div>
+<div class="kitchen">
 
-        <div class="stove"></div>
+  <div class="exitDoor destination"></div>
 
-      </div>
-    `;
+  <div class="stove"></div>
+
+</div>
+
+`;
 
   }
 
 
   return `
-    <div class="messageScene">
 
-      <div
-        class="nextTask destination">
+<div class="messageScene">
 
-        <small>
-          NEXT TASK
-        </small>
+  <div class="nextTask destination">
 
-        <b>
-          Return to your day
-        </b>
+    <small>
+      NEXT TASK
+    </small>
 
-      </div>
+    <b>
+      Return to your day
+    </b>
 
-      <div class="desk"></div>
+  </div>
 
-      <div class="phone"></div>
+  <div class="desk"></div>
 
-    </div>
-  `;
+  <div class="phone"></div>
+
+</div>
+
+`;
 
 }
 
 
 function sourceEl(){
 
-  if(current === "door")
+  if(
+    current === "door"
+  ){
+
     return $(".door");
 
-  if(current === "car")
+  }
+
+
+  if(
+    current === "car"
+  ){
+
     return $(".playerCar");
 
-  if(current === "stove")
+  }
+
+
+  if(
+    current === "stove"
+  ){
+
     return $(".stove");
+
+  }
+
 
   return $(".phone");
 
@@ -2184,30 +2692,37 @@ function destEl(){
 }
 
 
-/*
-  PARK & WALK PATH:
-
-  Stage 1:
-  Character leaves the car.
-
-  Stage 2:
-  Character centers onto the crosswalk.
-
-  Stage 3:
-  Character moves vertically toward
-  the store entrance.
-*/
+/* ============================================================
+SCENE MOVEMENT
+============================================================ */
 
 function updateScene(){
 
   const t =
-    momentum / 100;
+  momentum / 100;
+
 
   const player =
-    $("#person");
+  $("#person");
 
 
-  if(current === "car"){
+  if(
+    current === "car"
+  ){
+
+    /*
+      v10.51:
+      Smooth 3-stage route.
+
+      Stage 1:
+      leave vehicle and merge onto crosswalk.
+
+      Stage 2:
+      travel centered up crosswalk.
+
+      Stage 3:
+      approach storefront.
+    */
 
     let left;
 
@@ -2216,47 +2731,79 @@ function updateScene(){
     let scale;
 
 
-    if(t < .34){
+    const ease =
+    q =>
+    q*q*(3-2*q);
+
+
+    if(
+      t < .40
+    ){
 
       const q =
-        t / .34;
+      ease(
+        t/.40
+      );
+
 
       left =
-        78
-        -
-        (28*q);
+      74
+      -
+      (
+        24*q
+      );
+
 
       bottom =
-        16
-        +
-        (6*q);
+      21
+      +
+      (
+        4*q
+      );
+
 
       scale =
-        1
-        -
-        .04*q;
+      1
+      -
+      (
+        .03*q
+      );
 
     }
 
 
-    else if(t < .68){
+    else if(
+      t < .72
+    ){
 
       const q =
-        (t-.34)
+      ease(
+        (
+          t-.40
+        )
         /
-        .34;
+        .32
+      );
 
-      left = 50;
+
+      left =
+      50;
+
 
       bottom =
-        22
-        +
-        (24*q);
+      25
+      +
+      (
+        23*q
+      );
+
 
       scale =
-        .96
-        -
-        .10*q;
+      .97
+      -
+      (
+        .10*q
+      );
 
     }
 
@@ -2264,69 +2811,107 @@ function updateScene(){
     else{
 
       const q =
-        (t-.68)
+      ease(
+        (
+          t-.72
+        )
         /
-        .32;
+        .28
+      );
 
-      left = 50;
+
+      left =
+      50;
+
 
       bottom =
-        46
-        +
-        (18*q);
+      48
+      +
+      (
+        16*q
+      );
+
 
       scale =
-        .86
-        -
-        .10*q;
+      .87
+      -
+      (
+        .09*q
+      );
 
     }
 
 
     player.style.left =
-      left + "%";
+    left + "%";
+
 
     player.style.bottom =
-      bottom + "%";
+    bottom + "%";
+
 
     player.style.transform =
-      `translateX(-50%) scale(${scale})`;
+    `translateX(-50%) scale(${scale})`;
 
   }
 
 
-  else if(current === "door"){
+  else if(
+    current === "door"
+  ){
 
     player.style.left =
-      (50 + 20*t)
+    (
+      50
       +
-      "%";
+      20*t
+    )
+    +
+    "%";
+
 
     player.style.bottom =
-      (42 - 25*t)
-      +
-      "%";
+    (
+      42
+      -
+      25*t
+    )
+    +
+    "%";
+
 
     player.style.transform =
-      `translateX(-50%) scale(${1-.08*t})`;
+    `translateX(-50%) scale(${1-.08*t})`;
 
   }
 
 
-  else if(current === "stove"){
+  else if(
+    current === "stove"
+  ){
 
     player.style.left =
-      (68 - 18*t)
-      +
-      "%";
+    (
+      68
+      -
+      18*t
+    )
+    +
+    "%";
+
 
     player.style.bottom =
-      (24 + 37*t)
+    (
+      24
       +
-      "%";
+      37*t
+    )
+    +
+    "%";
+
 
     player.style.transform =
-      `translateX(-50%) scale(${1-.18*t})`;
+    `translateX(-50%) scale(${1-.18*t})`;
 
   }
 
@@ -2334,26 +2919,38 @@ function updateScene(){
   else{
 
     player.style.left =
-      (68 - 25*t)
-      +
-      "%";
+    (
+      68
+      -
+      25*t
+    )
+    +
+    "%";
+
 
     player.style.bottom =
-      (18 + 30*t)
+    (
+      18
       +
-      "%";
+      30*t
+    )
+    +
+    "%";
+
 
     player.style.transform =
-      `translateX(-50%) scale(${1-.12*t})`;
+    `translateX(-50%) scale(${1-.12*t})`;
 
   }
 
 
   const destination =
-    destEl();
+  destEl();
 
 
-  if(destination){
+  if(
+    destination
+  ){
 
     destination.classList.toggle(
       "near",
@@ -2373,163 +2970,224 @@ function updateScene(){
 }
 
 
+/* ============================================================
+LOAD MISSION
+============================================================ */
+
 function loadMission(key){
 
   stopAll();
 
-  current = key;
 
-  phase = "action";
+  current =
+  key;
 
-  momentum = 0;
 
-  peak = 0;
+  phase =
+  "action";
 
-  urge = 46;
 
-  checks = 0;
+  momentum =
+  0;
 
-  recoveries = 0;
 
-  recoveryTarget = null;
+  peak =
+  0;
 
-  thoughtIndex = 0;
 
-  carrying = false;
+  urge =
+  46;
 
-  carrySeconds = 0;
 
-  carryStart = 0;
+  checks =
+  0;
 
-  echoCount = 0;
 
-  echoThisCarry = 0;
+  recoveries =
+  0;
 
-  driftShown = false;
 
-  appSuspended = false;
+  recoveryTarget =
+  null;
 
-  lastCheckAt = 0;
+
+  thoughtIndex =
+  0;
+
+
+  carrying =
+  false;
+
+
+  carrySeconds =
+  0;
+
+
+  carryStart =
+  0;
+
+
+  echoCount =
+  0;
+
+
+  echoThisCarry =
+  0;
+
+
+  driftShown =
+  false;
+
+
+  appSuspended =
+  false;
+
+
+  lastCheckAt =
+  0;
 
 
   $("#environment")
-    .innerHTML =
-    scene(key);
+  .innerHTML =
+  scene(
+    key
+  );
 
 
   $("#missionName")
-    .textContent =
-    missions[key].name;
+  .textContent =
+  missions[key]
+  .name;
 
 
   $("#title")
-    .textContent =
-    "One normal action.";
+  .textContent =
+  "One normal action.";
 
 
   $("#copy")
-    .textContent =
-    "No extra certainty required.";
+  .textContent =
+  "No extra certainty required.";
 
 
   $("#valueText")
-    .textContent =
-    missions[key].value;
+  .textContent =
+  missions[key]
+  .value;
 
 
   $("#phaseHint")
-    .textContent =
-    "ACTION";
+  .textContent =
+  "ACTION";
 
 
   $("#meters")
-    .style
-    .display =
-    "none";
+  .style.display =
+  "none";
 
 
   $("#checkBtn")
-    .style
-    .display =
-    "none";
+  .style.display =
+  "none";
 
 
   $("#checkBtn")
-    .disabled =
-    false;
+  .disabled =
+  false;
 
 
   $("#checkBtn")
-    .textContent =
-    missions[key].check;
+  .textContent =
+  missions[key]
+  .check;
 
 
   $("#forwardLabel")
-    .textContent =
-    missions[key].action;
+  .textContent =
+  missions[key]
+  .action;
 
 
-  setRecovery(null);
+  setRecovery(
+    null
+  );
+
 
   resetHold();
 
+
   hideDoubt();
+
 
   meters();
 
+
   updateScene();
 
-  show("mission");
+
+  show(
+    "mission"
+  );
 
 }
 
+
+/* ============================================================
+INITIAL ACTION
+============================================================ */
 
 function initialAction(){
 
   if(
     phase !== "action"
-  ) return;
+  ){
+
+    return;
+
+  }
 
 
   phase =
-    "ready";
+  "ready";
 
 
   $("#meters")
-    .style
-    .display =
-    "grid";
+  .style.display =
+  "grid";
 
 
   $("#checkBtn")
-    .style
-    .display =
-    "block";
+  .style.display =
+  "block";
 
 
   $("#forwardLabel")
-    .textContent =
-    "HOLD TO MOVE";
+  .textContent =
+  "HOLD TO MOVE";
 
 
   $("#phaseHint")
-    .textContent =
-    "READY";
+  .textContent =
+  "READY";
 
 
   $("#title")
-    .textContent =
-    "Now move on.";
+  .textContent =
+  "Now move on.";
 
 
   $("#copy")
-    .textContent =
-    "Let uncertainty come along without answering it.";
+  .textContent =
+  "Let uncertainty come along without answering it.";
 
 
   startUrge();
 
-  scheduleDoubt(650);
+
+  scheduleDoubt(
+    650
+  );
+
 
   buzz([
     14,
@@ -2540,11 +3198,16 @@ function initialAction(){
 }
 
 
+/* ============================================================
+HOLD INPUT
+============================================================ */
+
 function resetHold(){
 
   clearTimeout(
     holdGateTimer
   );
+
 
   clearInterval(
     holdProgressTimer
@@ -2552,23 +3215,23 @@ function resetHold(){
 
 
   holdArmed =
-    false;
+  false;
 
 
   $("#holdFill")
-    .style
-    .width =
-    "0%";
+  .style.width =
+  "0%";
 
 
   $("#inputHint")
-    .innerHTML =
-    "&nbsp;";
+  .innerHTML =
+  "&nbsp;";
 
 
   $("#inputHint")
-    .classList
-    .remove("cancel");
+  .classList.remove(
+    "cancel"
+  );
 
 }
 
@@ -2594,83 +3257,90 @@ function armHold(){
     moving
     ||
     appSuspended
-  ) return;
+  ){
+
+    return;
+
+  }
 
 
-  holdArmed = true;
+  holdArmed =
+  true;
 
 
   const started =
-    performance.now();
+  performance.now();
 
 
   $("#inputHint")
-    .textContent =
-    "Hold…";
+  .textContent =
+  "Hold…";
 
 
   holdProgressTimer =
-    setInterval(
-      () => {
+  setInterval(
+    () => {
 
-        $("#holdFill")
-          .style
-          .width =
-          clamp(
-            (
-              performance.now()
-              -
-              started
-            )
-            /
-            HOLD_GATE_MS
-            *
-            100,
-            0,
-            100
-          )
-          +
-          "%";
+      $("#holdFill")
+      .style.width =
+      clamp(
+        (
+          performance.now()
+          -
+          started
+        )
+        /
+        HOLD_GATE_MS
+        *
+        100,
+        0,
+        100
+      )
+      +
+      "%";
 
-      },
-      20
-    );
+    },
+    20
+  );
 
 
   holdGateTimer =
-    setTimeout(
-      () => {
+  setTimeout(
+    () => {
 
-        if(
-          !holdArmed
-          ||
-          phase !== "ready"
-          ||
-          appSuspended
-        ) return;
+      if(
+        !holdArmed
+        ||
+        phase !== "ready"
+        ||
+        appSuspended
+      ){
 
+        return;
 
-        clearInterval(
-          holdProgressTimer
-        );
-
-
-        $("#holdFill")
-          .style
-          .width =
-          "100%";
+      }
 
 
-        $("#inputHint")
-          .textContent =
-          "Moving";
+      clearInterval(
+        holdProgressTimer
+      );
 
 
-        startWalking();
+      $("#holdFill")
+      .style.width =
+      "100%";
 
-      },
-      HOLD_GATE_MS
-    );
+
+      $("#inputHint")
+      .textContent =
+      "Moving";
+
+
+      startWalking();
+
+    },
+    HOLD_GATE_MS
+  );
 
 }
 
@@ -2680,9 +3350,9 @@ function cancelHold(
 ){
 
   const pending =
-    holdArmed
-    &&
-    !moving;
+  holdArmed
+  &&
+  !moving;
 
 
   clearTimeout(
@@ -2696,16 +3366,17 @@ function cancelHold(
 
 
   holdArmed =
-    false;
+  false;
 
 
   $("#holdFill")
-    .style
-    .width =
-    "0%";
+  .style.width =
+  "0%";
 
 
-  if(moving){
+  if(
+    moving
+  ){
 
     stopWalking();
 
@@ -2719,13 +3390,14 @@ function cancelHold(
   ){
 
     $("#inputHint")
-      .textContent =
-      "Quick tap canceled • hold to move";
+    .textContent =
+    "Quick tap canceled • hold to move";
 
 
     $("#inputHint")
-      .classList
-      .add("cancel");
+    .classList.add(
+      "cancel"
+    );
 
 
     setTimeout(
@@ -2738,13 +3410,14 @@ function cancelHold(
         ){
 
           $("#inputHint")
-            .innerHTML =
-            "&nbsp;";
+          .innerHTML =
+          "&nbsp;";
 
 
           $("#inputHint")
-            .classList
-            .remove("cancel");
+          .classList.remove(
+            "cancel"
+          );
 
         }
 
@@ -2757,6 +3430,10 @@ function cancelHold(
 }
 
 
+/* ============================================================
+ECHOES / DRIFT / CHECKPOINTS
+============================================================ */
+
 function maybeEcho(){
 
   if(
@@ -2767,48 +3444,55 @@ function maybeEcho(){
     echoThisCarry >= ECHO_PER_CARRY
     ||
     echoCount >= ECHO_PER_MISSION
-  ) return;
+  ){
+
+    return;
+
+  }
 
 
   const thresholds =
-    [
-      18,
-      46
-    ];
+  [
+    18,
+    46
+  ];
 
 
   if(
-    momentum
-    >=
-    thresholds[echoThisCarry]
+    momentum >=
+    thresholds[
+      echoThisCarry
+    ]
   ){
 
     const text =
+    missions[current]
+    .echoes[
+      echoThisCarry
+      %
       missions[current]
-        .echoes[
-          echoThisCarry
-          %
-          missions[current]
-            .echoes
-            .length
-        ];
+      .echoes
+      .length
+    ];
 
 
     echoThisCarry++;
+
 
     echoCount++;
 
 
     cue(
-      "DOUBT ECHO • "
-      +
+      "DOUBT ECHO • " +
       text,
       "doubt",
       900
     );
 
 
-    buzz(10);
+    buzz(
+      10
+    );
 
   }
 
@@ -2827,7 +3511,8 @@ function maybeDrift(){
     momentum >= 50
   ){
 
-    driftShown = true;
+    driftShown =
+    true;
 
 
     cue(
@@ -2850,6 +3535,7 @@ function checkpoint(){
   ){
 
     cue(
+
       current === "car"
 
       ? "CAR BEHIND YOU • ENTER THE CROSSWALK"
@@ -2857,6 +3543,7 @@ function checkpoint(){
       : "FORWARD ACTION • KEEP GOING",
 
       "progress"
+
     );
 
   }
@@ -2869,6 +3556,7 @@ function checkpoint(){
   ){
 
     cue(
+
       current === "car"
 
       ? "CROSSWALK COMMITTED • APPROACH THE STORE"
@@ -2876,6 +3564,7 @@ function checkpoint(){
       : "KEEP GOING • NO VERDICT NEEDED",
 
       "progress"
+
     );
 
   }
@@ -2883,123 +3572,187 @@ function checkpoint(){
 }
 
 
+/* ============================================================
+WALKING
+============================================================ */
+
 function startWalking(){
 
   if(
     phase !== "ready"
     ||
     appSuspended
-  ) return;
+  ){
+
+    return;
+
+  }
 
 
   hideDoubt();
 
 
-  if(!carrying){
+  if(
+    !carrying
+  ){
 
-    carrying = true;
+    carrying =
+    true;
+
 
     carryStart =
-      performance.now();
+    performance.now();
 
-    /*
-      Every new carrying period gets
-      its own echo pacing.
-    */
 
-    echoThisCarry = 0;
+    echoThisCarry =
+    0;
 
   }
 
 
   phase =
-    "moving";
+  "moving";
 
 
   moving =
-    true;
+  true;
 
 
   $("#phaseHint")
-    .textContent =
+  .textContent =
+
+  recoveryTarget != null
+
+  ? "RECOVERING"
+
+  : "MOVING";
+
+
+  /*
+    v10.51:
+    Explicit recovery messaging replaces
+    any lingering relief wording the moment
+    movement resumes.
+  */
+
+  if(
     recoveryTarget != null
+  ){
 
-    ? "RECOVERING"
+    $("#title")
+    .textContent =
+    "Return to your path.";
 
-    : "MOVING";
+
+    $("#copy")
+    .textContent =
+    "Continue from here toward the prior high-water point.";
+
+  }
+
+
+  else{
+
+    $("#title")
+    .textContent =
+    "Keep moving.";
+
+
+    $("#copy")
+    .textContent =
+    "Uncertainty can come along.";
+
+  }
 
 
   $("#person")
-    .classList
-    .add("walking");
+  .classList.add(
+    "walking"
+  );
 
 
   walkTimer =
-    setInterval(
-      () => {
+  setInterval(
+    () => {
 
-        momentum =
-          Math.min(
-            100,
-            momentum + 2.1
-          );
-
-
-        /*
-          Peak is the real mission
-          high-water mark.
-        */
-
-        peak =
-          Math.max(
-            peak,
-            momentum
-          );
+      momentum =
+      Math.min(
+        100,
+        momentum + 2.1
+      );
 
 
-        checkpoint();
-
-        maybeEcho();
-
-        maybeDrift();
-
-
-        if(
-          recoveryTarget != null
-          &&
-          momentum >= recoveryTarget
-        ){
-
-          recoveries++;
-
-          setRecovery(null);
+      peak =
+      Math.max(
+        peak,
+        momentum
+      );
 
 
-          cue(
-            "YOU RETURNED • KEEP GOING",
-            "progress",
-            1000
-          );
-
-        }
+      checkpoint();
 
 
-        updateScene();
-
-        meters();
+      maybeEcho();
 
 
-        if(
-          momentum >= 100
-        ){
+      maybeDrift();
 
-          completeMission();
 
-        }
+      if(
+        recoveryTarget != null
+        &&
+        momentum >= recoveryTarget
+      ){
 
-      },
-      70
-    );
+        recoveries++;
+
+
+        setRecovery(
+          null
+        );
+
+
+        cue(
+          "YOU RETURNED • KEEP GOING",
+          "progress",
+          1000
+        );
+
+
+        $("#phaseHint")
+        .textContent =
+        "MOVING";
+
+
+        $("#title")
+        .textContent =
+        "Path recovered.";
+
+
+        $("#copy")
+        .textContent =
+        "Keep going from here.";
+
+      }
+
+
+      updateScene();
+
+
+      meters();
+
+
+      if(
+        momentum >= 100
+      ){
+
+        completeMission();
+
+      }
+
+    },
+    70
+  );
 
 }
 
@@ -3011,82 +3764,111 @@ function stopWalking(){
   );
 
 
-  walkTimer = null;
+  walkTimer =
+  null;
 
-  moving = false;
 
-  holdArmed = false;
+  moving =
+  false;
+
+
+  holdArmed =
+  false;
 
 
   $("#person")
-    .classList
-    .remove("walking");
+  .classList.remove(
+    "walking"
+  );
 
 
   if(
     phase === "complete"
-  ) return;
+  ){
+
+    return;
+
+  }
 
 
   phase =
-    "ready";
+  "ready";
 
 
   $("#phaseHint")
-    .textContent =
-    carrying
+  .textContent =
 
-    ? "CARRYING"
+  recoveryTarget != null
 
-    : "READY";
+  ? "RECOVERING"
+
+  : carrying
+
+  ? "CARRYING"
+
+  : "READY";
 
 
   startUrge();
 
 
-  /*
-    No pointless doubt timer is
-    scheduled while carrying.
-  */
+  if(
+    !carrying
+  ){
 
-  if(!carrying){
-
-    scheduleDoubt(650);
+    scheduleDoubt(
+      650
+    );
 
   }
 
 }
 
 
+/* ============================================================
+RECHECK
+============================================================ */
+
 function recheck(){
 
   const now =
-    performance.now();
+  performance.now();
 
 
   if(
-    now - lastCheckAt
-      <
-      RECHECK_DEBOUNCE_MS
+    now
+    -
+    lastCheckAt
+    <
+    RECHECK_DEBOUNCE_MS
 
     ||
     ![
       "ready",
       "moving"
-    ].includes(phase)
+    ].includes(
+      phase
+    )
 
     ||
     appSuspended
-  ) return;
+  ){
+
+    return;
+
+  }
 
 
-  lastCheckAt = now;
+  lastCheckAt =
+  now;
 
 
   checks++;
 
 
-  cancelHold(false);
+  cancelHold(
+    false
+  );
 
 
   clearInterval(
@@ -3094,30 +3876,34 @@ function recheck(){
   );
 
 
-  walkTimer = null;
+  walkTimer =
+  null;
 
-  moving = false;
+
+  moving =
+  false;
 
 
   $("#person")
-    .classList
-    .remove("walking");
+  .classList.remove(
+    "walking"
+  );
 
 
   phase =
-    "relief";
+  "relief";
 
 
   $("#checkBtn")
-    .disabled =
-    true;
+  .disabled =
+  true;
 
 
   hideDoubt();
 
 
   const source =
-    sourceEl();
+  sourceEl();
 
 
   source?.classList.add(
@@ -3125,51 +3911,52 @@ function recheck(){
   );
 
 
-  if(carrying){
+  if(
+    carrying
+  ){
 
     carrySeconds +=
-      (
-        performance.now()
-        -
-        carryStart
-      )
-      /
-      1000;
+    (
+      performance.now()
+      -
+      carryStart
+    )
+    /
+    1000;
 
 
     carrying =
-      false;
+    false;
 
   }
 
 
   urge =
-    clamp(
-      urge - 26,
-      18,
-      96
-    );
+  clamp(
+    urge - 26,
+    18,
+    96
+  );
 
 
   /*
-    Preserve the highest point
-    reached anywhere in the mission.
+    Preserve true mission high-water mark.
   */
 
   const previousPeak =
-    peak;
+  peak;
 
 
   momentum =
-    Math.max(
-      0,
-      momentum
-      -
-      Math.min(
-        momentum,
-        20
-      )
-    );
+  Math.max(
+    0,
+    momentum
+    -
+    Math.min(
+      momentum,
+      20
+    )
+  );
 
 
   if(
@@ -3187,22 +3974,23 @@ function recheck(){
 
   meters();
 
+
   updateScene();
 
 
   $("#phaseHint")
-    .textContent =
-    "RELIEF";
+  .textContent =
+  "RELIEF";
 
 
   $("#title")
-    .textContent =
-    "Relief landed.";
+  .textContent =
+  "Relief landed.";
 
 
   $("#copy")
-    .textContent =
-    "Attention turned back. Your next action is still ahead.";
+  .textContent =
+  "Attention turned back. Your next action is still ahead.";
 
 
   buzz([
@@ -3218,62 +4006,67 @@ function recheck(){
 
 
   reliefTimer =
-    setTimeout(
-      () => {
+  setTimeout(
+    () => {
 
-        source?.classList.remove(
-          "sourceFocus"
-        );
-
-
-        /*
-          Prevent backgrounded relief
-          callbacks from firing prompts.
-        */
-
-        if(
-          appSuspended
-          ||
-          document.hidden
-        ) return;
+      source?.classList.remove(
+        "sourceFocus"
+      );
 
 
-        phase =
-          "ready";
+      if(
+        appSuspended
+        ||
+        document.hidden
+      ){
+
+        return;
+
+      }
 
 
-        $("#checkBtn")
-          .disabled =
-          false;
+      phase =
+      "ready";
 
 
-        $("#title")
-          .textContent =
-          postCheckLines[
-            (checks-1)
-            %
-            postCheckLines.length
-          ];
+      $("#checkBtn")
+      .disabled =
+      false;
 
 
-        $("#copy")
-          .textContent =
-          "Resume from here. No restart required.";
+      $("#title")
+      .textContent =
+      postCheckLines[
+        (
+          checks-1
+        )
+        %
+        postCheckLines.length
+      ];
 
 
-        showDoubt(
-          thought()
-        );
+      $("#copy")
+      .textContent =
+      "Resume from here. No restart required.";
 
 
-        startUrge();
+      showDoubt(
+        thought()
+      );
 
-      },
-      650
-    );
+
+      startUrge();
+
+    },
+    650
+  );
 
 }
 
+
+/* ============================================================
+COMPLETE
+============================================================ */
 
 function completeMission(){
 
@@ -3282,33 +4075,40 @@ function completeMission(){
   );
 
 
+  walkTimer =
+  null;
+
+
   moving =
-    false;
+  false;
 
 
   phase =
-    "complete";
+  "complete";
 
 
   $("#person")
-    .classList
-    .remove("walking");
+  .classList.remove(
+    "walking"
+  );
 
 
-  if(carrying){
+  if(
+    carrying
+  ){
 
     carrySeconds +=
-      (
-        performance.now()
-        -
-        carryStart
-      )
-      /
-      1000;
+    (
+      performance.now()
+      -
+      carryStart
+    )
+    /
+    1000;
 
 
     carrying =
-      false;
+    false;
 
   }
 
@@ -3323,7 +4123,8 @@ function completeMission(){
 
 
   persist.set(
-    "completed_" + current,
+    "completed_" +
+    current,
     "yes"
   );
 
@@ -3332,47 +4133,47 @@ function completeMission(){
 
 
   $("#result")
-    .textContent =
+  .textContent =
 
-    checks === 0
+  checks === 0
 
-    ? "You kept moving while uncertainty was allowed to exist."
+  ? "You kept moving while uncertainty was allowed to exist."
 
-    :
-    `You resumed after ${checks} ${
-      checks === 1
-      ? "check"
-      : "checks"
-    }. A lapse did not reset the mission.`;
+  :
+  `You resumed after ${checks} ${
+    checks === 1
+    ? "check"
+    : "checks"
+  }. A lapse did not reset the mission.`;
 
 
   $("#statChecks")
-    .textContent =
-    checks;
+  .textContent =
+  checks;
 
 
   $("#statCarry")
-    .textContent =
-    Math.round(
-      carrySeconds
-    )
-    +
-    "s";
+  .textContent =
+  Math.round(
+    carrySeconds
+  )
+  +
+  "s";
 
 
   $("#statRecoveries")
-    .textContent =
-    recoveries;
+  .textContent =
+  recoveries;
 
 
   $("#statEchoes")
-    .textContent =
-    echoCount;
+  .textContent =
+  echoCount;
 
 
   $("#practiceCopy")
-    .textContent =
-    "The win was choosing the next meaningful action—not achieving a particular feeling.";
+  .textContent =
+  "The win was choosing the next meaningful action—not achieving a particular feeling.";
 
 
   buzz([
@@ -3384,10 +4185,16 @@ function completeMission(){
   ]);
 
 
-  show("reward");
+  show(
+    "reward"
+  );
 
 }
 
+
+/* ============================================================
+STOP / SUSPEND
+============================================================ */
 
 function stopAll(){
 
@@ -3424,18 +4231,27 @@ function stopAll(){
   stopUrge();
 
 
-  walkTimer = null;
+  walkTimer =
+  null;
 
-  holdArmed = false;
 
-  moving = false;
+  holdArmed =
+  false;
+
+
+  moving =
+  false;
 
 
   try{
 
-    navigator.vibrate?.(0);
+    navigator.vibrate?.(
+      0
+    );
 
-  }catch{}
+  }
+
+  catch{}
 
 }
 
@@ -3448,14 +4264,20 @@ function suspend(){
     appSuspended
     ||
     phase === "complete"
-  ) return;
+  ){
+
+    return;
+
+  }
 
 
   appSuspended =
-    true;
+  true;
 
 
-  cancelHold(false);
+  cancelHold(
+    false
+  );
 
 
   clearInterval(
@@ -3463,9 +4285,12 @@ function suspend(){
   );
 
 
-  walkTimer = null;
+  walkTimer =
+  null;
 
-  moving = false;
+
+  moving =
+  false;
 
 
   stopUrge();
@@ -3476,20 +4301,15 @@ function suspend(){
   );
 
 
-  /*
-    Important:
-    relief callbacks are canceled
-    while backgrounded.
-  */
-
   clearTimeout(
     reliefTimer
   );
 
 
   $("#person")
-    .classList
-    .remove("walking");
+  .classList.remove(
+    "walking"
+  );
 
 
   hideDoubt();
@@ -3499,33 +4319,35 @@ function suspend(){
     [
       "moving",
       "relief"
-    ].includes(phase)
+    ].includes(
+      phase
+    )
   ){
 
     phase =
-      "ready";
+    "ready";
 
   }
 
 
   $("#checkBtn")
-    .disabled =
-    false;
+  .disabled =
+  false;
 
 
   $("#phaseHint")
-    .textContent =
-    "PAUSED";
+  .textContent =
+  "PAUSED";
 
 
   $("#title")
-    .textContent =
-    "Paused safely.";
+  .textContent =
+  "Paused safely.";
 
 
   $("#copy")
-    .textContent =
-    "No prompt will fire while the app is away.";
+  .textContent =
+  "No prompt will fire while the app is away.";
 
 }
 
@@ -3538,11 +4360,15 @@ function resume(){
     document.hidden
     ||
     !current
-  ) return;
+  ){
+
+    return;
+
+  }
 
 
   appSuspended =
-    false;
+  false;
 
 
   if(
@@ -3550,34 +4376,43 @@ function resume(){
   ){
 
     phase =
-      "ready";
+    "ready";
 
   }
 
 
   $("#checkBtn")
-    .disabled =
-    false;
+  .disabled =
+  false;
 
 
   $("#phaseHint")
-    .textContent =
+  .textContent =
 
-    phase === "action"
+  phase === "action"
 
-    ? "ACTION"
+  ? "ACTION"
 
-    : "READY";
+  : recoveryTarget != null
+
+  ? "RECOVERING"
+
+  : "READY";
 
 
   $("#title")
-    .textContent =
-    "Continue when ready.";
+  .textContent =
+  "Continue when ready.";
 
 
   $("#copy")
-    .textContent =
-    "No catch-up and no restart.";
+  .textContent =
+
+  recoveryTarget != null
+
+  ? "Prior path point ahead • no reset."
+
+  : "No catch-up and no restart.";
 
 
   if(
@@ -3591,98 +4426,127 @@ function resume(){
 }
 
 
-/* NAVIGATION */
+/* ============================================================
+NAVIGATION
+============================================================ */
 
-$("#enter").onclick =
-  () =>
-    show("map");
-
-
-$("#checking").onclick =
-  () => {
-
-    completions();
-
-    show(
-      "missionSelect"
-    );
-
-  };
+$("#enter")
+.onclick =
+() =>
+show(
+  "map"
+);
 
 
-$("#backMap").onclick =
-  () =>
-    show("map");
+$("#checking")
+.onclick =
+() => {
+
+  completions();
+
+
+  show(
+    "missionSelect"
+  );
+
+};
+
+
+$("#backMap")
+.onclick =
+() =>
+show(
+  "map"
+);
 
 
 $$(
   ".missionCard[data-mission]"
-).forEach(
+)
+.forEach(
   button => {
 
     button.onclick =
-      () =>
-        loadMission(
-          button.dataset.mission
-        );
+    () =>
+    loadMission(
+      button.dataset.mission
+    );
 
   }
 );
 
 
-$("#missionExit").onclick =
-  () => {
+$("#missionExit")
+.onclick =
+() => {
 
-    stopAll();
-
-    current = null;
-
-    show(
-      "missionSelect"
-    );
-
-  };
+  stopAll();
 
 
-$("#checkBtn").onclick =
-  recheck;
+  current =
+  null;
 
 
-$("#continueBtn").onclick =
-  () => {
+  show(
+    "missionSelect"
+  );
 
-    current = null;
-
-    show(
-      "missionSelect"
-    );
-
-  };
+};
 
 
-$("#doneBtn").onclick =
-  () => {
-
-    stopAll();
-
-    current = null;
-
-    show("start");
-
-  };
+$("#checkBtn")
+.onclick =
+recheck;
 
 
-/* HOLD CONTROL */
+$("#continueBtn")
+.onclick =
+() => {
+
+  current =
+  null;
+
+
+  show(
+    "missionSelect"
+  );
+
+};
+
+
+$("#doneBtn")
+.onclick =
+() => {
+
+  stopAll();
+
+
+  current =
+  null;
+
+
+  show(
+    "start"
+  );
+
+};
+
+
+/* ============================================================
+FORWARD HOLD CONTROL
+============================================================ */
 
 const forwardButton =
-  $("#forwardBtn");
+$("#forwardBtn");
 
 
-forwardButton.addEventListener(
+forwardButton
+.addEventListener(
   "touchstart",
   event => {
 
     event.preventDefault();
+
 
     armHold();
 
@@ -3696,16 +4560,21 @@ forwardButton.addEventListener(
 [
   "touchend",
   "touchcancel"
-].forEach(
+]
+.forEach(
   eventName => {
 
-    forwardButton.addEventListener(
+    forwardButton
+    .addEventListener(
       eventName,
       event => {
 
         event.preventDefault();
 
-        cancelHold(true);
+
+        cancelHold(
+          true
+        );
 
       },
       {
@@ -3717,18 +4586,22 @@ forwardButton.addEventListener(
 );
 
 
-forwardButton.addEventListener(
+forwardButton
+.addEventListener(
   "pointerdown",
   event => {
 
     if(
-      event.pointerType
-      ===
-      "touch"
-    ) return;
+      event.pointerType === "touch"
+    ){
+
+      return;
+
+    }
 
 
     event.preventDefault();
+
 
     armHold();
 
@@ -3740,23 +4613,30 @@ forwardButton.addEventListener(
   "pointerup",
   "pointercancel",
   "pointerleave"
-].forEach(
+]
+.forEach(
   eventName => {
 
-    forwardButton.addEventListener(
+    forwardButton
+    .addEventListener(
       eventName,
       event => {
 
         if(
-          event.pointerType
-          ===
-          "touch"
-        ) return;
+          event.pointerType === "touch"
+        ){
+
+          return;
+
+        }
 
 
         event.preventDefault();
 
-        cancelHold(true);
+
+        cancelHold(
+          true
+        );
 
       }
     );
@@ -3765,9 +4645,12 @@ forwardButton.addEventListener(
 );
 
 
-/* APP BACKGROUND SAFETY */
+/* ============================================================
+BACKGROUND SAFETY
+============================================================ */
 
-document.addEventListener(
+document
+.addEventListener(
   "visibilitychange",
   () => {
 
@@ -3779,6 +4662,7 @@ document.addEventListener(
 
     }
 
+
     else{
 
       resume();
@@ -3789,26 +4673,31 @@ document.addEventListener(
 );
 
 
-window.addEventListener(
+window
+.addEventListener(
   "blur",
   suspend
 );
 
 
-window.addEventListener(
+window
+.addEventListener(
   "focus",
   resume
 );
 
 
-document.addEventListener(
+document
+.addEventListener(
   "contextmenu",
   event =>
-    event.preventDefault()
+  event.preventDefault()
 );
 
 
-/* INITIALIZE */
+/* ============================================================
+INITIALIZE
+============================================================ */
 
 updateXP();
 
