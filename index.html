@@ -1,8 +1,4072 @@
-UNCERTAIN
-UNCERTAIN v10.93
-BREAK
-THE LOOP.
-Move forward without making certainty the price of admission.
-ENTER THE LOOP
-ERP-informed prototype. Not a replacement for professional mental-health care.
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#07101c">
+<meta name="color-scheme" content="dark">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="UNCERTAIN">
+<meta name="format-detection" content="telephone=no">
 
+<title>UNCERTAIN — Checking District v10.93</title>
+
+<style>
+:root{
+  --h:100dvh;
+  --bg:#07101c;
+  --panel:#0b1726ee;
+  --text:#f6fbff;
+  --muted:#b7c5d6;
+  --accent:#74e7c5;
+  --doubt:#e0b7e1;
+  --line:#ffffff2b;
+  --safe:env(safe-area-inset-bottom)
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+  -webkit-user-select:none;
+  user-select:none;
+  -webkit-touch-callout:none
+}
+
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  overscroll-behavior:none;
+  background:#030812;
+  color:var(--text);
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+}
+
+button{
+  font:inherit;
+  color:inherit;
+  appearance:none;
+  border:0
+}
+
+button:focus-visible{
+  outline:3px solid var(--accent);
+  outline-offset:3px
+}
+
+.screen{
+  display:none;
+  position:absolute;
+  inset:0
+}
+
+.screen.active{
+  display:block
+}
+
+#app{
+  position:relative;
+  width:100%;
+  max-width:520px;
+  height:var(--h);
+  margin:auto;
+  overflow:hidden;
+  background:var(--bg)
+}
+
+.hud{
+  position:absolute;
+  z-index:50;
+  top:0;
+  left:0;
+  right:0;
+  display:flex;
+  justify-content:space-between;
+  padding:max(12px,env(safe-area-inset-top)) 12px 8px;
+  pointer-events:none
+}
+
+.pill{
+  padding:8px 11px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:#07111de8;
+  font-size:11px;
+  font-weight:900
+}
+
+.btn{
+  width:100%;
+  min-height:58px;
+  border-radius:17px;
+  background:#eef3f8;
+  color:#0d1520;
+  font-size:16px;
+  font-weight:950;
+  touch-action:manipulation
+}
+
+.btn.secondary{
+  margin-top:10px;
+  border:1px solid var(--line);
+  background:#152238;
+  color:var(--text)
+}
+
+.small{
+  font-size:12px;
+  line-height:1.4;
+  color:var(--muted)
+}
+
+#start{
+  padding:92px 22px 26px;
+  background:radial-gradient(circle at 50% 24%,#365372,#111b2a 56%,#060b13)
+}
+
+.logo{
+  font-size:13px;
+  font-weight:950;
+  letter-spacing:.25em;
+  color:#a9b7ca
+}
+
+.hero{
+  margin:24px 0 16px;
+  font-size:52px;
+  font-weight:1000;
+  line-height:.92;
+  letter-spacing:-.055em
+}
+
+.hero span{
+  color:var(--accent)
+}
+
+.startCard{
+  position:absolute;
+  left:16px;
+  right:16px;
+  bottom:max(20px,var(--safe));
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:linear-gradient(#101d30f6,#0b1625f6)
+}
+
+#map,#select{
+  background:radial-gradient(circle at 50% 30%,#294965,#0b1625 65%)
+}
+
+.road{
+  position:absolute;
+  left:-30%;
+  top:49%;
+  width:155%;
+  height:98px;
+  transform:rotate(-18deg);
+  background:#46566c;
+  box-shadow:0 0 0 9px #1d2837
+}
+
+.road:after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:47px;
+  border-top:4px dashed #e8edf566
+}
+
+.node{
+  position:absolute;
+  padding:15px;
+  border:2px solid #ffffff32;
+  border-radius:23px;
+  background:#0b1729ed;
+  box-shadow:0 16px 36px #0009;
+  text-align:left;
+  touch-action:manipulation
+}
+
+.node strong{
+  display:block;
+  font-size:18px
+}
+
+.node small{
+  opacity:.72
+}
+
+#district{
+  left:6%;
+  top:22%;
+  width:198px
+}
+
+.node.locked{
+  right:5%;
+  bottom:25%;
+  width:170px;
+  opacity:.45
+}
+
+.mapInfo{
+  position:absolute;
+  left:14px;
+  right:14px;
+  bottom:max(14px,var(--safe));
+  padding:13px 15px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#081321df
+}
+
+.selectWrap{
+  position:absolute;
+  inset:84px 14px 14px;
+  overflow:auto;
+  padding-bottom:22px;
+  -webkit-overflow-scrolling:touch;
+  touch-action:pan-y
+}
+
+.missionCard{
+  width:100%;
+  min-height:104px;
+  margin-bottom:12px;
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:21px;
+  background:#0d192aef;
+  text-align:left;
+  touch-action:manipulation
+}
+
+.missionCard b{
+  display:block;
+  font-size:19px
+}
+
+.missionCard span{
+  display:block;
+  margin-top:6px;
+  color:#b8c6d6;
+  line-height:1.35
+}
+
+.tag{
+  color:var(--accent)!important;
+  font-size:10px!important;
+  font-weight:950;
+  letter-spacing:.09em
+}
+
+.completion{
+  min-height:14px;
+  color:var(--accent)!important;
+  font-size:10px!important;
+  font-weight:950!important
+}
+
+#mission{
+  background:#0a111a
+}
+
+.missionExit{
+  position:absolute;
+  z-index:90;
+  left:12px;
+  top:max(58px,calc(env(safe-area-inset-top) + 48px));
+  min-width:80px;
+  min-height:44px;
+  padding:7px 12px;
+  border:1px solid #ffffff42;
+  border-radius:999px;
+  background:#08111bf2;
+  font-size:12px;
+  font-weight:950;
+  touch-action:manipulation
+}
+
+.scene{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  background:linear-gradient(#263a51 0 46%,#131c25 46%)
+}
+
+.ground{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:58%;
+  background:linear-gradient(#26323f,#111922)
+}
+
+.house{
+  position:absolute;
+  left:50%;
+  top:8%;
+  width:260px;
+  height:210px;
+  transform:translateX(-50%);
+  border:7px solid #1a2634;
+  background:#3a4858;
+  clip-path:polygon(50% 0,100% 30%,94% 30%,94% 100%,6% 100%,6% 30%,0 30%)
+}
+
+.door{
+  position:absolute;
+  left:50%;
+  bottom:18px;
+  width:90px;
+  height:134px;
+  transform:translateX(-50%);
+  border:6px solid #111a25;
+  background:#22364a
+}
+
+.door:after{
+  content:"";
+  position:absolute;
+  right:8px;
+  top:59px;
+  width:22px;
+  height:22px;
+  border:5px solid #6b7989;
+  border-radius:50%;
+  background:#e7edf3
+}
+
+.driveway{
+  position:absolute;
+  left:25%;
+  top:35%;
+  width:75%;
+  height:65%;
+  background:linear-gradient(160deg,#3b4651,#1c252e);
+  clip-path:polygon(24% 0,58% 0,100% 100%,0 100%)
+}
+
+.car{
+  position:absolute;
+  width:128px;
+  height:60px;
+  border:6px solid #101722;
+  border-radius:28px;
+  background:linear-gradient(#8093aa,#566a83)
+}
+
+.drivewayCar{
+  right:6%;
+  bottom:27%
+}
+
+.parking{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(#31475b 0 25%,#2b343e 25%)
+}
+
+.store{
+  position:absolute;
+  left:4%;
+  right:4%;
+  top:5%;
+  height:160px;
+  border:7px solid #223040;
+  background:#4b6075
+}
+
+.store:before{
+  content:"STORE";
+  position:absolute;
+  left:0;
+  right:0;
+  top:18px;
+  text-align:center;
+  font-weight:1000;
+  letter-spacing:.16em
+}
+
+.storeDoor{
+  position:absolute;
+  left:50%;
+  bottom:0;
+  width:105px;
+  height:88px;
+  transform:translateX(-50%);
+  border:5px solid #71849a;
+  background:#183047
+}
+
+.crosswalk{
+  position:absolute;
+  left:50%;
+  top:31%;
+  width:155px;
+  height:245px;
+  transform:translateX(-50%);
+  opacity:.8;
+  background:repeating-linear-gradient(0deg,#f0f3f4 0 14px,transparent 14px 31px);
+  clip-path:polygon(31% 0,69% 0,100% 100%,0 100%)
+}
+
+.playerCar{
+  right:4%;
+  bottom:22%;
+  width:72px;
+  height:98px;
+  border-radius:18px
+}
+
+.kitchen{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(#40505f 0 48%,#222b34 48%)
+}
+
+.exitDoor{
+  position:absolute;
+  left:50%;
+  top:6%;
+  width:126px;
+  height:205px;
+  transform:translateX(-50%);
+  border:7px solid #172330;
+  background:#223849
+}
+
+.exitDoor:after{
+  content:"EXIT";
+  position:absolute;
+  top:22px;
+  left:0;
+  right:0;
+  text-align:center;
+  font-size:11px;
+  font-weight:950;
+  letter-spacing:.14em
+}
+
+.stove{
+  position:absolute;
+  left:78%;
+  top:46%;
+  width:176px;
+  height:156px;
+  transform:translateX(-50%);
+  border:7px solid #18222c;
+  border-radius:10px;
+  background:linear-gradient(#6b7b8b 0 40%,#465666 40%);
+  box-shadow:inset 0 -38px 0 #34414d
+}
+
+.stove:after{
+  content:"OFF • OFF • OFF • OFF";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:28px;
+  text-align:center;
+  font-size:8px;
+  font-weight:950;
+  letter-spacing:.12em
+}
+
+.messageScene{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(#26384c 0 42%,#121b25 42%)
+}
+
+.desk{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:45%;
+  background:#3d332e
+}
+
+.phone{
+  position:absolute;
+  left:67%;
+  top:34%;
+  width:112px;
+  height:196px;
+  transform:translateX(-50%) rotate(4deg);
+  border:8px solid #101722;
+  border-radius:22px;
+  background:linear-gradient(#edf3f7,#cdd9e1);
+  box-shadow:0 16px 28px #0008
+}
+
+.phone:before{
+  content:"MESSAGES";
+  position:absolute;
+  left:0;
+  right:0;
+  top:10px;
+  color:#263543;
+  text-align:center;
+  font-size:8px;
+  font-weight:950
+}
+
+.phone:after{
+  content:"Hey — running a few minutes late. ✓ Delivered";
+  position:absolute;
+  left:8px;
+  right:8px;
+  top:58px;
+  padding:9px;
+  border-radius:12px;
+  background:#4ab598;
+  color:#082119;
+  font-size:7px;
+  font-weight:850;
+  line-height:1.25
+}
+
+.nextTask{
+  position:absolute;
+  left:7%;
+  top:24%;
+  width:150px;
+  padding:14px;
+  border:1px solid #74e7c54d;
+  border-radius:18px;
+  background:#0c1b27e8
+}
+
+.nextTask small{
+  color:var(--accent);
+  font-size:9px;
+  font-weight:1000;
+  letter-spacing:.12em
+}
+
+.nextTask b{
+  display:block;
+  margin-top:7px;
+  font-size:17px
+}
+.person{
+  position:absolute;
+  z-index:20;
+  width:58px;
+  height:100px;
+  transform:translateX(-50%);
+  transition:left .11s linear,bottom .11s linear,transform .11s linear
+}
+
+.head{
+  position:absolute;
+  left:16px;
+  top:0;
+  width:26px;
+  height:26px;
+  border-radius:50%;
+  background:#eef3f8
+}
+
+.body{
+  position:absolute;
+  left:11px;
+  top:26px;
+  width:36px;
+  height:43px;
+  border-radius:15px;
+  background:#d7e1ea
+}
+
+.leg{
+  position:absolute;
+  top:66px;
+  width:12px;
+  height:31px;
+  border-radius:8px;
+  background:#bcc9d5
+}
+
+.leg.a{left:13px}
+.leg.b{right:13px}
+
+.person.walking .leg.a{
+  animation:step .28s infinite alternate
+}
+
+.person.walking .leg.b{
+  animation:step .28s infinite alternate-reverse
+}
+
+@keyframes step{
+  to{transform:translateY(4px) rotate(9deg)}
+}
+
+.destination{
+  transition:.18s
+}
+
+.destination.near{
+  box-shadow:0 0 0 3px #74e7c555,0 0 28px #74e7c566
+}
+
+.destination.arrived{
+  box-shadow:0 0 0 5px #74e7c577,0 0 40px #74e7c599
+}
+
+.sourceFocus{
+  box-shadow:0 0 0 4px #b9d4ff66,0 0 34px #b9d4ff99!important;
+  filter:brightness(1.12)
+}
+
+.actionRegistered{
+  animation:actionRegistered .42s ease-out
+}
+
+@keyframes actionRegistered{
+  0%{filter:brightness(1)}
+  45%{filter:brightness(1.22)}
+  100%{filter:brightness(1)}
+}
+
+.destinationBadge{
+  position:absolute;
+  z-index:30;
+  padding:6px 9px;
+  border:1px solid #74e7c542;
+  border-radius:999px;
+  background:#07151ee8;
+  color:#b7d8d0;
+  opacity:.72;
+  pointer-events:none;
+  font-size:8px;
+  font-weight:1000;
+  letter-spacing:.12em
+}
+
+.destinationBadge.active{
+  opacity:1;
+  color:#d8fff3
+}
+
+#mission[data-mission=door] .destinationBadge{
+  right:8%;
+  bottom:36%
+}
+
+#mission[data-mission=car] .destinationBadge{
+  left:50%;
+  top:20%;
+  transform:translateX(-50%)
+}
+
+#mission[data-mission=stove] .destinationBadge{
+  left:50%;
+  top:28%;
+  transform:translateX(-50%)
+}
+
+#mission[data-mission=message] .destinationBadge{
+  left:8%;
+  top:18%
+}
+
+#doubtVignette{
+  position:absolute;
+  z-index:18;
+  inset:0;
+  opacity:0;
+  pointer-events:none;
+  background:radial-gradient(circle at 50% 42%,transparent 35%,#210d2a88 100%);
+  transition:.18s
+}
+
+#doubtVignette.show{
+  opacity:1
+}
+
+.doubtText{
+  position:absolute;
+  z-index:32;
+  left:8%;
+  right:8%;
+  top:12%;
+  opacity:0;
+  pointer-events:none;
+  padding:12px 14px;
+  border:1px solid #e0b7e14a;
+  border-radius:18px;
+  background:#160f1de8;
+  box-shadow:0 10px 26px #0007;
+  text-align:center;
+  font-size:19px;
+  font-weight:1000;
+  line-height:1.08;
+  text-shadow:0 4px 16px #000;
+  transition:.18s
+}
+
+.doubtText.show{
+  opacity:1
+}
+
+.doubtLabel{
+  display:block;
+  margin-bottom:7px;
+  color:var(--doubt);
+  font-size:10px;
+  letter-spacing:.16em
+}
+
+#cueDirector{
+  position:absolute;
+  z-index:40;
+  left:8%;
+  right:8%;
+  top:max(112px,calc(env(safe-area-inset-top) + 92px));
+  min-height:38px;
+  pointer-events:none;
+  text-align:center
+}
+
+#primaryCue{
+  display:inline-block;
+  max-width:100%;
+  padding:8px 12px;
+  border:1px solid #ffffff33;
+  border-radius:999px;
+  background:#07141ef2;
+  opacity:0;
+  font-size:10px;
+  font-weight:1000;
+  letter-spacing:.045em;
+  transition:.18s
+}
+
+#primaryCue.show{
+  opacity:1
+}
+
+#primaryCue.doubt{
+  border-color:#d8b8e466;
+  background:#180f20e8;
+  color:#f2dff5
+}
+
+#primaryCue.progress{
+  border-color:#74e7c566;
+  color:#caffef
+}
+
+#statusRow{
+  position:absolute;
+  z-index:38;
+  left:10px;
+  right:10px;
+  top:max(302px,calc(env(safe-area-inset-top) + 282px));
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  pointer-events:none;
+  transition:.18s
+}
+
+.statusCard{
+  max-width:48%;
+  padding:10px 11px;
+  border:1px solid #ffffff38;
+  border-radius:14px;
+  background:#071321f2;
+  font-size:10px;
+  line-height:1.3
+}
+
+.statusCard b{
+  display:block;
+  margin-bottom:4px;
+  color:var(--accent);
+  font-size:9px;
+  letter-spacing:.1em
+}
+
+.statusCard.anchor{
+  border-color:#74e7c568;
+  box-shadow:0 0 0 1px #74e7c526,0 0 16px #74e7c51c
+}
+
+.movementFocus #statusRow{
+  opacity:.42;
+  transform:translateY(4px) scale(.986)
+}
+
+.gamePanel{
+  position:absolute;
+  z-index:70;
+  left:10px;
+  right:10px;
+  bottom:max(10px,var(--safe));
+  padding:9px 11px;
+  border:1px solid #ffffff24;
+  border-radius:18px;
+  background:#081321ed;
+  backdrop-filter:blur(12px)
+}
+
+.gameTitle{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:flex-start
+}
+
+.gameTitle b{
+  font-size:14px
+}
+
+.gameTitle .small{
+  font-size:11px;
+  line-height:1.25
+}
+
+#phaseHint{
+  color:#aebbd0;
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:.06em
+}
+
+.meters{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-top:7px
+}
+
+.meterHeading{
+  display:flex;
+  justify-content:space-between;
+  gap:6px
+}
+
+.meterLabel{
+  color:#aeb9c7;
+  font-size:9px;
+  font-weight:850;
+  letter-spacing:.1em
+}
+
+.meterMeaning{
+  color:#9eb1c4;
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:.08em
+}
+
+.meter{
+  position:relative;
+  height:9px;
+  margin-top:4px;
+  border-radius:999px;
+  background:#29364a
+}
+
+.meter .fill{
+  display:block;
+  width:0;
+  height:100%;
+  border-radius:999px;
+  background:#eef3f8
+}
+
+.uncertainty .fill{
+  opacity:.68;
+  transition:width .28s
+}
+
+.meter.recovering{
+  box-shadow:0 0 0 2px #74e7c52f,0 0 14px #74e7c526
+}
+
+#recoveryMark{
+  position:absolute;
+  display:none;
+  z-index:3;
+  top:-5px;
+  width:3px;
+  height:19px;
+  border-radius:3px;
+  background:var(--accent);
+  box-shadow:0 0 0 2px #07101c,0 0 9px #74e7c5
+}
+
+.controls{
+  display:flex;
+  gap:9px;
+  margin-top:8px
+}
+
+.controlWrap{
+  display:flex;
+  flex-direction:column;
+  gap:4px
+}
+
+.controlWrap.checkWrap{
+  flex:.58
+}
+
+.controlWrap.forwardWrap{
+  flex:1.42
+}
+
+.controlNote{
+  min-height:10px;
+  color:#8fa1b3;
+  text-align:center;
+  font-size:8px;
+  font-weight:950;
+  letter-spacing:.08em
+}
+
+.control{
+  position:relative;
+  overflow:hidden;
+  width:100%;
+  border:1px solid #ffffff2a;
+  border-radius:15px;
+  font-weight:950;
+  touch-action:none
+}
+
+.control.check{
+  min-height:56px;
+  background:#101a2a;
+  color:#cbd5e0;
+  font-size:11px
+}
+
+.control.primary{
+  min-height:62px;
+  background:#eef3f8;
+  color:#101826;
+  font-size:14px
+}
+
+.control:disabled{
+  opacity:.38
+}
+
+.check.receded{
+  opacity:.56
+}
+
+.primary.rejoin{
+  box-shadow:0 0 0 2px #74e7c564,0 0 18px #74e7c52a
+}
+
+.holdFill{
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:0;
+  height:5px;
+  background:#4ca98f;
+  pointer-events:none
+}
+
+.check .holdFill{
+  background:#a989b0
+}
+
+.label{
+  position:relative;
+  z-index:1
+}
+
+#inputHint{
+  min-height:13px;
+  margin-top:4px;
+  color:#b9c8d8;
+  text-align:center;
+  font-size:8.5px;
+  font-weight:850
+}
+
+.rejoinHint{
+  color:var(--accent)!important
+}
+
+#reward{
+  background:radial-gradient(circle at 50% 38%,#35516e,#101927 62%,#060b13)
+}
+
+.rewardBox{
+  position:absolute;
+  left:18px;
+  right:18px;
+  top:max(64px,calc(env(safe-area-inset-top) + 52px));
+  bottom:max(12px,var(--safe));
+  overflow:auto;
+  -webkit-overflow-scrolling:touch;
+  touch-action:pan-y;
+  text-align:center
+}
+
+.rewardCard{
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:linear-gradient(#101d30f5,#0b1625f5)
+}
+
+.rewardBig{
+  margin:4px 0 3px;
+  font-size:32px;
+  font-weight:1000
+}
+
+.microWin{
+  margin:9px 0;
+  padding:10px 12px;
+  border:1px solid #74e7c566;
+  border-radius:16px;
+  background:#0d251fe8;
+  text-align:left
+}
+
+.microWin span:first-child{
+  display:block;
+  margin-bottom:5px;
+  color:var(--accent);
+  font-size:9px;
+  font-weight:1000;
+  letter-spacing:.15em
+}
+
+.microWin span:last-child{
+  font-size:12px;
+  font-weight:850;
+  line-height:1.35
+}
+
+.stopRule{
+  margin:9px 0;
+  padding:10px 11px;
+  border:1px solid #ffffff22;
+  border-radius:15px;
+  background:#ffffff08;
+  text-align:left;
+  font-size:11px;
+  line-height:1.4
+}
+
+.stopRule b{
+  display:block;
+  margin-bottom:3px
+}
+
+#orientationGuard{
+  display:none;
+  position:absolute;
+  z-index:1000;
+  inset:0;
+  padding:24px;
+  background:#06101af2;
+  backdrop-filter:blur(14px);
+  align-items:center;
+  justify-content:center;
+  text-align:center
+}
+
+#orientationGuard.show{
+  display:flex
+}
+
+.guardCard{
+  max-width:360px;
+  padding:22px;
+  border:1px solid #ffffff35;
+  border-radius:24px;
+  background:#0b1726
+}
+
+.guardCard b{
+  display:block;
+  font-size:23px;
+  margin-bottom:8px
+}
+
+.guardCard span{
+  color:#c7d2df;
+  line-height:1.45
+}
+
+.sr{
+  position:absolute!important;
+  width:1px!important;
+  height:1px!important;
+  margin:-1px!important;
+  overflow:hidden!important;
+  clip:rect(0,0,0,0)!important;
+  white-space:nowrap!important
+}
+
+@media(max-height:700px){
+  .hero{font-size:44px}
+  #cueDirector{top:82px}
+  #statusRow{top:250px}
+  .gamePanel{padding:9px 10px}
+  .control.primary{min-height:60px}
+  .control.check{min-height:56px}
+  .rewardBox{left:12px;right:12px;top:54px;bottom:8px}
+  .rewardCard{padding:11px}
+  .microWin,.stopRule{margin:7px 0;padding:8px}
+  .btn{min-height:54px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .doubtText{box-shadow:none!important}
+  .destination.near,.destination.arrived,.sourceFocus{box-shadow:none!important}
+}
+
+@media(prefers-contrast:more){
+  :root{
+    --text:#fff;
+    --muted:#d5dfeb;
+    --line:#ffffff66;
+    --accent:#8dffe0
+  }
+
+  .statusCard,.gamePanel,.startCard,.rewardCard,.missionCard,.node{
+    border-color:#ffffff70
+  }
+
+  .control.check{
+    border-color:#ffffff66;
+    color:#eef5fb
+  }
+
+  .meter{
+    outline:1px solid #ffffff55
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="app">
+
+<section id="start" class="screen active" aria-hidden="false">
+  <h1 id="startFocus" class="sr" tabindex="-1">UNCERTAIN home</h1>
+
+  <div class="logo">
+    UNCERTAIN
+    <span style="opacity:.55;letter-spacing:.08em">v10.93</span>
+  </div>
+
+  <div class="hero">
+    BREAK<br>THE <span>LOOP.</span>
+  </div>
+
+  <p style="max-width:390px;color:#cbd6e3;font-size:18px;line-height:1.45">
+    Move forward without making certainty the price of admission.
+  </p>
+
+  <div class="startCard">
+    <button class="btn" id="enter">ENTER THE LOOP</button>
+
+    <p class="small">
+      ERP-informed prototype. Not a replacement for professional mental-health care.
+    </p>
+  </div>
+</section>
+
+<section id="map" class="screen" aria-hidden="true">
+  <h1 id="mapFocus" class="sr" tabindex="-1">The Loop map</h1>
+
+  <div class="road"></div>
+
+  <button id="district" class="node">
+    <strong>Checking District</strong>
+    <small>4 missions available</small>
+  </button>
+
+  <button class="node locked" disabled>
+    <strong>Next District</strong>
+    <small>Under construction</small>
+  </button>
+
+  <div class="hud">
+    <span class="pill">THE LOOP</span>
+    <span class="pill">XP <b class="xp">0</b></span>
+  </div>
+
+  <div class="mapInfo">
+    <b>Checking District</b><br>
+    <span>Certainty always seems one more check away.</span>
+  </div>
+</section>
+
+<section id="select" class="screen" aria-hidden="true">
+  <h1 id="selectFocus" class="sr" tabindex="-1">Choose a Checking District mission</h1>
+
+  <div class="hud">
+    <span class="pill">CHECKING DISTRICT</span>
+    <span class="pill">XP <b class="xp">0</b></span>
+  </div>
+
+  <div class="selectWrap">
+
+    <button class="missionCard" data-mission="door">
+      <span class="tag">PHYSICAL CHECKING</span>
+      <b>Lock &amp; Leave</b>
+      <span class="completion" data-completion="door"></span>
+      <span>Lock once, leave the door behind, and continue toward the vehicle.</span>
+    </button>
+
+    <button class="missionCard" data-mission="car">
+      <span class="tag">PHYSICAL + MENTAL CHECKING</span>
+      <b>Park &amp; Walk</b>
+      <span class="completion" data-completion="car"></span>
+      <span>Lock once, leave the car, and continue to the store.</span>
+    </button>
+
+    <button class="missionCard" data-mission="stove">
+      <span class="tag">APPLIANCE CHECKING</span>
+      <b>Off &amp; Out</b>
+      <span class="completion" data-completion="stove"></span>
+      <span>Turn the stove off once, leave it behind, and head for the exit.</span>
+    </button>
+
+    <button class="missionCard" data-mission="message">
+      <span class="tag">MENTAL / COVERT CHECKING</span>
+      <b>Sent &amp; Done</b>
+      <span class="completion" data-completion="message"></span>
+      <span>Send one normal message, put the phone down, and return attention to the next task.</span>
+    </button>
+
+    <button class="missionCard" id="backMap">
+      <span class="tag">RETURN</span>
+      <b>Back to The Loop</b>
+    </button>
+
+  </div>
+</section>
+<section id="mission" class="screen" aria-hidden="true">
+  <h1 id="missionFocus" class="sr screenFocus" tabindex="-1">Mission</h1>
+
+  <button id="missionExit" class="missionExit">‹ EXIT</button>
+
+  <div class="scene">
+    <div class="ground"></div>
+    <div id="environment"></div>
+
+    <div id="destinationBadge" class="destinationBadge">
+      DESTINATION
+    </div>
+
+    <div id="person" class="person">
+      <i class="head"></i>
+      <i class="body"></i>
+      <i class="leg a"></i>
+      <i class="leg b"></i>
+    </div>
+
+    <div id="doubtVignette"></div>
+
+    <div id="doubtOverlay" class="doubtText">
+      <span class="doubtLabel">DOUBT • NOT A COMMAND</span>
+      <span id="doubtMessage"></span>
+    </div>
+
+    <div id="cueDirector">
+      <div id="primaryCue"></div>
+    </div>
+
+    <div id="statusRow">
+      <div id="valueCard" class="statusCard">
+        <b>WHAT MATTERS</b>
+        <span id="valueText"></span>
+      </div>
+
+      <div class="statusCard">
+        <b>PATH STATUS</b>
+        <span id="pathText"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hud">
+    <span class="pill" id="missionName">MISSION</span>
+    <span class="pill">XP <b class="xp">0</b></span>
+  </div>
+
+  <div class="gamePanel">
+    <div class="gameTitle">
+      <div>
+        <b id="title">One normal action.</b>
+        <div class="small" id="copy">No extra certainty required.</div>
+      </div>
+
+      <span id="phaseHint">ACTION</span>
+    </div>
+
+    <div id="meters" class="meters" style="display:none">
+      <div>
+        <div class="meterHeading">
+          <span class="meterLabel">UNCERTAINTY WAVE</span>
+          <span class="meterMeaning">NOT A SCORE</span>
+        </div>
+
+        <div class="meter uncertainty" aria-hidden="true">
+          <i class="fill" id="urgeFill"></i>
+        </div>
+
+        <span id="uncertaintyStatus" class="sr">
+          Uncertainty is present. This is not a score and does not need to decrease.
+        </span>
+      </div>
+
+      <div>
+        <div class="meterHeading">
+          <span class="meterLabel">FORWARD MOMENTUM</span>
+        </div>
+
+        <div
+          class="meter"
+          id="momentumMeter"
+          role="progressbar"
+          aria-label="Forward momentum"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+          aria-valuetext="At the start of the path"
+        >
+          <i class="fill" id="momentumFill"></i>
+          <i id="recoveryMark" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="controlWrap checkWrap">
+        <span class="controlNote">OPTIONAL • MOVES YOU BACK</span>
+
+        <button
+          class="control check"
+          id="checkBtn"
+          aria-label="Hold to check again. This is optional and moves you back on the path. Touch, Enter, or Space may be held."
+        >
+          <span class="label" id="checkLabel">HOLD TO CHECK</span>
+          <i class="holdFill" id="checkFill"></i>
+        </button>
+      </div>
+
+      <div class="controlWrap forwardWrap">
+        <span class="controlNote">FORWARD ACTION</span>
+
+        <button
+          class="control primary"
+          id="forwardBtn"
+          aria-label="Forward action. Hold by touch, Enter, or Space to move. Release to stop."
+        >
+          <span class="label" id="forwardLabel">START</span>
+          <i class="holdFill" id="forwardFill"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="inputHint">&nbsp;</div>
+  </div>
+</section>
+
+<section id="reward" class="screen" aria-hidden="true">
+  <h1 id="rewardFocus" class="sr screenFocus" tabindex="-1">Mission complete</h1>
+
+  <div class="hud">
+    <span class="pill">MOMENTUM</span>
+    <span class="pill">XP <b class="xp">0</b></span>
+  </div>
+
+  <div class="rewardBox">
+    <div class="rewardCard">
+      <div class="small">MISSION COMPLETE</div>
+
+      <div class="rewardBig" id="rewardHeadline">+30 XP</div>
+
+      <p id="result"></p>
+
+      <div class="microWin">
+        <span>MICRO-WIN</span>
+        <span id="microWinText"></span>
+      </div>
+
+      <p class="small">
+        No checking count. No anxiety score. The practice is the direction you chose.
+      </p>
+
+      <div class="stopRule">
+        <b>PRACTICE CAN END HERE</b>
+        One completed mission is enough. No extra round is required.
+      </div>
+
+      <button class="btn" id="doneBtn">DONE FOR NOW</button>
+
+      <button class="btn secondary" id="continueBtn">
+        OPTIONAL: CHOOSE ANOTHER MISSION
+      </button>
+    </div>
+  </div>
+</section>
+
+<div id="orientationGuard">
+  <div class="guardCard">
+    <b>Portrait works best</b>
+    <span>
+      Your mission is paused. Rotate your phone upright to continue from the same point.
+    </span>
+  </div>
+</div>
+
+<div id="liveStatus" class="sr" aria-live="polite"></div>
+
+</div>
+
+<script>
+"use strict";
+
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+const clamp = (v,a,b) => Math.max(a,Math.min(b,v));
+
+const store = {
+  get:(k,d="")=>{
+    try{
+      return localStorage.getItem(k) ?? d;
+    }catch{
+      return d;
+    }
+  },
+
+  set:(k,v)=>{
+    try{
+      localStorage.setItem(k,String(v));
+    }catch{}
+  }
+};
+
+const M = {
+  door:{
+    name:"LOCK & LEAVE",
+    action:"LOCK ONCE",
+    value:"Leave home and continue your day.",
+    dest:"VEHICLE",
+    thoughts:[
+      "Are you sure it clicked?",
+      "Maybe the deadbolt didn't catch."
+    ],
+    echoes:[
+      "Maybe turn around.",
+      "What if that feeling means something?"
+    ]
+  },
+
+  car:{
+    name:"PARK & WALK",
+    action:"LOCK CAR ONCE",
+    value:"Go where you were headed.",
+    dest:"STORE",
+    thoughts:[
+      "Did you hear it lock?",
+      "Maybe a door is unlocked."
+    ],
+    echoes:[
+      "Maybe the beep wasn't yours.",
+      "What if a door didn't catch?"
+    ]
+  },
+
+  stove:{
+    name:"OFF & OUT",
+    action:"TURN OFF ONCE",
+    value:"Leave the kitchen and continue.",
+    dest:"EXIT",
+    thoughts:[
+      "Was that definitely the right knob?",
+      "What if one burner is still on?"
+    ],
+    echoes:[
+      "Maybe you remember it wrong.",
+      "What if you missed one knob?"
+    ]
+  },
+
+  message:{
+    name:"SENT & DONE",
+    action:"SEND ONCE",
+    value:"Return attention to the next task.",
+    dest:"NEXT TASK",
+    thoughts:[
+      "Did that sound rude?",
+      "Maybe you used the wrong wording."
+    ],
+    echoes:[
+      "Maybe read it again.",
+      "What if that sentence sounded weird?"
+    ]
+  }
+};
+
+let xp = Number(store.get("uncertainXP","0")) || 0;
+let current = null;
+let phase = "idle";
+let momentum = 0;
+let peak = 0;
+let urge = 52;
+let recoveryTarget = null;
+let thoughtIndex = 0;
+let recheckCount = 0;
+let carrying = false;
+let moving = false;
+let driftShown = false;
+let appSuspended = false;
+let orientationPaused = false;
+let echoSeen = new Set();
+let lastForwardEnd = -Infinity;
+
+let walkTimer;
+let urgeTimer;
+let doubtTimer;
+let reliefTimer;
+let cueTimer;
+let forwardGateTimer;
+let forwardFillTimer;
+let checkGateTimer;
+let checkFillTimer;
+
+let forwardPointer = null;
+let forwardStart = null;
+let forwardDragCanceled = false;
+
+let checkPointer = null;
+let checkStart = null;
+let checkDragCanceled = false;
+
+const ACTION_HOLD = 180;
+const FORWARD_HOLD = 220;
+const FORWARD_DRAG_CANCEL = 72;
+const CHECK_HOLD = 360;
+const CHECK_DRAG_CANCEL = 28;
+const THUMB_GUARD = 550;
+const SESSION_MAX_AGE = 30 * 60 * 1000;
+
+let lastSessionSave = 0;
+
+function sessionSnapshot(force=false){
+
+  if(!current || phase==="action" || phase==="complete"){
+    return;
+  }
+
+  if(!force && performance.now()-lastSessionSave<300){
+    return;
+  }
+
+  lastSessionSave=performance.now();
+
+  const snap={
+    v:1,
+    t:Date.now(),
+    mission:current,
+    momentum:+momentum.toFixed(1),
+    peak:+peak.toFixed(1),
+    recovery:recoveryTarget==null ? null : +recoveryTarget.toFixed(1),
+    rechecks:recheckCount,
+    echoes:[...echoSeen]
+  };
+
+  store.set(
+    "uncertainActiveSession",
+    JSON.stringify(snap)
+  );
+}
+
+function clearSession(){
+
+  try{
+    localStorage.removeItem("uncertainActiveSession");
+  }catch{}
+
+}
+
+function restoreSession(){
+
+  let snap;
+
+  try{
+    snap=JSON.parse(
+      store.get("uncertainActiveSession","")
+    );
+  }catch{
+    return false;
+  }
+
+  if(
+    !snap ||
+    snap.v!==1 ||
+    !M[snap.mission] ||
+    Date.now()-Number(snap.t)>SESSION_MAX_AGE
+  ){
+    clearSession();
+    return false;
+  }
+
+  loadMission(snap.mission);
+
+  phase="ready";
+
+  momentum=clamp(
+    Number(snap.momentum)||0,
+    0,
+    99.9
+  );
+
+  peak=clamp(
+    Math.max(
+      Number(snap.peak)||0,
+      momentum
+    ),
+    0,
+    99.9
+  );
+
+  recheckCount=Math.max(
+    0,
+    Number(snap.rechecks)||0
+  );
+
+  echoSeen=new Set(
+    Array.isArray(snap.echoes)
+      ? snap.echoes
+      : []
+  );
+
+  urge=52;
+
+  $("#meters").style.display="grid";
+  $("#checkBtn").style.display="block";
+
+  setRecovery(
+    snap.recovery==null
+      ? null
+      : clamp(
+          Number(snap.recovery)||0,
+          0,
+          99.9
+        )
+  );
+
+  syncForward();
+  meters();
+  updateScene();
+
+  $("#phaseHint").textContent=
+    recoveryTarget!=null
+      ? "RECOVERING"
+      : "READY";
+
+  pathStatus(
+    recoveryTarget!=null
+      ? "recovering"
+      : "ready"
+  );
+
+  $("#title").textContent=
+    "Session restored safely.";
+
+  $("#copy").textContent=
+    "No catch-up. Continue or exit whenever you choose.";
+
+  $("#inputHint").textContent=
+    recoveryTarget!=null
+      ? "Hold to rejoin your marked point"
+      : "Hold when ready";
+
+  startUrge();
+
+  cue(
+    "SESSION RESTORED • NO CATCH-UP",
+    "progress",
+    1600
+  );
+
+  announce(
+    "Session restored. No progress penalty and no catch-up required."
+  );
+
+  return true;
+}
+
+function show(id){
+
+  $$(".screen").forEach(e=>{
+    const active=e.id===id;
+
+    e.classList.toggle(
+      "active",
+      active
+    );
+
+    e.setAttribute(
+      "aria-hidden",
+      active ? "false" : "true"
+    );
+  });
+
+  const focusMap={
+    start:"#startFocus",
+    map:"#mapFocus",
+    select:"#selectFocus",
+    mission:"#missionFocus",
+    reward:"#rewardFocus"
+  };
+
+  const target=$(focusMap[id]);
+
+  if(target){
+    requestAnimationFrame(()=>{
+      try{
+        target.focus({preventScroll:true});
+      }catch{
+        target.focus();
+      }
+    });
+  }
+}
+
+function announce(t){
+
+  $("#liveStatus").textContent="";
+
+  requestAnimationFrame(
+    ()=>$("#liveStatus").textContent=t
+  );
+}
+
+const reducedSensory=()=>{
+
+  try{
+    return matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+  }catch{
+    return false;
+  }
+
+};
+
+function buzz(p){
+
+  if(reducedSensory()){
+    return;
+  }
+
+  try{
+    navigator.vibrate?.(p);
+  }catch{}
+
+}
+
+function updateXP(){
+
+  store.set(
+    "uncertainXP",
+    xp
+  );
+
+  $$(".xp").forEach(
+    e=>e.textContent=xp
+  );
+}
+
+function completions(){
+
+  $$(".completion").forEach(e=>{
+
+    e.textContent=
+      store.get(
+        "completed_"+e.dataset.completion
+      )==="yes"
+        ? "✓ COMPLETED • REPLAY AVAILABLE"
+        : "";
+
+  });
+
+}
+
+function meters(){
+
+  $("#momentumFill").style.width=
+    momentum+"%";
+
+  $("#urgeFill").style.width=
+    urge+"%";
+
+  const m=$("#momentumMeter");
+  const n=Math.round(momentum);
+
+  m.setAttribute(
+    "aria-valuenow",
+    n
+  );
+
+  m.setAttribute(
+    "aria-valuetext",
+    recoveryTarget!=null
+      ? `${n}% forward; recovery marker ahead at ${Math.round(recoveryTarget)}%`
+      : (
+          n>=100
+            ? "Destination reached"
+            : (
+                n===0
+                  ? "At the start of the path"
+                  : `${n}% forward toward the destination`
+              )
+        )
+  );
+}
+
+function pathStatus(s){
+
+  const m={
+    action:"ACTION • one normal action",
+    ready:"READY • destination ahead",
+    moving:"ON PATH • keep going",
+    carrying:"UNCERTAINTY ALONG • keep going",
+    recovering:"RECOVERING • rejoin marker ahead",
+    relief:"RE-CHECK • return to path",
+    paused:"PAUSED • resume when ready",
+    arrived:"ARRIVED • mission complete"
+  };
+
+  $("#pathText").textContent=
+    m[s] || m.ready;
+}
+function setRecovery(v){
+
+  const hadRecovery=
+    recoveryTarget!=null;
+
+  recoveryTarget=v;
+
+  const mark=$("#recoveryMark");
+  const meter=$("#momentumMeter");
+
+  if(v==null){
+
+    mark.style.display="none";
+
+    meter.classList.remove(
+      "recovering"
+    );
+
+    $("#forwardBtn").classList.remove(
+      "rejoin"
+    );
+
+    $("#checkBtn").classList.remove(
+      "receded"
+    );
+
+    $("#inputHint").classList.remove(
+      "rejoinHint"
+    );
+
+    if(hadRecovery){
+
+      announce(
+        "Path rejoined. Continue toward the destination."
+      );
+
+    }
+
+  }else{
+
+    mark.style.display="block";
+
+    mark.style.left=
+      `calc(${clamp(v,0,100)}% - 1px)`;
+
+    meter.classList.add(
+      "recovering"
+    );
+
+    $("#forwardBtn").classList.add(
+      "rejoin"
+    );
+
+    $("#checkBtn").classList.add(
+      "receded"
+    );
+
+    $("#inputHint").classList.add(
+      "rejoinHint"
+    );
+
+    announce(
+      `Recovery marker set at ${Math.round(v)} percent. Hold to rejoin the path.`
+    );
+
+  }
+
+  syncForward();
+  meters();
+
+  sessionSnapshot(true);
+}
+
+function syncForward(){
+
+  if(!current){
+    return;
+  }
+
+  const t=
+    phase==="action"
+      ? `HOLD TO ${M[current].action}`
+      : recoveryTarget!=null
+        ? "HOLD TO REJOIN"
+        : "HOLD TO MOVE";
+
+  $("#checkLabel").textContent=
+    "HOLD TO CHECK";
+
+  $("#forwardLabel").textContent=t;
+
+  $("#forwardBtn").setAttribute(
+    "aria-label",
+    phase==="action"
+      ? `Hold to ${M[current].action.toLowerCase()}. Release before the hold completes to cancel.`
+      : recoveryTarget!=null
+        ? "Hold to rejoin your previous forward point, then continue"
+        : "Hold to move forward. Release to stop."
+  );
+
+  $("#checkBtn").setAttribute(
+    "aria-label",
+    recoveryTarget!=null
+      ? "Hold to check again. Optional. This will move you farther back on the path."
+      : "Hold to check again. Optional. This moves you back on the path."
+  );
+}
+
+function cue(
+  t,
+  type="progress",
+  ms=1100
+){
+
+  clearTimeout(cueTimer);
+
+  const e=$("#primaryCue");
+
+  e.className="";
+  e.textContent=t;
+
+  e.classList.add(
+    "show",
+    type
+  );
+
+  cueTimer=setTimeout(
+    ()=>e.classList.remove("show"),
+    ms
+  );
+}
+
+function showDoubt(t){
+
+  $("#doubtMessage").textContent=t;
+
+  $("#doubtOverlay").classList.add(
+    "show"
+  );
+
+  $("#doubtVignette").classList.add(
+    "show"
+  );
+
+  $("#valueCard").classList.add(
+    "anchor"
+  );
+
+  announce(
+    "Doubt showed up. It is not a command. "+t
+  );
+}
+
+function hideDoubt(){
+
+  $("#doubtOverlay").classList.remove(
+    "show"
+  );
+
+  $("#doubtVignette").classList.remove(
+    "show"
+  );
+
+  $("#valueCard").classList.remove(
+    "anchor"
+  );
+}
+
+function thought(){
+
+  const a=M[current].thoughts;
+
+  return a[
+    (thoughtIndex++) % a.length
+  ];
+}
+
+function scheduleDoubt(ms=650){
+
+  clearTimeout(doubtTimer);
+
+  doubtTimer=setTimeout(()=>{
+
+    if(
+      current &&
+      phase==="ready" &&
+      !carrying &&
+      !appSuspended &&
+      !orientationPaused
+    ){
+
+      showDoubt(
+        thought()
+      );
+
+      urge=clamp(
+        urge+10,
+        18,
+        96
+      );
+
+      meters();
+    }
+
+  },ms);
+}
+
+function startUrge(){
+
+  if(
+    urgeTimer ||
+    appSuspended ||
+    orientationPaused
+  ){
+    return;
+  }
+
+  urgeTimer=setInterval(()=>{
+
+    if(
+      !["ready","moving"].includes(
+        phase
+      )
+    ){
+      return;
+    }
+
+    const target=
+      56+
+      Math.sin(
+        Date.now()/900
+      )*23;
+
+    urge=clamp(
+      urge+
+      (target-urge)*.08,
+      20,
+      92
+    );
+
+    meters();
+
+  },180);
+}
+
+function stopUrge(){
+
+  clearInterval(urgeTimer);
+  urgeTimer=null;
+}
+
+function scene(k){
+
+  if(k==="door"){
+
+    return `
+      <div class="house">
+        <div class="door"></div>
+      </div>
+      <div class="driveway"></div>
+      <div class="car drivewayCar destination"></div>
+    `;
+
+  }
+
+  if(k==="car"){
+
+    return `
+      <div class="parking">
+        <div class="store">
+          <div class="storeDoor destination"></div>
+        </div>
+        <div class="crosswalk"></div>
+        <div class="car playerCar"></div>
+      </div>
+    `;
+
+  }
+
+  if(k==="stove"){
+
+    return `
+      <div class="kitchen">
+        <div class="exitDoor destination"></div>
+        <div class="stove"></div>
+      </div>
+    `;
+
+  }
+
+  return `
+    <div class="messageScene">
+      <div class="nextTask destination">
+        <small>NEXT TASK</small>
+        <b>Return to your day</b>
+      </div>
+      <div class="desk"></div>
+      <div class="phone"></div>
+    </div>
+  `;
+}
+
+function sourceEl(){
+
+  return current==="door"
+    ? $(".door")
+    : current==="car"
+      ? $(".playerCar")
+      : current==="stove"
+        ? $(".stove")
+        : $(".phone");
+}
+
+function updateScene(){
+
+  const t=momentum/100;
+  const p=$("#person");
+
+  if(current==="car"){
+
+    let left;
+    let bottom;
+    let scale;
+
+    if(t<.4){
+
+      const q=t/.4;
+
+      left=74-24*q;
+      bottom=21+4*q;
+      scale=1-.03*q;
+
+    }else if(t<.72){
+
+      const q=(t-.4)/.32;
+
+      left=50;
+      bottom=25+23*q;
+      scale=.97-.1*q;
+
+    }else{
+
+      const q=(t-.72)/.28;
+
+      left=50;
+      bottom=48+16*q;
+      scale=.87-.09*q;
+
+    }
+
+    p.style.left=left+"%";
+    p.style.bottom=bottom+"%";
+
+    p.style.transform=
+      `translateX(-50%) scale(${scale})`;
+
+  }else if(current==="door"){
+
+    p.style.left=
+      (50+20*t)+"%";
+
+    p.style.bottom=
+      (44-18*t)+"%";
+
+  }else if(current==="stove"){
+
+    p.style.left=
+      (58-8*t)+"%";
+
+    p.style.bottom=
+      (20+42*t)+"%";
+
+    p.style.transform=
+      `translateX(-50%) scale(${1-.2*t})`;
+
+  }else{
+
+    p.style.left=
+      (68-25*t)+"%";
+
+    p.style.bottom=
+      (22+28*t)+"%";
+
+    p.style.transform=
+      `translateX(-50%) scale(${1-.12*t})`;
+
+  }
+
+  const d=$(".destination");
+
+  if(d){
+
+    d.classList.toggle(
+      "near",
+      momentum>=88 &&
+      momentum<100
+    );
+
+    d.classList.toggle(
+      "arrived",
+      momentum>=100
+    );
+
+  }
+
+  const b=$("#destinationBadge");
+
+  b.classList.toggle(
+    "active",
+    moving ||
+    momentum>=65
+  );
+
+  b.textContent=
+    momentum>=100
+      ? "ARRIVED"
+      : momentum>=88
+        ? "ALMOST THERE"
+        : M[current].dest;
+}
+
+function loadMission(k){
+
+  stopAll();
+
+  current=k;
+
+  $("#mission").dataset.mission=k;
+
+  $("#missionFocus").textContent=
+    `${M[k].name} mission`;
+
+  phase="action";
+
+  momentum=0;
+  peak=0;
+  urge=52;
+
+  recoveryTarget=null;
+
+  thoughtIndex=0;
+  recheckCount=0;
+
+  carrying=false;
+  moving=false;
+  driftShown=false;
+
+  appSuspended=false;
+  orientationPaused=false;
+
+  echoSeen=new Set();
+
+  $("#environment").innerHTML=
+    scene(k);
+
+  $("#missionName").textContent=
+    M[k].name;
+
+  $("#valueText").textContent=
+    M[k].value;
+
+  $("#title").textContent=
+    "One normal action.";
+
+  $("#copy").textContent=
+    "Do it once, then leave it behind.";
+
+  $("#phaseHint").textContent=
+    "ACTION";
+
+  $("#meters").style.display=
+    "none";
+
+  $("#checkBtn").style.display=
+    "none";
+
+  setRecovery(null);
+
+  syncForward();
+  meters();
+  updateScene();
+
+  pathStatus("action");
+
+  $("#inputHint").textContent=
+    "Hold briefly to perform one normal action";
+
+  show("mission");
+}
+
+function initialAction(){
+
+  if(phase!=="action"){
+    return;
+  }
+
+  const source=sourceEl();
+
+  source?.classList.add(
+    "actionRegistered"
+  );
+
+  setTimeout(
+    ()=>source?.classList.remove(
+      "actionRegistered"
+    ),
+    460
+  );
+
+  phase="ready";
+
+  $("#meters").style.display=
+    "grid";
+
+  $("#checkBtn").style.display=
+    "block";
+
+  $("#phaseHint").textContent=
+    "READY";
+
+  $("#title").textContent=
+    "Action done. Move forward.";
+
+  $("#copy").textContent=
+    "No extra certainty required.";
+
+  $("#inputHint").textContent=
+    "Hold to move toward "+
+    M[current].dest.toLowerCase()+
+    " • release to stop";
+
+  syncForward();
+
+  pathStatus("ready");
+
+  cue(
+    "ACTION DONE • MOVE FORWARD",
+    "progress",
+    900
+  );
+
+  startUrge();
+  scheduleDoubt(850);
+
+  buzz([12]);
+
+  sessionSnapshot(true);
+}
+
+function maybeEcho(){
+
+  if(
+    !carrying ||
+    phase!=="moving"
+  ){
+    return;
+  }
+
+  [24,52].forEach(
+    (th,i)=>{
+
+      const key=
+        current+":"+i;
+
+      if(
+        momentum>=th &&
+        !echoSeen.has(key)
+      ){
+
+        echoSeen.add(key);
+
+        cue(
+          "DOUBT ECHO • "+
+          M[current].echoes[i],
+          "doubt",
+          900
+        );
+
+      }
+
+    }
+  );
+}
+
+function startWalking(){
+
+  if(
+    phase!=="ready" ||
+    appSuspended ||
+    orientationPaused
+  ){
+    return;
+  }
+
+  hideDoubt();
+
+  $("#mission").classList.add(
+    "movementFocus"
+  );
+
+  carrying=true;
+  phase="moving";
+  moving=true;
+
+  $("#phaseHint").textContent=
+    recoveryTarget!=null
+      ? "RECOVERING"
+      : "MOVING";
+
+  pathStatus(
+    recoveryTarget!=null
+      ? "recovering"
+      : "moving"
+  );
+
+  $("#person").classList.add(
+    "walking"
+  );
+
+  walkTimer=setInterval(()=>{
+
+    momentum=Math.min(
+      100,
+      momentum+2.1
+    );
+
+    peak=Math.max(
+      peak,
+      momentum
+    );
+
+    maybeEcho();
+
+    if(
+      current==="message" &&
+      !driftShown &&
+      momentum>=50
+    ){
+
+      driftShown=true;
+
+      cue(
+        "ATTENTION DRIFT • NOTICE IT, KEEP GOING",
+        "doubt",
+        1000
+      );
+
+    }
+
+    if(
+      recoveryTarget!=null &&
+      momentum>=recoveryTarget
+    ){
+
+      setRecovery(null);
+
+      cue(
+        "PATH REJOINED • KEEP GOING",
+        "progress",
+        1000
+      );
+
+      buzz([
+        12,
+        24,
+        12
+      ]);
+
+    }
+
+    meters();
+    updateScene();
+
+    sessionSnapshot();
+
+    if(momentum>=100){
+      completeMission();
+    }
+
+  },70);
+}
+
+function stopWalking(
+  message=""
+){
+
+  clearInterval(walkTimer);
+
+  walkTimer=null;
+  moving=false;
+
+  $("#mission").classList.remove(
+    "movementFocus"
+  );
+
+  $("#person").classList.remove(
+    "walking"
+  );
+
+  if(phase==="complete"){
+    return;
+  }
+
+  phase="ready";
+
+  syncForward();
+
+  $("#phaseHint").textContent=
+    recoveryTarget!=null
+      ? "RECOVERING"
+      : "CARRYING";
+
+  pathStatus(
+    recoveryTarget!=null
+      ? "recovering"
+      : "carrying"
+  );
+
+  $("#inputHint").textContent=
+    message ||
+    (
+      recoveryTarget!=null
+        ? "Marker = where you were before the check"
+        : " "
+    );
+
+  startUrge();
+}
+function beginForward(e){
+
+  if(
+    !e.isPrimary ||
+    forwardPointer!=null ||
+    appSuspended ||
+    orientationPaused
+  ){
+    return;
+  }
+
+  e.preventDefault();
+
+  forwardPointer=e.pointerId;
+
+  forwardStart={
+    x:e.clientX,
+    y:e.clientY
+  };
+
+  forwardDragCanceled=false;
+
+  try{
+    $("#forwardBtn").setPointerCapture(
+      e.pointerId
+    );
+  }catch{}
+
+  const holdNeeded=
+    phase==="action"
+      ? ACTION_HOLD
+      : FORWARD_HOLD;
+
+  const started=
+    performance.now();
+
+  forwardFillTimer=setInterval(()=>{
+
+    $("#forwardFill").style.width=
+      clamp(
+        (performance.now()-started) /
+        holdNeeded *
+        100,
+        0,
+        100
+      )+"%";
+
+  },20);
+
+  forwardGateTimer=setTimeout(()=>{
+
+    if(
+      forwardPointer!==e.pointerId ||
+      forwardDragCanceled
+    ){
+      return;
+    }
+
+    clearInterval(
+      forwardFillTimer
+    );
+
+    forwardFillTimer=null;
+
+    $("#forwardFill").style.width=
+      "100%";
+
+    if(phase==="action"){
+
+      initialAction();
+
+      setTimeout(()=>{
+
+        if(
+          forwardPointer===e.pointerId
+        ){
+          $("#forwardFill").style.width=
+            "0%";
+
+          $("#inputHint").textContent=
+            "Release, then hold again to move";
+        }
+
+      },40);
+
+    }else if(phase==="ready"){
+
+      startWalking();
+
+    }
+
+  },holdNeeded);
+}
+
+function resetForwardHold(){
+
+  clearTimeout(
+    forwardGateTimer
+  );
+
+  clearInterval(
+    forwardFillTimer
+  );
+
+  forwardGateTimer=null;
+  forwardFillTimer=null;
+
+  forwardPointer=null;
+  forwardStart=null;
+  forwardDragCanceled=false;
+
+  $("#forwardFill").style.width=
+    "0%";
+}
+
+function holdKey(e){
+
+  return (
+    e.key===" " ||
+    e.key==="Enter"
+  );
+}
+
+function beginForwardKey(e){
+
+  if(
+    !holdKey(e) ||
+    e.repeat ||
+    forwardPointer!=null ||
+    appSuspended ||
+    orientationPaused
+  ){
+    return;
+  }
+
+  e.preventDefault();
+
+  forwardPointer="keyboard";
+  forwardStart=null;
+  forwardDragCanceled=false;
+
+  const holdNeeded=
+    phase==="action"
+      ? ACTION_HOLD
+      : FORWARD_HOLD;
+
+  const started=
+    performance.now();
+
+  forwardFillTimer=setInterval(()=>{
+
+    $("#forwardFill").style.width=
+      clamp(
+        (performance.now()-started) /
+        holdNeeded *
+        100,
+        0,
+        100
+      )+"%";
+
+  },20);
+
+  forwardGateTimer=setTimeout(()=>{
+
+    if(
+      forwardPointer!=="keyboard"
+    ){
+      return;
+    }
+
+    clearInterval(
+      forwardFillTimer
+    );
+
+    forwardFillTimer=null;
+
+    $("#forwardFill").style.width=
+      "100%";
+
+    if(phase==="action"){
+
+      initialAction();
+
+      $("#inputHint").textContent=
+        "Release, then hold again to move";
+
+    }else if(phase==="ready"){
+
+      startWalking();
+
+    }
+
+  },holdNeeded);
+}
+
+function endForwardKey(e){
+
+  if(
+    !holdKey(e) ||
+    forwardPointer!=="keyboard"
+  ){
+    return;
+  }
+
+  e.preventDefault();
+
+  const wasMoving=moving;
+  const wasAction=phase==="action";
+
+  resetForwardHold();
+
+  lastForwardEnd=
+    performance.now();
+
+  if(wasMoving){
+
+    stopWalking();
+
+  }else if(wasAction){
+
+    $("#inputHint").textContent=
+      "Quick release canceled • hold to perform one normal action";
+
+  }else if(phase==="ready"){
+
+    $("#inputHint").textContent=
+      "Quick release canceled • hold to move";
+
+  }
+}
+
+function endForward(
+  e,
+  feedback=true
+){
+
+  if(
+    forwardPointer!==e.pointerId
+  ){
+    return;
+  }
+
+  e.preventDefault();
+
+  const wasMoving=moving;
+  const wasAction=phase==="action";
+
+  resetForwardHold();
+
+  lastForwardEnd=
+    performance.now();
+
+  if(wasMoving){
+
+    stopWalking();
+
+  }else if(
+    feedback &&
+    wasAction
+  ){
+
+    $("#inputHint").textContent=
+      "Quick tap canceled • hold to perform one normal action";
+
+  }else if(
+    feedback &&
+    phase==="ready"
+  ){
+
+    $("#inputHint").textContent=
+      "Quick tap canceled • hold to move";
+
+  }
+}
+
+function moveForward(e){
+
+  if(
+    forwardPointer!==e.pointerId ||
+    !forwardStart ||
+    forwardDragCanceled
+  ){
+    return;
+  }
+
+  const dx=
+    e.clientX-forwardStart.x;
+
+  const dy=
+    e.clientY-forwardStart.y;
+
+  if(
+    Math.hypot(dx,dy) >=
+    FORWARD_DRAG_CANCEL
+  ){
+
+    forwardDragCanceled=true;
+
+    const wasMoving=moving;
+
+    endForward(
+      e,
+      false
+    );
+
+    cue(
+      "MOVE PAUSED • NO PENALTY",
+      "progress",
+      1100
+    );
+
+    $("#inputHint").textContent=
+      "Thumb moved away • hold again when ready";
+
+    announce(
+      "Movement paused. No momentum lost. Hold again when ready."
+    );
+
+    if(wasMoving){
+
+      pathStatus(
+        recoveryTarget!=null
+          ? "recovering"
+          : "carrying"
+      );
+
+    }
+  }
+}
+
+function cancelCheckHold(
+  reason=""
+){
+
+  clearTimeout(
+    checkGateTimer
+  );
+
+  clearInterval(
+    checkFillTimer
+  );
+
+  checkPointer=null;
+  checkStart=null;
+
+  $("#checkFill").style.width=
+    "0%";
+
+  $("#checkLabel").textContent=
+    "HOLD TO CHECK";
+
+  if(reason){
+
+    cue(
+      reason,
+      "progress",
+      1000
+    );
+
+    announce(reason);
+  }
+}
+
+function beginCheck(e){
+
+  if(
+    !e.isPrimary ||
+    checkPointer!=null ||
+    !["ready","moving"].includes(
+      phase
+    ) ||
+    appSuspended ||
+    orientationPaused
+  ){
+    return;
+  }
+
+  e.preventDefault();
+
+  if(
+    performance.now() -
+    lastForwardEnd <
+    THUMB_GUARD
+  ){
+
+    cue(
+      "MOVE INTENT KEPT • HOLD CHECK IF YOU MEANT TO",
+      "progress",
+      1050
+    );
+
+    return;
+  }
+
+  checkPointer=e.pointerId;
+
+  checkStart={
+    x:e.clientX,
+    y:e.clientY
+  };
+
+  checkDragCanceled=false;
+
+  try{
+    $("#checkBtn").setPointerCapture(
+      e.pointerId
+    );
+  }catch{}
+
+  const started=
+    performance.now();
+
+  $("#checkLabel").textContent=
+    "KEEP HOLDING";
+
+  checkFillTimer=setInterval(()=>{
+
+    $("#checkFill").style.width=
+      clamp(
+        (performance.now()-started) /
+        CHECK_HOLD *
+        100,
+        0,
+        100
+      )+"%";
+
+  },20);
+
+  checkGateTimer=setTimeout(()=>{
+
+    if(
+      checkPointer===e.pointerId &&
+      !checkDragCanceled
+    ){
+
+      cancelCheckHold();
+      recheck();
+
+    }
+
+  },CHECK_HOLD);
+}
+
+function moveCheck(e){
+
+  if(
+    checkPointer!==e.pointerId ||
+    !checkStart ||
+    checkDragCanceled
+  ){
+    return;
+  }
+
+  const dx=
+    e.clientX-checkStart.x;
+
+  const dy=
+    e.clientY-checkStart.y;
+
+  if(
+    Math.hypot(dx,dy) >=
+    CHECK_DRAG_CANCEL
+  ){
+
+    checkDragCanceled=true;
+
+    cancelCheckHold(
+      "CHECK CANCELED • HOLD AGAIN ONLY IF INTENDED"
+    );
+
+  }
+}
+
+function endCheck(e){
+
+  if(
+    checkPointer!==e.pointerId
+  ){
+    return;
+  }
+
+  e.preventDefault();
+
+  cancelCheckHold();
+}
+
+function lostForwardCapture(e){
+
+  if(
+    forwardPointer!==e.pointerId
+  ){
+    return;
+  }
+
+  const wasMoving=moving;
+
+  resetForwardHold();
+
+  lastForwardEnd=
+    performance.now();
+
+  if(wasMoving){
+
+    stopWalking(
+      "Control released safely • hold again when ready"
+    );
+
+  }
+
+  cue(
+    "CONTROL RELEASED • NO PENALTY",
+    "progress",
+    1100
+  );
+
+  announce(
+    "Forward control released safely. No momentum lost. Hold again when ready."
+  );
+}
+
+function lostCheckCapture(e){
+
+  if(
+    checkPointer!==e.pointerId
+  ){
+    return;
+  }
+
+  cancelCheckHold(
+    "CHECK HOLD CANCELED • NO ACTION FIRED"
+  );
+}
+
+function beginCheckKey(e){
+
+  if(
+    !holdKey(e) ||
+    e.repeat ||
+    checkPointer!=null ||
+    !["ready","moving"].includes(
+      phase
+    ) ||
+    appSuspended ||
+    orientationPaused
+  ){
+    return;
+  }
+
+  e.preventDefault();
+
+  if(
+    performance.now() -
+    lastForwardEnd <
+    THUMB_GUARD
+  ){
+
+    cue(
+      "MOVE INTENT KEPT • HOLD CHECK IF YOU MEANT TO",
+      "progress",
+      1050
+    );
+
+    return;
+  }
+
+  checkPointer="keyboard";
+  checkStart=null;
+  checkDragCanceled=false;
+
+  const started=
+    performance.now();
+
+  $("#checkLabel").textContent=
+    "KEEP HOLDING";
+
+  checkFillTimer=setInterval(()=>{
+
+    $("#checkFill").style.width=
+      clamp(
+        (performance.now()-started) /
+        CHECK_HOLD *
+        100,
+        0,
+        100
+      )+"%";
+
+  },20);
+
+  checkGateTimer=setTimeout(()=>{
+
+    if(
+      checkPointer==="keyboard" &&
+      !checkDragCanceled
+    ){
+
+      cancelCheckHold();
+      recheck();
+
+    }
+
+  },CHECK_HOLD);
+}
+
+function endCheckKey(e){
+
+  if(
+    !holdKey(e) ||
+    checkPointer!=="keyboard"
+  ){
+    return;
+  }
+
+  e.preventDefault();
+
+  cancelCheckHold();
+}
+
+function recheck(){
+
+  if(
+    !["ready","moving"].includes(
+      phase
+    ) ||
+    appSuspended ||
+    orientationPaused
+  ){
+    return;
+  }
+
+  recheckCount++;
+
+  clearInterval(
+    walkTimer
+  );
+
+  walkTimer=null;
+  moving=false;
+
+  $("#mission").classList.remove(
+    "movementFocus"
+  );
+
+  $("#person").classList.remove(
+    "walking"
+  );
+
+  phase="relief";
+
+  hideDoubt();
+
+  const source=sourceEl();
+
+  source?.classList.add(
+    "sourceFocus"
+  );
+
+  const before=peak;
+
+  momentum=Math.max(
+    0,
+    momentum -
+    Math.min(
+      momentum,
+      20
+    )
+  );
+
+  if(
+    before >
+    momentum+3
+  ){
+
+    setRecovery(
+      before
+    );
+
+  }
+
+  meters();
+  updateScene();
+
+  $("#phaseHint").textContent=
+    "CHECKED";
+
+  pathStatus(
+    "relief"
+  );
+
+  $("#title").textContent=
+    "Check registered.";
+
+  $("#copy").textContent=
+    "The path moved back. No reassurance added.";
+
+  cue(
+    "CHECK REGISTERED • PATH MOVED BACK",
+    "doubt",
+    1050
+  );
+
+  announce(
+    "Check registered. The path moved back. No certainty result was added."
+  );
+
+  reliefTimer=setTimeout(()=>{
+
+    source?.classList.remove(
+      "sourceFocus"
+    );
+
+    if(
+      appSuspended ||
+      orientationPaused
+    ){
+      return;
+    }
+
+    phase="ready";
+
+    syncForward();
+
+    $("#title").textContent=
+      "Return to the path.";
+
+    $("#copy").textContent=
+      recoveryTarget!=null
+        ? "Rejoin the marker, then keep going."
+        : "Resume from here.";
+
+    pathStatus(
+      recoveryTarget!=null
+        ? "recovering"
+        : "ready"
+    );
+
+    $("#inputHint").textContent=
+      recoveryTarget!=null
+        ? "Hold to rejoin your marked point"
+        : "Hold to move forward";
+
+    if(recheckCount===1){
+
+      showDoubt(
+        thought()
+      );
+
+    }else{
+
+      cue(
+        "THE URGE TO CHECK RETURNED • NO NEW ANSWER NEEDED",
+        "doubt",
+        1200
+      );
+
+    }
+
+    startUrge();
+
+    sessionSnapshot(true);
+
+  },620);
+}
+
+function microWin(){
+
+  if(
+    current==="message" &&
+    driftShown
+  ){
+
+    return "Your attention drifted toward the message, and you returned it to the next task.";
+
+  }
+
+  if(recheckCount>0){
+
+    return "You got pulled back and still returned to the path instead of restarting.";
+
+  }
+
+  return "You kept choosing the next meaningful action while uncertainty was allowed to exist.";
+}
+
+function completeMission(){
+
+  clearSession();
+
+  clearInterval(
+    walkTimer
+  );
+
+  moving=false;
+  phase="complete";
+
+  $("#person").classList.remove(
+    "walking"
+  );
+
+  momentum=100;
+
+  meters();
+  updateScene();
+
+  stopUrge();
+
+  const first=
+    store.get(
+      "completed_"+current
+    )!=="yes";
+
+  if(first){
+
+    xp+=30;
+
+    store.set(
+      "completed_"+current,
+      "yes"
+    );
+
+    $("#rewardHeadline").textContent=
+      "+30 XP";
+
+  }else{
+
+    $("#rewardHeadline").textContent=
+      "PRACTICE COMPLETE";
+
+  }
+
+  updateXP();
+  completions();
+
+  $("#result").textContent=
+    first
+      ? "First completion recorded."
+      : "Replay completed. No extra XP needed.";
+
+  $("#microWinText").textContent=
+    microWin();
+
+  $("#rewardFocus").textContent=
+    first
+      ? "Mission complete. 30 experience points earned."
+      : "Practice mission complete.";
+
+  announce(
+    "Mission complete. Practice can end here."
+  );
+
+  buzz([
+    15,
+    28,
+    15,
+    28,
+    30
+  ]);
+
+  show("reward");
+}
+function stopAll(){
+
+  clearInterval(walkTimer);
+  clearInterval(urgeTimer);
+  clearInterval(forwardFillTimer);
+  clearInterval(checkFillTimer);
+
+  clearTimeout(doubtTimer);
+  clearTimeout(reliefTimer);
+  clearTimeout(cueTimer);
+  clearTimeout(forwardGateTimer);
+  clearTimeout(checkGateTimer);
+
+  walkTimer=null;
+  urgeTimer=null;
+  forwardFillTimer=null;
+  checkFillTimer=null;
+
+  doubtTimer=null;
+  reliefTimer=null;
+  cueTimer=null;
+  forwardGateTimer=null;
+  checkGateTimer=null;
+
+  moving=false;
+
+  forwardPointer=null;
+  forwardStart=null;
+  forwardDragCanceled=false;
+
+  checkPointer=null;
+  checkStart=null;
+  checkDragCanceled=false;
+
+  const forwardFill=$("#forwardFill");
+  const checkFill=$("#checkFill");
+
+  if(forwardFill){
+    forwardFill.style.width="0%";
+  }
+
+  if(checkFill){
+    checkFill.style.width="0%";
+  }
+
+  const person=$("#person");
+
+  if(person){
+    person.classList.remove(
+      "walking"
+    );
+  }
+
+  const mission=$("#mission");
+
+  if(mission){
+    mission.classList.remove(
+      "movementFocus"
+    );
+  }
+}
+
+function suspendMission(){
+
+  if(
+    !current ||
+    !$("#mission").classList.contains(
+      "active"
+    ) ||
+    phase==="complete"
+  ){
+    return;
+  }
+
+  sessionSnapshot(true);
+
+  appSuspended=true;
+
+  const wasMoving=moving;
+
+  clearInterval(walkTimer);
+  walkTimer=null;
+
+  clearInterval(urgeTimer);
+  urgeTimer=null;
+
+  clearTimeout(doubtTimer);
+  doubtTimer=null;
+
+  clearTimeout(reliefTimer);
+  reliefTimer=null;
+
+  resetForwardHold();
+  cancelCheckHold();
+
+  moving=false;
+
+  $("#person").classList.remove(
+    "walking"
+  );
+
+  $("#mission").classList.remove(
+    "movementFocus"
+  );
+
+  if(
+    wasMoving ||
+    phase==="moving" ||
+    phase==="relief"
+  ){
+    phase="ready";
+  }
+
+  pathStatus("paused");
+
+  $("#phaseHint").textContent=
+    "PAUSED";
+
+  $("#inputHint").textContent=
+    "Session paused safely";
+
+  cue(
+    "PAUSED • NO PROGRESS LOST",
+    "progress",
+    1200
+  );
+}
+
+function resumeMission(){
+
+  if(
+    !current ||
+    !$("#mission").classList.contains(
+      "active"
+    ) ||
+    phase==="complete"
+  ){
+    return;
+  }
+
+  appSuspended=false;
+
+  if(orientationPaused){
+    return;
+  }
+
+  if(phase!=="action"){
+    phase="ready";
+  }
+
+  syncForward();
+
+  if(phase==="action"){
+
+    pathStatus("action");
+
+    $("#phaseHint").textContent=
+      "ACTION";
+
+    $("#inputHint").textContent=
+      "Hold briefly to perform one normal action";
+
+  }else{
+
+    pathStatus(
+      recoveryTarget!=null
+        ? "recovering"
+        : carrying
+          ? "carrying"
+          : "ready"
+    );
+
+    $("#phaseHint").textContent=
+      recoveryTarget!=null
+        ? "RECOVERING"
+        : "READY";
+
+    $("#inputHint").textContent=
+      recoveryTarget!=null
+        ? "Hold to rejoin your marked point"
+        : "Hold when ready";
+
+    startUrge();
+
+  }
+
+  announce(
+    "Mission resumed. No progress was lost."
+  );
+}
+
+function orientationCheck(){
+
+  const landscape=
+    window.innerWidth >
+    window.innerHeight;
+
+  const guard=
+    $("#orientationGuard");
+
+  if(landscape){
+
+    if(
+      !orientationPaused &&
+      current &&
+      $("#mission").classList.contains(
+        "active"
+      )
+    ){
+
+      orientationPaused=true;
+
+      const wasMoving=moving;
+
+      sessionSnapshot(true);
+
+      clearInterval(walkTimer);
+      walkTimer=null;
+
+      clearInterval(urgeTimer);
+      urgeTimer=null;
+
+      clearTimeout(doubtTimer);
+      doubtTimer=null;
+
+      clearTimeout(reliefTimer);
+      reliefTimer=null;
+
+      resetForwardHold();
+      cancelCheckHold();
+
+      moving=false;
+
+      $("#person").classList.remove(
+        "walking"
+      );
+
+      $("#mission").classList.remove(
+        "movementFocus"
+      );
+
+      if(
+        wasMoving ||
+        phase==="moving" ||
+        phase==="relief"
+      ){
+        phase="ready";
+      }
+
+      pathStatus("paused");
+
+      $("#phaseHint").textContent=
+        "PAUSED";
+
+      announce(
+        "Mission paused. Rotate your phone upright to continue."
+      );
+    }
+
+    guard.classList.add(
+      "show"
+    );
+
+  }else{
+
+    const wasPaused=
+      orientationPaused;
+
+    orientationPaused=false;
+
+    guard.classList.remove(
+      "show"
+    );
+
+    if(
+      wasPaused &&
+      current &&
+      $("#mission").classList.contains(
+        "active"
+      ) &&
+      !appSuspended
+    ){
+
+      if(phase!=="action"){
+        phase="ready";
+      }
+
+      syncForward();
+
+      if(phase==="action"){
+
+        pathStatus("action");
+
+        $("#phaseHint").textContent=
+          "ACTION";
+
+        $("#inputHint").textContent=
+          "Hold briefly to perform one normal action";
+
+      }else{
+
+        pathStatus(
+          recoveryTarget!=null
+            ? "recovering"
+            : carrying
+              ? "carrying"
+              : "ready"
+        );
+
+        $("#phaseHint").textContent=
+          recoveryTarget!=null
+            ? "RECOVERING"
+            : "READY";
+
+        $("#inputHint").textContent=
+          recoveryTarget!=null
+            ? "Hold to rejoin your marked point"
+            : "Hold when ready";
+
+        startUrge();
+
+      }
+
+      announce(
+        "Portrait restored. Continue whenever you are ready."
+      );
+    }
+  }
+}
+
+$("#enter").addEventListener(
+  "click",
+  ()=>{
+
+    if(restoreSession()){
+      return;
+    }
+
+    show("map");
+  }
+);
+
+$("#district").addEventListener(
+  "click",
+  ()=>{
+
+    completions();
+    show("select");
+
+  }
+);
+
+$("#backMap").addEventListener(
+  "click",
+  ()=>show("map")
+);
+
+$$(".missionCard[data-mission]").forEach(
+  b=>{
+
+    b.addEventListener(
+      "click",
+      ()=>loadMission(
+        b.dataset.mission
+      )
+    );
+
+  }
+);
+
+$("#missionExit").addEventListener(
+  "click",
+  ()=>{
+
+    if(
+      current &&
+      phase!=="complete"
+    ){
+      sessionSnapshot(true);
+    }
+
+    stopAll();
+
+    current=null;
+    phase="idle";
+
+    show("select");
+  }
+);
+
+$("#doneBtn").addEventListener(
+  "click",
+  ()=>{
+
+    stopAll();
+
+    current=null;
+    phase="idle";
+
+    show("map");
+  }
+);
+
+$("#continueBtn").addEventListener(
+  "click",
+  ()=>{
+
+    stopAll();
+
+    current=null;
+    phase="idle";
+
+    show("select");
+  }
+);
+
+const forwardBtn=
+  $("#forwardBtn");
+
+forwardBtn.addEventListener(
+  "pointerdown",
+  beginForward
+);
+
+forwardBtn.addEventListener(
+  "pointermove",
+  moveForward
+);
+
+forwardBtn.addEventListener(
+  "pointerup",
+  endForward
+);
+
+forwardBtn.addEventListener(
+  "pointercancel",
+  e=>endForward(
+    e,
+    false
+  )
+);
+
+forwardBtn.addEventListener(
+  "lostpointercapture",
+  lostForwardCapture
+);
+
+forwardBtn.addEventListener(
+  "keydown",
+  beginForwardKey
+);
+
+forwardBtn.addEventListener(
+  "keyup",
+  endForwardKey
+);
+
+const checkBtn=
+  $("#checkBtn");
+
+checkBtn.addEventListener(
+  "pointerdown",
+  beginCheck
+);
+
+checkBtn.addEventListener(
+  "pointermove",
+  moveCheck
+);
+
+checkBtn.addEventListener(
+  "pointerup",
+  endCheck
+);
+
+checkBtn.addEventListener(
+  "pointercancel",
+  endCheck
+);
+
+checkBtn.addEventListener(
+  "lostpointercapture",
+  lostCheckCapture
+);
+
+checkBtn.addEventListener(
+  "keydown",
+  beginCheckKey
+);
+
+checkBtn.addEventListener(
+  "keyup",
+  endCheckKey
+);
+
+document.addEventListener(
+  "visibilitychange",
+  ()=>{
+
+    if(document.hidden){
+
+      suspendMission();
+
+    }else{
+
+      resumeMission();
+      orientationCheck();
+
+    }
+
+  }
+);
+
+window.addEventListener(
+  "pagehide",
+  ()=>{
+
+    if(
+      current &&
+      phase!=="complete"
+    ){
+      sessionSnapshot(true);
+    }
+
+  }
+);
+
+window.addEventListener(
+  "resize",
+  orientationCheck
+);
+
+window.addEventListener(
+  "orientationchange",
+  ()=>setTimeout(
+    orientationCheck,
+    120
+  )
+);
+
+document.addEventListener(
+  "contextmenu",
+  e=>{
+
+    if(
+      e.target.closest(
+        "button"
+      )
+    ){
+      e.preventDefault();
+    }
+
+  }
+);
+
+document.addEventListener(
+  "dragstart",
+  e=>e.preventDefault()
+);
+
+document.addEventListener(
+  "selectstart",
+  e=>{
+
+    if(
+      e.target.closest(
+        "button"
+      )
+    ){
+      e.preventDefault();
+    }
+
+  }
+);
+
+document.addEventListener(
+  "touchmove",
+  e=>{
+
+    if(
+      e.target.closest(
+        ".control"
+      )
+    ){
+      e.preventDefault();
+    }
+
+  },
+  {
+    passive:false
+  }
+);
+
+function setViewportHeight(){
+
+  document.documentElement.style.setProperty(
+    "--h",
+    `${window.innerHeight}px`
+  );
+}
+
+window.addEventListener(
+  "resize",
+  setViewportHeight
+);
+
+window.addEventListener(
+  "orientationchange",
+  ()=>setTimeout(
+    setViewportHeight,
+    120
+  )
+);
+
+setViewportHeight();
+updateXP();
+completions();
+orientationCheck();
+
+</script>
+</body>
+</html>
