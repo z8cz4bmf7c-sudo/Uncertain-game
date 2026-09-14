@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="UNCERTAIN">
 <meta name="format-detection" content="telephone=no">
-<title>UNCERTAIN — Checking District v10.94</title>
+<title>UNCERTAIN — Checking District v10.95</title>
 <style>
 :root{--h:100dvh;--bg:#07101c;--panel:#0b1726ee;--text:#f6fbff;--muted:#b7c5d6;--accent:#74e7c5;--doubt:#e0b7e1;--line:#ffffff2b;--safe:env(safe-area-inset-bottom)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
@@ -38,7 +38,7 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.screenF
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.doubtText{box-shadow:none!important}.destination.near,.destination.arrived,.sourceFocus{box-shadow:none!important}}
 @media(prefers-contrast:more){:root{--text:#fff;--muted:#d5dfeb;--line:#ffffff66;--accent:#8dffe0}.statusCard,.gamePanel,.startCard,.rewardCard,.missionCard,.node{border-color:#ffffff70}.control.check{border-color:#ffffff66;color:#eef5fb}.meter{outline:1px solid #ffffff55}}
 
-/* v10.94 visual-depth pass */
+/* v10.95 visual-depth pass */
 .scene{--p:0;isolation:isolate;background:linear-gradient(#22364a 0 45%,#101821 45%)}
 .scene:after{content:"";position:absolute;z-index:5;left:0;right:0;bottom:0;height:34%;pointer-events:none;background:linear-gradient(180deg,transparent,#00000038 72%,#00000075)}
 .person:after{content:"";position:absolute;z-index:-1;left:5px;right:5px;bottom:-8px;height:14px;border-radius:50%;background:#0008;filter:blur(4px);transform:scaleX(.9)}
@@ -88,11 +88,37 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.screenF
   .gamePanel{padding:8px 9px}
 }
 
+
+/* v10.95 — waypoint movement + clearer playfield */
+.movementFocus #statusRow{opacity:.08;transform:translateY(-18px) scale(.92)}
+.movementFocus .statusCard{backdrop-filter:none}
+.person{filter:drop-shadow(0 13px 10px #0009);transform-origin:50% 100%}
+.person:before,.person:after{content:"";position:absolute;z-index:-1;top:33px;width:10px;height:36px;border-radius:8px;background:#c7d3de;transform-origin:50% 4px}
+.person:before{left:5px;transform:rotate(7deg)}
+.person:after{right:5px;transform:rotate(-7deg)}
+.person .head{box-shadow:inset -5px -4px 0 #d3dde6}
+.person .body{background:linear-gradient(#dce6ef,#b9c7d4);box-shadow:inset -6px 0 0 #aebbc7}
+.person.walking{animation:walkBob .34s infinite alternate ease-in-out}
+.person.walking:before{animation:armA .34s infinite alternate ease-in-out}
+.person.walking:after{animation:armB .34s infinite alternate ease-in-out}
+@keyframes walkBob{to{margin-bottom:2px}}
+@keyframes armA{to{transform:rotate(-13deg)}}
+@keyframes armB{to{transform:rotate(13deg)}}
+#mission[data-mission=stove] .stove{left:82%;width:158px;height:146px}
+#mission[data-mission=stove] .kitchenCounter{width:38%}
+#mission[data-mission=message] .phone{width:100px;height:176px;left:70%;top:37%}
+#mission[data-mission=door] .drivewayCar{right:5%;bottom:27%;transform:scale(.92)}
+.scene:has(.person.walking) .destinationBadge{opacity:1}
+@media(max-width:380px){
+  #statusRow{left:7px;right:7px;gap:5px}
+  .statusCard{padding:8px 9px;font-size:9px}
+}
+
 </style>
 </head>
 <body>
 <div id="app">
-<section id="start" class="screen active" aria-hidden="false"><h1 id="startFocus" class="sr screenFocus" tabindex="-1">UNCERTAIN</h1><div class="logo">UNCERTAIN <span style="opacity:.55;letter-spacing:.08em">v10.94</span></div><div class="hero">BREAK<br>THE <span>LOOP.</span></div><p style="max-width:390px;color:#cbd6e3;font-size:18px;line-height:1.45">Move forward without making certainty the price of admission.</p><div class="startCard"><button class="btn" id="enter">ENTER THE LOOP</button><p class="small">ERP-informed prototype. Not a replacement for professional mental-health care.</p></div></section>
+<section id="start" class="screen active" aria-hidden="false"><h1 id="startFocus" class="sr screenFocus" tabindex="-1">UNCERTAIN</h1><div class="logo">UNCERTAIN <span style="opacity:.55;letter-spacing:.08em">v10.95</span></div><div class="hero">BREAK<br>THE <span>LOOP.</span></div><p style="max-width:390px;color:#cbd6e3;font-size:18px;line-height:1.45">Move forward without making certainty the price of admission.</p><div class="startCard"><button class="btn" id="enter">ENTER THE LOOP</button><p class="small">ERP-informed prototype. Not a replacement for professional mental-health care.</p></div></section>
 <section id="map" class="screen" aria-hidden="true"><h1 id="mapFocus" class="sr screenFocus" tabindex="-1">The Loop map</h1><div class="road"></div><button id="district" class="node"><strong>Checking District</strong><small>4 missions available</small></button><button class="node locked" disabled><strong>Next District</strong><small>Under construction</small></button><div class="hud"><span class="pill">THE LOOP</span><span class="pill">XP <b class="xp">0</b></span></div><div class="mapInfo"><b>Checking District</b><br><span>Certainty always seems one more check away.</span></div></section>
 <section id="select" class="screen" aria-hidden="true"><h1 id="selectFocus" class="sr screenFocus" tabindex="-1">Choose a Checking District mission</h1><div class="hud"><span class="pill">CHECKING DISTRICT</span><span class="pill">XP <b class="xp">0</b></span></div><div class="selectWrap">
 <button class="missionCard" data-mission="door"><span class="tag">PHYSICAL CHECKING</span><b>Lock & Leave</b><span class="completion" data-completion="door"></span><span>Lock once, leave the door behind, and continue toward the vehicle.</span></button>
@@ -136,7 +162,14 @@ function startUrge(){if(urgeTimer||appSuspended||orientationPaused)return;urgeTi
 function stopUrge(){clearInterval(urgeTimer);urgeTimer=null}
 function scene(k){if(k==='door')return '<div class="house"><div class="door"></div></div><div class="driveway"></div><div class="car drivewayCar destination"></div>';if(k==='car')return '<div class="parking"><div class="store"><div class="storeDoor destination"></div></div><div class="crosswalk"></div><div class="car playerCar"></div></div>';if(k==='stove')return '<div class="kitchen"><div class="kitchenLight"></div><div class="exitDoor destination"></div><div class="kitchenRug"></div><div class="kitchenCounter"></div><div class="stove"></div></div>';return '<div class="messageScene"><div class="nextTask destination"><small>NEXT TASK</small><b>Return to your day</b></div><div class="desk"></div><div class="phone"></div></div>'}
 function sourceEl(){return current==='door'?$('.door'):current==='car'?$('.playerCar'):current==='stove'?$('.stove'):$('.phone')}
-function updateScene(){const t=momentum/100,p=$('#person');$('#mission .scene')?.style.setProperty('--p',t.toFixed(3));if(current==='car'){let left,bottom,scale;if(t<.4){const q=t/.4;left=74-24*q;bottom=21+4*q;scale=1-.03*q}else if(t<.72){const q=(t-.4)/.32;left=50;bottom=25+23*q;scale=.97-.1*q}else{const q=(t-.72)/.28;left=50;bottom=48+16*q;scale=.87-.09*q}p.style.left=left+'%';p.style.bottom=bottom+'%';p.style.transform=`translateX(-50%) scale(${scale})`}else if(current==='door'){p.style.left=(50+20*t)+'%';p.style.bottom=(44-18*t)+'%'}else if(current==='stove'){p.style.left=(58-8*t)+'%';p.style.bottom=(20+42*t)+'%';p.style.transform=`translateX(-50%) scale(${1-.2*t})`}else{p.style.left=(68-25*t)+'%';p.style.bottom=(22+28*t)+'%';p.style.transform=`translateX(-50%) scale(${1-.12*t})`}const d=$('.destination');if(d){d.classList.toggle('near',momentum>=88&&momentum<100);d.classList.toggle('arrived',momentum>=100)}const b=$('#destinationBadge');b.classList.toggle('active',moving||momentum>=65);b.textContent=momentum>=100?'ARRIVED':momentum>=88?'ALMOST THERE':M[current].dest}
+function updateScene(){const t=momentum/100,p=$('#person');$('#mission .scene')?.style.setProperty('--p',t.toFixed(3));let left=50,bottom=28,scale=1;
+if(current==='car'){if(t<.38){const q=t/.38;left=74-24*q;bottom=21+5*q;scale=1-.03*q}else if(t<.7){const q=(t-.38)/.32;left=50-2*Math.sin(q*Math.PI);bottom=26+22*q;scale=.97-.1*q}else{const q=(t-.7)/.3;left=48+2*q;bottom=48+17*q;scale=.87-.09*q}}
+else if(current==='door'){if(t<.42){const q=t/.42;left=48+8*q;bottom=43-5*q;scale=1-.03*q}else{const q=(t-.42)/.58;left=56+17*q;bottom=38-11*q;scale=.97-.1*q}}
+else if(current==='stove'){if(t<.28){const q=t/.28;left=58-18*q;bottom=19+11*q;scale=1-.04*q}else if(t<.62){const q=(t-.28)/.34;left=40-5*q;bottom=30+15*q;scale=.96-.07*q}else{const q=(t-.62)/.38;left=35+15*q;bottom=45+18*q;scale=.89-.13*q}}
+else{if(t<.38){const q=t/.38;left=69-15*q;bottom=21+8*q;scale=1-.03*q}else{const q=(t-.38)/.62;left=54-20*q;bottom=29+23*q;scale=.97-.1*q}}
+p.style.left=left+'%';p.style.bottom=bottom+'%';p.style.transform=`translateX(-50%) scale(${scale})`;
+const d=$('.destination');if(d){d.classList.toggle('near',momentum>=88&&momentum<100);d.classList.toggle('arrived',momentum>=100)}
+const b=$('#destinationBadge');b.classList.toggle('active',moving||momentum>=65);b.textContent=momentum>=100?'ARRIVED':momentum>=88?'ALMOST THERE':M[current].dest}
 function loadMission(k){stopAll();current=k;$('#mission').dataset.mission=k;phase='action';momentum=peak=0;urge=52;recoveryTarget=null;thoughtIndex=recheckCount=0;carrying=moving=driftShown=appSuspended=orientationPaused=false;echoSeen=new Set();$('#environment').innerHTML=scene(k);$('#missionName').textContent=M[k].name;$('#missionFocus').textContent=M[k].name+' mission';$('#valueText').textContent=M[k].value;$('#title').textContent='One normal action.';$('#copy').textContent='No extra certainty required.';$('#phaseHint').textContent='ACTION';$('#meters').style.display='none';$('#checkBtn').style.display='none';$('#checkLabel').textContent='HOLD TO CHECK';$('#inputHint').textContent='Hold once to perform the normal action';setRecovery(null);syncForward();meters();updateScene();pathStatus('action');show('mission')}
 function initialAction(){if(phase!=='action')return;const source=sourceEl();source?.classList.add('actionRegistered');setTimeout(()=>source?.classList.remove('actionRegistered'),460);phase='ready';$('#meters').style.display='grid';$('#checkBtn').style.display='block';$('#phaseHint').textContent='READY';$('#title').textContent='Action done. Move forward.';$('#copy').textContent='No extra certainty required.';$('#inputHint').textContent='Hold to move toward '+M[current].dest.toLowerCase()+' • release to stop';syncForward();pathStatus('ready');cue('ACTION DONE • MOVE FORWARD','progress',900);startUrge();scheduleDoubt(850);buzz([12]);sessionSnapshot(true)}
 function maybeEcho(){if(!carrying||phase!=='moving')return;[24,52].forEach((th,i)=>{const key=current+':'+i;if(momentum>=th&&!echoSeen.has(key)){echoSeen.add(key);cue('DOUBT ECHO • '+M[current].echoes[i],'doubt',900)}})}
